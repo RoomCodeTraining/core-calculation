@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         // Créer un utilisateur admin
         $admin = User::factory()->create([
             'name' => 'Admin User',
-            'email' => 'admin@example.com',
+            'email' => 'admin@core.com',
             'organization_id' => $organization->id,
             'role' => 'admin',
             'api_token' => Str::random(60),
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         // Créer un utilisateur standard
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'user@core.com',
             'organization_id' => $organization->id,
             'role' => 'user',
             'api_token' => Str::random(60),
