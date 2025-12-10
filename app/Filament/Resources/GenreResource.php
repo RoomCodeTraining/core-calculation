@@ -35,6 +35,13 @@ class GenreResource extends Resource
                     ->required()
                     ->searchable()
                     ->preload(),
+                Forms\Components\TextInput::make('code')
+                    ->label('Code')
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true),
+                Forms\Components\TextInput::make('label')
+                    ->label('Label')
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('name')
                     ->label('Nom')
                     ->required()
@@ -46,17 +53,48 @@ class GenreResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
+                Forms\Components\Textarea::make('description')
+                    ->label('Description')
+                    ->rows(3)
+                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('max_mileage_essence_per_year')
+                    ->label('Kilométrage max essence par an')
+                    ->numeric()
+                    ->step(0.01),
+                Forms\Components\TextInput::make('max_mileage_diesel_per_year')
+                    ->label('Kilométrage max diesel par an')
+                    ->numeric()
+                    ->step(0.01),
+                Forms\Components\DateTimePicker::make('disabled_at')
+                    ->label('Désactivé le')
+                    ->displayFormat('d/m/Y H:i'),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (Builder $query) => $query->with('vehicleModel.brand'))
             ->columns([
+                Tables\Columns\TextColumn::make('vehicleModel.brand.name')
+                    ->label('Marque')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('vehicleModel.name')
                     ->label('Modèle de véhicule')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('code')
+                    ->label('Code')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('label')
+                    ->label('Label')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nom')
                     ->searchable()
@@ -64,7 +102,28 @@ class GenreResource extends Resource
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('max_mileage_essence_per_year')
+                    ->label('Km max essence/an')
+                    ->numeric()
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\TextColumn::make('max_mileage_diesel_per_year')
+                    ->label('Km max diesel/an')
+                    ->numeric()
+                    ->sortable()
+                    ->toggleable(),
+                Tables\Columns\IconColumn::make('disabled_at')
+                    ->label('Désactivé')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-x-circle')
+                    ->falseIcon('heroicon-o-check-circle')
+                    ->trueColor('danger')
+                    ->falseColor('success')
+                    ->getStateUsing(fn ($record) => $record->disabled_at === null)
+                    ->sortable()
+                    ->toggleable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime()
@@ -77,7 +136,11 @@ class GenreResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('vehicle_model_id')
+                    ->label('Modèle de véhicule')
+                    ->relationship('vehicleModel', 'name')
+                    ->searchable()
+                    ->preload(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

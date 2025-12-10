@@ -1,0 +1,349 @@
+name: Quota
+description: |-
+
+  Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+endpoints:
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/quota
+    metadata:
+      custom: []
+      groupName: Quota
+      groupDescription: |-
+
+        Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Quota disponible'
+      description: "Récupère le quota API restant de l'organisation de l'utilisateur authentifié."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": 200,
+            "message": "Quota récupéré avec succès",
+            "data": {
+              "quota_remaining": 850,
+              "organization": {
+                "id": "org123",
+                "name": "Mon Organisation",
+                "slug": "mon-organisation"
+              }
+            }
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 404
+        content: |-
+          {
+            "status": 404,
+            "message": "Organisation non trouvée"
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - POST
+    uri: api/quota/recharge
+    metadata:
+      custom: []
+      groupName: Quota
+      groupDescription: |-
+
+        Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Recharger le quota'
+      description: |-
+        Recharge le quota API de l'organisation. **Réservé aux administrateurs uniquement.**
+        L'historique de la recharge est automatiquement enregistré.
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      amount:
+        custom: []
+        name: amount
+        description: 'Le montant de quota à ajouter (minimum: 1).'
+        required: true
+        example: 500
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+      notes:
+        custom: []
+        name: notes
+        description: 'Notes optionnelles pour cette recharge.'
+        required: false
+        example: 'Recharge mensuelle'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        deprecated: false
+    cleanBodyParameters:
+      amount: 500
+      notes: 'Recharge mensuelle'
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": 200,
+            "message": "Quota rechargé avec succès",
+            "data": {
+              "recharge": {
+                "amount": 500,
+                "quota_before": 350,
+                "quota_after": 850,
+                "notes": "Recharge mensuelle"
+              },
+              "organization": {
+                "id": "org123",
+                "name": "Mon Organisation",
+                "api_quota": 850
+              }
+            }
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+            "errors": [
+              {
+                "status": 403,
+                "title": "Accès non autorisé",
+                "detail": "Seuls les administrateurs peuvent recharger le quota."
+              }
+            ]
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/quota/recharges
+    metadata:
+      custom: []
+      groupName: Quota
+      groupDescription: |-
+
+        Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Historique des rechargements'
+      description: "Récupère l'historique de tous les rechargements de quota de l'organisation. **Réservé aux administrateurs uniquement.**"
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: "Nombre d'éléments par page (défaut: 15)."
+        required: false
+        example: 20
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 20
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": 200,
+            "message": "Historique de rechargement récupéré avec succès",
+            "data": {
+              "recharges": [
+                {
+                  "id": 1,
+                  "amount": 500,
+                  "quota_before": 350,
+                  "quota_after": 850,
+                  "notes": "Recharge mensuelle",
+                  "recharged_by": {
+                    "name": "Admin User",
+                    "email": "admin@example.com"
+                  },
+                  "created_at": "2024-01-01T00:00:00.000000Z"
+                }
+              ],
+              "pagination": {
+                "current_page": 1,
+                "last_page": 1,
+                "per_page": 15,
+                "total": 1
+              }
+            }
+          }
+        headers: []
+        description: ''
+      -
+        custom: []
+        status: 403
+        content: |-
+          {
+            "errors": [
+              {
+                "status": 403,
+                "title": "Accès non autorisé",
+                "detail": "Seuls les administrateurs peuvent voir l'historique des rechargements."
+              }
+            ]
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
+  -
+    custom: []
+    httpMethods:
+      - GET
+    uri: api/quota/usages
+    metadata:
+      custom: []
+      groupName: Quota
+      groupDescription: |-
+
+        Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Historique d'utilisation"
+      description: "Récupère l'historique de l'utilisation du quota API de l'organisation, incluant tous les appels API effectués."
+      authenticated: true
+      deprecated: false
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      per_page:
+        custom: []
+        name: per_page
+        description: "Nombre d'éléments par page (défaut: 15)."
+        required: false
+        example: 20
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        deprecated: false
+    cleanQueryParameters:
+      per_page: 20
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        custom: []
+        status: 200
+        content: |-
+          {
+            "status": 200,
+            "message": "Historique d'utilisation récupéré avec succès",
+            "data": {
+              "usages": [
+                {
+                  "id": 1,
+                  "endpoint": "/api/depreciation-tables",
+                  "method": "POST",
+                  "quota_used": 1,
+                  "quota_remaining_after": 849,
+                  "user": {
+                    "name": "John Doe",
+                    "email": "user@example.com"
+                  },
+                  "ip_address": "192.168.1.1",
+                  "created_at": "2024-01-01T00:00:00.000000Z"
+                }
+              ],
+              "pagination": {
+                "current_page": 1,
+                "last_page": 1,
+                "per_page": 15,
+                "total": 1
+              }
+            }
+          }
+        headers: []
+        description: ''
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    controller: null
+    method: null
+    route: null
