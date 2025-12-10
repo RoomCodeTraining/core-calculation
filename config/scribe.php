@@ -1,6 +1,8 @@
 <?php
 
 use Knuckles\Scribe\Extracting\Strategies;
+use Knuckles\Scribe\Config\Defaults;
+use Knuckles\Scribe\Config\AuthIn;
 use function Knuckles\Scribe\Config\{removeStrategies, configureStrategy};
 
 // Only the most common configs are shown. See the https://scribe.knuckles.wtf/laravel/reference/config for all.
@@ -10,7 +12,7 @@ return [
     'title' => config('app.name') . ' API Documentation',
 
     // A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
-    'description' => 'API de calcul de dépréciation de véhicules avec gestion de quota et organisations.',
+    'description' => '',
 
     // Text to place in the "Introduction" section, right after the `description`. Markdown and HTML are supported.
     'intro_text' => <<<INTRO
@@ -54,8 +56,7 @@ return [
     'type' => 'laravel',
 
     // See https://scribe.knuckles.wtf/laravel/reference/config#theme for supported options
-    // Options: 'default', 'elements'
-    'theme' => 'elements',
+    'theme' => 'default',
 
     'static' => [
         // HTML documentation, assets and Postman collection will be generated to this folder.
@@ -102,18 +103,17 @@ return [
     // How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
     'auth' => [
         // Set this to true if ANY endpoints in your API use authentication.
-        'enabled' => true,
+        'enabled' => false,
 
         // Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
         // You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
-        'default' => true,
+        'default' => false,
 
         // Where is the auth value meant to be sent in a request?
-        // Options: 'bearer', 'header', 'query', 'body'
-        'in' => 'bearer',
+        'in' => AuthIn::BEARER->value,
 
         // The name of the auth parameter (e.g. token, key, apiKey) or header (e.g. Authorization, Api-Key).
-        'name' => 'Authorization',
+        'name' => 'key',
 
         // The value of the parameter to be used by Scribe to authenticate response calls.
         // This will NOT be included in the generated documentation. If empty, Scribe will use a random value.
@@ -121,10 +121,10 @@ return [
 
         // Placeholder your users will see for the auth parameter in the example requests.
         // Set this to null if you want Scribe to use a random value as placeholder instead.
-        'placeholder' => '{YOUR_AUTH_TOKEN}',
+        'placeholder' => '{YOUR_AUTH_KEY}',
 
         // Any extra authentication-related info for your users. Markdown and HTML are supported.
-        'extra_info' => 'Pour obtenir un token, utilisez l\'endpoint <code>POST /api/auth/login</code> avec vos identifiants. Le token sera retourné dans la réponse et devra être utilisé dans l\'en-tête <code>Authorization: Bearer {token}</code> pour toutes les requêtes authentifiées.',
+        'extra_info' => 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.',
     ],
 
     // Example requests for each endpoint will be shown in each of these languages.
@@ -212,43 +212,28 @@ return [
     // Use removeStrategies() to remove an included strategy.
     'strategies' => [
         'metadata' => [
-            Strategies\Metadata\GetFromDocBlocks::class,
-            Strategies\Metadata\GetFromMetadataAttributes::class,
+            ...Defaults::METADATA_STRATEGIES,
         ],
         'headers' => [
-            Strategies\Headers\GetFromHeaderTag::class,
-            Strategies\Headers\GetFromHeaderAttribute::class,
+            ...Defaults::HEADERS_STRATEGIES,
             Strategies\StaticData::withSettings(data: [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ]),
         ],
         'urlParameters' => [
-            Strategies\UrlParameters\GetFromLaravelAPI::class,
-            Strategies\UrlParameters\GetFromUrlParamTag::class,
-            Strategies\UrlParameters\GetFromUrlParamAttribute::class,
+            ...Defaults::URL_PARAMETERS_STRATEGIES,
         ],
         'queryParameters' => [
-            Strategies\QueryParameters\GetFromQueryParamTag::class,
-            Strategies\QueryParameters\GetFromQueryParamAttribute::class,
-            Strategies\QueryParameters\GetFromValidationRules::class,
+            ...Defaults::QUERY_PARAMETERS_STRATEGIES,
         ],
         'bodyParameters' => [
-            Strategies\BodyParameters\GetFromBodyParamTag::class,
-            Strategies\BodyParameters\GetFromBodyParamAttribute::class,
-            Strategies\BodyParameters\GetFromFormRequest::class,
-            Strategies\BodyParameters\GetFromValidationRules::class,
+            ...Defaults::BODY_PARAMETERS_STRATEGIES,
         ],
         'responses' => configureStrategy(
-            [
-                Strategies\Responses\UseResponseTag::class,
-                Strategies\Responses\UseResponseAttribute::class,
-                Strategies\Responses\UseApiResourceTags::class,
-                Strategies\Responses\UseTransformerTags::class,
-                Strategies\Responses\ResponseCalls::class,
-            ],
+            Defaults::RESPONSES_STRATEGIES,
             Strategies\Responses\ResponseCalls::withSettings(
-                only: ['GET *', 'POST *'],
+                only: ['GET *'],
                 // Recommended: disable debug mode in response calls to avoid error stack traces in responses
                 config: [
                     'app.debug' => false,
@@ -256,8 +241,7 @@ return [
             )
         ),
         'responseFields' => [
-            Strategies\ResponseFields\GetFromResponseFieldTag::class,
-            Strategies\ResponseFields\GetFromResponseFieldAttribute::class,
+            ...Defaults::RESPONSE_FIELDS_STRATEGIES,
         ]
     ],
 
