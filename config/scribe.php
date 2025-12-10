@@ -1,7 +1,6 @@
 <?php
 
 use Knuckles\Scribe\Extracting\Strategies;
-use Knuckles\Scribe\Config\Defaults;
 use function Knuckles\Scribe\Config\{removeStrategies, configureStrategy};
 
 // Only the most common configs are shown. See the https://scribe.knuckles.wtf/laravel/reference/config for all.
@@ -213,26 +212,41 @@ return [
     // Use removeStrategies() to remove an included strategy.
     'strategies' => [
         'metadata' => [
-            ...Defaults::METADATA_STRATEGIES,
+            Strategies\Metadata\GetFromDocBlocks::class,
+            Strategies\Metadata\GetFromMetadataAttributes::class,
         ],
         'headers' => [
-            ...Defaults::HEADERS_STRATEGIES,
+            Strategies\Headers\GetFromHeaderTag::class,
+            Strategies\Headers\GetFromHeaderAttribute::class,
             Strategies\StaticData::withSettings(data: [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
             ]),
         ],
         'urlParameters' => [
-            ...Defaults::URL_PARAMETERS_STRATEGIES,
+            Strategies\UrlParameters\GetFromLaravelAPI::class,
+            Strategies\UrlParameters\GetFromUrlParamTag::class,
+            Strategies\UrlParameters\GetFromUrlParamAttribute::class,
         ],
         'queryParameters' => [
-            ...Defaults::QUERY_PARAMETERS_STRATEGIES,
+            Strategies\QueryParameters\GetFromQueryParamTag::class,
+            Strategies\QueryParameters\GetFromQueryParamAttribute::class,
+            Strategies\QueryParameters\GetFromValidationRules::class,
         ],
         'bodyParameters' => [
-            ...Defaults::BODY_PARAMETERS_STRATEGIES,
+            Strategies\BodyParameters\GetFromBodyParamTag::class,
+            Strategies\BodyParameters\GetFromBodyParamAttribute::class,
+            Strategies\BodyParameters\GetFromFormRequest::class,
+            Strategies\BodyParameters\GetFromValidationRules::class,
         ],
         'responses' => configureStrategy(
-            Defaults::RESPONSES_STRATEGIES,
+            [
+                Strategies\Responses\UseResponseTag::class,
+                Strategies\Responses\UseResponseAttribute::class,
+                Strategies\Responses\UseApiResourceTags::class,
+                Strategies\Responses\UseTransformerTags::class,
+                Strategies\Responses\ResponseCalls::class,
+            ],
             Strategies\Responses\ResponseCalls::withSettings(
                 only: ['GET *', 'POST *'],
                 // Recommended: disable debug mode in response calls to avoid error stack traces in responses
@@ -242,7 +256,8 @@ return [
             )
         ),
         'responseFields' => [
-            ...Defaults::RESPONSE_FIELDS_STRATEGIES,
+            Strategies\ResponseFields\GetFromResponseFieldTag::class,
+            Strategies\ResponseFields\GetFromResponseFieldAttribute::class,
         ]
     ],
 
