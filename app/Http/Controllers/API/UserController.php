@@ -2,293 +2,356 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Mail\ApiTokenGenerated;
-use App\Models\Organization;
+use Carbon\Carbon;
 use App\Models\User;
-use Illuminate\Http\JsonResponse;
+use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use Essa\APIToolKit\Api\ApiResponse;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Validation\Rules\Password;
+use App\Actions\User\CreateUserAction;
+use App\Actions\User\UpdateUserAction;
+use App\Jobs\SendResetPasswordMailJob;
+use App\Http\Resources\User\UserResource;
+use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Requests\User\ResetUserPasswordRequest;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
- * @group Utilisateurs
+ * @group Gestion des utilisateurs
  *
- * Gestion des utilisateurs. **Toutes les opérations sont réservées aux administrateurs uniquement.**
+ * APIs pour la gestion des utilisateurs
  */
 class UserController extends Controller
 {
+    use ApiResponse;
+
     /**
-     * Créer un utilisateur
-     *
-     * Crée un nouvel utilisateur dans une organisation. Un token API est automatiquement généré et envoyé par email.
-     * **Réservé aux administrateurs uniquement.**
-     *
-     * @bodyParam name string required Le nom complet de l'utilisateur. Example: John Doe
-     * @bodyParam email string required L'adresse email unique de l'utilisateur. Example: user@example.com
-     * @bodyParam password string required Le mot de passe de l'utilisateur (minimum 8 caractères). Example: password123
-     * @bodyParam organization_id string required L'identifiant hash de l'organisation. Example: org123
-     * @bodyParam role string Le rôle de l'utilisateur (admin ou user, défaut: user). Example: user
-     *
-     * @response 201 {
-     *   "status": 201,
-     *   "message": "Utilisateur créé avec succès",
-     *   "data": {
-     *     "user": {
-     *       "id": "user123",
-     *       "name": "John Doe",
-     *       "email": "user@example.com",
-     *       "role": "user",
-     *       "organization": {
-     *         "id": "org123",
-     *         "name": "Mon Organisation",
-     *         "slug": "mon-organisation"
-     *       },
-     *       "created_at": "2024-01-01T00:00:00.000000Z"
-     *     },
-     *     "token": "1|abcdefghijklmnopqrstuvwxyz1234567890",
-     *     "token_type": "Bearer"
-     *   }
-     * }
-     * @response 403 {
-     *   "errors": [
-     *     {
-     *       "status": 403,
-     *       "title": "Accès non autorisé",
-     *       "detail": "Seuls les administrateurs peuvent créer des utilisateurs."
-     *     }
-     *   ]
-     * }
-     * @response 404 {
-     *   "status": 404,
-     *   "message": "Organisation non trouvée"
-     * }
+     * Lister les utilisateurs
      */
-    public function store(Request $request): JsonResponse
+    public function index(): AnonymousResourceCollection
     {
-        $user = $request->user();
+        $this->authorize('viewAny', User::class);
 
-        // Seuls les admins peuvent créer des utilisateurs
-        if (!$user || !$user->isAdmin()) {
-            return $this->responseUnAuthorized(
-                'Seuls les administrateurs peuvent créer des utilisateurs.',
-                'Accès non autorisé'
-            );
-        }
+        $users = User::with(['currentRole','entity','status','client'])
+            ->latest('created_at')
+            ->accessibleBy(auth()->user());
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => ['required', 'string', Password::defaults()],
-            'organization_id' => 'required|string',
-            'role' => 'nullable|string|in:admin,user',
-        ]);
+            if(request()->filled('status_id')){
+                $users = $users->where('status_id', Status::keyFromHashId(request()->status_id));
+            }
+    
+            if(request()->filled('current_role_id')){
+                $users = $users->where('current_role_id', Role::keyFromHashId(request()->current_role_id));
+            }
+    
+            if(request()->filled('entity_id')){
+                $users = $users->where('entity_id', Entity::keyFromHashId(request()->entity_id));
+            }
+    
+            if(request()->filled('client_id')){
+                $users = $users->where('client_id', Client::keyFromHashId(request()->client_id));
+            }
+            
+            $users = $users->dynamicPaginate();
 
-        // Vérifier que l'organisation existe
-        $organization = Organization::findByHashId($validated['organization_id']);
-        if (!$organization) {
-            return $this->responseNotFound('Organisation non trouvée');
-        }
-
-        // Rôle par défaut : user
-        $validated['role'] = $validated['role'] ?? 'user';
-
-        // Créer l'utilisateur
-        $newUser = User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => Hash::make($validated['password']),
-            'organization_id' => $organization->id,
-            'role' => $validated['role'],
-        ]);
-
-        // Générer un token API
-        $token = $newUser->createToken('auth_token')->plainTextToken;
-        $newUser->api_token = $token;
-        $newUser->save();
-
-        // Envoyer l'email avec le token API
-        Mail::to($newUser->email)->send(new ApiTokenGenerated($newUser, $token));
-
-        return $this->responseCreated('Utilisateur créé avec succès', [
-            'user' => [
-                'id' => $newUser->hashId,
-                'name' => $newUser->name,
-                'email' => $newUser->email,
-                'role' => $newUser->role,
-                'organization' => [
-                    'id' => $organization->hashId,
-                    'name' => $organization->name,
-                    'slug' => $organization->slug,
-                ],
-                'created_at' => $newUser->created_at->toISOString(),
-            ],
-            'token' => $token,
-            'token_type' => 'Bearer',
-        ]);
+        return UserResource::collection($users);
     }
 
     /**
-     * Liste des utilisateurs
-     *
-     * Récupère la liste des utilisateurs de l'organisation de l'administrateur authentifié.
-     * **Réservé aux administrateurs uniquement.**
-     *
-     * @queryParam per_page integer Nombre d'éléments par page (défaut: 15). Example: 20
-     *
-     * @response 200 {
-     *   "status": 200,
-     *   "message": "Utilisateurs récupérés avec succès",
-     *   "data": {
-     *     "users": [
-     *       {
-     *         "id": "user123",
-     *         "name": "John Doe",
-     *         "email": "user@example.com",
-     *         "role": "user",
-     *         "created_at": "2024-01-01T00:00:00.000000Z"
-     *       }
-     *     ],
-     *     "pagination": {
-     *       "current_page": 1,
-     *       "last_page": 1,
-     *       "per_page": 15,
-     *       "total": 1
-     *     }
-     *   }
-     * }
-     * @response 403 {
-     *   "errors": [
-     *     {
-     *       "status": 403,
-     *       "title": "Accès non autorisé",
-     *       "detail": "Seuls les administrateurs peuvent voir les utilisateurs."
-     *     }
-     *   ]
-     * }
+     * Lister les utilisateurs
      */
-    public function index(Request $request): JsonResponse
+    public function list(): AnonymousResourceCollection
     {
-        $user = $request->user();
+        $users = User::with(['currentRole', 'permissions','entity','status','client'])
+            ->latest('created_at')
+            ->accessibleBy(auth()->user());
 
-        // Seuls les admins peuvent voir les utilisateurs
-        if (!$user || !$user->isAdmin()) {
-            return $this->responseUnAuthorized(
-                'Seuls les administrateurs peuvent voir les utilisateurs.',
-                'Accès non autorisé'
-            );
+        if(request()->filled('status_id')){
+            $users = $users->where('status_id', Status::keyFromHashId(request()->status_id));
         }
 
-        if (!$user->organization) {
-            return $this->responseNotFound('Organisation non trouvée');
+        if(request()->filled('current_role_id')){
+            $users = $users->where('current_role_id', Role::keyFromHashId(request()->current_role_id));
         }
 
-        $users = $user->organization->users()
-            ->where('role', '!=', 'admin') // Ne pas inclure les autres admins
-            ->orderBy('created_at', 'desc')
-            ->paginate($request->get('per_page', 15));
+        if(request()->filled('entity_id')){
+            $users = $users->where('entity_id', Entity::keyFromHashId(request()->entity_id));
+        }
 
-        return $this->responseSuccess('Utilisateurs récupérés avec succès', [
-            'users' => $users->map(function ($u) {
-                return [
-                    'id' => $u->hashId,
-                    'name' => $u->name,
-                    'email' => $u->email,
-                    'role' => $u->role,
-                    'created_at' => $u->created_at->toISOString(),
+        if(request()->filled('client_id')){
+            $users = $users->where('client_id', Client::keyFromHashId(request()->client_id));
+        }
+
+        $users = $users->dynamicPaginate();
+
+        return UserResource::collection($users);
+    }
+
+    /**
+     * Créer un nouvel utilisateur
+     */
+    public function store(CreateUserRequest $request, CreateUserAction $createUser): JsonResponse
+    {
+        // $this->authorize('create', User::class);
+
+        // dd($request->keys());
+
+        $user = $createUser->execute($request->validated());
+
+        return $this->responseCreated('Utilisateur créée avec succès', new UserResource($user));
+    }
+
+    /**
+     * Afficher un utilisateur
+     */
+    public function show($id): JsonResponse
+    {
+        $user = User::accessibleBy(auth()->user())->findOrFail(User::keyFromHashId($id));
+
+        $this->authorize('view', $user);
+
+        return $this->responseSuccess(null, new UserResource($user->load('currentRole','entity','status','client')));
+    }
+
+    /**
+     * Mettre à jour un utilisateur les informations de l'utilisateur
+     */
+    public function update(UpdateUserRequest $request, $id, UpdateUserAction $updateUser): JsonResponse
+    {
+        // $this->authorize('update', $user);
+        $user = User::accessibleBy(auth()->user())->findOrFail(User::keyFromHashId($id));
+
+        $updateUser->execute($user, $request->validated());
+
+        if($request->file('signature') && $request->hasfile('signature')){
+            $now = Carbon::now();
+            $annee = date("Y");
+            $mois_jour_heure = date("mdH");
+            $time = date("is");
+            $today = $annee.'_'.$mois_jour_heure.'_'.$time;
+
+            $signature_path = $request->file('signature');
+            $signature_name = 'SIG'.$today.'.png';
+            $signature_path->move(public_path('storage/signature'), $signature_name);
+            $signature = $signature_name;
+            
+            $user->signature = $signature;
+            $user->save();
+        }
+
+        return $this->responseSuccess('Utilisateur mis à jour avec succès', new UserResource($user));
+    }
+
+    /**
+     * Mettre à jour les informations de l'utilisateur de profil de l'utilisateur connecté
+     */
+    public function update_profile(UpdateUserRequest $request): JsonResponse
+    {
+        $user = auth()->user();
+
+        $user->update($request->validated());
+
+        if($request->file('signature') && $request->hasfile('signature')){
+            $now = Carbon::now();
+            $annee = date("Y");
+            $mois_jour_heure = date("mdH");
+            $time = date("is");
+            $today = $annee.'_'.$mois_jour_heure.'_'.$time;
+
+            $signature_path = $request->file('signature');
+            $signature_name = 'SIG'.$today.'.png';
+            $signature_path->move(public_path('storage/signature'), $signature_name);
+            $signature = $signature_name;
+            
+            $user->signature = $signature;
+            $user->save();
+        }
+
+        return $this->responseSuccess('Profil mis à jour avec succès', new UserResource($user));
+    }
+
+    /**
+     * Activer un utilisateur
+     */
+    public function enable($id)
+    {
+        $user = User::accessibleBy(auth()->user())->findOrFail(User::keyFromHashId($id));
+        $user->update(
+            [
+                'status_id' => 1,
+                'updated_by' => auth()->user()->id,
+            ]
+        );
+
+        return $this->responseSuccess('Utilisateur mis à jour avec succès', new UserResource($user));
+    }
+
+    /**
+     * Désactiver un utilisateur
+     */
+    public function disable($id)
+    {
+        $user = User::accessibleBy(auth()->user())->findOrFail(User::keyFromHashId($id));
+        $user->update(
+            [
+                'status_id' => 2,
+                'updated_by' => auth()->user()->id,
+            ]
+        );
+
+        return $this->responseSuccess('Utilisateur mis à jour avec succès', new UserResource($user));
+    }
+
+    /**
+     * Réinitialiser le mot de passe d'un utilisateur par un administrateur
+     */
+    public function reset($id)
+    {
+        $user = User::accessibleBy(auth()->user())->findOrFail(User::keyFromHashId($id));
+
+        if($user){
+            // $password = $this->randomPassword();
+            $password = "12345678";
+
+            $user->update([
+                'password' => Hash::make($password),
+            ]);
+
+            if($user){
+
+                dispatch(new SendResetPasswordMailJob($user, $password));
+
+                return $this->responseSuccess('Compte réinitialisé avec succès.', new UserResource($user));
+
+            }
+        }
+
+    }
+
+    /**
+     * Réinitialiser le mot de passe d'un utilisateur par lui-même
+     */
+    public function reset_password(ResetPasswordRequest $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if($user){
+            $password = $this->randomPassword();
+
+            $user->update([
+                'password' => Hash::make($password),
+            ]);
+
+            if($user){
+
+                Mail::to($user->email)->cc('brahimafane06@gmail.com')->send(new ResetPassword($user->email,$password));
+
+
+                return $this->responseSuccess('Compte réinitialisé avec succès.', new UserResource($user));
+
+            }
+
+        } else {
+            return $this->responseNotFound('Utilisateur non trouvé !');
+        }
+
+    }
+
+    /**
+     * Modifier les informations d'un utilisateur connecté par lui-même
+     */
+    public function reset_user_password(ResetUserPasswordRequest $request, $id)
+    {
+        $user = User::accessibleBy(auth()->user())->findOrFail(User::keyFromHashId($id));
+
+        $annee = date("Y");
+        $mois_jour_heure = date("mdH");
+        $time = date("is");
+        $today = $annee.'_'.$mois_jour_heure.'_'.$time;
+
+        // Check Password
+        if ($user && Hash::check($request->current_password, $user->password)) {
+
+            if($request->file('signature') && $request->hasfile('signature')){
+                $signature_path = $request->file('signature');
+                $signature_name = 'IMG'.$today.'.'.$signature_path->getClientOriginalExtension();
+                $signature_path->move(public_path('storage/signature'), $signature_name);
+                $signature = $signature_name;
+
+                $data = [
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'telephone' => $request->telephone,
+                    'signature' => $signature,
+                    'password' => Hash::make($request->password),
+                    'updated_by' => auth()->user()->id,
                 ];
-            }),
-            'pagination' => [
-                'current_page' => $users->currentPage(),
-                'last_page' => $users->lastPage(),
-                'per_page' => $users->perPage(),
-                'total' => $users->total(),
-            ],
-        ]);
+            } else {
+                $data = [
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'telephone' => $request->telephone,
+                    'password' => Hash::make($request->password),
+                    'updated_by' => auth()->user()->id,
+                ];
+            }
+
+            $userUpdated = $user->update($data);
+
+            if($userUpdated){
+
+                return $this->responseSuccess('Compte réinitialisé avec succès.', new UserResource($user));
+
+            } 
+        } else {
+            return $this->responseNotFound('Utilisateur introuvable !');
+        }
+
     }
 
-    /**
-     * Détails d'un utilisateur
-     *
-     * Récupère les informations détaillées d'un utilisateur spécifique de la même organisation.
-     * **Réservé aux administrateurs uniquement.**
-     *
-     * @urlParam id string required L'identifiant hash de l'utilisateur. Example: user123
-     *
-     * @response 200 {
-     *   "status": 200,
-     *   "message": "Utilisateur récupéré avec succès",
-     *   "data": {
-     *     "user": {
-     *       "id": "user123",
-     *       "name": "John Doe",
-     *       "email": "user@example.com",
-     *       "role": "user",
-     *       "organization": {
-     *         "id": "org123",
-     *         "name": "Mon Organisation",
-     *         "slug": "mon-organisation"
-     *       },
-     *       "created_at": "2024-01-01T00:00:00.000000Z",
-     *       "updated_at": "2024-01-01T00:00:00.000000Z"
-     *     }
-     *   }
-     * }
-     * @response 403 {
-     *   "errors": [
-     *     {
-     *       "status": 403,
-     *       "title": "Accès non autorisé",
-     *       "detail": "Seuls les administrateurs peuvent voir les détails d'un utilisateur."
-     *     }
-     *   ]
-     * }
-     * @response 404 {
-     *   "status": 404,
-     *   "message": "Utilisateur non trouvé"
-     * }
-     */
-    public function show(Request $request, string $id): JsonResponse
+    public function randomPassword() {
+        $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&^&*()-+={}[]:;<>?';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 12; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+    }
+
+    public function givePermissionToUser(Request $request, $id)
     {
-        $user = $request->user();
+        $user = User::accessibleBy(auth()->user())->findOrFail(User::keyFromHashId($id));
 
-        // Seuls les admins peuvent voir les détails d'un utilisateur
-        if (!$user || !$user->isAdmin()) {
-            return $this->responseUnAuthorized(
-                'Seuls les administrateurs peuvent voir les détails d\'un utilisateur.',
-                'Accès non autorisé'
-            );
+        $permissions = [];
+        if(count($request->permissions) > 0){
+            for ($i = 0; $i < count($request->permissions); $i++) {
+                $permission = Permission::accessibleBy(auth()->user())->findOrFail(Permission::keyFromHashId($request->permissions[$i]));
+                $permissions[] = $permission->name;
+            }
+            $user->givePermissionTo($permissions);
         }
 
-        $targetUser = User::findByHashId($id);
+        return $this->responseSuccess('Permission added to user successfully', new UserResource($user));
+    }
 
-        if (!$targetUser) {
-            return $this->responseNotFound('Utilisateur non trouvé');
+    public function revokePermissionToUser(Request $request, $id)
+    {
+        $user = User::accessibleBy(auth()->user())->findOrFail(User::keyFromHashId($id));
+
+        $permissions = [];
+        if(count($request->permissions) > 0){
+            for ($i = 0; $i < count($request->permissions); $i++) {
+                $permission = Permission::accessibleBy(auth()->user())->findOrFail(Permission::keyFromHashId($request->permissions[$i]));
+                $permissions[] = $permission->name;
+            }
+            $user->revokePermissionTo($permissions);
         }
 
-        // Vérifier que l'utilisateur appartient à la même organisation
-        if ($targetUser->organization_id !== $user->organization_id) {
-            return $this->responseUnAuthorized(
-                'Vous ne pouvez voir que les utilisateurs de votre organisation.',
-                'Accès non autorisé'
-            );
-        }
-
-        return $this->responseSuccess('Utilisateur récupéré avec succès', [
-            'user' => [
-                'id' => $targetUser->hashId,
-                'name' => $targetUser->name,
-                'email' => $targetUser->email,
-                'role' => $targetUser->role,
-                'organization' => $targetUser->organization ? [
-                    'id' => $targetUser->organization->hashId,
-                    'name' => $targetUser->organization->name,
-                    'slug' => $targetUser->organization->slug,
-                ] : null,
-                'created_at' => $targetUser->created_at->toISOString(),
-                'updated_at' => $targetUser->updated_at->toISOString(),
-            ],
-        ]);
+        return $this->responseSuccess('Permission revoked from user successfully', new UserResource($user));
     }
 }

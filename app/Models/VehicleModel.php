@@ -2,25 +2,37 @@
 
 namespace App\Models;
 
+use App\Filters\VehicleModelFilters;
 use Essa\APIToolKit\Filters\Filterable;
-use Illuminate\Database\Eloquent\Model;
-use Deligoez\LaravelModelHashId\Traits\HasHashId;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Deligoez\LaravelModelHashId\Traits\HasHashId;
+use Deligoez\LaravelModelHashId\Traits\HasHashIdRouting;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class VehicleModel extends Model
 {
-    use HasFactory, Filterable, HasHashId;
+    use Filterable;
+    use HasFactory;
+    use HasHashId;
+    use HasHashIdRouting;
+    use SoftDeletes;
 
-    protected $fillable = [
-        'brand_id',
-        'name',
-        'slug',
-    ];
+    protected string $default_filters = VehicleModelFilters::class;
 
     /**
-     * Get the brand that owns the vehicle model.
+     * Mass-assignable attributes.
+     *
+     * @var array
+     */
+     protected $guarded = [];
+
+    /**
+     * Get the brand this vehicle model belongs to
      */
     public function brand(): BelongsTo
     {
@@ -28,11 +40,42 @@ class VehicleModel extends Model
     }
 
     /**
-     * Get the genres for the vehicle model.
+     * Get all vehicles of this model
      */
-    public function genres(): HasMany
+    public function vehicles(): HasMany
     {
-        return $this->hasMany(Genre::class);
+        return $this->hasMany(Vehicle::class);
+    }
+
+    /**
+     * Get the status of this vehicle model
+     */
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    /**
+     * Get the user who created this vehicle model
+     */
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    /**
+     * Get the user who last updated this vehicle model
+     */
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    /**
+     * Get the user who deleted this vehicle model
+     */
+    public function deletedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'deleted_by');
     }
 }
-

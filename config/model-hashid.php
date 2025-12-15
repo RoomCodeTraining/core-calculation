@@ -60,7 +60,7 @@ return [
     |
     */
 
-    'prefix_length' => 3,
+    'prefix_length' => -1,
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you can set the case of the prefix. Please keep in mind that for
-    | some prefix cases, underscore ('_') characters will be added to the
+    | some prefix cases, underscore (‘_’) characters will be added to the
     | prefix if your model name is multi word.
     |
     | Default: 'lower'
@@ -89,8 +89,6 @@ return [
     | will be added between model prefix and the raw HashID.
     |
     | Default: '_'
-    |
-    | Options: '_', '-', '.', etc.
     |
     */
 
@@ -122,36 +120,23 @@ return [
     */
 
     'model_generators' => [
-        // Configuration personnalisée pour Brand
-        App\Models\Brand::class => [
-            'salt' => env('HASHID_SALT_BRAND', 'brand-secret-salt-' . env('APP_KEY', 'default-key')),
-            'prefix' => 'brd', // Préfixe personnalisé pour Brand
-            'separator' => '_',
-            'length' => 16,
-        ],
+        // App\Models\User::class => [
+        //     'salt'            => 'your-model-specific-salt-string',
+        //     'length'          => 13,
+        //     'alphabet'        => 'abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890',
+        //     'prefix_length'   => 3,
+        //     'prefix_case'     => 'lower',
+        //     'separator'       => '_',
+        //     'database_column' => 'hash_id',
+        // ],
 
-        // Configuration personnalisée pour VehicleModel
-        App\Models\VehicleModel::class => [
-            'salt' => env('HASHID_SALT_VEHICLE_MODEL', 'vehicle-model-secret-salt-' . env('APP_KEY', 'default-key')),
-            'prefix' => 'vmd', // Préfixe personnalisé pour VehicleModel
-            'separator' => '_',
-            'length' => 16,
-        ],
-
-        // Configuration personnalisée pour Genre
-        App\Models\Genre::class => [
-            'salt' => env('HASHID_SALT_GENRE', 'genre-secret-salt-' . env('APP_KEY', 'default-key')),
-            'prefix' => 'gen', // Préfixe personnalisé pour Genre
-            'separator' => '_',
-            'length' => 16,
-        ],
-
-        // Configuration personnalisée pour Usage
-        App\Models\Usage::class => [
-            'salt' => env('HASHID_SALT_USAGE', 'usage-secret-salt-' . env('APP_KEY', 'default-key')),
-            'prefix' => 'usg', // Préfixe personnalisé pour Usage
-            'separator' => '_',
-            'length' => 16,
-        ],
+        // App\Models\Post::class => [
+        //     'salt'            => 'your-model-specific-salt-string',
+        //     'length'          => 13,
+        //     'alphabet'        => 'abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890',
+        //     'prefix'          => 'abc', // prefix will be 'abc' for this model, not a generated prefix
+        //     'separator'       => '_',
+        //     'database_column' => 'hash_id',
+        // ],
     ],
 ];

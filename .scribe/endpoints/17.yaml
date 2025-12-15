@@ -1,0 +1,461 @@
+name: 'Gestion des caractéristiques des véhicules'
+description: |-
+
+  APIs pour la gestion des caractéristiques des véhicules
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/vehicle-characteristics
+    metadata:
+      groupName: 'Gestion des caractéristiques des véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des caractéristiques des véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister toutes les caractéristiques des véhicules'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 8DeVf54agad3ZkhP1b66vcE'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/vehicle-characteristics
+    metadata:
+      groupName: 'Gestion des caractéristiques des véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des caractéristiques des véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Créer une caractéristique de véhicule'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      vehicle_model_id:
+        name: vehicle_model_id
+        description: 'The <code>id</code> of an existing record in the vehicle_models table.'
+        required: true
+        example: deserunt
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      vehicle_genre_id:
+        name: vehicle_genre_id
+        description: 'The <code>id</code> of an existing record in the vehicle_genres table.'
+        required: true
+        example: laborum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      usage_id:
+        name: usage_id
+        description: 'The <code>id</code> of an existing record in the usages table.'
+        required: true
+        example: quas
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      vehicle_energy_id:
+        name: vehicle_energy_id
+        description: 'The <code>id</code> of an existing record in the vehicle_energies table.'
+        required: true
+        example: repudiandae
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      dealer_id:
+        name: dealer_id
+        description: 'The <code>id</code> of an existing record in the dealers table.'
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      type:
+        name: type
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: excvruxsiozyzzxzyfbsn
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      options:
+        name: options
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: ykv
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      fiscal_power:
+        name: fiscal_power
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: false
+        example: 9
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      nb_seats:
+        name: nb_seats
+        description: ''
+        required: false
+        example: 8
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      new_market_value:
+        name: new_market_value
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: false
+        example: 41
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      vehicle_model_id: deserunt
+      vehicle_genre_id: laborum
+      usage_id: quas
+      vehicle_energy_id: repudiandae
+      dealer_id: et
+      type: excvruxsiozyzzxzyfbsn
+      options: ykv
+      fiscal_power: 9
+      nb_seats: 8
+      new_market_value: 41
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer k5Vbv16ae8aEcd46ZD3Pfgh'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/vehicle-characteristics/{id}'
+    metadata:
+      groupName: 'Gestion des caractéristiques des véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des caractéristiques des véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Afficher une caractéristique de véhicule'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the vehicle characteristic.'
+        required: true
+        example: repudiandae
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: repudiandae
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer bh4kD31E8V6dvPaeZ5gfca6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/vehicle-characteristics/{id}'
+    metadata:
+      groupName: 'Gestion des caractéristiques des véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des caractéristiques des véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mettre à jour une caractéristique de véhicule'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the vehicle characteristic.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: consequatur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      vehicle_model_id:
+        name: vehicle_model_id
+        description: 'The <code>id</code> of an existing record in the vehicle_models table.'
+        required: true
+        example: labore
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      vehicle_genre_id:
+        name: vehicle_genre_id
+        description: 'The <code>id</code> of an existing record in the vehicle_genres table.'
+        required: true
+        example: occaecati
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      usage_id:
+        name: usage_id
+        description: 'The <code>id</code> of an existing record in the usages table.'
+        required: true
+        example: modi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      vehicle_energy_id:
+        name: vehicle_energy_id
+        description: 'The <code>id</code> of an existing record in the vehicle_energies table.'
+        required: true
+        example: vitae
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      dealer_id:
+        name: dealer_id
+        description: 'The <code>id</code> of an existing record in the dealers table.'
+        required: true
+        example: nisi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      type:
+        name: type
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: yvosapyixukesrhoxtb
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      options:
+        name: options
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: c
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      fiscal_power:
+        name: fiscal_power
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: false
+        example: 40
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      nb_seats:
+        name: nb_seats
+        description: ''
+        required: false
+        example: 11
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      new_market_value:
+        name: new_market_value
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: false
+        example: 86
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      vehicle_model_id: labore
+      vehicle_genre_id: occaecati
+      usage_id: modi
+      vehicle_energy_id: vitae
+      dealer_id: nisi
+      type: yvosapyixukesrhoxtb
+      options: c
+      fiscal_power: 40
+      nb_seats: 11
+      new_market_value: 86
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Ekc8DPg53ed4Zaf6h1aV6vb'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/vehicle-characteristics/{id}'
+    metadata:
+      groupName: 'Gestion des caractéristiques des véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des caractéristiques des véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Supprimer une caractéristique de véhicule'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the vehicle characteristic.'
+        required: true
+        example: atque
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: atque
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6fEec8PvbV1g54kDZd6aha3'
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -1,29 +1,129 @@
-name: Utilisateurs
+name: "Gestion des types d'entité"
 description: |-
 
-  Gestion des utilisateurs. **Toutes les opérations sont réservées aux administrateurs uniquement.**
+  APIs pour la gestion des types d'entité
 endpoints:
   -
-    custom: []
     httpMethods:
-      - POST
-    uri: api/users
+      - GET
+    uri: api/v1/entity-types
     metadata:
-      custom: []
-      groupName: Utilisateurs
+      groupName: "Gestion des types d'entité"
       groupDescription: |-
 
-        Gestion des utilisateurs. **Toutes les opérations sont réservées aux administrateurs uniquement.**
+        APIs pour la gestion des types d'entité
       subgroup: ''
       subgroupDescription: ''
-      title: 'Créer un utilisateur'
-      description: |-
-        Crée un nouvel utilisateur dans une organisation. Un token API est automatiquement généré et envoyé par email.
-        **Réservé aux administrateurs uniquement.**
+      title: "Lister les types d'entité"
+      description: ''
       authenticated: true
       deprecated: false
+      custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer ZDf6a86kc31vbEeVg4h5aPd'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/entity-types/{id}'
+    metadata:
+      groupName: "Gestion des types d'entité"
+      groupDescription: |-
+
+        APIs pour la gestion des types d'entité
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Afficher un type d'entité"
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the entity type.'
+        required: true
+        example: qui
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: qui
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer v6d6DZP1VE3k85a4bahgfce'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/entity-types
+    metadata:
+      groupName: "Gestion des types d'entité"
+      groupDescription: |-
+
+        APIs pour la gestion des types d'entité
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Ajouter un type d'entité"
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -31,319 +131,203 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      name:
-        custom: []
-        name: name
-        description: "Le nom complet de l'utilisateur."
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: 'John Doe'
+        example: qiukfupyxflgdzwsdtr
         type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
-        deprecated: false
-      email:
         custom: []
-        name: email
-        description: "L'adresse email unique de l'utilisateur."
-        required: true
-        example: user@example.com
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      password:
-        custom: []
-        name: password
-        description: "Le mot de passe de l'utilisateur (minimum 8 caractères)."
-        required: true
-        example: password123
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      organization_id:
-        custom: []
-        name: organization_id
-        description: "L'identifiant hash de l'organisation."
-        required: true
-        example: org123
-        type: string
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      role:
-        custom: []
-        name: role
-        description: "Le rôle de l'utilisateur (admin ou user, défaut: user)."
+      description:
+        name: description
+        description: ''
         required: false
-        example: user
+        example: 'Quidem non consequuntur qui praesentium harum eligendi.'
         type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: true
-        deprecated: false
+        custom: []
     cleanBodyParameters:
-      name: 'John Doe'
-      email: user@example.com
-      password: password123
-      organization_id: org123
-      role: user
+      label: qiukfupyxflgdzwsdtr
+      description: 'Quidem non consequuntur qui praesentium harum eligendi.'
     fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 201
-        content: |-
-          {
-            "status": 201,
-            "message": "Utilisateur créé avec succès",
-            "data": {
-              "user": {
-                "id": "user123",
-                "name": "John Doe",
-                "email": "user@example.com",
-                "role": "user",
-                "organization": {
-                  "id": "org123",
-                  "name": "Mon Organisation",
-                  "slug": "mon-organisation"
-                },
-                "created_at": "2024-01-01T00:00:00.000000Z"
-              },
-              "token": "1|abcdefghijklmnopqrstuvwxyz1234567890",
-              "token_type": "Bearer"
-            }
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 403
-        content: |-
-          {
-            "errors": [
-              {
-                "status": 403,
-                "title": "Accès non autorisé",
-                "detail": "Seuls les administrateurs peuvent créer des utilisateurs."
-              }
-            ]
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 404
-        content: |-
-          {
-            "status": 404,
-            "message": "Organisation non trouvée"
-          }
-        headers: []
-        description: ''
+    responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer hEgka1v6f534e6bcV8aPDZd'
     controller: null
     method: null
     route: null
-  -
     custom: []
+  -
     httpMethods:
-      - GET
-    uri: api/users
+      - PUT
+    uri: 'api/v1/entity-types/{id}'
     metadata:
-      custom: []
-      groupName: Utilisateurs
+      groupName: "Gestion des types d'entité"
       groupDescription: |-
 
-        Gestion des utilisateurs. **Toutes les opérations sont réservées aux administrateurs uniquement.**
+        APIs pour la gestion des types d'entité
       subgroup: ''
       subgroupDescription: ''
-      title: 'Liste des utilisateurs'
-      description: |-
-        Récupère la liste des utilisateurs de l'organisation de l'administrateur authentifié.
-        **Réservé aux administrateurs uniquement.**
+      title: "Mettre à jour un type d'entité"
+      description: ''
       authenticated: true
       deprecated: false
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters:
-      per_page:
-        custom: []
-        name: per_page
-        description: "Nombre d'éléments par page (défaut: 15)."
-        required: false
-        example: 20
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanQueryParameters:
-      per_page: 20
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Utilisateurs récupérés avec succès",
-            "data": {
-              "users": [
-                {
-                  "id": "user123",
-                  "name": "John Doe",
-                  "email": "user@example.com",
-                  "role": "user",
-                  "created_at": "2024-01-01T00:00:00.000000Z"
-                }
-              ],
-              "pagination": {
-                "current_page": 1,
-                "last_page": 1,
-                "per_page": 15,
-                "total": 1
-              }
-            }
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 403
-        content: |-
-          {
-            "errors": [
-              {
-                "status": 403,
-                "title": "Accès non autorisé",
-                "detail": "Seuls les administrateurs peuvent voir les utilisateurs."
-              }
-            ]
-          }
-        headers: []
-        description: ''
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - GET
-    uri: 'api/users/{id}'
-    metadata:
       custom: []
-      groupName: Utilisateurs
-      groupDescription: |-
-
-        Gestion des utilisateurs. **Toutes les opérations sont réservées aux administrateurs uniquement.**
-      subgroup: ''
-      subgroupDescription: ''
-      title: "Détails d'un utilisateur"
-      description: |-
-        Récupère les informations détaillées d'un utilisateur spécifique de la même organisation.
-        **Réservé aux administrateurs uniquement.**
-      authenticated: true
-      deprecated: false
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
-        custom: []
         name: id
-        description: "L'identifiant hash de l'utilisateur."
+        description: 'The ID of the entity type.'
         required: true
-        example: user123
+        example: repellendus
         type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
-        deprecated: false
+        custom: []
     cleanUrlParameters:
-      id: user123
+      id: repellendus
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: iuhyxnklxr
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: false
+        example: 'Beatae odio maiores qui ipsam qui.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      label: iuhyxnklxr
+      description: 'Beatae odio maiores qui ipsam qui.'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1Dc5fgEkb4h6aVda3veP68Z'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/entity-types/{id}/enable'
+    metadata:
+      groupName: "Gestion des types d'entité"
+      groupDescription: |-
+
+        APIs pour la gestion des types d'entité
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Activer un type d'entité"
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the entity type.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Utilisateur récupéré avec succès",
-            "data": {
-              "user": {
-                "id": "user123",
-                "name": "John Doe",
-                "email": "user@example.com",
-                "role": "user",
-                "organization": {
-                  "id": "org123",
-                  "name": "Mon Organisation",
-                  "slug": "mon-organisation"
-                },
-                "created_at": "2024-01-01T00:00:00.000000Z",
-                "updated_at": "2024-01-01T00:00:00.000000Z"
-              }
-            }
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 403
-        content: |-
-          {
-            "errors": [
-              {
-                "status": 403,
-                "title": "Accès non autorisé",
-                "detail": "Seuls les administrateurs peuvent voir les détails d'un utilisateur."
-              }
-            ]
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 404
-        content: |-
-          {
-            "status": 404,
-            "message": "Utilisateur non trouvé"
-          }
-        headers: []
-        description: ''
+    responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer d56gPVfkavhc4Za86eb3DE1'
     controller: null
     method: null
     route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/entity-types/{id}/disable'
+    metadata:
+      groupName: "Gestion des types d'entité"
+      groupDescription: |-
+
+        APIs pour la gestion des types d'entité
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Désactiver un type d'entité"
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the entity type.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6Zkdeh43bV5E8agv16aPcDf'
+    controller: null
+    method: null
+    route: null
+    custom: []

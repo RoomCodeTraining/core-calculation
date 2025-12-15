@@ -2,44 +2,122 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Filters\UsageFilters;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\UsageResource;
 use App\Models\Usage;
+use App\Models\Status;
+use App\Enums\StatusEnum;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Essa\APIToolKit\Api\ApiResponse;
+use App\Http\Resources\Usage\UsageResource;
+use App\Http\Requests\Usage\CreateUsageRequest;
+use App\Http\Requests\Usage\UpdateUsageRequest;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
+/**
+ * @group Gestion des usages de véhicules
+ *
+ * APIs pour la gestion des usages
+ */
 class UsageController extends Controller
 {
-    /**
-     * Display a listing of the usages.
-     */
-    public function index(): JsonResponse
+    use ApiResponse;
+    
+    public function __construct()
     {
-        $usages = Usage::useFilters(UsageFilters::class)
-            ->with(['genre.vehicleModel.brand'])
-            ->paginate();
 
-        return $this->responseSuccess(
-            'Usages retrieved successfully',
-            UsageResource::collection($usages)->response()->getData(true)
-        );
     }
 
     /**
-     * Display the specified usage.
+     * Lister tous les usages de véhicules
+     *
+     * @authenticated
      */
-    public function show(Request $request, string $id): JsonResponse
+    public function index(): AnonymousResourceCollection
     {
-        $usage = Usage::findByHashId($id);
+        $usages = Usage::with('vehicleGenre', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
 
-        if (!$usage) {
-            return $this->responseNotFound('Usage not found');
+        if(request()->has('vehicle_genre_id')){
+            $usages = $usages->where('vehicle_genre_id', VehicleGenre::keyFromHashId(request()->vehicle_genre_id));
         }
 
-        $usage->load(['genre.vehicleModel.brand']);
+        $usages = $usages->useFilters()
+                    ->latest('created_at')
+                    ->dynamicPaginate();   
 
-        return $this->responseSuccess('Usage retrieved successfully', new UsageResource($usage));
+        return UsageResource::collection($usages);
+    }
+
+    /**
+     * Ajouter un usage de véhicule
+     *
+     * @authenticated
+     */
+    public function store(CreateUsageRequest $request): JsonResponse
+    {
+        $code = strtolower(str_replace(' ', '', $request->label));
+        $usage = Usage::create([
+            'code' => $code,
+            'label' => $request->label,
+            'description' => $request->description,
+            'max_mileage_essence_per_year' => $request->max_mileage_essence_per_year ?? 0,
+            'max_mileage_diesel_per_year' => $request->max_mileage_diesel_per_year ?? 0,
+            'vehicle_genre_id' => $request->vehicle_genre_id,
+            'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
+            'created_by' => auth()->user()->id,
+            'updated_by' => auth()->user()->id,
+        ]);
+
+        return $this->responseCreated('Usage created successfully', new UsageResource($usage));
+    }
+
+    /**
+     * Afficher un usage de véhicule
+     *
+     * @authenticated
+     */
+    public function show($id): JsonResponse
+    {
+        $usage = Usage::findOrFail(Usage::keyFromHashId($id));
+        $usage->load('vehicleGenre', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
+        return $this->responseSuccess(null, new UsageResource($usage));
+    }
+
+    /**
+     * Mettre à jour un usage de véhicule
+     *
+     * @authenticated
+     */
+    public function update(UpdateUsageRequest $request, $id): JsonResponse
+    {
+        $usage = Usage::findOrFail(Usage::keyFromHashId($id));
+        $usage->update([
+            'label' => $request->label,
+            'description' => $request->description,
+            'max_mileage_essence_per_year' => $request->max_mileage_essence_per_year ?? 0,
+            'max_mileage_diesel_per_year' => $request->max_mileage_diesel_per_year ?? 0,
+            'vehicle_genre_id' => $request->vehicle_genre_id,
+            'updated_by' => auth()->user()->id,
+        ]);
+
+        return $this->responseSuccess('Usage updated Successfully', new UsageResource($usage));
+    }
+
+    /**
+     * Supprimer un usage de véhicule
+     *
+     * @authenticated
+     */
+    public function destroy($id): JsonResponse
+    {
+        $usage = Usage::findOrFail(Usage::keyFromHashId($id));
+        $usage->update([
+            'status_id' => Status::where('code', StatusEnum::DELETED)->first()->id,
+            'deleted_by' => auth()->user()->id,
+            'deleted_at' => Carbon::now(),
+        ]);
+
+        $usage->delete();
+
+        return $this->responseSuccess('Usage deleted Successfully', null);
     }
 }
-

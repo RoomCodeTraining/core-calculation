@@ -2,38 +2,77 @@
 
 namespace App\Models;
 
+use App\Filters\UsageFilters;
 use Essa\APIToolKit\Filters\Filterable;
-use Illuminate\Database\Eloquent\Model;
-use Deligoez\LaravelModelHashId\Traits\HasHashId;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Deligoez\LaravelModelHashId\Traits\HasHashId;
+use Deligoez\LaravelModelHashId\Traits\HasHashIdRouting;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Usage extends Model
 {
-    use HasFactory, Filterable, HasHashId;
+    use HasFactory, Filterable, HasHashId, HasHashIdRouting, SoftDeletes;
 
-    protected $fillable = [
-        'genre_id',
-        'name',
-        'slug',
-        'code',
-        'max_mileage_essence_per_year',
-        'max_mileage_diesel_per_year',
-        'label',
-        'description',
-        'disabled_at',
-    ];
+    protected string $default_filters = UsageFilters::class;
 
-    protected $casts = [
-        'disabled_at' => 'datetime',
+    /**
+     * Mass-assignable attributes.
+     *
+     * @var array
+     */
+    protected $guarded = [
+        
     ];
 
     /**
-     * Get the genre that owns the usage.
+     * Get the vehicle genre for this usage
      */
-    public function genre(): BelongsTo
+    public function vehicleGenre(): BelongsTo
     {
-        return $this->belongsTo(Genre::class);
+        return $this->belongsTo(VehicleGenre::class);
     }
-}
 
+    /**
+     * Get all vehicle characteristics for this usage
+     */
+    public function vehicleCharacteristics(): HasMany
+    {
+        return $this->hasMany(VehicleCharacteristic::class);
+    }
+
+    /**
+     * Get the status of this usage
+     */
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    /**
+     * Get the user who created this usage
+     */
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }       
+
+    /**
+     * Get the user who last updated this usage
+     */
+    public function updatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    /**
+     * Get the user who deleted this usage
+     */
+    public function deletedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'deleted_by');
+    }
+
+}

@@ -1,27 +1,25 @@
-name: Organisations
+name: Auth
 description: |-
 
-  Gestion des organisations. Les organisations permettent de regrouper des utilisateurs et de gérer leur quota API.
+  Auth API
 endpoints:
   -
-    custom: []
     httpMethods:
       - POST
-    uri: api/organizations
+    uri: api/v1/auth/register
     metadata:
-      custom: []
-      groupName: Organisations
+      groupName: Auth
       groupDescription: |-
 
-        Gestion des organisations. Les organisations permettent de regrouper des utilisateurs et de gérer leur quota API.
+        Auth API
       subgroup: ''
       subgroupDescription: ''
-      title: 'Créer une organisation'
-      description: 'Crée une nouvelle organisation. Le slug sera généré automatiquement à partir du nom si non fourni.'
-      authenticated: true
+      title: "Inscription d'un nouveau client"
+      description: ''
+      authenticated: false
       deprecated: false
+      custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -29,199 +27,317 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      name:
-        custom: []
-        name: name
-        description: "Le nom de l'organisation."
+      email:
+        name: email
+        description: 'Le champ value doit être une adresse e-mail valide.'
         required: true
-        example: 'Mon Organisation'
+        example: corine.schmeler@example.net
         type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
-        deprecated: false
-      slug:
         custom: []
-        name: slug
-        description: "Le slug unique de l'organisation (généré automatiquement si non fourni)."
-        required: false
-        example: mon-organisation
+      first_name:
+        name: first_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: hgolaznzxfettdjar
         type: string
         enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-      api_quota:
+        exampleWasSpecified: false
+        nullable: false
         custom: []
-        name: api_quota
-        description: 'Le quota API initial (défaut: 0).'
-        required: false
-        example: 1000
-        type: integer
+      last_name:
+        name: last_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: rk
+        type: string
         enumValues: []
-        exampleWasSpecified: true
-        nullable: true
-        deprecated: false
-    cleanBodyParameters:
-      name: 'Mon Organisation'
-      slug: mon-organisation
-      api_quota: 1000
-    fileParameters: []
-    responses:
-      -
+        exampleWasSpecified: false
+        nullable: false
         custom: []
-        status: 201
-        content: |-
-          {
-            "status": 201,
-            "message": "Organisation créée avec succès",
-            "data": {
-              "organization": {
-                "id": "org123",
-                "name": "Mon Organisation",
-                "slug": "mon-organisation",
-                "api_quota": 1000,
-                "created_at": "2024-01-01T00:00:00.000000Z"
-              }
-            }
-          }
-        headers: []
-        description: ''
+      telephone:
+        name: telephone
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: vonnr
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: 'Le texte de value doit contenir au moins 8 caractères. Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: true
+        example: '=Z6Qf&)/A^uTYCfg'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      email: corine.schmeler@example.net
+      first_name: hgolaznzxfettdjar
+      last_name: rk
+      telephone: vonnr
+      password: '=Z6Qf&)/A^uTYCfg'
+    fileParameters: []
+    responses: []
     responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+    auth: []
     controller: null
     method: null
     route: null
-  -
     custom: []
+  -
     httpMethods:
-      - GET
-    uri: api/organizations
+      - POST
+    uri: api/v1/auth/set-password
     metadata:
-      custom: []
-      groupName: Organisations
+      groupName: Auth
       groupDescription: |-
 
-        Gestion des organisations. Les organisations permettent de regrouper des utilisateurs et de gérer leur quota API.
+        Auth API
       subgroup: ''
       subgroupDescription: ''
-      title: 'Liste des organisations'
-      description: 'Récupère la liste de toutes les organisations. **Réservé aux administrateurs uniquement.**'
+      title: ''
+      description: ''
       authenticated: true
       deprecated: false
+      custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters:
-      per_page:
-        custom: []
-        name: per_page
-        description: "Nombre d'éléments par page (défaut: 15)."
-        required: false
-        example: 20
-        type: integer
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Le champ value doit être une adresse e-mail valide.'
+        required: true
+        example: daniella59@example.net
+        type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
-        deprecated: false
-    cleanQueryParameters:
-      per_page: 20
-    bodyParameters: []
-    cleanBodyParameters: []
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: aut
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      new_password:
+        name: new_password
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: true
+        example: lgznfwqrcinkssdlxznrmge
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      new_password_confirmation:
+        name: new_password_confirmation
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: true
+        example: xxdzbdcrlykmfw
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      email: daniella59@example.net
+      password: aut
+      new_password: lgznfwqrcinkssdlxznrmge
+      new_password_confirmation: xxdzbdcrlykmfw
     fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Organisations récupérées avec succès",
-            "data": {
-              "organizations": [
-                {
-                  "id": "org123",
-                  "name": "Mon Organisation",
-                  "slug": "mon-organisation",
-                  "api_quota": 1000,
-                  "users_count": 5,
-                  "created_at": "2024-01-01T00:00:00.000000Z"
-                }
-              ],
-              "pagination": {
-                "current_page": 1,
-                "last_page": 1,
-                "per_page": 15,
-                "total": 1
-              }
-            }
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 403
-        content: |-
-          {
-            "errors": [
-              {
-                "status": 403,
-                "title": "Accès non autorisé",
-                "detail": "Seuls les administrateurs peuvent accéder à cette ressource."
-              }
-            ]
-          }
-        headers: []
-        description: ''
+    responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer Zd3acPVDhag18ef4k6b6Ev5'
     controller: null
     method: null
     route: null
-  -
     custom: []
+  -
     httpMethods:
-      - GET
-    uri: 'api/organizations/{id}'
+      - POST
+    uri: api/v1/auth/otp-validate
     metadata:
-      custom: []
-      groupName: Organisations
+      groupName: Auth
       groupDescription: |-
 
-        Gestion des organisations. Les organisations permettent de regrouper des utilisateurs et de gérer leur quota API.
+        Auth API
       subgroup: ''
       subgroupDescription: ''
-      title: "Détails d'une organisation"
-      description: "Récupère les informations détaillées d'une organisation spécifique."
+      title: ''
+      description: ''
       authenticated: true
       deprecated: false
+      custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        custom: []
-        name: id
-        description: "L'identifiant hash de l'organisation."
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Le champ value doit être une adresse e-mail valide.'
         required: true
-        example: org123
+        example: bhirthe@example.com
         type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
-        deprecated: false
-    cleanUrlParameters:
-      id: org123
+        custom: []
+      pin_code:
+        name: pin_code
+        description: 'Le champ value doit contenir 6 chiffres.'
+        required: true
+        example: '878101'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      email: bhirthe@example.com
+      pin_code: '878101'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Z3D4a68Ec56Pbvkeah1gfdV'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/auth/otp-resend
+    metadata:
+      groupName: Auth
+      groupDescription: |-
+
+        Auth API
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Le champ value doit être une adresse e-mail valide.'
+        required: true
+        example: nhamill@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      email: nhamill@example.com
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer ch6gVZ35Ef1Davd4bak8eP6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: api/v1/auth/logout
+    metadata:
+      groupName: Auth
+      groupDescription: |-
+
+        Auth API
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 8Z5vVPdae3cfka1h6gDb46E'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/auth/user
+    metadata:
+      groupName: Auth
+      groupDescription: |-
+
+        Auth API
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Current Auth User'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -229,41 +345,20 @@ endpoints:
     fileParameters: []
     responses:
       -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
         custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Organisation récupérée avec succès",
-            "data": {
-              "organization": {
-                "id": "org123",
-                "name": "Mon Organisation",
-                "slug": "mon-organisation",
-                "api_quota": 1000,
-                "users_count": 5,
-                "created_at": "2024-01-01T00:00:00.000000Z",
-                "updated_at": "2024-01-01T00:00:00.000000Z"
-              }
-            }
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 404
-        content: |-
-          {
-            "status": 404,
-            "message": "Organisation non trouvée"
-          }
-        headers: []
-        description: ''
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer fa13PDh5bZc6kVEe68dv4ag'
     controller: null
     method: null
     route: null
+    custom: []

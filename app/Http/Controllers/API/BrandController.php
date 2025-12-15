@@ -2,44 +2,126 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Filters\BrandFilters;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\BrandResource;
 use App\Models\Brand;
+use App\Models\Status;
+use App\Enums\StatusEnum;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Essa\APIToolKit\Api\ApiResponse;
+use App\Http\Resources\Brand\BrandResource;
+use App\Http\Requests\Brand\CreateBrandRequest;
+use App\Http\Requests\Brand\UpdateBrandRequest;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
+/**
+ * @group Gestion des marques de véhicules
+ *
+ * APIs pour la gestion des marques de véhicules
+ */
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the brands.
-     */
-    public function index(): JsonResponse
-    {
-        $brands = Brand::useFilters(BrandFilters::class)
-            ->with('vehicleModels')
-            ->paginate();
+    use ApiResponse;
 
-        return $this->responseSuccess(
-            'Brands retrieved successfully',
-            BrandResource::collection($brands)->response()->getData(true)
-        );
+    public function __construct()
+    {
+
     }
 
     /**
-     * Display the specified brand.
+     * Lister toutes les marques
+     *
+     * @authenticated
      */
-    public function show(Request $request, string $id): JsonResponse
+    public function index(): AnonymousResourceCollection
     {
-        $brand = Brand::findByHashId($id);
+        $brands = Brand::with('status:id,code,label')
+                    ->useFilters()
+                    ->latest('created_at')
+                    ->dynamicPaginate();
 
-        if (!$brand) {
-            return $this->responseNotFound('Brand not found');
+        return BrandResource::collection($brands);
+    }
+
+    /**
+     * Ajouter une marque
+     *
+     * @authenticated
+     */
+    public function store(CreateBrandRequest $request): JsonResponse
+    {
+        $exist = Brand::select("*")
+            ->where('label', 'like', $request->label)
+            ->count();  
+
+        if($exist > 0){
+
+            $brand = Brand::select("*")
+                ->where('label', 'like', $request->label)
+                ->first();
+
+        } else{
+            $code = strtolower(str_replace(' ', '', $request->label));
+
+            if(Brand::where('code', $code)->exists()){
+                $code = $code . '-' . now()->timestamp;
+            }
+
+            $brand = Brand::create([
+                'code' => $code,
+                'label' => $request->label,
+                'description' => $request->description,
+                'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
+                'created_by' => auth()->user()->id,
+                'updated_by' => auth()->user()->id,
+            ]);
         }
 
-        $brand->load('vehicleModels.genres.usages');
-
-        return $this->responseSuccess('Brand retrieved successfully', new BrandResource($brand));
+        return $this->responseCreated('Brand created successfully', new BrandResource($brand));
     }
-}
 
+    /**
+     * Afficher une marque
+     *
+     * @authenticated
+     */
+    public function show($id): JsonResponse
+    {
+        $brand = Brand::findOrFail(Brand::keyFromHashId($id));
+
+        return $this->responseSuccess(null, new BrandResource($brand));
+    }
+
+    /**
+     * Mettre à jour une marque
+     *
+     * @authenticated
+     */
+    public function update(UpdateBrandRequest $request, $id): JsonResponse
+    {
+        $brand = Brand::findOrFail(Brand::keyFromHashId($id));
+
+        $brand->update([
+            'label' => $request->label,
+            'description' => $request->description,
+            'updated_by' => auth()->user()->id,
+        ]);
+
+        return $this->responseSuccess('Brand updated Successfully', new BrandResource($brand));
+    }
+
+    /**
+     * Supprimer une marque
+     *
+     * @authenticated
+     */
+    public function destroy($id): JsonResponse
+    {
+        $brand = Brand::findOrFail(Brand::keyFromHashId($id));
+
+        // $brand->delete();
+
+        return $this->responseDeleted();
+    }
+
+   
+}

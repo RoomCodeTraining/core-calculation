@@ -6,14 +6,7 @@ use Essa\APIToolKit\Filters\QueryFilters;
 
 class BrandFilters extends QueryFilters
 {
-    public function name($value)
-    {
-        return $this->builder->where('name', 'like', "%{$value}%");
-    }
+    protected array $allowedFilters = ['code','label'];
 
-    public function slug($value)
-    {
-        return $this->builder->where('slug', $value);
-    }
+    protected array $columnSearch = ['code','label'];
 }
-

@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Models;
+
+use App\Filters\AssignmentTypeFilters;
+use Essa\APIToolKit\Filters\Filterable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Deligoez\LaravelModelHashId\Traits\HasHashId;
+use Deligoez\LaravelModelHashId\Traits\HasHashIdRouting;
+use App\Builders\AssignmentType\AssignmentTypeBuilder;
+
+
+class AssignmentType extends Model
+{
+    use HasFactory, Filterable, HasHashId, HasHashIdRouting;
+
+    protected string $default_filters = AssignmentTypeFilters::class;
+
+    /**
+     * Mass-assignable attributes.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function deletedBy()
+    {
+        return $this->belongsTo(User::class, 'deleted_by');
+    }
+
+    public function newEloquentBuilder($query): AssignmentTypeBuilder
+    {
+        return new AssignmentTypeBuilder($query);
+    }
+
+
+}

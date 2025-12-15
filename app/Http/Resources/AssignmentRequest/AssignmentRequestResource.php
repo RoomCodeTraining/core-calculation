@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Http\Resources\AssignmentRequest;
+
+use App\Http\Resources\User\UserResource;
+use App\Http\Resources\Photo\PhotoResource;
+use App\Http\Resources\Client\ClientResource;
+use App\Http\Resources\Entity\EntityResource;
+use App\Http\Resources\Status\StatusResource;
+use App\Http\Resources\Vehicle\VehicleResource;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class AssignmentRequestResource extends JsonResource
+{
+    public function toArray($request): array
+    {
+        return [
+            'id' => $this->hashId,
+            'reference' => $this->reference ?? null,
+            'policy_number' => $this->policy_number,
+            'claim_number' => $this->claim_number,
+            'claim_date' => dateTimeFormat($this->claim_date),
+            'expertise_place' => $this->expertise_place,
+            'new_market_value' => $this->new_market_value,
+            'expert_firm' => new EntityResource($this->whenLoaded('expertFirm')),
+            'insurer' => new EntityResource($this->whenLoaded('insurer')),
+            'repairer' => new EntityResource($this->whenLoaded('repairer')),
+            'client' => new ClientResource($this->whenLoaded('client')),
+            'vehicle' => new VehicleResource($this->whenLoaded('vehicle')),
+            'photos' => PhotoResource::collection($this->whenLoaded('photos')),
+            'status' => new StatusResource($this->whenLoaded('status')),
+            'cancelled_by' => new UserResource($this->whenLoaded('cancelledBy')),
+            'rejected_by' => new UserResource($this->whenLoaded('rejectedBy')),
+            'created_by' => new UserResource($this->whenLoaded('createdBy')),
+            'updated_by' => new UserResource($this->whenLoaded('updatedBy')),
+            'deleted_by' => new UserResource($this->whenLoaded('deletedBy')),
+            'deleted_at' => dateTimeFormat($this->deleted_at),
+            'created_at' => dateTimeFormat($this->created_at),
+            'updated_at' => dateTimeFormat($this->updated_at),
+        ];
+    }
+}
