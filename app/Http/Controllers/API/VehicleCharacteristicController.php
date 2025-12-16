@@ -128,10 +128,10 @@ class VehicleCharacteristicController extends Controller
         ]);
 
         if($vehicleCharacteristic && $request->price){
-            $vehicleCharacteristic->prices()->create([
+            Price::create([
                 'value' => $request->price,
                 'date' => $request->date,
-                // 'vehicle_characteristic_id' => $vehicleCharacteristic->id,
+                'vehicle_characteristic_id' => $vehicleCharacteristic->id,
                 'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
                 'created_by' => auth()->user()->id,
                 'updated_by' => auth()->user()->id,
