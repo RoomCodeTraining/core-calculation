@@ -29,8 +29,8 @@ Route::controller(TokenController::class)->name('auth.')->group(function () {
     // /** @uses TokenController::destroy */
     // Route::middleware(['auth:sanctum', 'verified.api'])->delete('tokens', 'destroy')->name('destroy');
 
-    // /** @uses TokenController::fetch */
-    // Route::middleware(['auth:sanctum', 'verified.api'])->get('tokens', 'fetch')->name('fetch');
+    /** @uses TokenController::fetch */
+    Route::middleware(['auth:sanctum', 'verified.api'])->get('tokens', 'fetch')->name('fetch');
 
     // /** @uses TokenController::revoke */
     // Route::middleware(['auth:sanctum', 'verified.api'])->post('tokens/revoke', 'revoke')->name('revoke');
