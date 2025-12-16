@@ -1,20 +1,20 @@
-name: 'Gestion des âges des véhicules'
+name: 'Gestion des types de transaction'
 description: |-
 
-  APIs pour la gestion des âges des véhicules
+  APIs pour la gestion des types de transaction
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/vehicle-ages
+    uri: api/v1/transaction-types
     metadata:
-      groupName: 'Gestion des âges des véhicules'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des âges des véhicules
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Lister tous les âges des véhicules'
+      title: 'Lister tous les types de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6Zg5vDVh4ac61k3e8adfbPE'
+      - 'Bearer a6kdfvg3P5h8bVDZ4ecEa16'
     controller: null
     method: null
     route: null
@@ -52,15 +52,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/vehicle-ages
+    uri: api/v1/transaction-types
     metadata:
-      groupName: 'Gestion des âges des véhicules'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des âges des véhicules
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Créer un nouvel âge de véhicule'
+      title: 'Créer un type de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -74,21 +74,11 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      value:
-        name: value
-        description: ''
-        required: true
-        example: 10
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
       label:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: oqdjwguqbasfmlgokz
+        example: omlmbgoluvjxuvtzsp
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -98,23 +88,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Necessitatibus ut quis ratione illum perferendis sed est repellat.'
+        example: 'Deserunt et et et tenetur eius accusamus quasi.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      value: 10
-      label: oqdjwguqbasfmlgokz
-      description: 'Necessitatibus ut quis ratione illum perferendis sed est repellat.'
+      label: omlmbgoluvjxuvtzsp
+      description: 'Deserunt et et et tenetur eius accusamus quasi.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 3vdVDf48a1ghZeba6PkEc65'
+      - 'Bearer hfb56Dcdga3V8ekZPa614vE'
     controller: null
     method: null
     route: null
@@ -122,15 +111,15 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/vehicle-ages/{id}'
+    uri: 'api/v1/transaction-types/{id}'
     metadata:
-      groupName: 'Gestion des âges des véhicules'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des âges des véhicules
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Afficher un âge de véhicule'
+      title: 'Afficher un type de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -142,16 +131,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the vehicle age.'
+        description: 'The ID of the transaction type.'
         required: true
-        example: qui
+        example: sint
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: qui
+      id: sint
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -171,7 +160,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer kfV6c36e5ahE4P8dDaZ1bvg'
+      - 'Bearer haE3d4ZeVvg5kfa8c6b61PD'
     controller: null
     method: null
     route: null
@@ -179,15 +168,15 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/v1/vehicle-ages/{id}'
+    uri: 'api/v1/transaction-types/{id}'
     metadata:
-      groupName: 'Gestion des âges des véhicules'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des âges des véhicules
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Mettre à jour un âge de véhicule'
+      title: 'Mettre à jour un type de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -199,34 +188,24 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the vehicle age.'
+        description: 'The ID of the transaction type.'
         required: true
-        example: ad
+        example: alias
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: ad
+      id: alias
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      value:
-        name: value
-        description: ''
-        required: true
-        example: 10
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
       label:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: zndlhuixy
+        example: z
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -236,23 +215,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Est accusamus architecto temporibus id sunt molestiae veniam.'
+        example: 'Quod explicabo earum enim autem magni.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      value: 10
-      label: zndlhuixy
-      description: 'Est accusamus architecto temporibus id sunt molestiae veniam.'
+      label: z
+      description: 'Quod explicabo earum enim autem magni.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer bZgdehPaD3aEkf4c665v1V8'
+      - 'Bearer aaV6Df6ceb5E3d8ZhPgv14k'
     controller: null
     method: null
     route: null
@@ -260,15 +238,15 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/vehicle-ages/{id}'
+    uri: 'api/v1/transaction-types/{id}'
     metadata:
-      groupName: 'Gestion des âges des véhicules'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des âges des véhicules
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Supprimer un âge de véhicule'
+      title: 'Supprimer un type de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -280,7 +258,103 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the vehicle age.'
+        description: 'The ID of the transaction type.'
+        required: true
+        example: ut
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: ut
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 56deah8PZgkb16ED3vca4Vf'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/transaction-types/{transaction_type}/enable'
+    metadata:
+      groupName: 'Gestion des types de transaction'
+      groupDescription: |-
+
+        APIs pour la gestion des types de transaction
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Activer un type de transaction'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      transaction_type:
+        name: transaction_type
+        description: ''
+        required: true
+        example: et
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      transaction_type: et
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer vkD6hZVceEaP8dba4f1563g'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/transaction-types/{transaction_type}/disable'
+    metadata:
+      groupName: 'Gestion des types de transaction'
+      groupDescription: |-
+
+        APIs pour la gestion des types de transaction
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Désactiver un type de transaction'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      transaction_type:
+        name: transaction_type
+        description: ''
         required: true
         example: quis
         type: string
@@ -289,7 +363,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: quis
+      transaction_type: quis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -300,7 +374,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer h64Zda38vb1k65VacgDEefP'
+      - 'Bearer 1a5dkg3P6Da4fVh8cE6ebvZ'
     controller: null
     method: null
     route: null

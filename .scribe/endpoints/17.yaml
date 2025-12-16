@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer kg664VhdeD1afa8bvPEc35Z'
+      - 'Bearer adVgvb6ea3E4kZc58f1hD6P'
     controller: null
     method: null
     route: null
@@ -78,7 +78,7 @@ endpoints:
         name: vehicle_model_id
         description: 'The <code>id</code> of an existing record in the vehicle_models table.'
         required: true
-        example: ratione
+        example: placeat
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -88,7 +88,7 @@ endpoints:
         name: vehicle_genre_id
         description: 'The <code>id</code> of an existing record in the vehicle_genres table.'
         required: true
-        example: ad
+        example: ducimus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -98,7 +98,7 @@ endpoints:
         name: usage_id
         description: 'The <code>id</code> of an existing record in the usages table.'
         required: true
-        example: totam
+        example: tenetur
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -108,7 +108,7 @@ endpoints:
         name: vehicle_energy_id
         description: 'The <code>id</code> of an existing record in the vehicle_energies table.'
         required: true
-        example: magni
+        example: nam
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -118,7 +118,7 @@ endpoints:
         name: dealer_id
         description: 'The <code>id</code> of an existing record in the dealers table.'
         required: true
-        example: illum
+        example: repudiandae
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -128,7 +128,7 @@ endpoints:
         name: type
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: tvdcntybykrmmlpfy
+        example: r
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -138,7 +138,7 @@ endpoints:
         name: options
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: ypxauwapgjsvyywpmfjtrjtd
+        example: pwyybc
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -148,7 +148,7 @@ endpoints:
         name: fiscal_power
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: false
-        example: 0
+        example: 68
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -158,7 +158,7 @@ endpoints:
         name: nb_seats
         description: ''
         required: false
-        example: 9
+        example: 4
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -168,30 +168,30 @@ endpoints:
         name: new_market_value
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: false
-        example: 18
+        example: 81
         type: number
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      vehicle_model_id: ratione
-      vehicle_genre_id: ad
-      usage_id: totam
-      vehicle_energy_id: magni
-      dealer_id: illum
-      type: tvdcntybykrmmlpfy
-      options: ypxauwapgjsvyywpmfjtrjtd
-      fiscal_power: 0
-      nb_seats: 9
-      new_market_value: 18
+      vehicle_model_id: placeat
+      vehicle_genre_id: ducimus
+      usage_id: tenetur
+      vehicle_energy_id: nam
+      dealer_id: repudiandae
+      type: r
+      options: pwyybc
+      fiscal_power: 68
+      nb_seats: 4
+      new_market_value: 81
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 43aa6kc6dZbDeg5hPV81vEf'
+      - 'Bearer 5Dg4Pf1k6aV8Z3che6dEavb'
     controller: null
     method: null
     route: null
@@ -221,14 +221,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle characteristic.'
         required: true
-        example: placeat
+        example: dolor
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: placeat
+      id: dolor
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -248,7 +248,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer E3ZPvad1af8DV6ehk5gcb46'
+      - 'Bearer abfVgedZ6v5413ackDE8h6P'
     controller: null
     method: null
     route: null
@@ -278,14 +278,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle characteristic.'
         required: true
-        example: sed
+        example: ipsa
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: sed
+      id: ipsa
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -293,7 +293,7 @@ endpoints:
         name: vehicle_model_id
         description: 'The <code>id</code> of an existing record in the vehicle_models table.'
         required: true
-        example: consectetur
+        example: ipsam
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -303,7 +303,7 @@ endpoints:
         name: vehicle_genre_id
         description: 'The <code>id</code> of an existing record in the vehicle_genres table.'
         required: true
-        example: aut
+        example: qui
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -313,7 +313,7 @@ endpoints:
         name: usage_id
         description: 'The <code>id</code> of an existing record in the usages table.'
         required: true
-        example: dolor
+        example: repellendus
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -323,7 +323,7 @@ endpoints:
         name: vehicle_energy_id
         description: 'The <code>id</code> of an existing record in the vehicle_energies table.'
         required: true
-        example: labore
+        example: voluptatem
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -333,7 +333,7 @@ endpoints:
         name: dealer_id
         description: 'The <code>id</code> of an existing record in the dealers table.'
         required: true
-        example: eum
+        example: placeat
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -343,7 +343,7 @@ endpoints:
         name: type
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: kqjxcl
+        example: bzs
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -353,7 +353,7 @@ endpoints:
         name: options
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: qzoicnqjjbezqaafgipeolwf
+        example: qb
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -363,7 +363,7 @@ endpoints:
         name: fiscal_power
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: false
-        example: 40
+        example: 44
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -373,7 +373,7 @@ endpoints:
         name: nb_seats
         description: ''
         required: false
-        example: 1
+        example: 5
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -383,30 +383,30 @@ endpoints:
         name: new_market_value
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: false
-        example: 40
+        example: 65
         type: number
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      vehicle_model_id: consectetur
-      vehicle_genre_id: aut
-      usage_id: dolor
-      vehicle_energy_id: labore
-      dealer_id: eum
-      type: kqjxcl
-      options: qzoicnqjjbezqaafgipeolwf
-      fiscal_power: 40
-      nb_seats: 1
-      new_market_value: 40
+      vehicle_model_id: ipsam
+      vehicle_genre_id: qui
+      usage_id: repellendus
+      vehicle_energy_id: voluptatem
+      dealer_id: placeat
+      type: bzs
+      options: qb
+      fiscal_power: 44
+      nb_seats: 5
+      new_market_value: 65
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer k64ad6EgvPf3a8ebZ1hVc5D'
+      - 'Bearer b3dP68gaZcahk1f465veVDE'
     controller: null
     method: null
     route: null
@@ -436,14 +436,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle characteristic.'
         required: true
-        example: omnis
+        example: sunt
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: omnis
+      id: sunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -454,7 +454,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer ZabV51ha36D6P4gdc8vfekE'
+      - 'Bearer kvh68a1Vf4gde3E6PZb5Dac'
     controller: null
     method: null
     route: null

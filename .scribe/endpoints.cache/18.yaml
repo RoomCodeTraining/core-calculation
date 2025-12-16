@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer v63gkaeZ61fbD845EaVcdhP'
+      - 'Bearer 6abfa6D1v5eZVc43hkPE8dg'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: name
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: hxifndebs
+        example: rydvgzkkwen
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -90,7 +90,7 @@ endpoints:
         name: email
         description: 'Le champ value doit être une adresse e-mail valide. Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: darlene.abernathy@example.net
+        example: alana11@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -100,7 +100,7 @@ endpoints:
         name: telephone
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: etnepbawzannofefrcnkzgc
+        example: aqnvxpwviucpvhccdupk
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -110,24 +110,24 @@ endpoints:
         name: address
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: xojnvnjicp
+        example: alukonyoxvvmtugfrd
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      name: hxifndebs
-      email: darlene.abernathy@example.net
-      telephone: etnepbawzannofefrcnkzgc
-      address: xojnvnjicp
+      name: rydvgzkkwen
+      email: alana11@example.net
+      telephone: aqnvxpwviucpvhccdupk
+      address: alukonyoxvvmtugfrd
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer aPfEa63v5V8hck1e6gZ4bdD'
+      - 'Bearer fPavhDZ4be6ac186d5gkVE3'
     controller: null
     method: null
     route: null
@@ -157,14 +157,14 @@ endpoints:
         name: id
         description: 'The ID of the dealer.'
         required: true
-        example: ipsum
+        example: odio
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: ipsum
+      id: odio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -184,7 +184,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Pk8fVev43D6aghZbda1E5c6'
+      - 'Bearer 83acev1VhfbZkD5a6Eg64dP'
     controller: null
     method: null
     route: null
@@ -214,14 +214,14 @@ endpoints:
         name: id
         description: 'The ID of the dealer.'
         required: true
-        example: sed
+        example: incidunt
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: sed
+      id: incidunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -229,7 +229,7 @@ endpoints:
         name: name
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: qklitt
+        example: evytehlqiejpw
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -239,7 +239,7 @@ endpoints:
         name: email
         description: 'Le champ value doit être une adresse e-mail valide. Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: millie.breitenberg@example.org
+        example: bettye34@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -249,7 +249,7 @@ endpoints:
         name: telephone
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: crkmyeuvsd
+        example: nacjwfgb
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -259,24 +259,24 @@ endpoints:
         name: address
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: rdyypsi
+        example: rmucgtqtxjvnhobzpmpkaq
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      name: qklitt
-      email: millie.breitenberg@example.org
-      telephone: crkmyeuvsd
-      address: rdyypsi
+      name: evytehlqiejpw
+      email: bettye34@example.net
+      telephone: nacjwfgb
+      address: rmucgtqtxjvnhobzpmpkaq
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer a3vD5fed1VgkbE8c64a6hPZ'
+      - 'Bearer fPcZDV8bEgdaevk64651a3h'
     controller: null
     method: null
     route: null
@@ -306,14 +306,14 @@ endpoints:
         name: id
         description: 'The ID of the dealer.'
         required: true
-        example: dolorum
+        example: dolorem
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: dolorum
+      id: dolorem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -324,7 +324,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 4f3kZb166DcgPhvVE58adae'
+      - 'Bearer a8fvcakEhZ34ebPDdg656V1'
     controller: null
     method: null
     route: null

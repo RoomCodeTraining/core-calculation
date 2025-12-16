@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fk13Pghv8cd4Ze6D65aVbaE'
+      - 'Bearer kE56bVZ1Pga36hf8eDv4adc'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: license_plate
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: ofzzqikybljyrggealabpcxti
+        example: ydzz
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -90,7 +90,7 @@ endpoints:
         name: mileage
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: true
-        example: 8
+        example: 19
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -100,7 +100,7 @@ endpoints:
         name: serial_number
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: hviztywxwhnxkjuy
+        example: phniekzehzgfnxhllarfd
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -110,7 +110,7 @@ endpoints:
         name: first_entry_into_circulation_date
         description: "Le champ value n'est pas une date valide."
         required: true
-        example: '2025-12-16T10:28:01'
+        example: '2025-12-16T15:08:54'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -120,7 +120,7 @@ endpoints:
         name: calculation_date
         description: "Le champ value n'est pas une date valide."
         required: true
-        example: '2025-12-16T10:28:01'
+        example: '2025-12-16T15:08:54'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -130,7 +130,7 @@ endpoints:
         name: insured
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: capnioadbvalfnoxyz
+        example: lcpze
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -140,27 +140,27 @@ endpoints:
         name: vehicle_characteristics_id
         description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
         required: true
-        example: rerum
+        example: nam
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      license_plate: ofzzqikybljyrggealabpcxti
-      mileage: 8
-      serial_number: hviztywxwhnxkjuy
-      first_entry_into_circulation_date: '2025-12-16T10:28:01'
-      calculation_date: '2025-12-16T10:28:01'
-      insured: capnioadbvalfnoxyz
-      vehicle_characteristics_id: rerum
+      license_plate: ydzz
+      mileage: 19
+      serial_number: phniekzehzgfnxhllarfd
+      first_entry_into_circulation_date: '2025-12-16T15:08:54'
+      calculation_date: '2025-12-16T15:08:54'
+      insured: lcpze
+      vehicle_characteristics_id: nam
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 3Ea66cd5vDb1Pg4ZkaVfh8e'
+      - 'Bearer 6V38gDak5f6v1dZ4baEhePc'
     controller: null
     method: null
     route: null
@@ -190,14 +190,14 @@ endpoints:
         name: id
         description: 'The ID of the calculation.'
         required: true
-        example: earum
+        example: omnis
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: earum
+      id: omnis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -217,7 +217,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer ak4531evgDhdPEf8a66ZVcb'
+      - 'Bearer fdac8v5g14ZbDa3Eh6keVP6'
     controller: null
     method: null
     route: null
@@ -247,14 +247,14 @@ endpoints:
         name: id
         description: 'The ID of the calculation.'
         required: true
-        example: cumque
+        example: vero
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: cumque
+      id: vero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -262,7 +262,7 @@ endpoints:
         name: license_plate
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: szkuqnppcptjkcl
+        example: vioytgwpsrc
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -272,7 +272,7 @@ endpoints:
         name: mileage
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: true
-        example: 39
+        example: 41
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -282,7 +282,7 @@ endpoints:
         name: serial_number
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: bufmoicw
+        example: qumzsyrloymezxlgwhfrj
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -292,7 +292,7 @@ endpoints:
         name: first_entry_into_circulation_date
         description: "Le champ value n'est pas une date valide."
         required: true
-        example: '2025-12-16T10:28:01'
+        example: '2025-12-16T15:08:54'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -302,7 +302,7 @@ endpoints:
         name: calculation_date
         description: "Le champ value n'est pas une date valide."
         required: true
-        example: '2025-12-16T10:28:01'
+        example: '2025-12-16T15:08:54'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -312,7 +312,7 @@ endpoints:
         name: insured
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: rzpotnwsr
+        example: anwctioqnmnwin
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -322,27 +322,27 @@ endpoints:
         name: vehicle_characteristics_id
         description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
         required: true
-        example: blanditiis
+        example: hic
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      license_plate: szkuqnppcptjkcl
-      mileage: 39
-      serial_number: bufmoicw
-      first_entry_into_circulation_date: '2025-12-16T10:28:01'
-      calculation_date: '2025-12-16T10:28:01'
-      insured: rzpotnwsr
-      vehicle_characteristics_id: blanditiis
+      license_plate: vioytgwpsrc
+      mileage: 41
+      serial_number: qumzsyrloymezxlgwhfrj
+      first_entry_into_circulation_date: '2025-12-16T15:08:54'
+      calculation_date: '2025-12-16T15:08:54'
+      insured: anwctioqnmnwin
+      vehicle_characteristics_id: hic
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer h8V56eEavgcdf3k61ZPDba4'
+      - 'Bearer 4Zkda1gafDvE5be6V6h3cP8'
     controller: null
     method: null
     route: null
@@ -372,14 +372,14 @@ endpoints:
         name: id
         description: 'The ID of the calculation.'
         required: true
-        example: 18
+        example: 12
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 18
+      id: 12
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -390,7 +390,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer bDPevg166Z84Ea3fchVkd5a'
+      - 'Bearer 6gac1Zf5D6kPvVEa3be4h8d'
     controller: null
     method: null
     route: null

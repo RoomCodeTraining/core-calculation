@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer aE84a1cPhvg6DZke63fVd5b'
+      - 'Bearer d4ZvchaV6k15E6fP3eaDg8b'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: vehicle_genre_id
         description: 'The <code>id</code> of an existing record in the vehicle_genres table.'
         required: true
-        example: facere
+        example: quisquam
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -90,22 +90,44 @@ endpoints:
         name: usage_id
         description: 'The <code>id</code> of an existing record in the usages table.'
         required: true
-        example: et
+        example: fugit
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
+      max_mileage_essence_per_year:
+        name: max_mileage_essence_per_year
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: true
+        example: 65
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      max_mileage_diesel_per_year:
+        name: max_mileage_diesel_per_year
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: true
+        example: 49
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
     cleanBodyParameters:
-      vehicle_genre_id: facere
-      usage_id: et
+      vehicle_genre_id: quisquam
+      usage_id: fugit
+      max_mileage_essence_per_year: 65
+      max_mileage_diesel_per_year: 49
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer VZf64dk6vcPh1ba5g8eDa3E'
+      - 'Bearer fDa86gPaebk6Ed4v5Z1ch3V'
     controller: null
     method: null
     route: null
@@ -135,14 +157,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle genre usage.'
         required: true
-        example: eum
+        example: distinctio
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: eum
+      id: distinctio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -162,7 +184,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 36gbVEcZPv58e64afdDk1ah'
+      - 'Bearer Vcaf6eD3EbvP6ad58Z4kh1g'
     controller: null
     method: null
     route: null
@@ -192,14 +214,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle genre usage.'
         required: true
-        example: omnis
+        example: dolores
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: omnis
+      id: dolores
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -207,7 +229,7 @@ endpoints:
         name: vehicle_genre_id
         description: 'The <code>id</code> of an existing record in the vehicle_genres table.'
         required: true
-        example: et
+        example: hic
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -217,22 +239,44 @@ endpoints:
         name: usage_id
         description: 'The <code>id</code> of an existing record in the usages table.'
         required: true
-        example: officiis
+        example: ut
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
+      max_mileage_essence_per_year:
+        name: max_mileage_essence_per_year
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: false
+        example: 12
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      max_mileage_diesel_per_year:
+        name: max_mileage_diesel_per_year
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: false
+        example: 65
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
     cleanBodyParameters:
-      vehicle_genre_id: et
-      usage_id: officiis
+      vehicle_genre_id: hic
+      usage_id: ut
+      max_mileage_essence_per_year: 12
+      max_mileage_diesel_per_year: 65
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 66akEbZgDh8v5cP1df43aeV'
+      - 'Bearer Va13g5PfZadkbvD8Eeh6c64'
     controller: null
     method: null
     route: null
@@ -262,14 +306,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle genre usage.'
         required: true
-        example: blanditiis
+        example: atque
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: blanditiis
+      id: atque
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -280,7 +324,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Zda86he61kvcfbV3g5aDE4P'
+      - 'Bearer 6f51aZDPh4gavec83b6dVkE'
     controller: null
     method: null
     route: null
