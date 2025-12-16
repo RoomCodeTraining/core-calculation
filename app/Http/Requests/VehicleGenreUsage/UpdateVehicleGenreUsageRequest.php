@@ -21,6 +21,8 @@ class UpdateVehicleGenreUsageRequest extends FormRequest
         return [
             "vehicle_genre_id" => "required|exists:vehicle_genres,id",
             "usage_id" => "required|exists:usages,id",
+            "max_mileage_essence_per_year" => "nullable|numeric|min:0",
+            "max_mileage_diesel_per_year" => "nullable|numeric|min:0",
         ];
     }
 
@@ -31,6 +33,10 @@ class UpdateVehicleGenreUsageRequest extends FormRequest
             "vehicle_genre_id.exists" => "Le genre de véhicule n'existe pas.",
             "usage_id.required" => "L'usage est requis.",
             "usage_id.exists" => "L'usage n'existe pas.",
+            "max_mileage_essence_per_year.numeric" => "La distance maximale d'essence par an doit être un nombre.",
+            "max_mileage_essence_per_year.min" => "La distance maximale d'essence par an doit être supérieure à 0.",
+            "max_mileage_diesel_per_year.numeric" => "La distance maximale de diesel par an doit être un nombre.",
+            "max_mileage_diesel_per_year.min" => "La distance maximale de diesel par an doit être supérieure à 0.",
         ];
     }
 }

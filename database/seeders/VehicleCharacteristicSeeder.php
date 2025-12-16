@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Usage;
+use App\Models\VehicleGenre;
 use App\Models\VehicleEnergy;
 use Illuminate\Database\Seeder;
 use App\Models\VehicleCharacteristic;
@@ -17,7 +18,8 @@ class VehicleCharacteristicSeeder extends Seeder
     public function run(): void
     {
         VehicleCharacteristic::create([
-            'usage_id' => Usage::where('code', 'US01')->first()->id,
+            'vehicle_model_id' => 1,
+            'vehicle_genre_usage_id' => 1,
             'vehicle_energy_id' => VehicleEnergy::where('code', 'VE01')->first()->id,
             'dealer_id' => 1,
             'type' => 'Berline',
@@ -31,7 +33,8 @@ class VehicleCharacteristicSeeder extends Seeder
         ]);
 
         VehicleCharacteristic::create([
-            'usage_id' => Usage::where('code', 'US02')->first()->id,
+            'vehicle_model_id' => 1,
+            'vehicle_genre_usage_id' => 2,
             'vehicle_energy_id' => VehicleEnergy::where('code', 'VE02')->first()->id,
             'dealer_id' => 2,
             'type' => 'SUV',

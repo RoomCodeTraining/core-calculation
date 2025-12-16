@@ -38,7 +38,7 @@ class VehicleCharacteristicController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $vehicleCharacteristics = VehicleCharacteristic::with('vehicleModel', 'vehicleGenre', 'usage', 'vehicleEnergy', 'dealer', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
+        $vehicleCharacteristics = VehicleCharacteristic::with('vehicleModel', 'vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage', 'vehicleEnergy', 'dealer', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
 
         if(request()->has('vehicle_model_id')){
             $vehicleCharacteristics = $vehicleCharacteristics->where('vehicle_model_id', VehicleModel::keyFromHashId(request()->vehicle_model_id));
@@ -76,8 +76,7 @@ class VehicleCharacteristicController extends Controller
     {
         $vehicleCharacteristic = VehicleCharacteristic::create([
             'vehicle_model_id' => $request->vehicle_model_id,
-            'vehicle_genre_id' => $request->vehicle_genre_id,
-            'usage_id' => $request->usage_id,
+            'vehicle_genre_usage_id' => $request->vehicle_genre_usage_id,
             'vehicle_energy_id' => $request->vehicle_energy_id,
             'dealer_id' => $request->dealer_id,
             'type' => $request->type,
@@ -111,7 +110,7 @@ class VehicleCharacteristicController extends Controller
     public function show($id): JsonResponse
     {
         $vehicleCharacteristic = VehicleCharacteristic::findOrFail(VehicleCharacteristic::keyFromHashId($id));
-        $vehicleCharacteristic->load('vehicleModel:id,label', 'vehicleGenre:id,label', 'usage:id,label', 'vehicleEnergy:id,label', 'dealer:id,name', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
+        $vehicleCharacteristic->load('vehicleModel:id,label', 'vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage', 'vehicleEnergy:id,label', 'dealer:id,name', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
 
         return $this->responseSuccess(null, new VehicleCharacteristicResource($vehicleCharacteristic));
     }
@@ -126,8 +125,7 @@ class VehicleCharacteristicController extends Controller
         $vehicleCharacteristic = VehicleCharacteristic::findOrFail(VehicleCharacteristic::keyFromHashId($id));
         $vehicleCharacteristic->update([
             'vehicle_model_id' => $request->vehicle_model_id,
-            'vehicle_genre_id' => $request->vehicle_genre_id,
-            'usage_id' => $request->usage_id,
+            'vehicle_genre_usage_id' => $request->vehicle_genre_usage_id,
             'vehicle_energy_id' => $request->vehicle_energy_id,
             'dealer_id' => $request->dealer_id,
             'type' => $request->type,
@@ -153,5 +151,24 @@ class VehicleCharacteristicController extends Controller
         $vehicleCharacteristic->delete();
 
         return $this->responseSuccess('VehicleCharacteristic deleted Successfully', null);
+    }
+
+    /**
+     * Filtrer toutes les caractéristiques des véhicules par le modèle de véhicule
+     *
+     * @authenticated
+     */
+    public function filterByVehicleModel($vehicleModelId): AnonymousResourceCollection
+    {
+        $vehicleCharacteristics = VehicleCharacteristic::with('vehicleModel', 'vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage', 'vehicleEnergy', 'dealer', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
+
+        $vehicleCharacteristics = $vehicleCharacteristics->where('vehicle_model_id', VehicleModel::keyFromHashId($vehicleModelId))
+                    ->useFilters()
+                    ->latest('created_at')
+                    ->dynamicPaginate(); 
+
+        dd($vehicleCharacteristics);
+
+        return VehicleCharacteristicResource::collection($vehicleCharacteristics);
     }
 }

@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             AppSettingSeeder::class,
             DealerSeeder::class,
             UsageSeeder::class,
+            VehicleGenreUsageSeeder::class,
             VehicleCharacteristicSeeder::class,
         ]);
     }

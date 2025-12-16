@@ -16,11 +16,8 @@ return new class extends Migration
         Schema::create('usages', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->string('code')->unique();
-            $table->decimal('max_mileage_essence_per_year', 18, 2)->default(0)->nullable();
-            $table->decimal('max_mileage_diesel_per_year', 18, 2)->default(0)->nullable();
             $table->string('label')->nullable();
             $table->string('description')->nullable();
-            $table->unsignedBigInteger('vehicle_genre_id')->index()->nullable();
             $table->unsignedBigInteger('status_id')->index()->nullable();
             $table->unsignedBigInteger('created_by')->index()->nullable();
             $table->timestamp('created_at')->nullable();
@@ -28,11 +25,6 @@ return new class extends Migration
             $table->timestamp('updated_at')->nullable();
             $table->unsignedBigInteger('deleted_by')->index()->nullable();
             $table->timestamp('deleted_at')->nullable();
-
-            $table->foreign('vehicle_genre_id')
-                ->references('id')
-                ->on('vehicle_genres')
-                ->onDelete('cascade');
 
             $table->foreign('status_id')
                 ->references('id')

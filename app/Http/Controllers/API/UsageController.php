@@ -34,11 +34,7 @@ class UsageController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $usages = Usage::with('vehicleGenre', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
-
-        if(request()->has('vehicle_genre_id')){
-            $usages = $usages->where('vehicle_genre_id', VehicleGenre::keyFromHashId(request()->vehicle_genre_id));
-        }
+        $usages = Usage::with('status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
 
         $usages = $usages->useFilters()
                     ->latest('created_at')
@@ -59,9 +55,6 @@ class UsageController extends Controller
             'code' => $code,
             'label' => $request->label,
             'description' => $request->description,
-            'max_mileage_essence_per_year' => $request->max_mileage_essence_per_year ?? 0,
-            'max_mileage_diesel_per_year' => $request->max_mileage_diesel_per_year ?? 0,
-            'vehicle_genre_id' => $request->vehicle_genre_id,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
@@ -78,7 +71,7 @@ class UsageController extends Controller
     public function show($id): JsonResponse
     {
         $usage = Usage::findOrFail(Usage::keyFromHashId($id));
-        $usage->load('vehicleGenre', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
+        $usage->load('status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
         return $this->responseSuccess(null, new UsageResource($usage));
     }
 
@@ -93,9 +86,6 @@ class UsageController extends Controller
         $usage->update([
             'label' => $request->label,
             'description' => $request->description,
-            'max_mileage_essence_per_year' => $request->max_mileage_essence_per_year ?? 0,
-            'max_mileage_diesel_per_year' => $request->max_mileage_diesel_per_year ?? 0,
-            'vehicle_genre_id' => $request->vehicle_genre_id,
             'updated_by' => auth()->user()->id,
         ]);
 

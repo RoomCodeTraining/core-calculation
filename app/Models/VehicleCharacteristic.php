@@ -34,19 +34,11 @@ class VehicleCharacteristic extends Model
     }
 
     /**
-     * Get the vehicle genre of this vehicle characteristic
+     * Get the vehicle genre usage of this vehicle characteristic
      */
-    public function vehicleGenre(): BelongsTo
+    public function vehicleGenreUsage(): BelongsTo
     {
-        return $this->belongsTo(VehicleGenre::class);
-    }
-
-    /**
-     * Get the usage of this vehicle characteristic
-     */
-    public function usage(): BelongsTo
-    {
-        return $this->belongsTo(Usage::class);
+        return $this->belongsTo(VehicleGenreUsage::class);
     }
 
     /**

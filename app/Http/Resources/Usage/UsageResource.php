@@ -16,7 +16,6 @@ class UsageResource extends JsonResource
             'code' => $this->code,
             'label' => $this->label,
             'description' => $this->description,
-            'vehicle_genre' => new VehicleGenreResource($this->whenLoaded('vehicleGenre')),
             'max_mileage_essence_per_year' => $this->max_mileage_essence_per_year,
             'max_mileage_diesel_per_year' => $this->max_mileage_diesel_per_year,
             'status' => new StatusResource($this->whenLoaded('status')),

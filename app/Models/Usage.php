@@ -28,22 +28,6 @@ class Usage extends Model
     ];
 
     /**
-     * Get the vehicle genre for this usage
-     */
-    public function vehicleGenre(): BelongsTo
-    {
-        return $this->belongsTo(VehicleGenre::class);
-    }
-
-    /**
-     * Get all vehicle characteristics for this usage
-     */
-    public function vehicleCharacteristics(): HasMany
-    {
-        return $this->hasMany(VehicleCharacteristic::class);
-    }
-
-    /**
      * Get the status of this usage
      */
     public function status(): BelongsTo

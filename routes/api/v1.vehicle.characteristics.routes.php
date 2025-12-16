@@ -9,4 +9,5 @@ Route::middleware('auth:sanctum')->name('vehicle-characteristics.')->group(funct
     Route::get('/{vehicle_characteristic}', [VehicleCharacteristicController::class, 'show'])->name('vehicle-characteristics.show');
     Route::put('/{vehicle_characteristic}', [VehicleCharacteristicController::class, 'update'])->name('vehicle-characteristics.update');
     Route::delete('/{vehicle_characteristic}', [VehicleCharacteristicController::class, 'destroy'])->name('vehicle-characteristics.destroy');
+    Route::get('/filter-by-vehicle-model/{vehicle_model}', [VehicleCharacteristicController::class, 'filterByVehicleModel'])->name('vehicle-characteristics.filter-by-vehicle-model');
 }); 

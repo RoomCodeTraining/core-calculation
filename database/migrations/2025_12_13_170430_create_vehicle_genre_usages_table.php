@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('vehicle_genre_usages', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
+            $table->decimal('max_mileage_essence_per_year', 18, 2)->default(0)->nullable();
+            $table->decimal('max_mileage_diesel_per_year', 18, 2)->default(0)->nullable();
             $table->unsignedBigInteger('vehicle_genre_id')->index()->nullable();
             $table->unsignedBigInteger('usage_id')->index()->nullable();
             $table->unsignedBigInteger('status_id')->index()->nullable();

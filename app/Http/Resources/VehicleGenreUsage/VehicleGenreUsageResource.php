@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources\VehicleGenreUsage;
 
-use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\VehicleGenre\VehicleGenreResource;
+use App\Http\Resources\User\UserResource;
 use App\Http\Resources\Usage\UsageResource;
 use App\Http\Resources\Status\StatusResource;
-use App\Http\Resources\User\UserResource;
+use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\VehicleGenre\VehicleGenreResource;
 
 class VehicleGenreUsageResource extends JsonResource
 {
@@ -14,6 +14,8 @@ class VehicleGenreUsageResource extends JsonResource
     {
         return [
             'id' => $this->hashId,
+            'max_mileage_essence_per_year' => $this->max_mileage_essence_per_year,
+            'max_mileage_diesel_per_year' => $this->max_mileage_diesel_per_year,
             'vehicle_genre' => new VehicleGenreResource($this->whenLoaded('vehicleGenre')),
             'usage' => new UsageResource($this->whenLoaded('usage')),
             'status' => new StatusResource($this->whenLoaded('status')),

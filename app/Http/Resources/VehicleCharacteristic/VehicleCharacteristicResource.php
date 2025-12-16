@@ -10,7 +10,7 @@ use App\Http\Resources\Dealer\DealerResource;
 use App\Http\Resources\Status\StatusResource;
 use App\Http\Resources\User\UserResource;
 use App\Http\Resources\VehicleModel\VehicleModelResource;
-use App\Http\Resources\VehicleGenre\VehicleGenreResource;
+use App\Http\Resources\VehicleGenreUsage\VehicleGenreUsageResource;
 
 class VehicleCharacteristicResource extends JsonResource
 {
@@ -20,7 +20,7 @@ class VehicleCharacteristicResource extends JsonResource
             'id' => $this->hashId,
             'prices' => PriceResource::collection($this->whenLoaded('prices')),
             'vehicle_model' => new VehicleModelResource($this->whenLoaded('vehicleModel')),
-            'vehicle_genre' => new VehicleGenreResource($this->whenLoaded('vehicleGenre')),
+            'vehicle_genre_usage' => new VehicleGenreUsageResource($this->whenLoaded('vehicleGenreUsage')),
             'usage' => new UsageResource($this->whenLoaded('usage')),
             'vehicle_energy' => new VehicleEnergyResource($this->whenLoaded('vehicleEnergy')),
             'dealer' => new DealerResource($this->whenLoaded('dealer')),
