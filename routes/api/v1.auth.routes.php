@@ -24,7 +24,7 @@ use App\Http\Controllers\API\EmailVerificationController;
 
 Route::controller(TokenController::class)->name('auth.')->group(function () {
     /** @uses TokenController::store */
-    Route::post('tokens', 'store')->name('store');
+    // Route::post('tokens', 'store')->name('store');
 
     // /** @uses TokenController::destroy */
     // Route::middleware(['auth:sanctum', 'verified.api'])->delete('tokens', 'destroy')->name('destroy');
