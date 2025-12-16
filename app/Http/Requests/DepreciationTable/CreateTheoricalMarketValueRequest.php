@@ -3,6 +3,7 @@
 namespace App\Http\Requests\DepreciationTable;
 
 use App\Models\VehicleGenreUsage;
+use App\Models\VehicleCharacteristic;
 use App\Models\VehicleEnergy;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,16 +12,16 @@ class CreateTheoricalMarketValueRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'vehicle_genre_usage_id' => $this->vehicle_genre_usage_id ? VehicleGenreUsage::keyFromHashId($this->vehicle_genre_usage_id) : null,
-            'vehicle_energy_id' => $this->vehicle_energy_id ? VehicleEnergy::keyFromHashId($this->vehicle_energy_id) : null,
+            'vehicle_characteristic_id' => $this->vehicle_characteristic_id ? VehicleCharacteristic::keyFromHashId($this->vehicle_characteristic_id) : null,
+            // 'vehicle_energy_id' => $this->vehicle_energy_id ? VehicleEnergy::keyFromHashId($this->vehicle_energy_id) : null,
         ]);
     }
 
     public function rules(): array
     {
         return [
-            'vehicle_genre_usage_id' => 'required|exists:vehicle_genre_usages,id',
-            'vehicle_energy_id' => 'required|exists:vehicle_energies,id',
+            'vehicle_characteristic_id' => 'required|exists:vehicle_characteristics,id',
+            // 'vehicle_energy_id' => 'required|exists:vehicle_energies,id',
             'vehicle_new_value' => 'required|integer|min:0',
             'vehicle_mileage' => 'required|integer|min:0',
             'first_entry_into_circulation_date' => 'required|date_format:Y-m-d|before:tomorrow',
@@ -39,8 +40,8 @@ class CreateTheoricalMarketValueRequest extends FormRequest
             'expertise_date.before' => 'La date d\'expertise doit être avant la date de demain.',
             'first_entry_into_circulation_date.after' => 'La date de première mise en circulation doit être après la date d\'aujourd\'hui.',
             'first_entry_into_circulation_date.before' => 'La date de première mise en circulation doit être avant la date de demain.',
-            'vehicle_genre_id.required' => 'Le genre de véhicule est requis.',
-            'vehicle_genre_id.exists' => 'Le genre de véhicule est invalide.',
+            'vehicle_characteristic_id.required' => 'Les caractéristiques du véhicule sont requises.',
+            'vehicle_characteristic_id.exists' => 'Les caractéristiques du véhicule sont invalides.',
             'vehicle_energy_id.required' => 'L\'énergie du véhicule est requise.',
             'vehicle_energy_id.exists' => 'L\'énergie du véhicule est invalide.',
             'vehicle_new_value.required' => 'La valeur neuve du véhicule est requise.',
