@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Deligoez\LaravelModelHashId\Traits\HasHashId;
 use Deligoez\LaravelModelHashId\Traits\HasHashIdRouting;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class Calculation extends Model
@@ -26,6 +27,14 @@ class Calculation extends Model
     protected $guarded = [
         
     ];
+
+    /**
+     * Get the entity for this calculation
+     */
+    public function entity(): BelongsTo
+    {
+        return $this->belongsTo(Entity::class);
+    }
 
     /**
      * Get the vehicle characteristic for this calculation
@@ -66,6 +75,14 @@ class Calculation extends Model
     public function deletedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'deleted_by');
+    }
+
+    /**
+     * Get the builder for this calculation
+     */
+    public function builder(): HasOne
+    {
+        return $this->hasOne(Builder::class);
     }
 
 }

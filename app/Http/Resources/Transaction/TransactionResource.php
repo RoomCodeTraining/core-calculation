@@ -1,28 +1,31 @@
 <?php
 
-namespace App\Http\Resources\Calculation;
+namespace App\Http\Resources\Transaction;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Entity\EntityResource;
+use App\Http\Resources\TransactionType\TransactionTypeResource;
+use App\Http\Resources\Status\StatusResource;
+use App\Http\Resources\User\UserResource;
 
-class CalculationResource extends JsonResource
+class TransactionResource extends JsonResource
 {
     public function toArray($request): array
     {
         return [
             'id' => $this->hashId,
-            'license_plate' => $this->license_plate,
-            'mileage' => $this->mileage,
-            'serial_number' => $this->serial_number,
-            'first_entry_into_circulation_date' => $this->first_entry_into_circulation_date,
-            'calculation_date' => $this->calculation_date,
-            'insured' => $this->insured,
-            'vehicle_characteristic' => new VehicleCharacteristicResource($this->whenLoaded('vehicleCharacteristic')),
+            'reference' => $this->reference,
+            'quantity' => $this->quantity,
+            'description' => $this->description,
+            'cancellation_reason' => $this->cancellation_reason,
             'entity' => new EntityResource($this->whenLoaded('entity')),
+            'transaction_type' => new TransactionTypeResource($this->whenLoaded('transactionType')),
             'status' => new StatusResource($this->whenLoaded('status')),
             'created_by' => new UserResource($this->whenLoaded('createdBy')),
             'updated_by' => new UserResource($this->whenLoaded('updatedBy')),
             'deleted_by' => new UserResource($this->whenLoaded('deletedBy')),
+            'cancelled_by' => new UserResource($this->whenLoaded('cancelledBy')),
+            'cancelled_at' => dateTimeFormat($this->cancelled_at),
             'deleted_at' => dateTimeFormat($this->deleted_at),
             'created_at' => dateTimeFormat($this->created_at),
             'updated_at' => dateTimeFormat($this->updated_at),

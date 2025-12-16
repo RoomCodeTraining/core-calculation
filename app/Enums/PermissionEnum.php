@@ -474,6 +474,19 @@ enum PermissionEnum: string
     case DELETE_PRICE = 'price.delete';
     case ENABLE_PRICE = 'price.enable';
     case DISABLE_PRICE = 'price.disable';
+
+    case VIEW_TRANSACTION_TYPE = 'transaction_type.view';
+    case CREATE_TRANSACTION_TYPE = 'transaction_type.create';
+    case UPDATE_TRANSACTION_TYPE = 'transaction_type.update';
+    case DELETE_TRANSACTION_TYPE = 'transaction_type.delete';
+    case ENABLE_TRANSACTION_TYPE = 'transaction_type.enable';
+    case DISABLE_TRANSACTION_TYPE = 'transaction_type.disable';
     
+    case VIEW_TRANSACTION = 'transaction.view';
+    case CREATE_TRANSACTION = 'transaction.create';
+    case UPDATE_TRANSACTION = 'transaction.update';
+    case DELETE_TRANSACTION = 'transaction.delete';
+    case CANCEL_TRANSACTION = 'transaction.cancel';
+
     case DASHBOARD = 'dashboard.view';
 }

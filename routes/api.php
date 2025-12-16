@@ -91,5 +91,7 @@ Route::prefix('v1')->middleware(LogsOutDisabledUser::class)->group(function () {
     Route::prefix('dealers')->group(base_path('routes/api/v1.dealers.routes.php'));
     Route::prefix('calculations')->group(base_path('routes/api/v1.calculations.routes.php'));
     Route::prefix('vehicle-genre-usages')->group(base_path('routes/api/v1.vehicle.genre.usages.routes.php'));
+    Route::prefix('transaction-types')->group(base_path('routes/api/v1.transaction.types.routes.php'));
+    Route::prefix('transactions')->group(base_path('routes/api/v1.transactions.routes.php'));
     Route::group([], base_path('routes/api/v1.common.routes.php'));
 });

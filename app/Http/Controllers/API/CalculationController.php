@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Calculation\UpdateCalculationRequest;
-use App\Http\Requests\Calculation\CreateCalculationRequest;
-use App\Http\Resources\Calculation\CalculationResource;
+use App\Models\Status;
+use App\Enums\StatusEnum;
 use App\Models\Calculation;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
+use App\Http\Resources\Calculation\CalculationResource;
+use App\Http\Requests\Calculation\CreateCalculationRequest;
+use App\Http\Requests\Calculation\UpdateCalculationRequest;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * @group Gestion des calculs
@@ -31,10 +33,24 @@ class CalculationController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $calculations = Calculation::with('vehicleCharacteristic', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name')
-            ->useFilters()
-            ->latest('created_at')
-            ->dynamicPaginate();
+        $calculations = Calculation::with('entity', 'vehicleCharacteristic', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name')
+            ->accessibleBy(auth()->user());
+
+            if(request()->filled('entity_id')){
+                $calculations = $calculations->where('entity_id', Entity::keyFromHashId(request()->entity_id));
+            }
+
+            if(request()->filled('vehicle_characteristic_id')){
+                $calculations = $calculations->where('vehicle_characteristic_id', VehicleCharacteristic::keyFromHashId(request()->vehicle_characteristic_id));
+            }
+
+            if(request()->filled('status_id')){
+                $calculations = $calculations->where('status_id', Status::keyFromHashId(request()->status_id));
+            }   
+
+            $calculations = $calculations->useFilters()
+                            ->latest('created_at')
+                            ->dynamicPaginate();
 
         return CalculationResource::collection($calculations);
     }
@@ -48,6 +64,7 @@ class CalculationController extends Controller
     {
         $calculation = Calculation::create([
             'vehicle_characteristic_id' => $request->vehicle_characteristic_id,
+            'entity_id' => auth()->user()->entity_id,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
@@ -63,8 +80,8 @@ class CalculationController extends Controller
      */
     public function show($id): JsonResponse
     {
-        $calculation = Calculation::findOrFail(Calculation::keyFromHashId($id));
-        $calculation->load('vehicleCharacteristic', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
+        $calculation = Calculation::accessibleBy(auth()->user())->findOrFail(Calculation::keyFromHashId($id));
+        $calculation->load('entity', 'vehicleCharacteristic', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
         return $this->responseSuccess(null, new CalculationResource($calculation));
     }
 
@@ -75,7 +92,7 @@ class CalculationController extends Controller
      */
     public function update(UpdateCalculationRequest $request, $id): JsonResponse
     {
-        $calculation = Calculation::findOrFail(Calculation::keyFromHashId($id));
+        $calculation = Calculation::accessibleBy(auth()->user())->findOrFail(Calculation::keyFromHashId($id));
         $calculation->update([
             'vehicle_characteristic_id' => $request->vehicle_characteristic_id,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
@@ -92,7 +109,7 @@ class CalculationController extends Controller
      */
     public function destroy(Calculation $calculation): JsonResponse
     {
-        $calculation = Calculation::findOrFail(Calculation::keyFromHashId($id));
+        $calculation = Calculation::accessibleBy(auth()->user())->findOrFail(Calculation::keyFromHashId($id));
         $calculation->update([
             'status_id' => Status::where('code', StatusEnum::DELETED)->first()->id,
             'deleted_by' => auth()->user()->id,

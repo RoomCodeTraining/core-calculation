@@ -1,24 +1,20 @@
 <?php
 
-namespace App\Http\Resources\Calculation;
+namespace App\Http\Resources\TransactionType;
 
+use App\Http\Resources\Status\StatusResource;
+use App\Http\Resources\User\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Entity\EntityResource;
 
-class CalculationResource extends JsonResource
+class TransactionTypeResource extends JsonResource
 {
     public function toArray($request): array
     {
         return [
             'id' => $this->hashId,
-            'license_plate' => $this->license_plate,
-            'mileage' => $this->mileage,
-            'serial_number' => $this->serial_number,
-            'first_entry_into_circulation_date' => $this->first_entry_into_circulation_date,
-            'calculation_date' => $this->calculation_date,
-            'insured' => $this->insured,
-            'vehicle_characteristic' => new VehicleCharacteristicResource($this->whenLoaded('vehicleCharacteristic')),
-            'entity' => new EntityResource($this->whenLoaded('entity')),
+            'code' => $this->code,
+            'label' => $this->label,
+            'description' => $this->description,
             'status' => new StatusResource($this->whenLoaded('status')),
             'created_by' => new UserResource($this->whenLoaded('createdBy')),
             'updated_by' => new UserResource($this->whenLoaded('updatedBy')),

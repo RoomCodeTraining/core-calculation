@@ -148,5 +148,11 @@ class StatusSeeder extends Seeder
             'description' => "Échec",
         ]);
 
+        Status::create([
+            'code' => StatusEnum::PERFORMED,
+            'label' => "Effectué(e)",
+            'description' => "Effectué(e)",
+        ]);
+
     }
 }

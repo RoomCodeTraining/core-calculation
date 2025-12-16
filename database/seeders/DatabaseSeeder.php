@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             UsageSeeder::class,
             VehicleGenreUsageSeeder::class,
             VehicleCharacteristicSeeder::class,
+            TransactionTypeSeeder::class,
         ]);
     }
 }

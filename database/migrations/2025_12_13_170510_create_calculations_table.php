@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('insured')->nullable();
 
             $table->unsignedBigInteger('vehicle_characteristics_id')->index()->nullable();
+            $table->unsignedBigInteger('entity_id')->index()->nullable();
             $table->unsignedBigInteger('status_id')->index()->nullable()->comment('ID du statut');
             $table->unsignedBigInteger('created_by')->index()->nullable()->comment('ID de l\'utilisateur qui a créé le véhicule');
             $table->timestamp('created_at')->nullable()->comment('Date de création');
@@ -40,6 +41,11 @@ return new class extends Migration
             $table->foreign('status_id')
                 ->references('id')
                 ->on('statuses')
+                ->onDelete('cascade');
+
+            $table->foreign('entity_id')
+                ->references('id')
+                ->on('entities')
                 ->onDelete('cascade');
 
             $table->foreign('created_by')
