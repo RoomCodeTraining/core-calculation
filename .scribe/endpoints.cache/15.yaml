@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer PkD3E64vebZ5dfacV8h61ag'
+      - 'Bearer aZ6eghkdaEvf36cD148bPV5'
     controller: null
     method: null
     route: null
@@ -92,7 +92,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer bcZfd3he5k686g1EvPaV4Da'
+      - 'Bearer D1dbZVa63e4h8aP6v5fkgEc'
     controller: null
     method: null
     route: null
@@ -129,7 +129,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 36Z68cVkPav5Ebh4gD1dfea'
+      - 'Bearer ZD4dgafePc3ah8v1bk665VE'
     controller: null
     method: null
     route: null
@@ -177,7 +177,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gb6hke5fdcD16vVZaa43E8P'
+      - 'Bearer hD64kE8bvZg3aeadcP6V5f1'
     controller: null
     method: null
     route: null
@@ -207,14 +207,14 @@ endpoints:
         name: role
         description: 'The role.'
         required: true
-        example: consequuntur
+        example: voluptates
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      role: consequuntur
+      role: voluptates
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -225,7 +225,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer dZe4cghVv8fP6aDkb1Ea365'
+      - 'Bearer bg8kDaE616dV3fPc4he5aZv'
     controller: null
     method: null
     route: null
@@ -255,14 +255,14 @@ endpoints:
         name: role
         description: 'The role.'
         required: true
-        example: in
+        example: impedit
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      role: in
+      role: impedit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -273,7 +273,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fdak4E6a568bPhvgDZ1ce3V'
+      - 'Bearer bgh6Pa61cfZeaDE45Vk8dv3'
     controller: null
     method: null
     route: null

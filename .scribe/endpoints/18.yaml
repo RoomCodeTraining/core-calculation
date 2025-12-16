@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fa51EDehVPb46d36vagZc8k'
+      - 'Bearer v63gkaeZ61fbD845EaVcdhP'
     controller: null
     method: null
     route: null
@@ -78,7 +78,7 @@ endpoints:
         name: name
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: 'y'
+        example: hxifndebs
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -88,7 +88,7 @@ endpoints:
         name: email
         description: 'Le champ value doit être une adresse e-mail valide. Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: citlalli99@example.org
+        example: darlene.abernathy@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -98,7 +98,7 @@ endpoints:
         name: telephone
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: dhwqjihzkjgnodxcmltjrdkz
+        example: etnepbawzannofefrcnkzgc
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -108,24 +108,24 @@ endpoints:
         name: address
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: psvsbgdnrvchne
+        example: xojnvnjicp
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      name: 'y'
-      email: citlalli99@example.org
-      telephone: dhwqjihzkjgnodxcmltjrdkz
-      address: psvsbgdnrvchne
+      name: hxifndebs
+      email: darlene.abernathy@example.net
+      telephone: etnepbawzannofefrcnkzgc
+      address: xojnvnjicp
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer h46vPgkZ1Da5b3eca8V6dfE'
+      - 'Bearer aPfEa63v5V8hck1e6gZ4bdD'
     controller: null
     method: null
     route: null
@@ -155,14 +155,14 @@ endpoints:
         name: id
         description: 'The ID of the dealer.'
         required: true
-        example: harum
+        example: ipsum
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: harum
+      id: ipsum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -182,7 +182,99 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer ZdPkV6gEa1ecb85f3Dh6v4a'
+      - 'Bearer Pk8fVev43D6aghZbda1E5c6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/dealers/{id}'
+    metadata:
+      groupName: 'Gestion des concessionnaires'
+      groupDescription: |-
+
+        APIs pour la gestion des concessionnaires
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mettre à jour un concessionnaire'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the dealer.'
+        required: true
+        example: sed
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: sed
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: qklitt
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Le champ value doit être une adresse e-mail valide. Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: millie.breitenberg@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      telephone:
+        name: telephone
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: crkmyeuvsd
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      address:
+        name: address
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: rdyypsi
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: qklitt
+      email: millie.breitenberg@example.org
+      telephone: crkmyeuvsd
+      address: rdyypsi
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer a3vD5fed1VgkbE8c64a6hPZ'
     controller: null
     method: null
     route: null
@@ -212,14 +304,14 @@ endpoints:
         name: id
         description: 'The ID of the dealer.'
         required: true
-        example: iste
+        example: dolorum
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: iste
+      id: dolorum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -230,7 +322,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 13vckb5Edhef68VgaDP6Z4a'
+      - 'Bearer 4f3kZb166DcgPhvVE58adae'
     controller: null
     method: null
     route: null

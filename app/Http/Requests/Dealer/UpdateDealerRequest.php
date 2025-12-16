@@ -17,7 +17,7 @@ class UpdateDealerRequest extends FormRequest
     {
         return [
             "name" => "required|string|max:255",
-            "email" => "required|email|unique:dealers,email," . $this->dealer->id . "|regex:" . self::emailRegex() . "|max:255",
+            "email" => "required|email|unique:dealers,email|regex:" . self::emailRegex() . "|max:255",
             "telephone" => "required|string|max:255",
             "address" => "required|string|max:255",
         ];
@@ -41,5 +41,10 @@ class UpdateDealerRequest extends FormRequest
             "address.string" => "L'adresse doit être une chaîne de caractères.",
             "address.max" => "L'adresse doit contenir au plus 255 caractères.",
         ];
+    }
+
+    public static function emailRegex(): string
+    {
+        return "/^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/";
     }
 }
