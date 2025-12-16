@@ -39,9 +39,9 @@ class CalculationBuilder extends Builder
         }
 
         if ($user->isAdminOrganization()) {
-            return $this->where('calculations.entity_id', $user->entity_id);
+            return $this->where('entity_id', $user->entity_id);
         }
 
-        return $this->where('calculations.entity_id', $user->entity_id);
+        return $this->where('entity_id', $user->entity_id);
     }
 }

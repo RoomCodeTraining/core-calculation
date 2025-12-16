@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('calculations', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
 
+            $table->string('reference')->unique();
+
             $table->string('license_plate')->nullable();
             $table->decimal('mileage', 18, 2)->nullable();
             $table->string('serial_number')->nullable();
@@ -23,7 +25,7 @@ return new class extends Migration
             $table->date('calculation_date')->nullable();
             $table->string('insured')->nullable();
 
-            $table->unsignedBigInteger('vehicle_characteristics_id')->index()->nullable();
+            $table->unsignedBigInteger('vehicle_characteristic_id')->index()->nullable();
             $table->unsignedBigInteger('entity_id')->index()->nullable();
             $table->unsignedBigInteger('status_id')->index()->nullable()->comment('ID du statut');
             $table->unsignedBigInteger('created_by')->index()->nullable()->comment('ID de l\'utilisateur qui a créé le véhicule');
@@ -33,7 +35,7 @@ return new class extends Migration
             $table->unsignedBigInteger('deleted_by')->index()->nullable()->comment('ID de l\'utilisateur qui a supprimé le véhicule');
             $table->timestamp('deleted_at')->nullable()->comment('Date de suppression');
 
-            $table->foreign('vehicle_characteristics_id')
+            $table->foreign('vehicle_characteristic_id')
                 ->references('id')
                 ->on('vehicle_characteristics')
                 ->onDelete('cascade');

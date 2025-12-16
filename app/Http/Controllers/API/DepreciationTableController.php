@@ -121,10 +121,26 @@ class DepreciationTableController extends Controller
 
         $credit = Transaction::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
 
+        $calculation = Calculation::create([
+            'reference' => 'EV-'.date('YmdHis'),
+            'license_plate' => $vehicleCharacteristic->license_plate,
+            'mileage' => $request->vehicle_mileage,
+            'serial_number' => $vehicleCharacteristic->serial_number,
+            'first_entry_into_circulation_date' => $request->first_entry_into_circulation_date,
+            'calculation_date' => $request->expertise_date,
+            'insured' => $vehicleCharacteristic->insured,
+            'vehicle_characteristic_id' => $vehicleCharacteristic->id,
+            'entity_id' => auth()->user()->entity_id,
+            'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
+            'created_by' => auth()->user()->id,
+            'updated_by' => auth()->user()->id,
+        ]);
+
         return $this->responseSuccess('DepreciationTable created successfully', [
             'result' => $result,
             'vehicle_characteristic' => $vehicleCharacteristic,
             'credit' => $credit,
+            'pdf' => url('storage/market_value/'.$calculation->reference.'.pdf?v='.time()),
         ]);
     }
 

@@ -11,6 +11,7 @@ class CalculationResource extends JsonResource
     {
         return [
             'id' => $this->hashId,
+            'reference' => $this->reference,
             'license_plate' => $this->license_plate,
             'mileage' => $this->mileage,
             'serial_number' => $this->serial_number,

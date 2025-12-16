@@ -10,8 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Deligoez\LaravelModelHashId\Traits\HasHashId;
 use Deligoez\LaravelModelHashId\Traits\HasHashIdRouting;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use App\Builders\Calculation\CalculationBuilder;
 
 class Calculation extends Model
 {
@@ -80,9 +79,9 @@ class Calculation extends Model
     /**
      * Get the builder for this calculation
      */
-    public function builder(): HasOne
+    public function newEloquentBuilder($query): CalculationBuilder
     {
-        return $this->hasOne(Builder::class);
+        return new CalculationBuilder($query);
     }
 
 }
