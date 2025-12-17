@@ -1329,7 +1329,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         Role::create([
             'name' => \App\Enums\RoleEnum::ADMIN_ORGANIZATION,
-            'label' => 'Administrateur de cabinet d\'expertise',
+            'label' => 'Administrateur d\'une organisation',
             'description' => 'Chargé de la gestion de la plateforme d\'une organisation.',
             'guard_name' => 'sanctum',
         ])->givePermissionTo([
