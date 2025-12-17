@@ -56,6 +56,10 @@ class PriceController extends Controller
      */
     public function store(CreatePriceRequest $request): JsonResponse
     {
+        Price::query()->where('vehicle_characteristic_id', $request->vehicle_characteristic_id)->update([
+            'status_id' => Status::where('code', StatusEnum::INACTIVE)->first()->id,
+        ]);
+        
         $price = Price::create([
             'value' => $request->value,
             'date' => $request->date,
