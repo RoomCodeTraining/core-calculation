@@ -19,6 +19,7 @@ use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
 use App\Models\VehicleCharacteristic;
 use App\Services\MarketValue\MarketValueService;
+use App\Http\Resources\Calculation\CalculationResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Http\Requests\DepreciationTable\CreateMarketValueRequest;
 use App\Http\Resources\DepreciationTable\DepreciationTableResource;
@@ -121,7 +122,7 @@ class DepreciationTableController extends Controller
 
         $credit = Transaction::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
 
-        $calculation = Calculation::create([
+        $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsage', 'vehicleCharacteristic.vehicleGenreUsage.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsage.usage')->create([
             'reference' => 'EV-'.date('YmdHis'),
             'license_plate' => $vehicleCharacteristic->license_plate,
             'mileage' => $request->vehicle_mileage,
@@ -129,6 +130,7 @@ class DepreciationTableController extends Controller
             'first_entry_into_circulation_date' => $request->first_entry_into_circulation_date,
             'calculation_date' => $request->expertise_date,
             'insured' => $vehicleCharacteristic->insured,
+            'evaluation' => json_encode($result),
             'vehicle_characteristic_id' => $vehicleCharacteristic->id,
             'entity_id' => auth()->user()->entity_id,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
@@ -136,9 +138,12 @@ class DepreciationTableController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
+        $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsage', 'vehicleCharacteristic.vehicleGenreUsage.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsage.usage')->where('id', $calculation->id)->first();
+        $price = Price::findOrFail(Price::keyFromHashId($request->price_id));
+
         return $this->responseSuccess('DepreciationTable created successfully', [
-            'result' => $result,
-            'vehicle_characteristic' => $vehicleCharacteristic,
+            'calculation' => new CalculationResource($calculation),
+            'vehicle_new_value' => $price?->value ?? 0,
             'credit' => $credit,
             'pdf' => url('storage/market_value/'.$calculation->reference.'.pdf?v='.time()),
         ]);

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\DepreciationTable;
 
 use App\Models\VehicleCharacteristic;
+use App\Models\Price;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateTheoricalMarketValueRequest extends FormRequest
@@ -11,6 +12,7 @@ class CreateTheoricalMarketValueRequest extends FormRequest
     {
         $this->merge([
             'vehicle_characteristic_id' => $this->vehicle_characteristic_id ? VehicleCharacteristic::keyFromHashId($this->vehicle_characteristic_id) : null,
+            'price_id' => $this->price_id ? Price::keyFromHashId($this->price_id) : null,
         ]);
     }
 
@@ -21,6 +23,7 @@ class CreateTheoricalMarketValueRequest extends FormRequest
             'vehicle_mileage' => 'required|integer|min:0',
             'first_entry_into_circulation_date' => 'required|date_format:Y-m-d|before:tomorrow',
             'expertise_date' => 'required|date_format:Y-m-d|after:first_entry_into_circulation_date|before:tomorrow',
+            'price_id' => 'required|exists:prices,id',
         ];
     }
 
@@ -40,6 +43,8 @@ class CreateTheoricalMarketValueRequest extends FormRequest
             'vehicle_mileage.required' => 'Le kilométrage du véhicule est requis.',
             'vehicle_mileage.integer' => 'Le kilométrage du véhicule doit être un nombre entier.',
             'vehicle_mileage.min' => 'Le kilométrage du véhicule doit être supérieure ou égale à 0.',
+            'price_id.required' => 'Le prix du véhicule est requis.',
+            'price_id.exists' => 'Le prix du véhicule est invalide.',
         ];
     }
 }

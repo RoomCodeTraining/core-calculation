@@ -2,8 +2,11 @@
 
 namespace App\Http\Resources\Calculation;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\User\UserResource;
 use App\Http\Resources\Entity\EntityResource;
+use App\Http\Resources\Status\StatusResource;
+use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\VehicleCharacteristic\VehicleCharacteristicResource;
 
 class CalculationResource extends JsonResource
 {
@@ -18,6 +21,7 @@ class CalculationResource extends JsonResource
             'first_entry_into_circulation_date' => $this->first_entry_into_circulation_date,
             'calculation_date' => $this->calculation_date,
             'insured' => $this->insured,
+            'evaluation' => json_decode($this->evaluation),
             'vehicle_characteristic' => new VehicleCharacteristicResource($this->whenLoaded('vehicleCharacteristic')),
             'entity' => new EntityResource($this->whenLoaded('entity')),
             'status' => new StatusResource($this->whenLoaded('status')),
