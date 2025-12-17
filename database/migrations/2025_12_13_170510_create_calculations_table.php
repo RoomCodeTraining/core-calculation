@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('first_entry_into_circulation_date')->nullable();
             $table->date('calculation_date')->nullable();
             $table->string('insured')->nullable();
+            $table->json('evaluation')->nullable();
 
             $table->unsignedBigInteger('vehicle_characteristic_id')->index()->nullable();
             $table->unsignedBigInteger('entity_id')->index()->nullable();
