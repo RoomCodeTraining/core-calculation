@@ -7,6 +7,7 @@ use App\Http\Requests\Price\UpdatePriceRequest;
 use App\Http\Requests\Price\CreatePriceRequest;
 use App\Http\Resources\Price\PriceResource;
 use App\Models\Price;
+use App\Models\VehicleCharacteristic;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Essa\APIToolKit\Api\ApiResponse;
@@ -37,11 +38,11 @@ class PriceController extends Controller
         $prices = Price::with('vehicleCharacteristic', 'status', 'createdBy', 'updatedBy', 'deletedBy');
 
         if(request()->has('vehicle_characteristic_id')){
-            $prices->where('vehicle_characteristic_id', request()->vehicle_characteristic_id);
+            $prices->where('vehicle_characteristic_id', VehicleCharacteristic::keyFromHashId(request()->vehicle_characteristic_id));
         }
 
         if(request()->has('status_id')){
-            $prices->where('status_id', request()->status_id);
+            $prices->where('status_id', Status::keyFromHashId(request()->status_id));
         }
         
         $prices = $prices->useFilters()->latest('date')->dynamicPaginate();
@@ -59,7 +60,7 @@ class PriceController extends Controller
         Price::query()->where('vehicle_characteristic_id', $request->vehicle_characteristic_id)->update([
             'status_id' => Status::where('code', StatusEnum::INACTIVE)->first()->id,
         ]);
-        
+
         $price = Price::create([
             'value' => $request->value,
             'date' => $request->date,
