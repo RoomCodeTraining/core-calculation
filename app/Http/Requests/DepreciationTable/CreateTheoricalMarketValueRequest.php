@@ -23,7 +23,10 @@ class CreateTheoricalMarketValueRequest extends FormRequest
             'vehicle_mileage' => 'required|integer|min:0',
             'first_entry_into_circulation_date' => 'required|date_format:Y-m-d|before:tomorrow',
             'expertise_date' => 'required|date_format:Y-m-d|after:first_entry_into_circulation_date|before:tomorrow',
-            'price_id' => 'required|exists:prices,id',
+            // 'price_id' => 'required|exists:prices,id',
+            "license_plate" => "required|string|max:255",
+            "serial_number" => "required|string|max:255",
+            "insured" => "required|string|max:255",
         ];
     }
 

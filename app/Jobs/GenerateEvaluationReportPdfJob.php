@@ -57,8 +57,6 @@ class GenerateEvaluationReportPdfJob implements ShouldQueue
 
         $evaluation = json_decode($calculation->evaluation);
 
-        $price = Price::where('vehicle_characteristic_id', $calculation->vehicleCharacteristic->id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->first();
-
         $path_qr_code = base_path('public/images/qr_code.png');
         $type_qr_code = pathinfo($path_qr_code, PATHINFO_EXTENSION);
         $data_qr_code = file_get_contents($path_qr_code);
@@ -78,7 +76,7 @@ class GenerateEvaluationReportPdfJob implements ShouldQueue
         $numberToWords = new NumberToWords();
         $numberTransformer = $numberToWords->getNumberTransformer('fr');
 
-        $pdf = PDF::loadView('evaluation_report/index',compact('calculation','evaluation','logo','check_icon','price','qr_code','numberTransformer'));
+        $pdf = PDF::loadView('evaluation_report/index',compact('calculation','evaluation','logo','check_icon','qr_code','numberTransformer'));
         $pdf->set_option('isHtml5ParserEnabled', false);
         $pdf->set_option('isRemoteEnabled', true);
         $pdf->setOptions(['defaultFont' => 'sans-serif']);

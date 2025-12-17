@@ -18,6 +18,7 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
 use App\Models\VehicleCharacteristic;
+use App\Jobs\GenerateEvaluationReportPdfJob;
 use App\Services\MarketValue\MarketValueService;
 use App\Http\Resources\Calculation\CalculationResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -67,7 +68,7 @@ class DepreciationTableController extends Controller
     public function calculate_theoretical_market_value(CreateTheoricalMarketValueRequest $request): JsonResponse
     {
         $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage')->findOrFail($request->vehicle_characteristic_id);
-        $price = Price::where('vehicle_characteristic_id', $request->vehicle_characteristic_id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->first();
+        $price = Price::find($request->price_id);
         // if(!$price){
         //     return $this->responseUnprocessable('Le prix de la caractéristique du véhicule est requis');
         // }
@@ -124,12 +125,12 @@ class DepreciationTableController extends Controller
 
         $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsage', 'vehicleCharacteristic.vehicleGenreUsage.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsage.usage')->create([
             'reference' => 'EV-'.date('YmdHis'),
-            'license_plate' => $vehicleCharacteristic->license_plate,
+            'license_plate' => $request->license_plate,
             'mileage' => $request->vehicle_mileage,
-            'serial_number' => $vehicleCharacteristic->serial_number,
+            'serial_number' => $request->serial_number,
             'first_entry_into_circulation_date' => $request->first_entry_into_circulation_date,
             'calculation_date' => $request->expertise_date,
-            'insured' => $vehicleCharacteristic->insured,
+            'insured' => $request->insured,
             'evaluation' => json_encode($result),
             'vehicle_characteristic_id' => $vehicleCharacteristic->id,
             'entity_id' => auth()->user()->entity_id,
@@ -139,13 +140,13 @@ class DepreciationTableController extends Controller
         ]);
 
         $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsage', 'vehicleCharacteristic.vehicleGenreUsage.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsage.usage')->where('id', $calculation->id)->first();
-        $price = Price::findOrFail(Price::keyFromHashId($request->price_id));
+
+        dispatch(new GenerateEvaluationReportPdfJob($calculation));
 
         return $this->responseSuccess('DepreciationTable created successfully', [
             'calculation' => new CalculationResource($calculation),
-            'vehicle_new_value' => $price?->value ?? 0,
             'credit' => $credit,
-            'pdf' => url('storage/market_value/'.$calculation->reference.'.pdf?v='.time()),
+            'pdf' => url('storage/evaluation_report/'.$calculation->reference.'.pdf?v='.time()),
         ]);
     }
 

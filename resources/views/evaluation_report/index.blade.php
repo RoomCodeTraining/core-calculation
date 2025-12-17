@@ -5,7 +5,7 @@
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Rapport d'évaluation {{$calculation->reference}} / {{calculation?->entity?->name ?? ''}}</title>
+        <title>Rapport d'évaluation {{$calculation->reference}} / {{$calculation?->entity?->name ?? ''}}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}">
@@ -241,7 +241,19 @@
                         Date de première mise en circulation du véhicule
                     </th>
                     <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
-                        <b>{{ \Carbon\Carbon::parse($calculation?->vehicleCharacteristic?->first_entry_into_circulation_date)->format('d/m/Y') ?? ''}}</b>
+                        @if($calculation?->first_entry_into_circulation_date)
+                            <b>{{ \Carbon\Carbon::parse($calculation?->first_entry_into_circulation_date)->format('d/m/Y') ?? ''}}</b>
+                        @else
+                            <b></b>
+                        @endif
+                    </th>
+                </tr>
+                <tr style="border: 1px solid; font-size: 12px;">
+                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                        Distance parcourue en KM
+                    </th>
+                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                        <b>{{number_format($calculation?->mileage ?? 0, 0, ',', ' ') ?? ''}} KMS</b>
                     </th>
                 </tr>
                 <tr style="border: 1px solid; font-size: 12px;">
