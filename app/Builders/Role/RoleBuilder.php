@@ -19,29 +19,9 @@ class RoleBuilder extends Builder
         return $this->model->currentRole->name == RoleEnum::ADMIN->value;
     }
 
-    public function isAdminExpert(): bool
+    public function isAdminOrganization(): bool
     {
-        return $this->model->currentRole->name == RoleEnum::EXPERT_ADMIN->value;
-    }
-
-    public function isCEO(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::CEO->value;
-    }
-
-    public function isExpertManager(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::EXPERT_MANAGER->value;
-    }
-
-    public function isInsurerAdmin(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::INSURER_ADMIN->value;
-    }
-
-    public function isRepairerAdmin(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::REPAIRER_ADMIN->value;
+        return $this->model->currentRole->name == RoleEnum::ADMIN_ORGANIZATION->value;
     }
 
     public function accessibleBy(?User $user)
@@ -55,27 +35,11 @@ class RoleBuilder extends Builder
         }
 
         if ($user->isAdmin()) {
-            return $this->whereIn('name', [RoleEnum::EXPERT_ADMIN->value, RoleEnum::CEO->value, RoleEnum::EXPERT_MANAGER->value, RoleEnum::EXPERT->value, RoleEnum::OPENER->value, RoleEnum::EDITOR->value, RoleEnum::VALIDATOR->value, RoleEnum::ACCOUNTANT_MANAGER->value, RoleEnum::ACCOUNTANT->value, RoleEnum::BUSINESS_DEVELOPER->value, RoleEnum::INSURER_ADMIN->value, RoleEnum::INSURER_STANDARD_USER->value, RoleEnum::REPAIRER_ADMIN->value, RoleEnum::REPAIRER_STANDARD_USER->value, RoleEnum::UNASSIGNED->value]);
+            return $this->where('name', RoleEnum::ADMIN_ORGANIZATION->value);
         }
 
-        if ($user->isAdminExpert()) {
-            return $this->whereIn('name', [RoleEnum::CEO->value, RoleEnum::EXPERT_MANAGER->value, RoleEnum::EXPERT->value, RoleEnum::OPENER->value, RoleEnum::EDITOR->value, RoleEnum::VALIDATOR->value, RoleEnum::ACCOUNTANT_MANAGER->value, RoleEnum::ACCOUNTANT->value, RoleEnum::BUSINESS_DEVELOPER->value, RoleEnum::INSURER_ADMIN->value, RoleEnum::INSURER_STANDARD_USER->value, RoleEnum::REPAIRER_ADMIN->value, RoleEnum::REPAIRER_STANDARD_USER->value, RoleEnum::UNASSIGNED->value])->pluck('id');
-        }
-
-        if ($user->isCEO()) {
-            return $this->whereIn('name', [RoleEnum::EXPERT_MANAGER->value, RoleEnum::EXPERT->value, RoleEnum::OPENER->value, RoleEnum::EDITOR->value, RoleEnum::VALIDATOR->value, RoleEnum::ACCOUNTANT_MANAGER->value, RoleEnum::ACCOUNTANT->value, RoleEnum::BUSINESS_DEVELOPER->value, RoleEnum::INSURER_ADMIN->value, RoleEnum::INSURER_STANDARD_USER->value, RoleEnum::REPAIRER_ADMIN->value, RoleEnum::REPAIRER_STANDARD_USER->value, RoleEnum::UNASSIGNED->value])->pluck('id');
-        }
-
-        if ($user->isExpertManager()) {
-            return $this->whereIn('name', [RoleEnum::EXPERT->value, RoleEnum::OPENER->value, RoleEnum::EDITOR->value, RoleEnum::VALIDATOR->value, RoleEnum::ACCOUNTANT_MANAGER->value, RoleEnum::ACCOUNTANT->value, RoleEnum::BUSINESS_DEVELOPER->value, RoleEnum::INSURER_ADMIN->value, RoleEnum::INSURER_STANDARD_USER->value, RoleEnum::REPAIRER_ADMIN->value, RoleEnum::REPAIRER_STANDARD_USER->value, RoleEnum::UNASSIGNED->value])->pluck('id');
-        }
-
-        if ($user->isInsurerAdmin()) {
-            return $this->whereIn('name', [RoleEnum::INSURER_ADMIN->value, RoleEnum::INSURER_STANDARD_USER->value])->pluck('id');
-        }
-
-        if ($user->isRepairerAdmin()) {
-            return $this->whereIn('name', [RoleEnum::REPAIRER_ADMIN->value, RoleEnum::REPAIRER_STANDARD_USER->value]);
+        if ($user->isAdminOrganization()) {
+            return $this->where('name', RoleEnum::ADMIN_ORGANIZATION->value);
         }
 
         return $this;
