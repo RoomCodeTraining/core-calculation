@@ -1,20 +1,20 @@
-name: "Gestion des types d'entité"
+name: 'Gestion des prix des caractéristiques des véhicules'
 description: |-
 
-  APIs pour la gestion des types d'entité
+  APIs pour la gestion des prix des caractéristiques des véhicules
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/entity-types
+    uri: api/v1/prices
     metadata:
-      groupName: "Gestion des types d'entité"
+      groupName: 'Gestion des prix des caractéristiques des véhicules'
       groupDescription: |-
 
-        APIs pour la gestion des types d'entité
+        APIs pour la gestion des prix des caractéristiques des véhicules
       subgroup: ''
       subgroupDescription: ''
-      title: "Lister les types d'entité"
+      title: 'Lister tous les prix des caractéristiques des véhicules'
       description: ''
       authenticated: true
       deprecated: false
@@ -44,64 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer cd1Ev6afZ3De45bgVa6Ph8k'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/v1/entity-types/{id}'
-    metadata:
-      groupName: "Gestion des types d'entité"
-      groupDescription: |-
-
-        APIs pour la gestion des types d'entité
-      subgroup: ''
-      subgroupDescription: ''
-      title: "Afficher un type d'entité"
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the entity type.'
-        required: true
-        example: commodi
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: commodi
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer EZ4g51b3c8kvaDf66eVdahP'
+      - 'Bearer aV1EadhD5v6kPfc3846gbZe'
     controller: null
     method: null
     route: null
@@ -109,15 +52,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/entity-types
+    uri: api/v1/prices
     metadata:
-      groupName: "Gestion des types d'entité"
+      groupName: 'Gestion des prix des caractéristiques des véhicules'
       groupDescription: |-
 
-        APIs pour la gestion des types d'entité
+        APIs pour la gestion des prix des caractéristiques des véhicules
       subgroup: ''
       subgroupDescription: ''
-      title: "Ajouter un type d'entité"
+      title: "Ajouter un prix d'une caractéristique d'un véhicule"
       description: ''
       authenticated: true
       deprecated: false
@@ -131,52 +74,63 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      label:
-        name: label
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+      value:
+        name: value
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: true
-        example: glsctnbgpkgrj
+        example: 40
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      date:
+        name: date
+        description: 'Must be a valid date in the format <code>Y-m-d</code>. Le champ value doit être une date antérieure au <code>tomorrow</code>.'
+        required: true
+        example: '2007-02-25'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      description:
-        name: description
-        description: ''
-        required: false
-        example: 'Error iure impedit culpa harum.'
+      vehicle_characteristic_id:
+        name: vehicle_characteristic_id
+        description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
+        required: true
+        example: sed
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: true
+        nullable: false
         custom: []
     cleanBodyParameters:
-      label: glsctnbgpkgrj
-      description: 'Error iure impedit culpa harum.'
+      value: 40
+      date: '2007-02-25'
+      vehicle_characteristic_id: sed
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer dvga5D1Z6cbk4e8E3hfaP6V'
+      - 'Bearer fkca6dVP6DeZvhb35a41g8E'
     controller: null
     method: null
     route: null
     custom: []
   -
     httpMethods:
-      - PUT
-    uri: 'api/v1/entity-types/{id}'
+      - GET
+    uri: 'api/v1/prices/{id}'
     metadata:
-      groupName: "Gestion des types d'entité"
+      groupName: 'Gestion des prix des caractéristiques des véhicules'
       groupDescription: |-
 
-        APIs pour la gestion des types d'entité
+        APIs pour la gestion des prix des caractéristiques des véhicules
       subgroup: ''
       subgroupDescription: ''
-      title: "Mettre à jour un type d'entité"
+      title: "Afficher un prix d'une caractéristique d'un véhicule"
       description: ''
       authenticated: true
       deprecated: false
@@ -188,65 +142,133 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the entity type.'
+        description: 'The ID of the price.'
         required: true
-        example: omnis
+        example: consectetur
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: omnis
+      id: consectetur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer defP356Zh8aDbVkgc4Eav61'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/prices/{id}'
+    metadata:
+      groupName: 'Gestion des prix des caractéristiques des véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des prix des caractéristiques des véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Mettre à jour un prix d'une caractéristique d'un véhicule"
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the price.'
+        required: true
+        example: nihil
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: nihil
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      label:
-        name: label
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+      value:
+        name: value
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: true
-        example: eyqrcutzrgifbtvm
+        example: 3
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      date:
+        name: date
+        description: 'Must be a valid date in the format <code>Y-m-d</code>. Le champ value doit être une date antérieure au <code>tomorrow</code>.'
+        required: true
+        example: '2024-08-28'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      description:
-        name: description
-        description: ''
-        required: false
-        example: 'Possimus ea ut consectetur quidem.'
+      vehicle_characteristic_id:
+        name: vehicle_characteristic_id
+        description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
+        required: true
+        example: rerum
         type: string
         enumValues: []
         exampleWasSpecified: false
-        nullable: true
+        nullable: false
         custom: []
     cleanBodyParameters:
-      label: eyqrcutzrgifbtvm
-      description: 'Possimus ea ut consectetur quidem.'
+      value: 3
+      date: '2024-08-28'
+      vehicle_characteristic_id: rerum
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer egbDVa3kdE8fhZa16c56v4P'
+      - 'Bearer 8e5Ea6Z1bfgvhPk6Vac4d3D'
     controller: null
     method: null
     route: null
     custom: []
   -
     httpMethods:
-      - PUT
-    uri: 'api/v1/entity-types/{id}/enable'
+      - DELETE
+    uri: 'api/v1/prices/{id}'
     metadata:
-      groupName: "Gestion des types d'entité"
+      groupName: 'Gestion des prix des caractéristiques des véhicules'
       groupDescription: |-
 
-        APIs pour la gestion des types d'entité
+        APIs pour la gestion des prix des caractéristiques des véhicules
       subgroup: ''
       subgroupDescription: ''
-      title: "Activer un type d'entité"
+      title: "Supprimer un prix d'une caractéristique d'un véhicule"
       description: ''
       authenticated: true
       deprecated: false
@@ -258,16 +280,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the entity type.'
+        description: 'The ID of the price.'
         required: true
-        example: 1
-        type: integer
+        example: deserunt
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      id: deserunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -278,55 +300,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 68gZaP4D1e6E3vacfVdkh5b'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-    uri: 'api/v1/entity-types/{id}/disable'
-    metadata:
-      groupName: "Gestion des types d'entité"
-      groupDescription: |-
-
-        APIs pour la gestion des types d'entité
-      subgroup: ''
-      subgroupDescription: ''
-      title: "Désactiver un type d'entité"
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the entity type.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer agav64hDZdcfE15VPe683kb'
+      - 'Bearer a4VgPkcedh13a5Ev8Zf6Db6'
     controller: null
     method: null
     route: null

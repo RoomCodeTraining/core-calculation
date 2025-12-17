@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\API;
 
 use Carbon\Carbon;
+use App\Models\Entity;
 use App\Models\Status;
 use App\Enums\StatusEnum;
+use App\Models\Calculation;
 use App\Models\Transaction;
 use App\Models\TransactionType;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
+use App\Http\Resources\Entity\EntityResource;
 use App\Http\Resources\Transaction\TransactionResource;
 use App\Http\Requests\Transaction\CreateTransactionRequest;
 use App\Http\Requests\Transaction\UpdateTransactionRequest;
@@ -53,6 +56,25 @@ class TransactionController extends Controller
     }
 
     /**
+     * Lister les credits des entités
+     *
+     * @authenticated
+     */
+    public function creditsAll(): JsonResponse
+    {
+        $entities = Transaction::select('entity_id')->distinct()->get();
+        $creditsData = [];
+        foreach($entities as $entity){
+            $credits = Transaction::where('entity_id', $entity->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', $entity->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
+            $creditsData[] = [
+                'entity' => new EntityResource(Entity::find($entity->entity_id)),
+                'credits' => $credits,
+            ];
+        }
+        return $this->responseSuccess('Credits fetched successfully', $creditsData);
+    }
+
+    /**
      * Créer une transaction
      *
      * @authenticated
@@ -60,8 +82,9 @@ class TransactionController extends Controller
     public function store(CreateTransactionRequest $request): JsonResponse
     {
         $transaction = Transaction::create([
-            'entity_id' => Entity::keyFromHashId($request->entity_id),
-            'transaction_type_id' => TransactionType::keyFromHashId($request->transaction_type_id),
+            'reference' => 'TR-'.date('YmdHis'),
+            'entity_id' => $request->entity_id,
+            'transaction_type_id' => $request->transaction_type_id,
             'quantity' => $request->quantity,
             'description' => $request->description,
             'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,

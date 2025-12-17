@@ -6,11 +6,13 @@ use App\Filters\PriceFilters;
 use Essa\APIToolKit\Filters\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Deligoez\LaravelModelHashId\Traits\HasHashId;
+use Deligoez\LaravelModelHashId\Traits\HasHashIdRouting;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Price extends Model
 {
-    use HasFactory, Filterable;
+    use HasFactory, Filterable, HasHashId, HasHashIdRouting, SoftDeletes;
 
     protected string $default_filters = PriceFilters::class;
 

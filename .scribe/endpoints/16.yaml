@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer VZ6ecaEhgPkvaf85D6d43b1'
+      - 'Bearer 6gkfP85Eb6vZVce4a31haDd'
     controller: null
     method: null
     route: null
@@ -78,7 +78,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: dnztjmnnnxnghdq
+        example: csjuduul
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -88,7 +88,7 @@ endpoints:
         name: description
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: 'Occaecati cum ad voluptates rerum blanditiis omnis nulla eius.'
+        example: 'Commodi dicta rem rem provident minus.'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -98,7 +98,7 @@ endpoints:
         name: max_mileage_essence_per_year
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: false
-        example: 3
+        example: 78
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -108,24 +108,24 @@ endpoints:
         name: max_mileage_diesel_per_year
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: false
-        example: 34
+        example: 0
         type: number
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: dnztjmnnnxnghdq
-      description: 'Occaecati cum ad voluptates rerum blanditiis omnis nulla eius.'
-      max_mileage_essence_per_year: 3
-      max_mileage_diesel_per_year: 34
+      label: csjuduul
+      description: 'Commodi dicta rem rem provident minus.'
+      max_mileage_essence_per_year: 78
+      max_mileage_diesel_per_year: 0
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer k5gZPf6h6acba1vDVeEd348'
+      - 'Bearer ZahVg616abdPE8v543kDfce'
     controller: null
     method: null
     route: null
@@ -155,14 +155,14 @@ endpoints:
         name: id
         description: 'The ID of the usage.'
         required: true
-        example: eveniet
+        example: molestias
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: eveniet
+      id: molestias
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -182,7 +182,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vD168354PekgbdhEaaVfcZ6'
+      - 'Bearer D3P6fgvdkhe4E5ac1Z6Vab8'
     controller: null
     method: null
     route: null
@@ -212,14 +212,14 @@ endpoints:
         name: id
         description: 'The ID of the usage.'
         required: true
-        example: a
+        example: est
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: a
+      id: est
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -227,7 +227,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: fwuhskif
+        example: wquqrbmimgzc
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -237,22 +237,22 @@ endpoints:
         name: description
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: 'Quia et totam aut tempora animi fuga laborum.'
+        example: 'Omnis quae ab et dolorum adipisci.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: fwuhskif
-      description: 'Quia et totam aut tempora animi fuga laborum.'
+      label: wquqrbmimgzc
+      description: 'Omnis quae ab et dolorum adipisci.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 46Pfhk6cDa3abegVdE81Zv5'
+      - 'Bearer V5D8ZadfPcv6eb1463ahkgE'
     controller: null
     method: null
     route: null
@@ -282,14 +282,14 @@ endpoints:
         name: id
         description: 'The ID of the usage.'
         required: true
-        example: laboriosam
+        example: non
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: laboriosam
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -300,7 +300,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer VP1gbha5daED46kfcv3Ze68'
+      - 'Bearer PZavb3f8k1hD4V6acg6edE5'
     controller: null
     method: null
     route: null

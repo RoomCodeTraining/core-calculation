@@ -67,12 +67,18 @@ class DepreciationTableController extends Controller
      */
     public function calculate_theoretical_market_value(CreateTheoricalMarketValueRequest $request): JsonResponse
     {
+        $credit = Transaction::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
+
+        if($credit < 0){
+            return $this->responseUnprocessable('Vous n\'avez pas assez de crédit pour effectuer cette action');
+        }
+
         $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage')->findOrFail($request->vehicle_characteristic_id);
         $price = Price::find($request->price_id);
-        // if(!$price){
-        //     return $this->responseUnprocessable('Le prix de la caractéristique du véhicule est requis');
-        // }
-        $vehicle_new_value = $price?->value ?? 100000000;
+        if(!$price){
+            return $this->responseUnprocessable('Le prix de la caractéristique du véhicule est requis');
+        }
+        $vehicle_new_value = $price?->value ?? 0;
         $marketValueService = app(MarketValueService::class);
         $result = $marketValueService->calculateTheoreticalMarketValue($vehicleCharacteristic->vehicleGenreUsage->id, $vehicleCharacteristic->vehicle_energy_id, $vehicle_new_value, $request->vehicle_mileage, $request->first_entry_into_circulation_date, $request->expertise_date);
         $result = (object) $result;
@@ -121,8 +127,6 @@ class DepreciationTableController extends Controller
             'vehicle_market_value' =>  ceil($result->vehicle_new_value - ($result->vehicle_new_value * $depreciation_rate / 100))
         ];
 
-        $credit = Transaction::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
-
         $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsage', 'vehicleCharacteristic.vehicleGenreUsage.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsage.usage')->create([
             'reference' => 'EV-'.date('YmdHis'),
             'license_plate' => $request->license_plate,
@@ -134,7 +138,7 @@ class DepreciationTableController extends Controller
             'evaluation' => json_encode($result),
             'vehicle_characteristic_id' => $vehicleCharacteristic->id,
             'entity_id' => auth()->user()->entity_id,
-            'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
+            'status_id' => Status::where('code', StatusEnum::SUCCESS)->first()->id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
         ]);
@@ -145,7 +149,7 @@ class DepreciationTableController extends Controller
 
         return $this->responseSuccess('DepreciationTable created successfully', [
             'calculation' => new CalculationResource($calculation),
-            'credit' => $credit,
+            'credit' => $credit - 1,
             'pdf' => url('storage/evaluation_report/'.$calculation->reference.'.pdf?v='.time()),
         ]);
     }

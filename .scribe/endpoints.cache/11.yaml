@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 4hf5aaV1e8db6Dgv3kcPZ6E'
+      - 'Bearer 6PE1cZDfV4khvaed6b38ga5'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: pqflrvfsc
+        example: semtrmsagfltfdhmhmzzj
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -90,22 +90,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Sit omnis ea aliquid.'
+        example: 'Est et et quo.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: pqflrvfsc
-      description: 'Sit omnis ea aliquid.'
+      label: semtrmsagfltfdhmhmzzj
+      description: 'Est et et quo.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 63DV1hZfgea85ba6Ekv4dPc'
+      - 'Bearer 46df36beZV1kcghPaav58DE'
     controller: null
     method: null
     route: null
@@ -135,14 +135,14 @@ endpoints:
         name: id
         description: 'The ID of the color.'
         required: true
-        example: molestiae
+        example: doloribus
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: molestiae
+      id: doloribus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -162,7 +162,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer f1ZdPkv66caVgh35DaE8b4e'
+      - 'Bearer vdE6kfZge36hPaVD4c158ba'
     controller: null
     method: null
     route: null
@@ -192,14 +192,14 @@ endpoints:
         name: id
         description: 'The ID of the color.'
         required: true
-        example: consequatur
+        example: natus
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: consequatur
+      id: natus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -207,7 +207,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: hmmtloatujoadurxtjmsb
+        example: x
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -217,22 +217,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Sapiente tempore distinctio dolorum neque harum.'
+        example: 'Ratione neque pariatur ea.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: hmmtloatujoadurxtjmsb
-      description: 'Sapiente tempore distinctio dolorum neque harum.'
+      label: x
+      description: 'Ratione neque pariatur ea.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer kdaZc618hvb5aEe3f6gP4VD'
+      - 'Bearer hv1a6eEc43k6gZfa8bVPDd5'
     controller: null
     method: null
     route: null
@@ -262,14 +262,14 @@ endpoints:
         name: id
         description: 'The ID of the color.'
         required: true
-        example: in
+        example: aut
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: in
+      id: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -280,7 +280,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 536chfd6VP1avbDEag4ekZ8'
+      - 'Bearer fd5EhPDZ16Vkav6gea4cb38'
     controller: null
     method: null
     route: null

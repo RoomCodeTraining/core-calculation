@@ -22,7 +22,7 @@ class CalculationResource extends JsonResource
             'calculation_date' => $this->calculation_date,
             'insured' => $this->insured,
             'evaluation' => json_decode($this->evaluation),
-            'pdf' => url('storage/evaluation_report/'.$calculation->reference.'.pdf?v='.time()),
+            'pdf' => url('storage/evaluation_report/'.$this->reference.'.pdf?v='.time()),
             'vehicle_characteristic' => new VehicleCharacteristicResource($this->whenLoaded('vehicleCharacteristic')),
             'entity' => new EntityResource($this->whenLoaded('entity')),
             'status' => new StatusResource($this->whenLoaded('status')),

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->string('reference')->unique();
-            $table->decimal('quantity', 18, 2)->nullable();
+            $table->integer('quantity')->nullable();
             $table->text('description')->nullable();
             $table->text('cancellation_reason')->nullable()->comment('Motif d\'annulation');
             $table->unsignedBigInteger('entity_id')->index()->nullable();

@@ -59,8 +59,8 @@ class Transaction extends Model
         return $this->belongsTo(User::class, 'cancelled_by');
     }
 
-    public function builder()
+    public function newEloquentBuilder($query): TransactionBuilder
     {
-        return TransactionBuilder::class;
+        return new TransactionBuilder($query);
     }
 }
