@@ -93,5 +93,6 @@ Route::prefix('v1')->middleware(LogsOutDisabledUser::class)->group(function () {
     Route::prefix('vehicle-genre-usages')->group(base_path('routes/api/v1.vehicle.genre.usages.routes.php'));
     Route::prefix('transaction-types')->group(base_path('routes/api/v1.transaction.types.routes.php'));
     Route::prefix('transactions')->group(base_path('routes/api/v1.transactions.routes.php'));
+    Route::prefix('prices')->group(base_path('routes/api/v1.prices.routes.php'));
     Route::group([], base_path('routes/api/v1.common.routes.php'));
 });
