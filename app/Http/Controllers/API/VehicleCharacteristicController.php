@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
 use App\Models\VehicleCharacteristic;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Http\Resources\VehicleGenreUsage\VehicleGenreUsageResource;
 use App\Http\Resources\VehicleCharacteristic\VehicleCharacteristicResource;
 use App\Http\Requests\VehicleCharacteristic\CreateVehicleCharacteristicRequest;
 use App\Http\Requests\VehicleCharacteristic\UpdateVehicleCharacteristicRequest;
@@ -193,11 +194,11 @@ class VehicleCharacteristicController extends Controller
     }
 
     /**
-     * Filtrer toutes les caractéristiques des véhicules par le modèle de véhicule
+     * Filtrer toutes les caractéristiques des véhicules
      *
      * @authenticated
      */
-    public function filterByVehicleModel(): AnonymousResourceCollection
+    public function filterAll(): JsonResponse
     {
         $vehicleCharacteristics = VehicleCharacteristic::with(
             'vehicleModel',
@@ -263,6 +264,14 @@ class VehicleCharacteristicController extends Controller
             ->latest('created_at')
             ->dynamicPaginate();
 
-        return VehicleCharacteristicResource::collection($vehicleCharacteristics);
+        // Récupérer les usages des genres de véhicules
+        $vehicleGenreUsages = $vehicleCharacteristics->map(function ($vehicleCharacteristic) {
+            return $vehicleCharacteristic->vehicleGenreUsage;
+        });
+
+        return $this->responseSuccess(null, [
+            'vehicle_characteristics' => VehicleCharacteristicResource::collection($vehicleCharacteristics),
+            'vehicle_genre_usages' => VehicleGenreUsageResource::collection($vehicleGenreUsages),
+        ]);
     }
 }

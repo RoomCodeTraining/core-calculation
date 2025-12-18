@@ -306,5 +306,34 @@
                 </tr>
             </thead>
         </table>
+        <p style="font-size: 12px; text-align: left; margin-top: 10px; justify-content: justify;">
+            <b>NB:</b> Cette valeur est donnée à titre indicatif sur les bases d’un véhicule considéré à l’état standard et en état de marche. En
+                aucun cas elle ne peut se substituer à une valeur à “dire d’expert” établie par un Expert en automobile qui aura au préalable
+                examiné le véhicule en tenant compte de toutes les règles professionnelles en vigueur sur le sujet.
+                <br>
+                Elle est calculée à partir des informations transmises par l’utilisateur de l’application lors de l’identification du véhicule.
+        </p>
+        <table style="width: 100%; font-size: 12px;">
+            <tr>
+                <td style="padding-bottom: 2px;">
+                    <span style="display:inline-block;width:10px;height:10px;border:1px solid #000;margin-right:5px;"></span>
+                    J'accepte la valeur
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="display:inline-block;width:10px;height:10px;border:1px solid #000;margin-right:5px;"></span>
+                    Je n'accepte pas la valeur
+                </td>
+            </tr>
+        </table>
+
+        <p style="font-size: 12px;">
+            Le choix d'une des options implique l'acceptation de toutes les conséquences liées à ce choix dans l'application des conditions générales d'assurances.
+        </p>
+
+        <p style="font-size: 12px; margin-top: 40px; text-align: right;">
+            Signature de l'assuré
+        </p>
     </body>
 </html>
