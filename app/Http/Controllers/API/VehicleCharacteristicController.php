@@ -14,6 +14,8 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
 use App\Models\VehicleCharacteristic;
+use App\Http\Resources\Usage\UsageResource;
+use App\Http\Resources\VehicleGenre\VehicleGenreResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use App\Http\Resources\VehicleGenreUsage\VehicleGenreUsageResource;
 use App\Http\Resources\VehicleCharacteristic\VehicleCharacteristicResource;
@@ -269,9 +271,21 @@ class VehicleCharacteristicController extends Controller
             return $vehicleCharacteristic->vehicleGenreUsage;
         });
 
+        // Récupérer les genres de véhicules
+        $vehicleGenres = $vehicleCharacteristics->map(function ($vehicleCharacteristic) {
+            return $vehicleCharacteristic->vehicleGenreUsage->vehicleGenre;
+        });
+
+        // Récupérer les usages des genres de véhicules
+        $usages = $vehicleCharacteristics->map(function ($vehicleCharacteristic) {
+            return $vehicleCharacteristic->vehicleGenreUsage->usage;
+        });
+
         return $this->responseSuccess(null, [
             'vehicle_characteristics' => VehicleCharacteristicResource::collection($vehicleCharacteristics),
             'vehicle_genre_usages' => VehicleGenreUsageResource::collection($vehicleGenreUsages),
+            'vehicle_genres' => VehicleGenreResource::collection($vehicleGenres),
+            'usages' => UsageResource::collection($usages),
         ]);
     }
 }
