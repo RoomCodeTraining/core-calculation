@@ -18,6 +18,10 @@ class VehicleCharacteristicResource extends JsonResource
     {
         return [
             'id' => $this->hashId,
+            'type' => $this->type,
+            'options' => $this->options,
+            'fiscal_power' => $this->fiscal_power,
+            'nb_seats' => $this->nb_seats,
             'prices' => PriceResource::collection($this->whenLoaded('prices')),
             'vehicle_model' => new VehicleModelResource($this->whenLoaded('vehicleModel')),
             'vehicle_genre_usage' => new VehicleGenreUsageResource($this->whenLoaded('vehicleGenreUsage')),
