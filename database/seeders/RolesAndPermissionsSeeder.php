@@ -25,41 +25,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $disableUser = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_USER, 'guard_name' => 'sanctum']);
         $resetUser = Permission::create(['name' => \App\Enums\PermissionEnum::RESET_USER, 'guard_name' => 'sanctum']);
 
-        $createAssignmentRequest = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_ASSIGNMENT_REQUEST, 'guard_name' => 'sanctum']);
-        $viewAssignmentRequest = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_ASSIGNMENT_REQUEST, 'guard_name' => 'sanctum']);
-        $updateAssignmentRequest = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_ASSIGNMENT_REQUEST, 'guard_name' => 'sanctum']);
-        $deleteAssignmentRequest = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_ASSIGNMENT_REQUEST, 'guard_name' => 'sanctum']);
-        $acceptAssignmentRequest = Permission::create(['name' => \App\Enums\PermissionEnum::ACCEPT_ASSIGNMENT_REQUEST, 'guard_name' => 'sanctum']);
-        $rejectAssignmentRequest = Permission::create(['name' => \App\Enums\PermissionEnum::REJECT_ASSIGNMENT_REQUEST, 'guard_name' => 'sanctum']);
-        $cancelAssignmentRequest = Permission::create(['name' => \App\Enums\PermissionEnum::CANCEL_ASSIGNMENT_REQUEST, 'guard_name' => 'sanctum']);
-
-        $createAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $viewAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $updateAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $realizeAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::REALIZE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $updateRealizedAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_REALIZED_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $createQuoteAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_QUOTE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $validateQuoteAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::VALIDATE_QUOTE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $unvalidateQuoteAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::UNVALIDATE_QUOTE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $validateQuoteWithConditionAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::VALIDATE_QUOTE_WITH_CONDITION_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $createWorksheetAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_WORKSHEET_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $validateWorkSheetByExpertAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::VALIDATE_WORK_SHEET_BY_EXPERT_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $unvalidateWorkSheetByExpertAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::UNVALIDATE_WORK_SHEET_BY_EXPERT_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $editAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::EDIT_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $updateEditedAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_EDITED_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $validateAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::VALIDATE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $unvalidateAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::UNVALIDATE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $validateByRepairerAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::VALIDATE_BY_REPAIRER_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $unvalidateByRepairerAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::UNVALIDATE_BY_REPAIRER_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $validateByExpertAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::VALIDATE_BY_EXPERT_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $unvalidateByExpertAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::UNVALIDATE_BY_EXPERT_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $closeAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::CLOSE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $cancelAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::CANCEL_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $generateAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::GENERATE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $assignmentStatistics = Permission::create(['name' => \App\Enums\PermissionEnum::ASSIGNMENT_STATISTICS, 'guard_name' => 'sanctum']);
-        $cancelQuoteAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::CANCEL_QUOTE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-        $deleteAssignment = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_ASSIGNMENT, 'guard_name' => 'sanctum']);
-
         $createInvoice = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_INVOICE, 'guard_name' => 'sanctum']);
         $viewInvoice = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_INVOICE, 'guard_name' => 'sanctum']);
         $updateInvoice = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_INVOICE, 'guard_name' => 'sanctum']);
@@ -74,84 +39,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $deletePayment = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_PAYMENT, 'guard_name' => 'sanctum']);
         $cancelPayment = Permission::create(['name' => \App\Enums\PermissionEnum::CANCEL_PAYMENT, 'guard_name' => 'sanctum']);
         $paymentStatistics = Permission::create(['name' => \App\Enums\PermissionEnum::PAYMENT_STATISTICS, 'guard_name' => 'sanctum']);
-
-        $createShock = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_SHOCK, 'guard_name' => 'sanctum']);
-        $viewShock = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_SHOCK, 'guard_name' => 'sanctum']);
-        $updateShock = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_SHOCK, 'guard_name' => 'sanctum']);
-        $deleteShock = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_SHOCK, 'guard_name' => 'sanctum']);
-
-        $createShockWork = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_SHOCK_WORK, 'guard_name' => 'sanctum']);
-        $viewShockWork = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_SHOCK_WORK, 'guard_name' => 'sanctum']);
-        $updateShockWork = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_SHOCK_WORK, 'guard_name' => 'sanctum']);
-        $deleteShockWork = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_SHOCK_WORK, 'guard_name' => 'sanctum']);
-
-        $createShockPoint = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_SHOCK_POINT, 'guard_name' => 'sanctum']);
-        $viewShockPoint = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_SHOCK_POINT, 'guard_name' => 'sanctum']);
-        $updateShockPoint = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_SHOCK_POINT, 'guard_name' => 'sanctum']);
-        $deleteShockPoint = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_SHOCK_POINT, 'guard_name' => 'sanctum']);
-        $enableShockPoint = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_SHOCK_POINT, 'guard_name' => 'sanctum']);
-        $disableShockPoint = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_SHOCK_POINT, 'guard_name' => 'sanctum']);
-
-        $createWorkforce = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_WORKFORCE, 'guard_name' => 'sanctum']);
-        $viewWorkforce = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_WORKFORCE, 'guard_name' => 'sanctum']);
-        $updateWorkforce = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_WORKFORCE, 'guard_name' => 'sanctum']);
-        $deleteWorkforce = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_WORKFORCE, 'guard_name' => 'sanctum']);
-
-        $createWorkforceType = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_WORKFORCE_TYPE, 'guard_name' => 'sanctum']);
-        $viewWorkforceType = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_WORKFORCE_TYPE, 'guard_name' => 'sanctum']);
-        $updateWorkforceType = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_WORKFORCE_TYPE, 'guard_name' => 'sanctum']);
-        $deleteWorkforceType = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_WORKFORCE_TYPE, 'guard_name' => 'sanctum']);
-        $enableWorkforceType = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_WORKFORCE_TYPE, 'guard_name' => 'sanctum']);
-        $disableWorkforceType = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_WORKFORCE_TYPE, 'guard_name' => 'sanctum']);
-
-        $createAssignmentType = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_ASSIGNMENT_TYPE, 'guard_name' => 'sanctum']);
-        $viewAssignmentType = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_ASSIGNMENT_TYPE, 'guard_name' => 'sanctum']);
-        $updateAssignmentType = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_ASSIGNMENT_TYPE, 'guard_name' => 'sanctum']);
-        $deleteAssignmentType = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_ASSIGNMENT_TYPE, 'guard_name' => 'sanctum']);
-        $enableAssignmentType = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_ASSIGNMENT_TYPE, 'guard_name' => 'sanctum']);
-        $disableAssignmentType = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_ASSIGNMENT_TYPE, 'guard_name' => 'sanctum']);
-
-        $createExpertiseType = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_EXPERTISE_TYPE, 'guard_name' => 'sanctum']);
-        $viewExpertiseType = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_EXPERTISE_TYPE, 'guard_name' => 'sanctum']);
-        $updateExpertiseType = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_EXPERTISE_TYPE, 'guard_name' => 'sanctum']);
-        $deleteExpertiseType = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_EXPERTISE_TYPE, 'guard_name' => 'sanctum']);
-        $enableExpertiseType = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_EXPERTISE_TYPE, 'guard_name' => 'sanctum']);
-        $disableExpertiseType = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_EXPERTISE_TYPE, 'guard_name' => 'sanctum']);
-
-        $createGeneralState = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_GENERAL_STATE, 'guard_name' => 'sanctum']);
-        $viewGeneralState = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_GENERAL_STATE, 'guard_name' => 'sanctum']);
-        $updateGeneralState = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_GENERAL_STATE, 'guard_name' => 'sanctum']);
-        $deleteGeneralState = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_GENERAL_STATE, 'guard_name' => 'sanctum']);
-        $enableGeneralState = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_GENERAL_STATE, 'guard_name' => 'sanctum']);
-        $disableGeneralState = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_GENERAL_STATE, 'guard_name' => 'sanctum']);
-
-        $createClaimNature = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_CLAIM_NATURE, 'guard_name' => 'sanctum']);
-        $viewClaimNature = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_CLAIM_NATURE, 'guard_name' => 'sanctum']);
-        $updateClaimNature = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_CLAIM_NATURE, 'guard_name' => 'sanctum']);
-        $deleteClaimNature = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_CLAIM_NATURE, 'guard_name' => 'sanctum']);
-        $enableClaimNature = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_CLAIM_NATURE, 'guard_name' => 'sanctum']);
-        $disableClaimNature = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_CLAIM_NATURE, 'guard_name' => 'sanctum']);
-
-        $createTechnicalConclusion = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_TECHNICAL_CONCLUSION, 'guard_name' => 'sanctum']);
-        $viewTechnicalConclusion = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_TECHNICAL_CONCLUSION, 'guard_name' => 'sanctum']);
-        $updateTechnicalConclusion = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_TECHNICAL_CONCLUSION, 'guard_name' => 'sanctum']);
-        $deleteTechnicalConclusion = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_TECHNICAL_CONCLUSION, 'guard_name' => 'sanctum']);
-        $enableTechnicalConclusion = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_TECHNICAL_CONCLUSION, 'guard_name' => 'sanctum']);
-        $disableTechnicalConclusion = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_TECHNICAL_CONCLUSION, 'guard_name' => 'sanctum']);
-
-        $createDocumentTransmitted = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_DOCUMENT_TRANSMITTED, 'guard_name' => 'sanctum']);
-        $viewDocumentTransmitted = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_DOCUMENT_TRANSMITTED, 'guard_name' => 'sanctum']);
-        $updateDocumentTransmitted = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_DOCUMENT_TRANSMITTED, 'guard_name' => 'sanctum']);
-        $deleteDocumentTransmitted = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_DOCUMENT_TRANSMITTED, 'guard_name' => 'sanctum']);
-        $enableDocumentTransmitted = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_DOCUMENT_TRANSMITTED, 'guard_name' => 'sanctum']);
-        $disableDocumentTransmitted = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_DOCUMENT_TRANSMITTED, 'guard_name' => 'sanctum']);
-
-        $createAssignmentDocument = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_ASSIGNMENT_DOCUMENT, 'guard_name' => 'sanctum']);
-        $viewAssignmentDocument = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_ASSIGNMENT_DOCUMENT, 'guard_name' => 'sanctum']);
-        $updateAssignmentDocument = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_ASSIGNMENT_DOCUMENT, 'guard_name' => 'sanctum']);
-        $deleteAssignmentDocument = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_ASSIGNMENT_DOCUMENT, 'guard_name' => 'sanctum']);
-        $enableAssignmentDocument = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_ASSIGNMENT_DOCUMENT, 'guard_name' => 'sanctum']);
-        $disableAssignmentDocument = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_ASSIGNMENT_DOCUMENT, 'guard_name' => 'sanctum']);
 
         $createStatus = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_STATUS, 'guard_name' => 'sanctum']);
         $viewStatus = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_STATUS, 'guard_name' => 'sanctum']);
@@ -196,13 +83,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $enableVehicleModel = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_VEHICLE_MODEL, 'guard_name' => 'sanctum']);
         $disableVehicleModel = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_VEHICLE_MODEL, 'guard_name' => 'sanctum']);
 
-        $createVehicleState = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_VEHICLE_STATE, 'guard_name' => 'sanctum']);
-        $viewVehicleState = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_VEHICLE_STATE, 'guard_name' => 'sanctum']);
-        $updateVehicleState = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_VEHICLE_STATE, 'guard_name' => 'sanctum']);
-        $deleteVehicleState = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_VEHICLE_STATE, 'guard_name' => 'sanctum']);
-        $enableVehicleState = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_VEHICLE_STATE, 'guard_name' => 'sanctum']);
-        $disableVehicleState = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_VEHICLE_STATE, 'guard_name' => 'sanctum']);
-
         $createBrand = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_BRAND, 'guard_name' => 'sanctum']);
         $viewBrand = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_BRAND, 'guard_name' => 'sanctum']);
         $updateBrand = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_BRAND, 'guard_name' => 'sanctum']);
@@ -217,85 +97,14 @@ class RolesAndPermissionsSeeder extends Seeder
         $enableColor = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_COLOR, 'guard_name' => 'sanctum']);
         $disableColor = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_COLOR, 'guard_name' => 'sanctum']);
 
-        $createNumberPaintElement = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_NUMBER_PAINT_ELEMENT, 'guard_name' => 'sanctum']);
-        $viewNumberPaintElement = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_NUMBER_PAINT_ELEMENT, 'guard_name' => 'sanctum']);
-        $updateNumberPaintElement = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_NUMBER_PAINT_ELEMENT, 'guard_name' => 'sanctum']);
-        $deleteNumberPaintElement = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_NUMBER_PAINT_ELEMENT, 'guard_name' => 'sanctum']);
-        $enableNumberPaintElement = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_NUMBER_PAINT_ELEMENT, 'guard_name' => 'sanctum']);
-        $disableNumberPaintElement = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_NUMBER_PAINT_ELEMENT, 'guard_name' => 'sanctum']);
-
-        $createPaintProductPrice = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_PAINT_PRODUCT_PRICE, 'guard_name' => 'sanctum']);
-        $viewPaintProductPrice = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_PAINT_PRODUCT_PRICE, 'guard_name' => 'sanctum']);
-        $updatePaintProductPrice = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_PAINT_PRODUCT_PRICE, 'guard_name' => 'sanctum']);
-        $deletePaintProductPrice = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_PAINT_PRODUCT_PRICE, 'guard_name' => 'sanctum']);
-        $enablePaintProductPrice = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_PAINT_PRODUCT_PRICE, 'guard_name' => 'sanctum']);
-        $disablePaintProductPrice = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_PAINT_PRODUCT_PRICE, 'guard_name' => 'sanctum']);
-
-        $createOtherCost = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_OTHER_COST, 'guard_name' => 'sanctum']);
-        $viewOtherCost = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_OTHER_COST, 'guard_name' => 'sanctum']);
-        $updateOtherCost = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_OTHER_COST, 'guard_name' => 'sanctum']);
-        $deleteOtherCost = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_OTHER_COST, 'guard_name' => 'sanctum']);
-
-        $createOtherCostType = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_OTHER_COST_TYPE, 'guard_name' => 'sanctum']);
-        $viewOtherCostType = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_OTHER_COST_TYPE, 'guard_name' => 'sanctum']);
-        $updateOtherCostType = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_OTHER_COST_TYPE, 'guard_name' => 'sanctum']);
-        $deleteOtherCostType = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_OTHER_COST_TYPE, 'guard_name' => 'sanctum']);
-        $enableOtherCostType = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_OTHER_COST_TYPE, 'guard_name' => 'sanctum']);
-        $disableOtherCostType = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_OTHER_COST_TYPE, 'guard_name' => 'sanctum']);
-
-        $createPaintType = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_PAINT_TYPE, 'guard_name' => 'sanctum']);
-        $viewPaintType = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_PAINT_TYPE, 'guard_name' => 'sanctum']);
-        $updatePaintType = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_PAINT_TYPE, 'guard_name' => 'sanctum']);
-        $deletePaintType = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_PAINT_TYPE, 'guard_name' => 'sanctum']);
-        $enablePaintType = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_PAINT_TYPE, 'guard_name' => 'sanctum']);
-        $disablePaintType = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_PAINT_TYPE, 'guard_name' => 'sanctum']);
-
-        $createPaintingPrice = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_PAINTING_PRICE, 'guard_name' => 'sanctum']);
-        $viewPaintingPrice = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_PAINTING_PRICE, 'guard_name' => 'sanctum']);
-        $updatePaintingPrice = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_PAINTING_PRICE, 'guard_name' => 'sanctum']);
-        $deletePaintingPrice = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_PAINTING_PRICE, 'guard_name' => 'sanctum']);
-        $enablePaintingPrice = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_PAINTING_PRICE, 'guard_name' => 'sanctum']);
-        $disablePaintingPrice = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_PAINTING_PRICE, 'guard_name' => 'sanctum']);
-
-        $createHourlyRate = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_HOURLY_RATE, 'guard_name' => 'sanctum']);
-        $viewHourlyRate = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_HOURLY_RATE, 'guard_name' => 'sanctum']);
-        $updateHourlyRate = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_HOURLY_RATE, 'guard_name' => 'sanctum']);
-        $deleteHourlyRate = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_HOURLY_RATE, 'guard_name' => 'sanctum']);
-        $enableHourlyRate = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_HOURLY_RATE, 'guard_name' => 'sanctum']);
-        $disableHourlyRate = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_HOURLY_RATE, 'guard_name' => 'sanctum']);
-
-        $createWorkFee = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_WORK_FEE, 'guard_name' => 'sanctum']);
-        $viewWorkFee = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_WORK_FEE, 'guard_name' => 'sanctum']);
-        $updateWorkFee = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_WORK_FEE, 'guard_name' => 'sanctum']);
-        $deleteWorkFee = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_WORK_FEE, 'guard_name' => 'sanctum']);
-        $enableWorkFee = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_WORK_FEE, 'guard_name' => 'sanctum']);
-        $disableWorkFee = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_WORK_FEE, 'guard_name' => 'sanctum']);
-
-        $createReceipt = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_RECEIPT, 'guard_name' => 'sanctum']);
-        $viewReceipt = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_RECEIPT, 'guard_name' => 'sanctum']);
-        $updateReceipt = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_RECEIPT, 'guard_name' => 'sanctum']);
-        $deleteReceipt = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_RECEIPT, 'guard_name' => 'sanctum']);
-
-        $createReceiptType = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_RECEIPT_TYPE, 'guard_name' => 'sanctum']);
-        $viewReceiptType = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_RECEIPT_TYPE, 'guard_name' => 'sanctum']);
-        $updateReceiptType = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_RECEIPT_TYPE, 'guard_name' => 'sanctum']);
-        $deleteReceiptType = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_RECEIPT_TYPE, 'guard_name' => 'sanctum']);
-        $enableReceiptType = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_RECEIPT_TYPE, 'guard_name' => 'sanctum']);
-        $disableReceiptType = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_RECEIPT_TYPE, 'guard_name' => 'sanctum']);
-
-        $createSupply = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_SUPPLY, 'guard_name' => 'sanctum']);
-        $viewSupply = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_SUPPLY, 'guard_name' => 'sanctum']);
-        $updateSupply = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_SUPPLY, 'guard_name' => 'sanctum']);
-        $deleteSupply = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_SUPPLY, 'guard_name' => 'sanctum']);
-        $enableSupply = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_SUPPLY, 'guard_name' => 'sanctum']);
-        $disableSupply = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_SUPPLY, 'guard_name' => 'sanctum']);
-
         $createDepreciationTable = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_DEPRECIATION_TABLE, 'guard_name' => 'sanctum']);
         $viewDepreciationTable = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_DEPRECIATION_TABLE, 'guard_name' => 'sanctum']);
         $updateDepreciationTable = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_DEPRECIATION_TABLE, 'guard_name' => 'sanctum']);
         $deleteDepreciationTable = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_DEPRECIATION_TABLE, 'guard_name' => 'sanctum']);
         $enableDepreciationTable = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_DEPRECIATION_TABLE, 'guard_name' => 'sanctum']);
         $disableDepreciationTable = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_DEPRECIATION_TABLE, 'guard_name' => 'sanctum']);
+        $calculateDepreciationTable = Permission::create(['name' => \App\Enums\PermissionEnum::CALCULATE_DEPRECIATION_TABLE, 'guard_name' => 'sanctum']);
+
 
         $createVehicleAge = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_VEHICLE_AGE, 'guard_name' => 'sanctum']);
         $viewVehicleAge = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_VEHICLE_AGE, 'guard_name' => 'sanctum']);
@@ -317,44 +126,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $deleteVehicleGenre = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_VEHICLE_GENRE, 'guard_name' => 'sanctum']);
         $enableVehicleGenre = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_VEHICLE_GENRE, 'guard_name' => 'sanctum']);
         $disableVehicleGenre = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_VEHICLE_GENRE, 'guard_name' => 'sanctum']);
-
-        $createBodywork = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_BODYWORK, 'guard_name' => 'sanctum']);
-        $viewBodywork = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_BODYWORK, 'guard_name' => 'sanctum']);
-        $updateBodywork = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_BODYWORK, 'guard_name' => 'sanctum']);
-        $deleteBodywork = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_BODYWORK, 'guard_name' => 'sanctum']);
-        $enableBodywork = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_BODYWORK, 'guard_name' => 'sanctum']);
-        $disableBodywork = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_BODYWORK, 'guard_name' => 'sanctum']);
-
-        $createAscertainment = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_ASCERTAINMENT, 'guard_name' => 'sanctum']);
-        $viewAscertainment = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_ASCERTAINMENT, 'guard_name' => 'sanctum']);
-        $updateAscertainment = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_ASCERTAINMENT, 'guard_name' => 'sanctum']);
-        $deleteAscertainment = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_ASCERTAINMENT, 'guard_name' => 'sanctum']);
-
-        $createAscertainmentType = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_ASCERTAINMENT_TYPE, 'guard_name' => 'sanctum']);
-        $viewAscertainmentType = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_ASCERTAINMENT_TYPE, 'guard_name' => 'sanctum']);
-        $updateAscertainmentType = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_ASCERTAINMENT_TYPE, 'guard_name' => 'sanctum']);
-        $deleteAscertainmentType = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_ASCERTAINMENT_TYPE, 'guard_name' => 'sanctum']);
-        $enableAscertainmentType = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_ASCERTAINMENT_TYPE, 'guard_name' => 'sanctum']);
-        $disableAscertainmentType = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_ASCERTAINMENT_TYPE, 'guard_name' => 'sanctum']);
-
-        $createInsurerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_INSURER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $viewInsurerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_INSURER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $updateInsurerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_INSURER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $deleteInsurerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_INSURER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $enableInsurerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_INSURER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $disableInsurerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_INSURER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-
-        $createRepairerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_REPAIRER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $viewRepairerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_REPAIRER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $updateRepairerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_REPAIRER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $deleteRepairerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_REPAIRER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $enableRepairerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_REPAIRER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-        $disableRepairerRelationship = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_REPAIRER_RELATIONSHIP, 'guard_name' => 'sanctum']);
-
-        $createAssignmentMessage = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_ASSIGNMENT_MESSAGE, 'guard_name' => 'sanctum']);
-        $viewAssignmentMessage = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_ASSIGNMENT_MESSAGE, 'guard_name' => 'sanctum']);
-        $updateAssignmentMessage = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_ASSIGNMENT_MESSAGE, 'guard_name' => 'sanctum']);
-        $deleteAssignmentMessage = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_ASSIGNMENT_MESSAGE, 'guard_name' => 'sanctum']);
 
         $createCheck = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_CHECK, 'guard_name' => 'sanctum']);
         $viewCheck = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_CHECK, 'guard_name' => 'sanctum']);
@@ -389,18 +160,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $enableClient = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_CLIENT, 'guard_name' => 'sanctum']);
         $disableClient = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_CLIENT, 'guard_name' => 'sanctum']);
 
-        $createPhoto = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_PHOTO, 'guard_name' => 'sanctum']);
-        $viewPhoto = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_PHOTO, 'guard_name' => 'sanctum']);
-        $updatePhoto = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_PHOTO, 'guard_name' => 'sanctum']);
-        $deletePhoto = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_PHOTO, 'guard_name' => 'sanctum']);
-
-        $createPhotoType = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_PHOTO_TYPE, 'guard_name' => 'sanctum']);
-        $viewPhotoType = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_PHOTO_TYPE, 'guard_name' => 'sanctum']);
-        $updatePhotoType = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_PHOTO_TYPE, 'guard_name' => 'sanctum']);
-        $deletePhotoType = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_PHOTO_TYPE, 'guard_name' => 'sanctum']);
-        $enablePhotoType = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_PHOTO_TYPE, 'guard_name' => 'sanctum']);
-        $disablePhotoType = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_PHOTO_TYPE, 'guard_name' => 'sanctum']);
-
         $createQrCode = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_QR_CODE, 'guard_name' => 'sanctum']);
         $viewQrCode = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_QR_CODE, 'guard_name' => 'sanctum']);
         $updateQrCode = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_QR_CODE, 'guard_name' => 'sanctum']);
@@ -419,27 +178,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $deleteUserActionType = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_USER_ACTION_TYPE, 'guard_name' => 'sanctum']);
         $enableUserActionType = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_USER_ACTION_TYPE, 'guard_name' => 'sanctum']);
         $disableUserActionType = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_USER_ACTION_TYPE, 'guard_name' => 'sanctum']);
-
-        $createRemark = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_REMARK, 'guard_name' => 'sanctum']);
-        $viewRemark = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_REMARK, 'guard_name' => 'sanctum']);
-        $updateRemark = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_REMARK, 'guard_name' => 'sanctum']);
-        $deleteRemark = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_REMARK, 'guard_name' => 'sanctum']);
-        $enableRemark = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_REMARK, 'guard_name' => 'sanctum']);
-        $disableRemark = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_REMARK, 'guard_name' => 'sanctum']);
-
-        $createGeneralStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_GENERAL_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $viewGeneralStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_GENERAL_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $updateGeneralStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_GENERAL_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $deleteGeneralStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_GENERAL_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $enableGeneralStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_GENERAL_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $disableGeneralStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_GENERAL_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-
-        $createStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $viewStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $updateStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $deleteStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $enableStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::ENABLE_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
-        $disableStatusDeadline = Permission::create(['name' => \App\Enums\PermissionEnum::DISABLE_STATUS_DEADLINE, 'guard_name' => 'sanctum']);
 
         $createFneSetting = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_FNE_SETTING, 'guard_name' => 'sanctum']);
         $viewFneSetting = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_FNE_SETTING, 'guard_name' => 'sanctum']);
@@ -512,87 +250,12 @@ class RolesAndPermissionsSeeder extends Seeder
             $disableUser,
             $resetUser,
 
-            $viewAssignmentRequest,
-            $generateAssignment,
-            $assignmentStatistics,
-
-            $viewAssignment,
-
             $viewInvoice,
             $generateInvoice,
             $invoiceStatistics,
 
             $viewPayment,
             $paymentStatistics,
-
-            $viewShock,
-
-            $viewShockWork,
-
-            $createShockPoint,
-            $viewShockPoint,
-            $updateShockPoint,
-            $deleteShockPoint,
-            $enableShockPoint,
-            $disableShockPoint,
-
-            $viewWorkforce,
-
-            $createWorkforceType,
-            $viewWorkforceType,
-            $updateWorkforceType,
-            $deleteWorkforceType,
-            $enableWorkforceType,
-            $disableWorkforceType,
-
-            $createAssignmentType,
-            $viewAssignmentType,
-            $updateAssignmentType,
-            $deleteAssignmentType,
-            $enableAssignmentType,
-            $disableAssignmentType,
-
-            $createExpertiseType,
-            $viewExpertiseType,
-            $updateExpertiseType,
-            $deleteExpertiseType,
-            $enableExpertiseType,
-            $disableExpertiseType,
-
-            $createGeneralState,
-            $viewGeneralState,
-            $updateGeneralState,
-            $deleteGeneralState,
-            $enableGeneralState,
-            $disableGeneralState,
-
-            $createClaimNature,
-            $viewClaimNature,
-            $updateClaimNature,
-            $deleteClaimNature,
-            $enableClaimNature,
-            $disableClaimNature,
-
-            $createTechnicalConclusion,
-            $viewTechnicalConclusion,
-            $updateTechnicalConclusion,
-            $deleteTechnicalConclusion,
-            $enableTechnicalConclusion,
-            $disableTechnicalConclusion,
-
-            $createDocumentTransmitted,
-            $viewDocumentTransmitted,
-            $updateDocumentTransmitted,
-            $deleteDocumentTransmitted,
-            $enableDocumentTransmitted,
-            $disableDocumentTransmitted,
-
-            $createAssignmentDocument,
-            $viewAssignmentDocument,
-            $updateAssignmentDocument,
-            $deleteAssignmentDocument,
-            $enableAssignmentDocument,
-            $disableAssignmentDocument,
 
             $createStatus,
             $viewStatus,
@@ -658,13 +321,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $enableVehicleModel,
             $disableVehicleModel,
 
-            $createVehicleState,
-            $viewVehicleState,
-            $updateVehicleState,
-            $deleteVehicleState,
-            $enableVehicleState,
-            $disableVehicleState,
-
             $createBrand,
             $viewBrand,
             $updateBrand,
@@ -679,18 +335,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $enableColor,
             $disableColor,
 
-            $createBodywork,
-            $viewBodywork,
-            $updateBodywork,
-            $deleteBodywork,
-            $enableBodywork,
-            $disableBodywork,
-
-            $createAssignmentMessage,
-            $viewAssignmentMessage,
-            $updateAssignmentMessage,
-            $deleteAssignmentMessage,
-
             $viewCheck,
             $updateCheck,
             $deleteCheck,
@@ -701,57 +345,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $deleteBank,
             $enableBank,
             $disableBank,
-            
-            $createReceiptType,
-            $viewReceiptType,
-            $updateReceiptType,
-            $deleteReceiptType,
-            $enableReceiptType,
-            $disableReceiptType,
-
-            $createSupply,
-            $viewSupply,
-            $updateSupply,
-            $deleteSupply,
-            $enableSupply,
-            $disableSupply,
-
-            $createPaintType,
-            $viewPaintType,
-            $updatePaintType,
-            $deletePaintType,
-            $enablePaintType,
-            $disablePaintType,
-
-            $createPaintProductPrice,
-            $viewPaintProductPrice,
-            $updatePaintProductPrice,
-            $deletePaintProductPrice,
-            $enablePaintProductPrice,
-            $disablePaintProductPrice,
-
-            $createPaintingPrice,
-            $viewPaintingPrice,
-            $updatePaintingPrice,
-            $deletePaintingPrice,
-            $enablePaintingPrice,
-            $disablePaintingPrice,
-
-            $createHourlyRate,
-            $viewHourlyRate,
-            $updateHourlyRate,
-            $deleteHourlyRate,
-            $enableHourlyRate,
-            $disableHourlyRate,
-
-            $createWorkFee,
-            $viewWorkFee,
-            $updateWorkFee,
-            $deleteWorkFee,
-            $enableWorkFee,
-            $disableWorkFee,
-
-            $viewReceipt,
 
             $createDepreciationTable,
             $viewDepreciationTable,
@@ -759,39 +352,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $deleteDepreciationTable,
             $enableDepreciationTable,
             $disableDepreciationTable,
-
-            $createAscertainmentType,
-            $viewAscertainmentType,
-            $updateAscertainmentType,
-            $deleteAscertainmentType,
-            $enableAscertainmentType,
-            $disableAscertainmentType,
-
-            $viewRemark,
-            $updateRemark,
-            $deleteRemark,
-            $enableRemark,
-            $disableRemark,
-
-            $viewInsurerRelationship,
-
-            $viewRepairerRelationship,
-
-            $createNumberPaintElement,
-            $viewNumberPaintElement,
-            $updateNumberPaintElement,
-            $deleteNumberPaintElement,
-            $enableNumberPaintElement,
-            $disableNumberPaintElement,
-
-            $createOtherCostType,
-            $viewOtherCostType,
-            $updateOtherCostType,
-            $deleteOtherCostType,
-            $enableOtherCostType,
-            $disableOtherCostType,
-
-            $viewOtherCost,
 
             $createPaymentType,
             $viewPaymentType,
@@ -814,17 +374,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $enableClient,
             $disableClient,
 
-            $viewPhoto,
-            $updatePhoto,
-            $deletePhoto,
-
-            $createPhotoType,
-            $viewPhotoType,
-            $updatePhotoType,
-            $deletePhotoType,
-            $enablePhotoType,
-            $disablePhotoType,
-
             $createQrCode,
             $viewQrCode,
             $updateQrCode,
@@ -843,20 +392,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $deleteUserActionType,
             $enableUserActionType,
             $disableUserActionType,
-
-            $createGeneralStatusDeadline,
-            $viewGeneralStatusDeadline,
-            $updateGeneralStatusDeadline,
-            $deleteGeneralStatusDeadline,
-            $enableGeneralStatusDeadline,
-            $disableGeneralStatusDeadline,
-
-            $createStatusDeadline,
-            $viewStatusDeadline,
-            $updateStatusDeadline,
-            $deleteStatusDeadline,
-            $enableStatusDeadline,
-            $disableStatusDeadline,
 
             $createFneSetting,
             $viewFneSetting,
@@ -923,87 +458,12 @@ class RolesAndPermissionsSeeder extends Seeder
             $disableUser,
             $resetUser,
 
-            $viewAssignmentRequest,
-
-            $viewAssignment,
-            $generateAssignment,
-            $assignmentStatistics,
-
             $viewInvoice,
             $generateInvoice,
             $invoiceStatistics,
 
             $viewPayment,
             $paymentStatistics,
-
-            $viewShock,
-
-            $viewShockWork,
-
-            $createShockPoint,
-            $viewShockPoint,
-            $updateShockPoint,
-            $deleteShockPoint,
-            $enableShockPoint,
-            $disableShockPoint,
-
-            $viewWorkforce,
-
-            $createWorkforceType,
-            $viewWorkforceType,
-            $updateWorkforceType,
-            $deleteWorkforceType,
-            $enableWorkforceType,
-            $disableWorkforceType,
-
-            $createAssignmentType,
-            $viewAssignmentType,
-            $updateAssignmentType,
-            $deleteAssignmentType,
-            $enableAssignmentType,
-            $disableAssignmentType,
-
-            $createExpertiseType,
-            $viewExpertiseType,
-            $updateExpertiseType,
-            $deleteExpertiseType,
-            $enableExpertiseType,
-            $disableExpertiseType,
-
-            $createGeneralState,
-            $viewGeneralState,
-            $updateGeneralState,
-            $deleteGeneralState,
-            $enableGeneralState,
-            $disableGeneralState,
-
-            $createClaimNature,
-            $viewClaimNature,
-            $updateClaimNature,
-            $deleteClaimNature,
-            $enableClaimNature,
-            $disableClaimNature,
-
-            $createTechnicalConclusion,
-            $viewTechnicalConclusion,
-            $updateTechnicalConclusion,
-            $deleteTechnicalConclusion,
-            $enableTechnicalConclusion,
-            $disableTechnicalConclusion,
-
-            $createDocumentTransmitted,
-            $viewDocumentTransmitted,
-            $updateDocumentTransmitted,
-            $deleteDocumentTransmitted,
-            $enableDocumentTransmitted,
-            $disableDocumentTransmitted,
-
-            $createAssignmentDocument,
-            $viewAssignmentDocument,
-            $updateAssignmentDocument,
-            $deleteAssignmentDocument,
-            $enableAssignmentDocument,
-            $disableAssignmentDocument,
 
             $createStatus,
             $viewStatus,
@@ -1069,13 +529,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $enableVehicleModel,
             $disableVehicleModel,
 
-            $createVehicleState,
-            $viewVehicleState,
-            $updateVehicleState,
-            $deleteVehicleState,
-            $enableVehicleState,
-            $disableVehicleState,
-
             $createBrand,
             $viewBrand,
             $updateBrand,
@@ -1090,18 +543,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $enableColor,
             $disableColor,
 
-            $createBodywork,
-            $viewBodywork,
-            $updateBodywork,
-            $deleteBodywork,
-            $enableBodywork,
-            $disableBodywork,
-
-            $createAssignmentMessage,
-            $viewAssignmentMessage,
-            $updateAssignmentMessage,
-            $deleteAssignmentMessage,
-
             $viewCheck,
             $updateCheck,
             $deleteCheck,
@@ -1112,57 +553,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $deleteBank,
             $enableBank,
             $disableBank,
-            
-            $createReceiptType,
-            $viewReceiptType,
-            $updateReceiptType,
-            $deleteReceiptType,
-            $enableReceiptType,
-            $disableReceiptType,
-
-            $createSupply,
-            $viewSupply,
-            $updateSupply,
-            $deleteSupply,
-            $enableSupply,
-            $disableSupply,
-
-            $createPaintType,
-            $viewPaintType,
-            $updatePaintType,
-            $deletePaintType,
-            $enablePaintType,
-            $disablePaintType,
-
-            $createPaintProductPrice,
-            $viewPaintProductPrice,
-            $updatePaintProductPrice,
-            $deletePaintProductPrice,
-            $enablePaintProductPrice,
-            $disablePaintProductPrice,
-
-            $createPaintingPrice,
-            $viewPaintingPrice,
-            $updatePaintingPrice,
-            $deletePaintingPrice,
-            $enablePaintingPrice,
-            $disablePaintingPrice,
-
-            $createHourlyRate,
-            $viewHourlyRate,
-            $updateHourlyRate,
-            $deleteHourlyRate,
-            $enableHourlyRate,
-            $disableHourlyRate,
-
-            $createWorkFee,
-            $viewWorkFee,
-            $updateWorkFee,
-            $deleteWorkFee,
-            $enableWorkFee,
-            $disableWorkFee,
-
-            $viewReceipt,
 
             $createDepreciationTable,
             $viewDepreciationTable,
@@ -1170,39 +560,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $deleteDepreciationTable,
             $enableDepreciationTable,
             $disableDepreciationTable,
-
-            $createAscertainmentType,
-            $viewAscertainmentType,
-            $updateAscertainmentType,
-            $deleteAscertainmentType,
-            $enableAscertainmentType,
-            $disableAscertainmentType,
-
-            $viewRemark,
-            $updateRemark,
-            $deleteRemark,
-            $enableRemark,
-            $disableRemark,
-
-            $viewInsurerRelationship,
-
-            $viewRepairerRelationship,
-
-            $createNumberPaintElement,
-            $viewNumberPaintElement,
-            $updateNumberPaintElement,
-            $deleteNumberPaintElement,
-            $enableNumberPaintElement,
-            $disableNumberPaintElement,
-
-            $createOtherCostType,
-            $viewOtherCostType,
-            $updateOtherCostType,
-            $deleteOtherCostType,
-            $enableOtherCostType,
-            $disableOtherCostType,
-
-            $viewOtherCost,
 
             $createPaymentType,
             $viewPaymentType,
@@ -1225,17 +582,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $enableClient,
             $disableClient,
 
-            $viewPhoto,
-            $updatePhoto,
-            $deletePhoto,
-
-            $createPhotoType,
-            $viewPhotoType,
-            $updatePhotoType,
-            $deletePhotoType,
-            $enablePhotoType,
-            $disablePhotoType,
-
             $createQrCode,
             $viewQrCode,
             $updateQrCode,
@@ -1254,20 +600,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $deleteUserActionType,
             $enableUserActionType,
             $disableUserActionType,
-
-            $createGeneralStatusDeadline,
-            $viewGeneralStatusDeadline,
-            $updateGeneralStatusDeadline,
-            $deleteGeneralStatusDeadline,
-            $enableGeneralStatusDeadline,
-            $disableGeneralStatusDeadline,
-
-            $createStatusDeadline,
-            $viewStatusDeadline,
-            $updateStatusDeadline,
-            $deleteStatusDeadline,
-            $enableStatusDeadline,
-            $disableStatusDeadline,
 
             $createFneSetting,
             $viewFneSetting,
@@ -1336,216 +668,45 @@ class RolesAndPermissionsSeeder extends Seeder
             $createUser,
             $viewUser,
             $updateUser,
-            $deleteUser,
             $enableUser,
             $disableUser,
             $resetUser,
 
-            $viewAssignmentRequest,
-            $acceptAssignmentRequest,
-            $rejectAssignmentRequest,
+            $viewInvoice,
+            $generateInvoice,
+            $invoiceStatistics,
 
-            $createAssignment,
-            $viewAssignment,
-            $updateAssignment,
-            $createQuoteAssignment,
-            $validateQuoteAssignment,
-            $unvalidateQuoteAssignment,
-            $validateQuoteWithConditionAssignment,
-            $createWorksheetAssignment,
-            $validateWorkSheetByExpertAssignment,
-            $unvalidateWorkSheetByExpertAssignment,
-            $realizeAssignment,
-            $updateRealizedAssignment,
-            $editAssignment,
-            $updateEditedAssignment,
-            $validateAssignment,
-            $unvalidateAssignment,
-            $validateByRepairerAssignment,
-            $unvalidateByRepairerAssignment,
-            $validateByExpertAssignment,
-            $unvalidateByExpertAssignment,
-            $cancelAssignment,
-            $generateAssignment,
-            $assignmentStatistics,
-
-            $viewShock,
-            $createShock,
-            $updateShock,
-            $deleteShock,
-
-            $createShockWork,
-            $viewShockWork,
-            $updateShockWork,
-            $deleteShockWork,
-
-            $createShockPoint,
-            $viewShockPoint,
-            $updateShockPoint,
-            $deleteShockPoint,
-            $enableShockPoint,
-            $disableShockPoint,
-
-            $createWorkforce,
-            $viewWorkforce,
-            $updateWorkforce,
-            $deleteWorkforce,
-
-            $viewGeneralState,
-
-            $viewClaimNature,
-
-            $viewTechnicalConclusion,
-
-            $viewDocumentTransmitted,
-
-            $viewAssignmentDocument,
-
+            $createStatus,
             $viewStatus,
+            $updateStatus,
+            $deleteStatus,
+            $enableStatus,
+            $disableStatus,
 
             $viewRole,
 
             $viewPermission,
 
             $viewEntity,
-            $updateEntity,
-            $deleteEntity,
-            $enableEntity,
-            $disableEntity,
 
             $viewEntityType,
 
-            $createVehicle,
-            $viewVehicle,
-            $updateVehicle,
-            $deleteVehicle,
+            $viewDepreciationTable,
+            $calculateDepreciationTable,
 
-            $createVehicleGenre,
-            $viewVehicleGenre,
-            $updateVehicleGenre,
-            $deleteVehicleGenre,
-            $enableVehicleGenre,
-            $disableVehicleGenre,
+            $createPaymentType,
+            $viewPaymentType,
+            $updatePaymentType,
+            $deletePaymentType,
+            $enablePaymentType,
+            $disablePaymentType,
 
-            $createVehicleEnergy,
-            $viewVehicleEnergy,
-            $updateVehicleEnergy,
-            $deleteVehicleEnergy,
-            $enableVehicleEnergy,
-            $disableVehicleEnergy,
-
-            $createVehicleAge,
-            $viewVehicleAge,
-            $updateVehicleAge,
-            $deleteVehicleAge,
-            $enableVehicleAge,
-            $disableVehicleAge,
-
-            $createVehicleModel,
-            $viewVehicleModel,
-            $updateVehicleModel,
-            $deleteVehicleModel,
-            $enableVehicleModel,
-            $disableVehicleModel,
-
-            $createVehicleState,
-            $viewVehicleState,
-            $updateVehicleState,
-            $deleteVehicleState,
-            $enableVehicleState,
-            $disableVehicleState,
-
-            $createBrand,
-            $viewBrand,
-            $updateBrand,
-            $deleteBrand,
-            $enableBrand,
-            $disableBrand,
-
-            $createColor,
-            $viewColor,
-            $updateColor,
-            $deleteColor,
-            $enableColor,
-            $disableColor,
-
-            $createBodywork,
-            $viewBodywork,
-            $updateBodywork,
-            $deleteBodywork,
-            $enableBodywork,
-            $disableBodywork,
-
-            $createAssignmentMessage,
-            $viewAssignmentMessage,
-            $updateAssignmentMessage,
-            $deleteAssignmentMessage,
-
-            $createCheck,
-            $viewCheck,
-            $updateCheck,
-            $deleteCheck,
-
-            $createBank,
-            $viewBank,
-            $updateBank,
-            $deleteBank,
-            $enableBank,
-            $disableBank,
-            
-            $createReceiptType,
-            $viewReceiptType,
-            $updateReceiptType,
-            $deleteReceiptType,
-            $enableReceiptType,
-            $disableReceiptType,
-
-            $createSupply,
-            $viewSupply,
-            $updateSupply,
-            $deleteSupply,
-            $enableSupply,
-            $disableSupply,
-
-            $createReceipt,
-            $viewReceipt,
-            $updateReceipt,
-            $deleteReceipt,
-
-            $createRemark,
-            $viewRemark,
-            $updateRemark,
-            $deleteRemark,
-            $enableRemark,
-            $disableRemark,
-
-            $createInsurerRelationship,
-            $viewInsurerRelationship,
-            $updateInsurerRelationship,
-            $deleteInsurerRelationship,
-            $enableInsurerRelationship,
-            $disableInsurerRelationship,
-
-            $createRepairerRelationship,
-            $viewRepairerRelationship,
-            $updateRepairerRelationship,
-            $deleteRepairerRelationship,
-            $enableRepairerRelationship,
-            $disableRepairerRelationship,
-
-            $createNumberPaintElement,
-            $viewNumberPaintElement,
-            $updateNumberPaintElement,
-            $deleteNumberPaintElement,
-            $enableNumberPaintElement,
-            $disableNumberPaintElement,
-
-            $createOtherCost,
-            $viewOtherCost,
-            $updateOtherCost,
-            $deleteOtherCost,
-
-            $viewOtherCostType,
+            $createPaymentMethod,
+            $viewPaymentMethod,
+            $updatePaymentMethod,
+            $deletePaymentMethod,
+            $enablePaymentMethod,
+            $disablePaymentMethod,
 
             $createClient,
             $viewClient,
@@ -1553,11 +714,6 @@ class RolesAndPermissionsSeeder extends Seeder
             $deleteClient,
             $enableClient,
             $disableClient,
-
-            $createPhoto,
-            $viewPhoto,
-            $updatePhoto,
-            $deletePhoto,
 
             $createQrCode,
             $viewQrCode,
@@ -1571,54 +727,17 @@ class RolesAndPermissionsSeeder extends Seeder
             $updateUserAction,
             $deleteUserAction,
 
-            $createStatusDeadline,
-            $viewStatusDeadline,
-            $updateStatusDeadline,
-            $deleteStatusDeadline,
-            $enableStatusDeadline,
-            $disableStatusDeadline,
+            $viewUserActionType,
 
             $createFneSetting,
             $viewFneSetting,
             $updateFneSetting,
-            $deleteFneSetting,
             $enableFneSetting,
             $disableFneSetting,
-
-            $createUsage,
-            $viewUsage,
-            $updateUsage,
-            $deleteUsage,
-            $enableUsage,
-            $disableUsage,
-
-            $createVehicleCharacteristic,
-            $viewVehicleCharacteristic,
-            $updateVehicleCharacteristic,
-            $deleteVehicleCharacteristic,
-            $enableVehicleCharacteristic,
-            $disableVehicleCharacteristic,
-
-            $createDealer,
-            $viewDealer,
-            $updateDealer,
-            $deleteDealer,
-            $enableDealer,
-            $disableDealer,
 
             $createCalculation,
             $viewCalculation,
             $updateCalculation,
-            $deleteCalculation,
-            $enableCalculation,
-            $disableCalculation,
-
-            $createPrice,
-            $viewPrice,
-            $updatePrice,
-            $deletePrice,
-            $enablePrice,
-            $disablePrice,
 
             $dashboard,
         ]);
