@@ -114,133 +114,135 @@
             <b>{{$calculation?->entity?->footer_description ?? ''}}</b><br>
         </footer>
 
-        <table class="table text-center">
+        <table class="table table-bordered text-center" style="width: 100%; table-layout: fixed;">
             <thead style="border: 1px solid; font-size: 12px;">
-            <tr style="border: 1px solid; font-size: 12px;">
-                <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
-                    <img src="{{$logo}}" alt="logo" style="text-align: center; width:170px; height:100px;">
-                </th>
-                <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">ESTIMATION DE VALEUR VENALE <span class="text-danger">N° {{$calculation->reference ?? ''}}</span></th>
-                <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
-                    <img src="{{$qr_code}}" alt="qr_code" style="text-align: center; width:100px; height:100px;">
-                    <br>
-                    DATE: {{ \Carbon\Carbon::parse($calculation?->created_at)->format('d/m/Y') }}
+                <tr style="border: 1px solid; font-size: 12px;">
+                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle; width: 33.33%;">
+                        <img src="{{$logo}}" alt="logo" style="text-align: center; width:170px; height:110px;">
+                    </th>
+                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle; width: 33.33%;">
+                        <b>ESTIMATION DE VALEUR VENALE <br><br> <span class="text-danger">N° {{$calculation->reference ?? ''}}</span></b>
+                    </th>
+                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle; width: 33.33%;">
+                        <b>Assuré: mmatriculation Vehicul mmatriculation Vehicul {{ mb_strtoupper($calculation?->insured ?? '') }}</b>
+                        <br><br>
+                        DATE: {{ \Carbon\Carbon::parse($calculation?->created_at)->format('d/m/Y') }}
 
-                </th>
-            </tr>
+                    </th>
+                </tr>
             </thead>
         </table>
 
-        <table class="table text-center" style="border-spacing: 0px;">
+        <table class="table text-center" style="border-spacing: 0px; width: 100%; table-layout: fixed;">
             <thead style="border: 1px solid; font-size: 12px; border-spacing: 0px;">
-                <tr style="border: 1px solid; font-size: 12px; background-color: rgb(223, 221, 218);">
+                <tr style="border: 1px solid; font-size: 12px; background-color: rgb(204, 255, 204);">
                     <th style="border: 1px solid; font-size: 12px; vertical-align: middle;" colspan="2">INFORMATIONS</span></th>
                 </tr>
             </thead>
-            <thead style="border: 1px solid; font-size: 12px; border-spacing: 0px;">
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+            <thead style="border: 1px solid; font-size: 11px; border-spacing: 0px;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Immatriculation Vehicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{mb_strtoupper($calculation?->license_plate ?? '')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         N° Serie Vehicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{mb_strtoupper($calculation?->serial_number ?? '')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                     Marque du véhicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->vehicleModel?->brand?->label ?? '')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Modèle du véhicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->vehicleModel?->label ?? '')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Nom commercial du véhicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->vehicleModel?->description ?? '')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Genre du véhicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->vehicleGenreUsage?->vehicleGenre?->label ?? '')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Usage du véhicule 
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->vehicleGenreUsage?->usage?->label ?? '')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Energie du véhicule 
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->vehicleEnergy?->label ?? '')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Puissance fiscale du véhicule 
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{number_format($calculation?->vehicleCharacteristic?->fiscal_power ?? 0, 0, ',', ' ')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Nombre de places du véhicule 
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{number_format($calculation?->vehicleCharacteristic?->nb_seats ?? 0, 0, ',', ' ')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Type de véhicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->type ?? '')}}</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Options du véhicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>
                             <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->options ?? '')}}</b>
                         </b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Date de première mise en circulation du véhicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         @if($calculation?->first_entry_into_circulation_date)
                             <b>{{ \Carbon\Carbon::parse($calculation?->first_entry_into_circulation_date)->format('d/m/Y') ?? ''}}</b>
                         @else
@@ -248,59 +250,59 @@
                         @endif
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Distance parcourue en KM
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{number_format($calculation?->mileage ?? 0, 0, ',', ' ') ?? ''}} KMS</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Valeur neuve du véhicule
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>{{number_format($evaluation?->vehicle_new_value ?? 0, 0, ',', ' ') ?? ''}} FCFA</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Âge du véhicule en mois
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b> {{number_format($evaluation?->vehicle_age ?? 0, 0, ',', ' ') ?? ''}} mois</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Dépréciation théorique
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b> {{number_format($evaluation?->depreciation_rate ?? 0, 0, ',', ' ') ?? ''}} %</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Plus value kilometrique
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b> {{number_format($evaluation?->kilometric_incidence ?? 0, 0, ',', ' ') ?? ''}} FCFA</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Valeur venale avec incidences kilometrique
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b> {{number_format($evaluation?->vehicle_market_value ?? 0, 0, ',', ' ') ?? ''}} FCFA</b>
                     </th>
                 </tr>
-                <tr style="border: 1px solid; font-size: 12px;">
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Valeur venale hors incidences kilometrique
                     </th>
-                    <th style="border: 1px solid; font-size: 12px; vertical-align: middle;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b> {{number_format($evaluation?->theorical_vehicle_market_value ?? 0, 0, ',', ' ') ?? ''}} FCFA</b>
                     </th>
                 </tr>

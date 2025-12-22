@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('code')->unique();
             $table->string('label')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('brand_id')->index()->nullable();
             $table->unsignedBigInteger('status_id')->index()->nullable();
             $table->unsignedBigInteger('created_by')->index()->nullable();

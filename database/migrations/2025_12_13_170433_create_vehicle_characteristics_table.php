@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('vehicle_characteristics', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->string('type')->nullable()->comment('Type de véhicule');
-            $table->string('options')->nullable()->comment('Options du véhicule');
+            $table->text('options')->nullable()->comment('Options du véhicule');
             $table->integer('fiscal_power')->nullable()->comment('Puissance fiscale du véhicule');
             $table->integer('nb_seats')->nullable()->comment('Nombre de places');
             $table->decimal('new_market_value', 18, 2)->nullable()->comment('Valeur neuve du véhicule');

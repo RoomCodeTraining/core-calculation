@@ -66,7 +66,7 @@ class GenerateEvaluationReportPdfJob implements ShouldQueue
 
         $logo = $logoEntity && $logoEntity->logo
         ? image_to_base64(public_path("storage/logos/{$logoEntity->logo}"))
-        : null;
+        : image_to_base64(base_path('public/images/logo.png'));
 
         $path_check_icon = base_path('public/images/check-icon.png');
         $type_check_icon = pathinfo($path_check_icon, PATHINFO_EXTENSION);
