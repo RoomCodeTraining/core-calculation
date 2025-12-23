@@ -39,92 +39,24 @@ class DashboardController extends Controller
     /**
      * Afficher les statistiques des dossiers
      */
-    public function assignments() : JsonResponse
+    public function calculations() : JsonResponse
     {
         // $this->authorize('viewAny', Assignment::class);
 
         return $this->responseSuccess(null, [
-            'total_assignments' => ['value' => Assignment::accessibleBy(auth()->user())->count()],
-            'open_assignments' => ['value' => Assignment::where('status_id', Status::where('code', StatusEnum::OPENED)->first()->id)->accessibleBy(auth()->user())->count()],
-            'realized_assignments' => ['value' => Assignment::where('status_id', Status::where('code', StatusEnum::REALIZED)->first()->id)->accessibleBy(auth()->user())->count()],
-            'edited_assignments' => ['value' => Assignment::where('status_id', Status::where('code', StatusEnum::EDITED)->first()->id)->count()],
-            'validated_assignments' => ['value' => Assignment::where('status_id', Status::where('code', StatusEnum::VALIDATED)->first()->id)->accessibleBy(auth()->user())->count()],
-            'paid_assignments' => ['value' => Assignment::where('status_id', Status::where('code', StatusEnum::PAID)->first()->id)->accessibleBy(auth()->user())->count()],
-            'closed_assignments' => ['value' => Assignment::where('status_id', Status::where('code', StatusEnum::CLOSED)->first()->id)->accessibleBy(auth()->user())->count()],
-            'cancelled_assignments' => ['value' => Assignment::where('status_id', Status::where('code', StatusEnum::CANCELLED)->first()->id)->count()],
-
-            'assignments_edition_time_expired' => Assignment::where('created_at', '<', Carbon::now()->subHours(24))->accessibleBy(auth()->user())->count(),
-            'assignments_recovery_time_expired' => Assignment::where('created_at', '<', Carbon::now()->subHours(48))->accessibleBy(auth()->user())->count(),
+            'total_calculations' => ['value' => Calculation::accessibleBy(auth()->user())->count()],
         ]);
     }
 
     /**
-     * Afficher les statistiques des compagnies d'assurance
+     * Afficher les statistiques des caractéristiques des véhicules
      */
-    public function insurers() : JsonResponse
+    public function vehicleCharacteristics() : JsonResponse
     {
         // $this->authorize('viewAny', User::class);
 
         return $this->responseSuccess(null, [
-            'total_insurers' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::INSURER)->first()->id)->accessibleBy(auth()->user())->count()],
-            'active_insurers' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::INSURER)->first()->id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->accessibleBy(auth()->user())->count()],
-            'inactive_insurers' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::INSURER)->first()->id)->where('status_id', Status::where('code', StatusEnum::INACTIVE)->first()->id)->accessibleBy(auth()->user())->count()],
-        ]);
-    }
-
-    /**
-     * Afficher les statistiques des courtiers en assurances
-     */
-    public function brokers() : JsonResponse
-    {
-        // $this->authorize('viewAny', User::class);
-
-        return $this->responseSuccess(null, [
-            'total_brokers' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::BROKER)->first()->id)->accessibleBy(auth()->user())->count()],
-            'active_brokers' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::BROKER)->first()->id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->accessibleBy(auth()->user())->count()],
-            'inactive_brokers' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::BROKER)->first()->id)->where('status_id', Status::where('code', StatusEnum::INACTIVE)->first()->id)->accessibleBy(auth()->user())->count()],
-        ]);
-    }
-
-    /**
-     * Afficher les statistiques des agents généraux
-     */
-    public function agents() : JsonResponse
-    {
-        // $this->authorize('viewAny', User::class);
-
-        return $this->responseSuccess(null, [
-            'total_agents' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::AGENT)->first()->id)->accessibleBy(auth()->user())->count()],
-            'active_agents' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::AGENT)->first()->id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->accessibleBy(auth()->user())->count()],
-            'inactive_agents' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::AGENT)->first()->id)->where('status_id', Status::where('code', StatusEnum::INACTIVE)->first()->id)->accessibleBy(auth()->user())->count()],
-        ]);
-    }
-
-    /**
-     * Afficher les statistiques des réparateurs
-     */
-    public function repairers() : JsonResponse
-    {
-        // $this->authorize('viewAny', User::class);
-
-        return $this->responseSuccess(null, [
-            'total_repairers' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::REPAIRER)->first()->id)->accessibleBy(auth()->user())->count()],
-            'active_repairers' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::REPAIRER)->first()->id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->accessibleBy(auth()->user())->count()],
-            'inactive_repairers' => ['value' => Entity::where('entity_type_id', EntityType::where('code', EntityTypeEnum::REPAIRER)->first()->id)->where('status_id', Status::where('code', StatusEnum::INACTIVE)->first()->id)->accessibleBy(auth()->user())->count()],
-        ]);
-    }
-
-    /**
-     * Afficher les statistiques des véhicules
-     */
-    public function vehicles() : JsonResponse
-    {
-        // $this->authorize('viewAny', User::class);
-
-        return $this->responseSuccess(null, [
-            'total_vehicles' => ['value' => Vehicle::count()],
-            'active_vehicles' => ['value' => Vehicle::where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->count()],
-            'inactive_vehicles' => ['value' => Vehicle::where('status_id', Status::where('code', StatusEnum::INACTIVE)->first()->id)->count()],
+            'total_vehicle_characteristics' => ['value' => VehicleCharacteristic::accessibleBy(auth()->user())->count()],
         ]);
     }
 }

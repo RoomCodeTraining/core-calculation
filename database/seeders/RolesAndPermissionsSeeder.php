@@ -691,7 +691,6 @@ class RolesAndPermissionsSeeder extends Seeder
 
             $viewEntityType,
 
-            $viewDepreciationTable,
             $calculateDepreciationTable,
 
             $createPaymentType,
