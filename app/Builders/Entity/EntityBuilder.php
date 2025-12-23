@@ -21,34 +21,9 @@ class EntityBuilder extends Builder
         return $this->model->currentRole->name == RoleEnum::ADMIN->value;
     }
 
-    public function isAdminExpert(): bool
+    public function isAdminOrganization(): bool
     {
-        return $this->model->currentRole->name == RoleEnum::EXPERT_ADMIN->value;
-    }
-
-    public function isInsurerAdmin(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::INSURER_ADMIN->value;
-    }
-
-    public function isRepairerAdmin(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::REPAIRER_ADMIN->value;
-    }
-
-    public function isInsurerStandardUser(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::INSURER_STANDARD_USER->value;
-    }
-
-    public function isRepairerStandardUser(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::REPAIRER_STANDARD_USER->value;
-    }
-
-    public function isClient(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::CLIENT->value;
+        return $this->model->currentRole->name == RoleEnum::ADMIN_ORGANIZATION->value;
     }
 
     public function accessibleBy(?User $user)
@@ -66,16 +41,9 @@ class EntityBuilder extends Builder
             return $this->whereIn('entity_type_id', $entityTypes);
         }
 
-        if ($user->isInsurerStandardUser()) {
-            return $this->where('entity_type_id', EntityType::firstWhere('code', EntityTypeEnum::INSURER)->id);
-        }
-
-        if ($user->isRepairerStandardUser()) {
-            return $this->where('entity_type_id', EntityType::firstWhere('code', EntityTypeEnum::REPAIRER)->id);
-        }
-
-        if ($user->isClient()) {
-            return $this;
+        if ($user->isAdminOrganization()) {
+            $entityTypes = EntityType::whereIn('code', [EntityTypeEnum::ORGANIZATION->value, EntityTypeEnum::INSURER->value, EntityTypeEnum::REPAIRER->value, EntityTypeEnum::BROKER->value, EntityTypeEnum::AGENT->value])->pluck('id');
+            return $this->whereIn('entity_type_id', $entityTypes);
         }
 
         return $this;
