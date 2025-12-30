@@ -70,9 +70,9 @@ class DepreciationTableController extends Controller
     {
         $credit = Transaction::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
 
-        if($credit < 0){
-            return $this->responseUnprocessable('Vous n\'avez pas assez de crédit pour effectuer cette action');
-        }
+        // if($credit < 0){
+        //     return $this->responseUnprocessable('Vous n\'avez pas assez de crédit pour effectuer cette action');
+        // }
 
         $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage')->findOrFail($request->vehicle_characteristic_id);
         $price = Price::find($request->price_id);
