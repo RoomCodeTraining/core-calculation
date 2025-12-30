@@ -17,42 +17,41 @@ class MarketValueService
         $year_diff = ceil(Carbon::parse($first_entry_into_circulation_date)->diffInYears($expertise_date));
         $month_diff = ceil(Carbon::parse($first_entry_into_circulation_date)->diffInMonths($expertise_date));
         $vehicle_genre_usage = VehicleGenreUsage::with('vehicleGenre')->find($vehicle_genre_usage_id);
-        $vehicle_genre = VehicleGenre::find($vehicle_genre_usage->vehicleGenre->id);
         $vehicle_energy = VehicleEnergy::select('id', 'label', 'code')->find($vehicle_energy_id);
         $vehicle_age = VehicleAge::firstWhere('value', $month_diff);
         if($vehicle_age){
             $month_diff = floatval(str_replace(',', '.', $month_diff));
             if($month_diff <= 60) {
-                $depreciation_table = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age->id)->first();
+                $depreciation_table = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age->id)->first();
                 $theorical_depreciation_rate = $depreciation_table->value ?? 0;
             } else if($month_diff > 60 && $month_diff <= 84){
                 if($month_diff > 60 && $month_diff <= 66){
                     $vehicle_age_min = VehicleAge::firstWhere('value', 60);
-                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
+                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
 
                     $vehicle_age_max = VehicleAge::firstWhere('value', 66);
-                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
+                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
 
                 } else if($month_diff > 66 && $month_diff <= 72){
                     $vehicle_age_min = VehicleAge::firstWhere('value', 66);
-                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
+                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
 
                     $vehicle_age_max = VehicleAge::firstWhere('value', 72);
-                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
+                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
 
                 } else if($month_diff > 72 && $month_diff <= 78){
                     $vehicle_age_min = VehicleAge::firstWhere('value', 72);
-                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
+                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
 
                     $vehicle_age_max = VehicleAge::firstWhere('value', 78);
-                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
+                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
 
                 } else if($month_diff > 78 && $month_diff <= 84){
                     $vehicle_age_min = VehicleAge::firstWhere('value', 78);
-                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
+                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
 
                     $vehicle_age_max = VehicleAge::firstWhere('value', 84);
-                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
+                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
 
                 }
 
@@ -62,24 +61,24 @@ class MarketValueService
             } else if($month_diff > 84 && $month_diff <= 120){
                 if($month_diff > 84 && $month_diff <= 96){
                     $vehicle_age_min = VehicleAge::firstWhere('value', 84);
-                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
+                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
 
                     $vehicle_age_max = VehicleAge::firstWhere('value', 96);
-                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
+                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
 
                 } else if($month_diff > 96 && $month_diff <= 108){
                     $vehicle_age_min = VehicleAge::firstWhere('value', 96);
-                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
+                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
 
                     $vehicle_age_max = VehicleAge::firstWhere('value', 108);
-                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
+                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
 
                 } else if($month_diff > 108 && $month_diff <= 120){
                     $vehicle_age_min = VehicleAge::firstWhere('value', 108);
-                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
+                    $depreciation_table_min = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_min->id)->first()->value ?? 0;
 
                     $vehicle_age_max = VehicleAge::firstWhere('value', 120);
-                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_id', $vehicle_genre->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
+                    $depreciation_table_max = DepreciationTable::where('vehicle_genre_usage_id', $vehicle_genre_usage->id)->where('vehicle_age_id', $vehicle_age_max->id)->first()->value ?? 0;
 
                 }
                 $theorical_depreciation_rate = number_format((((($depreciation_table_max - $depreciation_table_min) * ($vehicle_age->value - $vehicle_age_min->value)) / 12) + $depreciation_table_min), 2, ',', '');
