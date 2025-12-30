@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('depreciation_tables', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->decimal('value', 18, 2)->nullable();
-            $table->unsignedBigInteger('vehicle_genre_id')->index()->nullable();
+            $table->unsignedBigInteger('vehicle_genre_usage_id')->index()->nullable();
             $table->unsignedBigInteger('vehicle_age_id')->index()->nullable();
             $table->unsignedBigInteger('status_id')->index()->nullable();
             $table->unsignedBigInteger('created_by')->index()->nullable();
@@ -26,9 +26,9 @@ return new class extends Migration
             $table->unsignedBigInteger('deleted_by')->index()->nullable();
             $table->timestamp('deleted_at')->nullable();
 
-            $table->foreign('vehicle_genre_id')
+            $table->foreign('vehicle_genre_usage_id')
                 ->references('id')
-                ->on('vehicle_genres')
+                ->on('vehicle_genre_usages')
                 ->onDelete('cascade');
 
             $table->foreign('vehicle_age_id')

@@ -11,7 +11,7 @@ class CreateMarketValueRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'vehicle_genre_id' => $this->vehicle_genre_id ? VehicleGenre::keyFromHashId($this->vehicle_genre_id) : null,
+            'vehicle_genre_usage_id' => $this->vehicle_genre_usage_id ? VehicleGenreUsage::keyFromHashId($this->vehicle_genre_usage_id) : null,
             'vehicle_energy_id' => $this->vehicle_energy_id ? VehicleEnergy::keyFromHashId($this->vehicle_energy_id) : null,
         ]);
     }
@@ -19,7 +19,7 @@ class CreateMarketValueRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'vehicle_genre_id' => 'required|exists:vehicle_genres,id',
+            'vehicle_genre_usage_id' => 'required|exists:vehicle_genre_usages,id',
             'vehicle_energy_id' => 'required|exists:vehicle_energies,id',
             'vehicle_new_value' => 'required|integer|min:0',
             'vehicle_mileage' => 'required|integer|min:0',

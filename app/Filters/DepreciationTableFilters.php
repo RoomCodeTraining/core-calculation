@@ -6,7 +6,7 @@ use Essa\APIToolKit\Filters\QueryFilters;
 
 class DepreciationTableFilters extends QueryFilters
 {
-    protected array $allowedFilters = ['vehicle_genre_id','vehicle_age_id'];
+    protected array $allowedFilters = [];
 
     protected array $columnSearch = ['value'];
 }

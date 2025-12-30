@@ -7,6 +7,7 @@ use Essa\APIToolKit\Filters\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Deligoez\LaravelModelHashId\Traits\HasHashId;
 use Deligoez\LaravelModelHashId\Traits\HasHashIdRouting;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -71,5 +72,13 @@ class VehicleGenreUsage extends Model
     public function deletedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'deleted_by');
+    }
+
+    /**
+     * Get the depreciation tables for this vehicle genre usage
+     */
+    public function depreciationTables(): HasMany
+    {
+        return $this->hasMany(DepreciationTable::class);
     }
 }

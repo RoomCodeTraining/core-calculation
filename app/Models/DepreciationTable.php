@@ -32,11 +32,11 @@ class DepreciationTable extends Model
     protected $guarded = [];
 
     /**
-     * Get the vehicle genre of this depreciation table
+     * Get the vehicle genre usage of this depreciation table
      */
-    public function vehicleGenre(): BelongsTo
+    public function vehicleGenreUsage(): BelongsTo
     {
-        return $this->belongsTo(VehicleGenre::class);
+        return $this->belongsTo(VehicleGenreUsage::class);
     }
 
     /**

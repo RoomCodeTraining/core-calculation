@@ -11,6 +11,7 @@ use App\Models\VehicleAge;
 use App\Models\Calculation;
 use App\Models\Transaction;
 use App\Models\VehicleGenre;
+use App\Models\VehicleGenreUsage;
 use Illuminate\Http\Request;
 use App\Models\VehicleEnergy;
 use App\Models\DepreciationTable;
@@ -49,10 +50,10 @@ class DepreciationTableController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $depreciationTables = DepreciationTable::with('vehicleGenre', 'vehicleAge', 'status');
+        $depreciationTables = DepreciationTable::with('vehicleGenreUsage', 'vehicleAge', 'status');
         
-        if(request()->has('vehicle_genre_id')){
-            $depreciationTables = $depreciationTables->where('vehicle_genre_id', VehicleGenre::keyFromHashId(request()->vehicle_genre_id));
+        if(request()->has('vehicle_genre_usage_id')){
+            $depreciationTables = $depreciationTables->where('vehicle_genre_usage_id', VehicleGenreUsage::keyFromHashId(request()->vehicle_genre_usage_id));
         }
 
         $depreciationTables = $depreciationTables->latest('created_at')->useFilters()->dynamicPaginate();
@@ -222,7 +223,7 @@ class DepreciationTableController extends Controller
     {
         $depreciationTable = DepreciationTable::create([
             'value' => $request->value,
-            'vehicle_genre_id' => $request->vehicle_genre_id,
+            'vehicle_genre_usage_id' => $request->vehicle_genre_usage_id,
             'vehicle_age_id' => $request->vehicle_age_id,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'created_by' => auth()->user()->id,
@@ -253,7 +254,7 @@ class DepreciationTableController extends Controller
         $depreciationTable = DepreciationTable::findOrFail(DepreciationTable::keyFromHashId($id));
         $depreciationTable->update([
             'value' => $request->value,
-            'vehicle_genre_id' => $request->vehicle_genre_id,
+            'vehicle_genre_usage_id' => $request->vehicle_genre_usage_id,
             'vehicle_age_id' => $request->vehicle_age_id,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'updated_by' => auth()->user()->id,
