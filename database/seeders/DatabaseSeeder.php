@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             VehicleEnergySeeder::class,
             VehicleAgeSeeder::class,
             VehicleModelSeeder::class,
-            DepreciationTableSeeder::class,
+            // DepreciationTableSeeder::class,
             UserActionTypeSeeder::class,
             AppSettingSeeder::class,
             DealerSeeder::class,
