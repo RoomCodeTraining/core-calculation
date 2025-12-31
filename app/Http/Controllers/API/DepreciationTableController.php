@@ -53,7 +53,7 @@ class DepreciationTableController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $depreciationTables = DepreciationTable::with('vehicleGenreUsage', 'vehicleAge', 'status');
+        $depreciationTables = DepreciationTable::with('vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage', 'vehicleAge', 'status');
         
         if(request()->has('vehicle_genre_usage_id')){
             $depreciationTables = $depreciationTables->where('vehicle_genre_usage_id', VehicleGenreUsage::keyFromHashId(request()->vehicle_genre_usage_id));
@@ -250,7 +250,7 @@ class DepreciationTableController extends Controller
      */
     public function show($id): JsonResponse
     {
-        $depreciationTable = DepreciationTable::with('vehicleGenreUsage', 'vehicleAge', 'status')->findOrFail(DepreciationTable::keyFromHashId($id));
+        $depreciationTable = DepreciationTable::with('vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage', 'vehicleAge', 'status')->findOrFail(DepreciationTable::keyFromHashId($id));
         return $this->responseSuccess(null, new DepreciationTableResource($depreciationTable));
     }
 
