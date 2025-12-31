@@ -250,7 +250,7 @@ class DepreciationTableController extends Controller
      */
     public function show($id): JsonResponse
     {
-        $depreciationTable = DepreciationTable::findOrFail(DepreciationTable::keyFromHashId($id));
+        $depreciationTable = DepreciationTable::with('vehicleGenreUsage', 'vehicleAge', 'status')->findOrFail(DepreciationTable::keyFromHashId($id));
         return $this->responseSuccess(null, new DepreciationTableResource($depreciationTable));
     }
 
