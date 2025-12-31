@@ -5,16 +5,19 @@ namespace App\Http\Controllers\API;
 use Carbon\Carbon;
 use App\Models\Price;
 use App\Models\Usage;
+use App\Models\Entity;
 use App\Models\Status;
 use App\Enums\StatusEnum;
+use App\Models\EntityType;
 use App\Models\VehicleAge;
 use App\Models\Calculation;
 use App\Models\Transaction;
 use App\Models\VehicleGenre;
-use App\Models\VehicleGenreUsage;
 use Illuminate\Http\Request;
+use App\Enums\EntityTypeEnum;
 use App\Models\VehicleEnergy;
 use App\Models\DepreciationTable;
+use App\Models\VehicleGenreUsage;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
@@ -70,9 +73,11 @@ class DepreciationTableController extends Controller
     {
         $credit = Transaction::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
 
-        // if($credit < 0){
-        //     return $this->responseUnprocessable('Vous n\'avez pas assez de crédit pour effectuer cette action');
-        // }
+        $entity_type = EntityType::where('id',Entity::where('id', auth()->user()->entity_id)->first()->entity_type_id)->first();
+
+        if($credit < 0 && $entity_type->code == EntityTypeEnum::ORGANIZATION->value){
+            return $this->responseUnprocessable('Vous n\'avez pas assez de crédit pour effectuer cette action');
+        }
 
         $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage')->findOrFail($request->vehicle_characteristic_id);
         $price = Price::find($request->price_id);
@@ -83,6 +88,11 @@ class DepreciationTableController extends Controller
         $marketValueService = app(MarketValueService::class);
         $result = $marketValueService->calculateTheoreticalMarketValue($vehicleCharacteristic->vehicleGenreUsage->id, $vehicleCharacteristic->vehicle_energy_id, $vehicle_new_value, $request->vehicle_mileage, $request->first_entry_into_circulation_date, $request->expertise_date);
         $result = (object) $result;
+
+        if($result->theorical_depreciation_rate <= 0)
+        {
+            return $this->responseUnprocessable('Impossible de calculer la dépreciation de ce usage de véhicle');
+        }
 
         $kilometric_incidence = 0;
         $is_up = null;
@@ -151,7 +161,7 @@ class DepreciationTableController extends Controller
 
         return $this->responseSuccess('DepreciationTable created successfully', [
             'calculation' => new CalculationResource($calculation),
-            'credit' => $credit - 1,
+            'credit' => $entity_type->code == EntityTypeEnum::ORGANIZATION->value ? $credit - 1 : 0,
             'pdf' => url('storage/evaluation_report/'.$calculation->reference.'.pdf?v='.time()),
         ]);
     }
