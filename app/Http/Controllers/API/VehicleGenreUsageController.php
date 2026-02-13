@@ -60,6 +60,8 @@ class VehicleGenreUsageController extends Controller
         $vehicleGenreUsage = VehicleGenreUsage::create([
             'vehicle_genre_id' => $request->vehicle_genre_id,
             'usage_id' => $request->usage_id,
+            'max_mileage_essence_per_year' => $request->max_mileage_essence_per_year,
+            'max_mileage_diesel_per_year' => $request->max_mileage_diesel_per_year,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
@@ -91,6 +93,8 @@ class VehicleGenreUsageController extends Controller
         $vehicleGenreUsage->update([
             'vehicle_genre_id' => $request->vehicle_genre_id,
             'usage_id' => $request->usage_id,
+            'max_mileage_essence_per_year' => $request->max_mileage_essence_per_year,
+            'max_mileage_diesel_per_year' => $request->max_mileage_diesel_per_year,
             'updated_by' => auth()->user()->id,
         ]);
 
