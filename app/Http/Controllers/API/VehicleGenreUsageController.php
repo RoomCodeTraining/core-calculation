@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\VehicleGenreUsage\UpdateVehicleGenreUsageRequest;
-use App\Http\Requests\VehicleGenreUsage\CreateVehicleGenreUsageRequest;
-use App\Http\Resources\VehicleGenreUsage\VehicleGenreUsageResource;
+use App\Models\Status;
+use App\Enums\StatusEnum;
 use App\Models\VehicleGenreUsage;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use App\Http\Resources\VehicleGenreUsage\VehicleGenreUsageResource;
+use App\Http\Requests\VehicleGenreUsage\CreateVehicleGenreUsageRequest;
+use App\Http\Requests\VehicleGenreUsage\UpdateVehicleGenreUsageRequest;
 
 /**
  * @group Gestion des usages des genres de véhicules
