@@ -10,7 +10,7 @@ use App\Models\Payment;
 use App\Models\Receipt;
 use App\Models\Vehicle;
 use App\Enums\StatusEnum;
-use App\Models\Assignment;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\ExpertiseType;
 use App\Models\AssignmentType;
@@ -46,9 +46,9 @@ class PaymentController extends Controller
     {
         $start_date = request()->filled('start_date') ? Carbon::parse(request()->start_date)->startOfDay() : null;
         $end_date   = request()->filled('end_date') ? Carbon::parse(request()->end_date)->endOfDay() : null;
-        $payments = Payment::with('assignment:id,reference', 'paymentType:id,code,label', 'paymentMethod:id,code,label', 'status:id,code,label', 'createdBy:id,name,email,created_at', 'updatedBy:id,name,email,created_at', 'deletedBy:id,name,email,created_at')
-                    ->join('assignments', 'payments.assignment_id', '=', 'assignments.id')
-                    ->select('payments.*', 'assignments.assignment_type_id', 'assignments.expertise_type_id', 'assignments.vehicle_id', 'assignments.client_id', 'assignments.insurer_id', 'assignments.repairer_id', 'assignments.receipt_amount')
+        $payments = Payment::with('transaction:id,reference', 'paymentType:id,code,label', 'paymentMethod:id,code,label', 'status:id,code,label', 'createdBy:id,name,email,created_at', 'updatedBy:id,name,email,created_at', 'deletedBy:id,name,email,created_at')
+                    ->join('transactions', 'payments.transaction_id', '=', 'transactions.id')
+                    ->select('payments.*', 'transactions.transaction_type_id', 'transactions.expertise_type_id', 'transactions.vehicle_id', 'transactions.client_id', 'transactions.insurer_id', 'transactions.repairer_id', 'transactions.receipt_amount')
                     ->accessibleBy(auth()->user());
 
         if($start_date && $end_date){
@@ -57,42 +57,6 @@ class PaymentController extends Controller
             $payments = $payments->where('payments.date', '>=', $start_date);
         } elseif ($end_date) {
             $payments = $payments->where('payments.date', '<=', $end_date);
-        }
-
-        $assignment_type_id = null;
-        if(request()->filled('assignment_type_id')){
-            $assignment_type_id = AssignmentType::keyFromHashId(request()->assignment_type_id);
-            $payments = $payments->where('assignments.assignment_type_id', $assignment_type_id);
-        }
-
-        $expertise_type_id = null;
-        if(request()->filled('expertise_type_id')){
-            $expertise_type_id = ExpertiseType::keyFromHashId(request()->expertise_type_id);
-            $payments = $payments->where('assignments.expertise_type_id', $expertise_type_id);
-        }
-
-        $vehicle_id = null;
-        if(request()->filled('vehicle_id')){
-            $vehicle_id = Vehicle::keyFromHashId(request()->vehicle_id);
-            $payments = $payments->where('assignments.vehicle_id', $vehicle_id);
-        }
-
-        $client_id = null;
-        if(request()->filled('client_id')){
-            $client_id = Client::keyFromHashId(request()->client_id);
-            $payments = $payments->where('assignments.client_id', $client_id);
-        }
-
-        $insurer_id = null;
-        if(request()->filled('insurer_id')){
-            $insurer_id = Entity::keyFromHashId(request()->insurer_id);
-            $payments = $payments->where('assignments.insurer_id', $insurer_id);
-        }
-
-        $repairer_id = null;
-        if(request()->filled('repairer_id')){
-            $repairer_id = Entity::keyFromHashId(request()->repairer_id);
-            $payments = $payments->where('assignments.repairer_id', $repairer_id);
         }
 
         $status_id = null;
@@ -442,9 +406,9 @@ class PaymentController extends Controller
      */
     public function store(CreatePaymentRequest $request): JsonResponse
     {
-        $assignment = Assignment::accessibleBy(auth()->user())->findOrFail($request->assignment_id);
-        if($assignment->status_id == Status::where('code', StatusEnum::PAID)->first()->id){
-            return $this->responseUnprocessable("Le dossier est déjà réglé.");
+        $transaction = Transaction::accessibleBy(auth()->user())->findOrFail($request->transaction_id);
+        if($transaction->status_id == Status::where('code', StatusEnum::PAID)->first()->id){
+            return $this->responseUnprocessable("La transaction est déjà réglée.");
         }
 
         // $receipt_amount = Receipt::where('assignment_id', $request->assignment_id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->sum('amount');
@@ -464,7 +428,7 @@ class PaymentController extends Controller
             'reference' => $reference,
             'date' => Carbon::parse($request->date)->format('Y-m-d'),
             'amount' => $request->amount,
-            'assignment_id' => $request->assignment_id,
+            'transaction_id' => $request->transaction_id,
             'payment_type_id' => $request->payment_type_id,
             'payment_method_id' => $request->payment_method_id,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
@@ -472,14 +436,14 @@ class PaymentController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
-        $receipt_amount = Receipt::where('assignment_id', $request->assignment_id)->sum('amount');
-        $payment_amount = Payment::where('assignment_id', $request->assignment_id)->sum('amount');
+        $receipt_amount = Receipt::where('transaction_id', $request->transaction_id)->sum('amount');
+        $payment_amount = Payment::where('transaction_id', $request->transaction_id)->sum('amount');
         if($receipt_amount > 0){
-            if($receipt_amount <= $payment_amount && $assignment->status_id == Status::where('code', StatusEnum::VALIDATED)->first()->id){
-                $assignment->update([
+            if($receipt_amount <= $payment_amount && $transaction->status_id == Status::where('code', StatusEnum::VALIDATED)->first()->id){
+                $transaction->update([
                     'status_id' => Status::where('code', StatusEnum::PAID)->first()->id,
                 ]);
-            } 
+            }
         }
 
         return $this->responseCreated('Payment created successfully', new PaymentResource($payment));
@@ -492,12 +456,12 @@ class PaymentController extends Controller
      */
     public function show($id): JsonResponse
     {
-        $payment = Payment::join('assignments', 'payments.assignment_id', '=', 'assignments.id')
+        $payment = Payment::join('transactions', 'payments.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('payments.id', Payment::keyFromHashId($id))
             ->first();
 
-        return $this->responseSuccess(null, new PaymentResource($payment->load('assignment:id,reference', 'paymentType:id,code,label', 'paymentMethod:id,code,label', 'status:id,code,label', 'createdBy:id,name,email,created_at', 'updatedBy:id,name,email,created_at', 'deletedBy:id,name,email,created_at')));
+        return $this->responseSuccess(null, new PaymentResource($payment->load('transaction:id,reference', 'paymentType:id,code,label', 'paymentMethod:id,code,label', 'status:id,code,label', 'createdBy:id,name,email,created_at', 'updatedBy:id,name,email,created_at', 'deletedBy:id,name,email,created_at')));
     }
 
     /**
@@ -507,7 +471,7 @@ class PaymentController extends Controller
      */
     public function update(UpdatePaymentRequest $request, $id): JsonResponse
     {
-        $payment = Payment::join('assignments', 'payments.assignment_id', '=', 'assignments.id')
+        $payment = Payment::join('transactions', 'payments.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('payments.id', Payment::keyFromHashId($id))
             ->firstOrFail();
@@ -519,7 +483,7 @@ class PaymentController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
-        return $this->responseSuccess('Payment updated Successfully', new PaymentResource($payment->load('assignment:id,reference', 'paymentType:id,code,label', 'paymentMethod:id,code,label', 'status:id,code,label')));
+        return $this->responseSuccess('Payment updated Successfully', new PaymentResource($payment->load('transaction:id,reference', 'paymentType:id,code,label', 'paymentMethod:id,code,label', 'status:id,code,label')));
     }
 
     /**
@@ -529,7 +493,7 @@ class PaymentController extends Controller
      */
     public function cancel($id): JsonResponse
     {
-        $payment = Payment::join('assignments', 'payments.assignment_id', '=', 'assignments.id')
+        $payment = Payment::join('transactions', 'payments.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('payments.id', Payment::keyFromHashId($id))
             ->firstOrFail();
@@ -541,14 +505,17 @@ class PaymentController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
-        $assignment = Assignment::find($payment->assignment_id);
-        if($assignment->status_id == Status::where('code', StatusEnum::PAID)->first()->id){
-            $assignment->update([
-                'status_id' => Status::where('code', StatusEnum::VALIDATED)->first()->id,
+        $transaction = Transaction::find($payment->transaction_id);
+        if($transaction->status_id == Status::where('code', StatusEnum::PAID)->first()->id){
+            $transaction->update([
+                'status_id' => Status::where('code', StatusEnum::CANCELLED)->first()->id,
+                'cancelled_by' => auth()->user()->id,
+                'cancelled_at' => Carbon::now(),
+                'updated_by' => auth()->user()->id,
             ]);
         }
 
-        return $this->responseSuccess('Paiement annulé avec succès', new PaymentResource($payment->load('assignment:id,reference', 'paymentType:id,code,label', 'paymentMethod:id,code,label', 'status:id,code,label')));
+        return $this->responseSuccess('Paiement annulé avec succès', new PaymentResource($payment->load('transaction:id,reference', 'paymentType:id,code,label', 'paymentMethod:id,code,label', 'status:id,code,label')));
     }
 
     /**

@@ -12,4 +12,5 @@ enum ReceiptTypeEnum: string
     case WORK_FEE = 'work_fee';
     case DOCUMENT_FEE = 'document_fee';
     case PHOTO = 'photo';
+    case CREDIT = 'credit';
 }

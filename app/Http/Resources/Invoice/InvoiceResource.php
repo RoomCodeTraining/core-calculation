@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Payment\PaymentResource;
 use App\Http\Resources\Status\StatusResource;
 use App\Http\Resources\User\UserResource;
-use App\Http\Resources\Assignment\AssignmentResource;
+use App\Http\Resources\Transaction\TransactionResource;
 
 class InvoiceResource extends JsonResource
 {
@@ -26,7 +26,7 @@ class InvoiceResource extends JsonResource
             'foreign_currency_rate' => $this->foreign_currency_rate,
             'discount' => $this->discount,
             'path' => url('storage/invoice/'.$this->reference.'.pdf?v='.time()),
-            'assignment' => new AssignmentResource($this->whenLoaded('assignment')),
+            'transaction' => new TransactionResource($this->whenLoaded('transaction')),
             'payment' => new PaymentResource($this->whenLoaded('payment')),
             'status' => new StatusResource($this->whenLoaded('status')),
             'cancelled_by' => new UserResource($this->whenLoaded('cancelledBy')),

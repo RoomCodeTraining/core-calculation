@@ -27,11 +27,11 @@ class Payment extends Model
     protected $guarded = [];
 
     /**
-     * Get the assignment of this payment
+     * Get the transaction of this payment
      */
-    public function assignment(): BelongsTo
+    public function transaction(): BelongsTo
     {
-        return $this->belongsTo(Assignment::class);
+        return $this->belongsTo(Transaction::class);
     }
 
     /**

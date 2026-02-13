@@ -61,12 +61,12 @@ Route::prefix('v1')->middleware(LogsOutDisabledUser::class)->group(function () {
     // Route::prefix('hourly-rates')->group(base_path('routes/api/v1.hourly.rates.routes.php'));
     // Route::prefix('work-fees')->group(base_path('routes/api/v1.work.fees.routes.php'));
     // Route::prefix('general-states')->group(base_path('routes/api/v1.general.states.routes.php'));
-    // Route::prefix('invoices')->group(base_path('routes/api/v1.invoices.routes.php'));
-    // Route::prefix('payments')->group(base_path('routes/api/v1.payments.routes.php'));
-    // Route::prefix('payment-methods')->group(base_path('routes/api/v1.payment.methods.routes.php'));
-    // Route::prefix('payment-types')->group(base_path('routes/api/v1.payment.types.routes.php'));
-    // Route::prefix('checks')->group(base_path('routes/api/v1.checks.routes.php'));
-    // Route::prefix('payment-historics')->group(base_path('routes/api/v1.payment.historics.routes.php'));
+    Route::prefix('invoices')->group(base_path('routes/api/v1.invoices.routes.php'));
+    Route::prefix('payments')->group(base_path('routes/api/v1.payments.routes.php'));
+    Route::prefix('payment-methods')->group(base_path('routes/api/v1.payment.methods.routes.php'));
+    Route::prefix('payment-types')->group(base_path('routes/api/v1.payment.types.routes.php'));
+    Route::prefix('checks')->group(base_path('routes/api/v1.checks.routes.php'));
+    Route::prefix('payment-historics')->group(base_path('routes/api/v1.payment.historics.routes.php'));
     // Route::prefix('banks')->group(base_path('routes/api/v1.banks.routes.php'));
     // Route::prefix('photo-types')->group(base_path('routes/api/v1.photo.types.routes.php'));
     // Route::prefix('remarks')->group(base_path('routes/api/v1.remarks.routes.php'));

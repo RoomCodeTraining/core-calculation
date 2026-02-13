@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Invoice;
 
-use App\Models\Assignment;
+use App\Models\Transaction;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateInvoiceRequest extends FormRequest
@@ -10,15 +10,14 @@ class CreateInvoiceRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'assignment_id' => $this->assignment_id ? Assignment::keyFromHashId($this->assignment_id) : null,
+            'transaction_id' => $this->transaction_id ? Transaction::keyFromHashId($this->transaction_id) : null,
         ]);
     }
 
     public function rules(): array
     {
         return [
-            // 'assignment_id' => 'required|exists:assignments,id|unique:invoices,assignment_id',
-            'assignment_id' => 'required|exists:assignments,id',
+            'transaction_id' => 'required|exists:transactions,id',
             'date' => 'required|date_format:Y-m-d',
             'object' => 'required|string',
             'type' => 'required|in:sale,credit_bill',

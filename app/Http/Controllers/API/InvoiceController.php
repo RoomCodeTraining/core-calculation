@@ -10,7 +10,9 @@ use App\Models\Invoice;
 use App\Models\Receipt;
 use App\Models\Vehicle;
 use App\Enums\StatusEnum;
+use App\Models\AppSetting;
 use App\Models\Assignment;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\ExpertiseType;
 use App\Models\AssignmentType;
@@ -48,9 +50,9 @@ class InvoiceController extends Controller
     {
         $start_date = request()->filled('start_date') ? Carbon::parse(request()->start_date)->startOfDay() : null;
         $end_date = request()->filled('end_date') ? Carbon::parse(request()->end_date)->endOfDay() : null;
-        $invoices = Invoice::with('assignment:id,reference,receipt_amount_excluding_tax,receipt_amount_tax,receipt_amount,expert_firm_id', 'status:id,code,label', 'createdBy:id,name,email,created_at', 'updatedBy:id,name,email,created_at', 'deletedBy:id,name,email,created_at', 'cancelledBy:id,name,email,created_at')
-                    ->join('assignments', 'invoices.assignment_id', '=', 'assignments.id')
-                    ->select('invoices.*', 'assignments.assignment_type_id', 'assignments.expertise_type_id', 'assignments.vehicle_id', 'assignments.client_id', 'assignments.insurer_id', 'assignments.repairer_id', 'assignments.receipt_amount')
+        $invoices = Invoice::with('transaction:id,reference,amount_excluding_tax,amount_tax,amount', 'status:id,code,label', 'createdBy:id,name,email,created_at', 'updatedBy:id,name,email,created_at', 'deletedBy:id,name,email,created_at', 'cancelledBy:id,name,email,created_at')
+                    ->join('transactions', 'invoices.transaction_id', '=', 'transactions.id')
+                    ->select('invoices.*', 'transactions.entity_id')
                     ->accessibleBy(auth()->user());
         
         if($start_date && $end_date){
@@ -61,40 +63,10 @@ class InvoiceController extends Controller
             $invoices = $invoices->where('invoices.date', '<=', $end_date);
         }
 
-        $assignment_type_id = null;
-        if(request()->filled('assignment_type_id')){
-            $assignment_type_id = AssignmentType::keyFromHashId(request()->assignment_type_id);
-            $invoices = $invoices->where('assignments.assignment_type_id', $assignment_type_id);
-        }
-
-        $expertise_type_id = null;
-        if(request()->filled('expertise_type_id')){
-            $expertise_type_id = ExpertiseType::keyFromHashId(request()->expertise_type_id);
-            $invoices = $invoices->where('assignments.expertise_type_id', $expertise_type_id);
-        }
-
-        $vehicle_id = null;
-        if(request()->filled('vehicle_id')){
-            $vehicle_id = Vehicle::keyFromHashId(request()->vehicle_id);
-            $invoices = $invoices->where('assignments.vehicle_id', $vehicle_id);
-        }
-
-        $client_id = null;
-        if(request()->filled('client_id')){
-            $client_id = Client::keyFromHashId(request()->client_id);
-            $invoices = $invoices->where('assignments.client_id', $client_id);
-        }
-
-        $insurer_id = null;
-        if(request()->filled('insurer_id')){
-            $insurer_id = Entity::keyFromHashId(request()->insurer_id);
-            $invoices = $invoices->where('assignments.insurer_id', $insurer_id);
-        }
-
-        $repairer_id = null;
-        if(request()->filled('repairer_id')){
-            $repairer_id = Entity::keyFromHashId(request()->repairer_id);
-            $invoices = $invoices->where('assignments.repairer_id', $repairer_id);
+        $entity_id = null;
+        if(request()->filled('entity_id')){
+            $entity_id = Entity::keyFromHashId(request()->entity_id);
+            $invoices = $invoices->where('transactions.entity_id', $entity_id);
         }
 
         $status_id = null;
@@ -103,12 +75,12 @@ class InvoiceController extends Controller
             $invoices = $invoices->where('status_id', $status_id);
         }
 
-        $total_amount = $invoices->sum('assignments.receipt_amount');
+        $total_amount = $invoices->sum('transactions.quantity') * AppSetting::where('code', 'credit_cost')->first()->value;
 
         $invoices = $invoices->latest('invoices.created_at')->useFilters()->dynamicPaginate();
 
-        if($start_date || $end_date || $status_id || $assignment_type_id || $expertise_type_id || $vehicle_id || $client_id || $insurer_id){
-            $export_url = $this->export($start_date, $end_date, $status_id, $assignment_type_id, $expertise_type_id, $vehicle_id, $client_id, $insurer_id);
+        if($start_date || $end_date || $status_id || $entity_id){
+            $export_url = $this->export($start_date, $end_date, $status_id, $entity_id);
         }
 
         return InvoiceResource::collection($invoices)->additional([
@@ -123,12 +95,12 @@ class InvoiceController extends Controller
      *
      * @authenticated
      */
-    public function export($start_date, $end_date, $status_id, $assignment_type_id, $expertise_type_id, $vehicle_id, $client_id, $insurer_id) : string
+    public function export($start_date, $end_date, $status_id, $entity_id) : string
     {        
         $start_date = $start_date ? Carbon::parse($start_date)->startOfDay() : null;
         $end_date = $end_date ? Carbon::parse($end_date)->endOfDay() : null;
 
-        $invoices = \App\Models\Invoice::with('assignment:id,reference,receipt_amount_excluding_tax,receipt_amount_tax,receipt_amount,expert_firm_id', 'status:id,code,label')->accessibleBy(auth()->user());
+        $invoices = \App\Models\Invoice::with('transaction:id,reference,amount_excluding_tax,amount_tax,amount', 'status:id,code,label')->accessibleBy(auth()->user());
 
         if ($start_date && $end_date) {
             $invoices = $invoices->whereBetween('invoices.date', [$start_date, $end_date]);
@@ -138,34 +110,12 @@ class InvoiceController extends Controller
             $invoices = $invoices->where('invoices.date', '<=', $end_date);
         }
 
-        if($assignment_type_id){
-            $invoices = $invoices->where(function($query) use ($assignment_type_id){
-                $query->where(['assignment.assignment_type_id' => $assignment_type_id]);
-            });
+        if($entity_id){
+            $invoices = $invoices->where('transactions.entity_id', $entity_id);
         }
 
-        if($expertise_type_id){
-            $invoices = $invoices->where(function($query) use ($expertise_type_id){
-                $query->where(['assignment.expertise_type_id' => $expertise_type_id]);
-            });
-        }
-
-        if($vehicle_id){
-            $invoices = $invoices->where(function($query) use ($vehicle_id){
-                $query->where(['assignment.vehicle_id' => $vehicle_id]);
-            });
-        }
-
-        if($client_id){
-            $invoices = $invoices->where(function($query) use ($client_id){
-                $query->where(['assignment.client_id' => $client_id]);
-            });
-        }
-
-        if($insurer_id){
-            $invoices = $invoices->where(function($query) use ($insurer_id){
-                $query->where(['assignment.insurer_id' => $insurer_id]);
-            });
+        if($status_id){
+            $invoices = $invoices->where('status_id', $status_id);
         }
 
         $invoices = $invoices->latest('invoices.created_at')
@@ -176,7 +126,7 @@ class InvoiceController extends Controller
         // En-tête
         $exportData[] = [
             'Référence',
-            'Dossier',
+            'Transaction',
             'Montant',
             'Statut',
             'Date de création'
@@ -185,8 +135,8 @@ class InvoiceController extends Controller
         foreach ($invoices as $invoice) {
             $exportData[] = [
                 $invoice->reference,
-                $invoice->assignment ? $invoice->assignment->reference : '',
-                $invoice->assignment->receipt_amount,
+                $invoice->transaction ? $invoice->transaction->reference : '',
+                $invoice->transaction->quantity * AppSetting::where('code', 'credit_cost')->first()->value,
                 $invoice->status ? $invoice->status->label : '',
                 $invoice->created_at ?  $invoice->created_at->format('d/m/Y H:i:s') : '',
             ];
@@ -228,9 +178,9 @@ class InvoiceController extends Controller
         $start_date = request()->filled('start_date') ? Carbon::parse(request()->start_date)->startOfDay() : null;
         $end_date = request()->filled('end_date') ? Carbon::parse(request()->end_date)->endOfDay() : null;
 
-        $invoices_by_year_and_month_count = Invoice::join('assignments', 'invoices.assignment_id', '=', 'assignments.id')
+        $invoices_by_year_and_month_count = Invoice::join('transactions', 'invoices.transaction_id', '=', 'transactions.id')
             ->selectRaw('YEAR(invoices.created_at) as year, MONTH(invoices.created_at) as month, COUNT(*) as count')
-            ->where(['assignments.expert_firm_id' => auth()->user()->entity_id]);
+            ->where(['transactions.entity_id' => auth()->user()->entity_id]);
 
         if($start_date && $end_date){
             $invoices_by_year_and_month_count = $invoices_by_year_and_month_count->whereBetween('invoices.created_at', [$start_date, $end_date]);
@@ -240,40 +190,10 @@ class InvoiceController extends Controller
             $invoices_by_year_and_month_count = $invoices_by_year_and_month_count->where('invoices.created_at', '<=', $end_date);
         }
 
-        $assignment_type_id = null;
-        if(request()->filled('assignment_type_id')){
-            $assignment_type_id = AssignmentType::keyFromHashId(request()->assignment_type_id);
-            $invoices_by_year_and_month_count = $invoices_by_year_and_month_count->where('assignments.assignment_type_id', $assignment_type_id);
-        }
-
-        $expertise_type_id = null;
-        if(request()->filled('expertise_type_id')){
-            $expertise_type_id = ExpertiseType::keyFromHashId(request()->expertise_type_id);
-            $invoices_by_year_and_month_count = $invoices_by_year_and_month_count->where('assignments.expertise_type_id', $expertise_type_id);
-        }
-
-        $vehicle_id = null;
-        if(request()->filled('vehicle_id')){
-            $vehicle_id = Vehicle::keyFromHashId(request()->vehicle_id);
-            $invoices_by_year_and_month_count = $invoices_by_year_and_month_count->where('assignments.vehicle_id', $vehicle_id);
-        }
-
-        $client_id = null;
-        if(request()->filled('client_id')){
-            $client_id = Client::keyFromHashId(request()->client_id);
-            $invoices_by_year_and_month_count = $invoices_by_year_and_month_count->where('assignments.client_id', $client_id);
-        }
-
-        $insurer_id = null;
-        if(request()->filled('insurer_id')){
-            $insurer_id = Entity::keyFromHashId(request()->insurer_id);
-            $invoices_by_year_and_month_count = $invoices_by_year_and_month_count->where('assignments.insurer_id', $insurer_id);
-        }
-
-        $repairer_id = null;
-        if(request()->filled('repairer_id')){
-            $repairer_id = Entity::keyFromHashId(request()->repairer_id);
-            $invoices_by_year_and_month_count = $invoices_by_year_and_month_count->where('assignments.repairer_id', $repairer_id);
+        $entity_id = null;
+        if(request()->filled('entity_id')){
+            $entity_id = Entity::keyFromHashId(request()->entity_id);
+            $invoices_by_year_and_month_count = $invoices_by_year_and_month_count->where('transactions.entity_id', $entity_id);
         }
 
         $status_id = null;
@@ -289,9 +209,9 @@ class InvoiceController extends Controller
             ->useFilters()
             ->get();
 
-        $invoices_by_year_and_month_amount = Invoice::join('assignments', 'invoices.assignment_id', '=', 'assignments.id')
-            ->selectRaw('YEAR(invoices.created_at) as year, MONTH(invoices.created_at) as month, SUM(assignments.receipt_amount) as amount')
-            ->where(['assignments.expert_firm_id' => auth()->user()->entity_id]);
+        $invoices_by_year_and_month_amount = Invoice::join('transactions', 'invoices.transaction_id', '=', 'transactions.id')
+            ->selectRaw('YEAR(invoices.created_at) as year, MONTH(invoices.created_at) as month, SUM(transactions.quantity) * '.AppSetting::where('code', 'credit_cost')->first()->value.' as amount')
+            ->where(['transactions.entity_id' => auth()->user()->entity_id]);
 
         if($start_date && $end_date){
             $invoices_by_year_and_month_amount = $invoices_by_year_and_month_amount->whereBetween('invoices.created_at', [$start_date, $end_date]);
@@ -301,40 +221,10 @@ class InvoiceController extends Controller
             $invoices_by_year_and_month_amount = $invoices_by_year_and_month_amount->where('invoices.created_at', '<=', $end_date);
         }
 
-        $assignment_type_id = null;
-        if(request()->filled('assignment_type_id')){
-            $assignment_type_id = AssignmentType::keyFromHashId(request()->assignment_type_id);
-            $invoices_by_year_and_month_amount = $invoices_by_year_and_month_amount->where('assignments.assignment_type_id', $assignment_type_id);
-        }
-
-        $expertise_type_id = null;
-        if(request()->filled('expertise_type_id')){
-            $expertise_type_id = ExpertiseType::keyFromHashId(request()->expertise_type_id);
-            $invoices_by_year_and_month_amount = $invoices_by_year_and_month_amount->where('assignments.expertise_type_id', $expertise_type_id);
-        }
-
-        $vehicle_id = null;
-        if(request()->filled('vehicle_id')){
-            $vehicle_id = Vehicle::keyFromHashId(request()->vehicle_id);
-            $invoices_by_year_and_month_amount = $invoices_by_year_and_month_amount->where('assignments.vehicle_id', $vehicle_id);
-        }   
-
-        $client_id = null;
-        if(request()->filled('client_id')){
-            $client_id = Client::keyFromHashId(request()->client_id);
-            $invoices_by_year_and_month_amount = $invoices_by_year_and_month_amount->where('assignments.client_id', $client_id);
-        }
-
-        $insurer_id = null;
-        if(request()->filled('insurer_id')){
-            $insurer_id = Entity::keyFromHashId(request()->insurer_id);
-            $invoices_by_year_and_month_amount = $invoices_by_year_and_month_amount->where('assignments.insurer_id', $insurer_id);
-        }   
-
-        $repairer_id = null;
-        if(request()->filled('repairer_id')){
-            $repairer_id = Entity::keyFromHashId(request()->repairer_id);
-            $invoices_by_year_and_month_amount = $invoices_by_year_and_month_amount->where('assignments.repairer_id', $repairer_id);
+        $entity_id = null;
+        if(request()->filled('entity_id')){
+            $entity_id = Entity::keyFromHashId(request()->entity_id);
+            $invoices_by_year_and_month_amount = $invoices_by_year_and_month_amount->where('transactions.entity_id', $entity_id);
         }
 
         $status_id = null;
@@ -435,16 +325,16 @@ class InvoiceController extends Controller
      */
     public function store(CreateInvoiceRequest $request): JsonResponse
     {
-        $assignment = Assignment::accessibleBy(auth()->user())->findOrFail($request->assignment_id);
+        $transaction = Transaction::accessibleBy(auth()->user())->findOrFail($request->transaction_id);
 
-        if(Invoice::where(['assignment_id' => $assignment->id, 'type' => $request->type, 'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id])->exists()){
-            return $this->responseUnprocessable("La facture est déjà générée pour ce dossier.");
-        }
+        // if(Invoice::where(['transaction_id' => $transaction->id, 'type' => $request->type, 'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id])->exists()){
+        //     return $this->responseUnprocessable("La facture est déjà générée pour cette transaction.");
+        // }
 
-        $receipt_amount = Receipt::where('assignment_id', $assignment->id)->sum('amount');
-        if(!$receipt_amount || $receipt_amount == 0){
-            return $this->responseUnprocessable("Ce dossier n'a aucune quittance.");
-        }
+        // $receipt_amount = Receipt::where('transaction_id', $transaction->id)->sum('amount');
+        // if(!$receipt_amount || $receipt_amount == 0){
+        //     return $this->responseUnprocessable("Cette transaction n'a aucune quittance.");
+        // }
 
         $now = Carbon::now();
         $annee = date("Y");
@@ -457,7 +347,7 @@ class InvoiceController extends Controller
             'reference' => $reference,
             'date' => $request->date,
             'object' => $request->object,
-            'assignment_id' => $request->assignment_id,
+            'transaction_id' => $transaction->id,
             'type' => $request->type,
             'invoice_reference' => $request->type == 'credit_bill' ? $request->invoice_reference : null,
             'payment_method' => $request->payment_method,
@@ -472,19 +362,25 @@ class InvoiceController extends Controller
         ]);
 
         if($request->address || $request->taxpayer_account_number){
-            if($assignment->assignment_type_id == AssignmentType::where('code', AssignmentTypeEnum::INSURER)->first()->id){ // Si le client existe
-                $entity = Entity::findOrFail($assignment->insurer_id);
+            if($transaction->entity->entity_type_code == EntityType::where('code', EntityTypeEnum::INSURER)->first()->hashId){ // Si le client existe
+                $entity = Entity::findOrFail($transaction->entity_id);
                 $entity->update([
                     'address' => $request->address,
                     'taxpayer_account_number' => $request->taxpayer_account_number,
                 ]);
             }  else {
-                $client = Client::findOrFail($assignment->client_id);
+                $client = Client::findOrFail($transaction->entity_id);
                 $client->update([
                     'address' => $request->address,
                     'taxpayer_account_number' => $request->taxpayer_account_number,
                 ]);
             }
+        }
+
+        if($request->type == 'credit_bill' && $request->invoice_reference){
+            Invoice::where('transaction_id', $transaction->id)->where('reference', $request->invoice_reference)->update([
+                'status_id' => Status::where('code', StatusEnum::CANCELLED)->first()->id,
+            ]);
         }
 
         dispatch(new GenerateInvoicePdfJob($invoice));
@@ -499,12 +395,12 @@ class InvoiceController extends Controller
      */
     public function show($id): JsonResponse
     {
-        $invoice = Invoice::join('assignments', 'invoices.assignment_id', '=', 'assignments.id')
+        $invoice = Invoice::join('transactions', 'invoices.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('invoices.id', Invoice::keyFromHashId($id))
             ->first();
 
-        return $this->responseSuccess(null, new InvoiceResource($invoice->load('assignment:id,reference,receipt_amount_excluding_tax,receipt_amount_tax,receipt_amount', 'status:id,code,label', 'createdBy:id,name,email,created_at', 'updatedBy:id,name,email,created_at', 'deletedBy:id,name,email,created_at', 'cancelledBy:id,name,email,created_at')));
+        return $this->responseSuccess(null, new InvoiceResource($invoice->load('transaction:id,reference,amount_excluding_tax,amount_tax,amount', 'status:id,code,label', 'createdBy:id,name,email,created_at', 'updatedBy:id,name,email,created_at', 'deletedBy:id,name,email,created_at', 'cancelledBy:id,name,email,created_at')));
     }
 
     /**
@@ -514,7 +410,7 @@ class InvoiceController extends Controller
      */
     public function update(UpdateInvoiceRequest $request, $id): JsonResponse
     {
-        $invoice = Invoice::join('assignments', 'invoices.assignment_id', '=', 'assignments.id')
+        $invoice = Invoice::join('transactions', 'invoices.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('invoices.id', Invoice::keyFromHashId($id))
             ->firstOrFail();
@@ -539,7 +435,7 @@ class InvoiceController extends Controller
      */
     public function generate($id): JsonResponse
     {
-        $invoice = Invoice::join('assignments', 'invoices.assignment_id', '=', 'assignments.id')
+        $invoice = Invoice::join('transactions', 'invoices.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('invoices.id', Invoice::keyFromHashId($id))
             ->firstOrFail();
@@ -556,7 +452,7 @@ class InvoiceController extends Controller
      */
     public function cancel($id): JsonResponse
     {
-        $invoice = Invoice::join('assignments', 'invoices.assignment_id', '=', 'assignments.id')
+        $invoice = Invoice::join('transactions', 'invoices.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('invoices.id', Invoice::keyFromHashId($id))
             ->firstOrFail();
@@ -568,10 +464,13 @@ class InvoiceController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
-        $assignment = Assignment::findOrFail($invoice->assignment_id);
+        $transaction = Transaction::findOrFail($invoice->transaction_id);
 
-        $assignment->update([
-            'status_id' => Status::where('code', StatusEnum::VALIDATED)->first()->id,
+        $transaction->update([
+            'status_id' => Status::where('code', StatusEnum::CANCELLED)->first()->id,
+            'cancelled_by' => auth()->user()->id,
+            'cancelled_at' => Carbon::now(),
+            'updated_by' => auth()->user()->id,
         ]);
 
         return $this->responseSuccess('Facture annulée avec succès', new InvoiceResource($invoice));

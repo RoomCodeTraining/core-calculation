@@ -1,20 +1,20 @@
-name: 'Gestion des caractéristiques des véhicules'
+name: 'Gestion des historiques de paiement'
 description: |-
 
-  APIs pour la gestion des caractéristiques des véhicules
+  APIs pour la gestion des historiques de paiement
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/vehicle-characteristics
+    uri: api/v1/payment-historics
     metadata:
-      groupName: 'Gestion des caractéristiques des véhicules'
+      groupName: 'Gestion des historiques de paiement'
       groupDescription: |-
 
-        APIs pour la gestion des caractéristiques des véhicules
+        APIs pour la gestion des historiques de paiement
       subgroup: ''
       subgroupDescription: ''
-      title: 'Lister toutes les caractéristiques des véhicules'
+      title: 'Lister tous les historiques de paiement'
       description: ''
       authenticated: true
       deprecated: false
@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 1dbaD5kvc683P4ahZ6VegfE'
+      - 'Bearer 541edZ3v6ckVDaag6f8bhEP'
     controller: null
     method: null
     route: null
@@ -52,15 +52,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/vehicle-characteristics
+    uri: api/v1/payment-historics
     metadata:
-      groupName: 'Gestion des caractéristiques des véhicules'
+      groupName: 'Gestion des historiques de paiement'
       groupDescription: |-
 
-        APIs pour la gestion des caractéristiques des véhicules
+        APIs pour la gestion des historiques de paiement
       subgroup: ''
       subgroupDescription: ''
-      title: 'Créer une caractéristique de véhicule'
+      title: 'Créer un historique de paiement'
       description: ''
       authenticated: true
       deprecated: false
@@ -73,125 +73,15 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      vehicle_model_id:
-        name: vehicle_model_id
-        description: 'The <code>id</code> of an existing record in the vehicle_models table.'
-        required: true
-        example: sed
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      vehicle_genre_usage_id:
-        name: vehicle_genre_usage_id
-        description: 'The <code>id</code> of an existing record in the vehicle_genre_usages table.'
-        required: true
-        example: fugit
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      vehicle_energy_id:
-        name: vehicle_energy_id
-        description: 'The <code>id</code> of an existing record in the vehicle_energies table.'
-        required: true
-        example: et
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      dealer_id:
-        name: dealer_id
-        description: 'The <code>id</code> of an existing record in the dealers table.'
-        required: true
-        example: repellat
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      type:
-        name: type
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: false
-        example: pskpyhpr
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      options:
-        name: options
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: false
-        example: mpp
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      fiscal_power:
-        name: fiscal_power
-        description: 'La valeur de value doit être supérieure ou égale à 0.'
-        required: false
-        example: 39
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      nb_seats:
-        name: nb_seats
-        description: ''
-        required: false
-        example: 10
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      new_market_value:
-        name: new_market_value
-        description: 'La valeur de value doit être supérieure ou égale à 0.'
-        required: false
-        example: 37
-        type: number
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      date:
-        name: date
-        description: 'Must be a valid date in the format <code>Y-m-d</code>. Le champ value doit être une date antérieure au <code>tomorrow</code>.'
-        required: true
-        example: '2004-06-19'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      vehicle_model_id: sed
-      vehicle_genre_usage_id: fugit
-      vehicle_energy_id: et
-      dealer_id: repellat
-      type: pskpyhpr
-      options: mpp
-      fiscal_power: 39
-      nb_seats: 10
-      new_market_value: 37
-      date: '2004-06-19'
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 1E6vVca6bdg34hfD5e8kZaP'
+      - 'Bearer cvPdf5ZEg6Vk1ba68h3e4Da'
     controller: null
     method: null
     route: null
@@ -199,15 +89,15 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/vehicle-characteristics/{id}'
+    uri: 'api/v1/payment-historics/{paymentHistoric}'
     metadata:
-      groupName: 'Gestion des caractéristiques des véhicules'
+      groupName: 'Gestion des historiques de paiement'
       groupDescription: |-
 
-        APIs pour la gestion des caractéristiques des véhicules
+        APIs pour la gestion des historiques de paiement
       subgroup: ''
       subgroupDescription: ''
-      title: 'Afficher une caractéristique de véhicule'
+      title: 'Afficher un historique de paiement'
       description: ''
       authenticated: true
       deprecated: false
@@ -217,18 +107,18 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the vehicle characteristic.'
+      paymentHistoric:
+        name: paymentHistoric
+        description: ''
         required: true
-        example: rerum
+        example: deleniti
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: rerum
+      paymentHistoric: deleniti
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -248,7 +138,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Pdk45gDa6Zf1h3e68VvcEba'
+      - 'Bearer 8vk4EgfZd56abecDaP1V3h6'
     controller: null
     method: null
     route: null
@@ -256,15 +146,15 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/v1/vehicle-characteristics/{id}'
+    uri: 'api/v1/payment-historics/{paymentHistoric}'
     metadata:
-      groupName: 'Gestion des caractéristiques des véhicules'
+      groupName: 'Gestion des historiques de paiement'
       groupDescription: |-
 
-        APIs pour la gestion des caractéristiques des véhicules
+        APIs pour la gestion des historiques de paiement
       subgroup: ''
       subgroupDescription: ''
-      title: 'Mettre à jour une caractéristique de véhicule'
+      title: ''
       description: ''
       authenticated: true
       deprecated: false
@@ -274,165 +164,18 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the vehicle characteristic.'
-        required: true
-        example: nihil
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: nihil
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      vehicle_model_id:
-        name: vehicle_model_id
-        description: 'The <code>id</code> of an existing record in the vehicle_models table.'
-        required: true
-        example: tenetur
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      vehicle_genre_usage_id:
-        name: vehicle_genre_usage_id
-        description: 'The <code>id</code> of an existing record in the vehicle_genre_usages table.'
-        required: true
-        example: porro
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      vehicle_energy_id:
-        name: vehicle_energy_id
-        description: 'The <code>id</code> of an existing record in the vehicle_energies table.'
-        required: true
-        example: reiciendis
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      dealer_id:
-        name: dealer_id
-        description: 'The <code>id</code> of an existing record in the dealers table.'
-        required: true
-        example: maxime
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      type:
-        name: type
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: false
-        example: ddigy
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      options:
-        name: options
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: false
-        example: lgswobubpe
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      fiscal_power:
-        name: fiscal_power
-        description: 'La valeur de value doit être supérieure ou égale à 0.'
-        required: false
-        example: 4
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      nb_seats:
-        name: nb_seats
+      paymentHistoric:
+        name: paymentHistoric
         description: ''
-        required: false
-        example: 12
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-      new_market_value:
-        name: new_market_value
-        description: 'La valeur de value doit être supérieure ou égale à 0.'
-        required: false
-        example: 3
-        type: number
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: true
-        custom: []
-    cleanBodyParameters:
-      vehicle_model_id: tenetur
-      vehicle_genre_usage_id: porro
-      vehicle_energy_id: reiciendis
-      dealer_id: maxime
-      type: ddigy
-      options: lgswobubpe
-      fiscal_power: 4
-      nb_seats: 12
-      new_market_value: 3
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer Ef8Pg63k16dZacaDbV45veh'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/vehicle-characteristics/{id}'
-    metadata:
-      groupName: 'Gestion des caractéristiques des véhicules'
-      groupDescription: |-
-
-        APIs pour la gestion des caractéristiques des véhicules
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Supprimer une caractéristique de véhicule'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the vehicle characteristic.'
         required: true
-        example: ea
+        example: corrupti
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: ea
+      paymentHistoric: corrupti
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -443,7 +186,55 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer k1548b3ZaEc6v6DghfPeadV'
+      - 'Bearer aPvhZ1aVeDg6f5b3c8d46Ek'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/payment-historics/{paymentHistoric}'
+    metadata:
+      groupName: 'Gestion des historiques de paiement'
+      groupDescription: |-
+
+        APIs pour la gestion des historiques de paiement
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Supprimer un historique de paiement'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      paymentHistoric:
+        name: paymentHistoric
+        description: ''
+        required: true
+        example: fugiat
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      paymentHistoric: fugiat
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer EPc6hagD6kbZfv8aed15V43'
     controller: null
     method: null
     route: null

@@ -43,5 +43,14 @@ class ReceiptTypeSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
         ]);
+
+        ReceiptType::create([
+            'code' => ReceiptTypeEnum::CREDIT,
+            'label' => "Crédit",
+            'description' => "Crédit",
+            'status_id' => Status::firstWhere('code', StatusEnum::ACTIVE)->id,
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
     }
 }

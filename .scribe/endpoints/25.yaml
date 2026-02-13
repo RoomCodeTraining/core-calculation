@@ -1,0 +1,395 @@
+name: 'Gestion des calculs'
+description: |-
+
+  APIs pour la gestion des calculs
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/calculations
+    metadata:
+      groupName: 'Gestion des calculs'
+      groupDescription: |-
+
+        APIs pour la gestion des calculs
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister tous les calculs'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer bfveVh64kD685E1gZ3cadaP'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/calculations
+    metadata:
+      groupName: 'Gestion des calculs'
+      groupDescription: |-
+
+        APIs pour la gestion des calculs
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Créer un calcul'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      license_plate:
+        name: license_plate
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: zzhsq
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      mileage:
+        name: mileage
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: true
+        example: 51
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      serial_number:
+        name: serial_number
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: swpycbiclkoftigb
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      first_entry_into_circulation_date:
+        name: first_entry_into_circulation_date
+        description: "Le champ value n'est pas une date valide."
+        required: true
+        example: '2026-02-13T01:22:30'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      calculation_date:
+        name: calculation_date
+        description: "Le champ value n'est pas une date valide."
+        required: true
+        example: '2026-02-13T01:22:30'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      insured:
+        name: insured
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: annxyotuyxguxowyzsrbmnek
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      vehicle_characteristics_id:
+        name: vehicle_characteristics_id
+        description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
+        required: true
+        example: porro
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      license_plate: zzhsq
+      mileage: 51
+      serial_number: swpycbiclkoftigb
+      first_entry_into_circulation_date: '2026-02-13T01:22:30'
+      calculation_date: '2026-02-13T01:22:30'
+      insured: annxyotuyxguxowyzsrbmnek
+      vehicle_characteristics_id: porro
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Z3E1D8Pefvb6ag5ak64hVcd'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/calculations/{id}'
+    metadata:
+      groupName: 'Gestion des calculs'
+      groupDescription: |-
+
+        APIs pour la gestion des calculs
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Afficher un calcul'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the calculation.'
+        required: true
+        example: fuga
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: fuga
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer ZP653a8avf1gEb6hkVDcd4e'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/calculations/{id}'
+    metadata:
+      groupName: 'Gestion des calculs'
+      groupDescription: |-
+
+        APIs pour la gestion des calculs
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mettre à jour un calcul'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the calculation.'
+        required: true
+        example: enim
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: enim
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      license_plate:
+        name: license_plate
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: qakes
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      mileage:
+        name: mileage
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: true
+        example: 18
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      serial_number:
+        name: serial_number
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: nhmbsjtl
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      first_entry_into_circulation_date:
+        name: first_entry_into_circulation_date
+        description: "Le champ value n'est pas une date valide."
+        required: true
+        example: '2026-02-13T01:22:30'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      calculation_date:
+        name: calculation_date
+        description: "Le champ value n'est pas une date valide."
+        required: true
+        example: '2026-02-13T01:22:30'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      insured:
+        name: insured
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: fyzezaxpeelhavht
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      vehicle_characteristics_id:
+        name: vehicle_characteristics_id
+        description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
+        required: true
+        example: suscipit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      license_plate: qakes
+      mileage: 18
+      serial_number: nhmbsjtl
+      first_entry_into_circulation_date: '2026-02-13T01:22:30'
+      calculation_date: '2026-02-13T01:22:30'
+      insured: fyzezaxpeelhavht
+      vehicle_characteristics_id: suscipit
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6bkdDaZ4ceVfg3v61a58PEh'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/calculations/{id}'
+    metadata:
+      groupName: 'Gestion des calculs'
+      groupDescription: |-
+
+        APIs pour la gestion des calculs
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Supprimer un calcul'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the calculation.'
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 3
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 5evc1EhVZ483ka66dgDPbaf'
+    controller: null
+    method: null
+    route: null
+    custom: []

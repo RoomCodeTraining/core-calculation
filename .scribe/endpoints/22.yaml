@@ -1,20 +1,20 @@
-name: 'Gestion des transactions'
+name: 'Gestion des usages de véhicules'
 description: |-
 
-  APIs pour la gestion des transactions
+  APIs pour la gestion des usages
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/transactions
+    uri: api/v1/usages
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des usages de véhicules'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des usages
       subgroup: ''
       subgroupDescription: ''
-      title: 'Lister toutes les transactions'
+      title: 'Lister tous les usages de véhicules'
       description: ''
       authenticated: true
       deprecated: false
@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer hV4gk5361daa8cbEPfDv6eZ'
+      - 'Bearer 34a6ZaV5ecvd81DgEkf6hbP'
     controller: null
     method: null
     route: null
@@ -52,15 +52,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/transactions
+    uri: api/v1/usages
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des usages de véhicules'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des usages
       subgroup: ''
       subgroupDescription: ''
-      title: 'Créer une transaction'
+      title: 'Ajouter un usage de véhicule'
       description: ''
       authenticated: true
       deprecated: false
@@ -74,58 +74,58 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      quantity:
-        name: quantity
-        description: 'La valeur de value doit être supérieure ou égale à 1.'
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: 90
-        type: number
+        example: wozrmjg
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
       description:
         name: description
-        description: ''
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: 'Alias quia vero nihil atque.'
+        example: 'Mollitia laborum et atque dolores enim commodi esse.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
-      entity_id:
-        name: entity_id
-        description: 'The <code>id</code> of an existing record in the entities table.'
-        required: true
-        example: consequatur
-        type: string
+      max_mileage_essence_per_year:
+        name: max_mileage_essence_per_year
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: false
+        example: 27
+        type: number
         enumValues: []
         exampleWasSpecified: false
-        nullable: false
+        nullable: true
         custom: []
-      transaction_type_id:
-        name: transaction_type_id
-        description: 'The <code>id</code> of an existing record in the transaction_types table.'
-        required: true
-        example: voluptas
-        type: string
+      max_mileage_diesel_per_year:
+        name: max_mileage_diesel_per_year
+        description: 'La valeur de value doit être supérieure ou égale à 0.'
+        required: false
+        example: 76
+        type: number
         enumValues: []
         exampleWasSpecified: false
-        nullable: false
+        nullable: true
         custom: []
     cleanBodyParameters:
-      quantity: 90
-      description: 'Alias quia vero nihil atque.'
-      entity_id: consequatur
-      transaction_type_id: voluptas
+      label: wozrmjg
+      description: 'Mollitia laborum et atque dolores enim commodi esse.'
+      max_mileage_essence_per_year: 27
+      max_mileage_diesel_per_year: 76
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer k5ZvgD614f3d86abcPaEVeh'
+      - 'Bearer aE3Dd815vbcV6g6ZhekPaf4'
     controller: null
     method: null
     route: null
@@ -133,15 +133,15 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/transactions/{id}'
+    uri: 'api/v1/usages/{id}'
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des usages de véhicules'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des usages
       subgroup: ''
       subgroupDescription: ''
-      title: 'Afficher une transaction'
+      title: 'Afficher un usage de véhicule'
       description: ''
       authenticated: true
       deprecated: false
@@ -153,16 +153,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the transaction.'
+        description: 'The ID of the usage.'
         required: true
-        example: sit
+        example: quibusdam
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: sit
+      id: quibusdam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -182,7 +182,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vce4h6b6Z5kaV3DEfad8Pg1'
+      - 'Bearer 3kVvfhPdZD865aE1g4a6bce'
     controller: null
     method: null
     route: null
@@ -190,15 +190,15 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/v1/transactions/{id}'
+    uri: 'api/v1/usages/{id}'
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des usages de véhicules'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des usages
       subgroup: ''
       subgroupDescription: ''
-      title: 'Mettre à jour une transaction'
+      title: 'Mettre à jour un usage de véhicule'
       description: ''
       authenticated: true
       deprecated: false
@@ -210,27 +210,49 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the transaction.'
+        description: 'The ID of the usage.'
         required: true
-        example: dolores
+        example: est
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: dolores
+      id: est
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: 'Necessitatibus consequuntur quia numquam optio quos numquam debitis.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      label: b
+      description: 'Necessitatibus consequuntur quia numquam optio quos numquam debitis.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer PhE4kZbe6d3v5Vf81D6cgaa'
+      - 'Bearer 6kb8h6d1avg5VZ4eaEfcPD3'
     controller: null
     method: null
     route: null
@@ -238,15 +260,15 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/transactions/{id}'
+    uri: 'api/v1/usages/{id}'
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des usages de véhicules'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des usages
       subgroup: ''
       subgroupDescription: ''
-      title: 'Supprimer une transaction'
+      title: 'Supprimer un usage de véhicule'
       description: ''
       authenticated: true
       deprecated: false
@@ -258,16 +280,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the transaction.'
+        description: 'The ID of the usage.'
         required: true
-        example: necessitatibus
+        example: rem
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: necessitatibus
+      id: rem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -278,55 +300,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 61b45agahd6PZVf3E8kDecv'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-    uri: 'api/v1/transactions/{transaction}/cancel'
-    metadata:
-      groupName: 'Gestion des transactions'
-      groupDescription: |-
-
-        APIs pour la gestion des transactions
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Annuler une transaction'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      transaction:
-        name: transaction
-        description: 'The transaction.'
-        required: true
-        example: sapiente
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      transaction: sapiente
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 1kaEVb6echdPv8f3Z64D5ag'
+      - 'Bearer kgZ4hV8b6c51dfe3Dva6PEa'
     controller: null
     method: null
     route: null

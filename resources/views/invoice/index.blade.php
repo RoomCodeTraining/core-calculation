@@ -5,7 +5,7 @@
         <meta name="robots" content="noindex, nofollow">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Rapport d'expertise {{$assignment->reference}} / {{assignment?->expertFirm?->name ?? ''}}</title>
+        <title>Facture {{$transaction->reference}} / {{$transaction?->entity?->name ?? ''}}</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}">
@@ -103,43 +103,13 @@
                             <b style="text-decoration: underline;">
                                 {{ $invoice?->type == 'credit_bill' ? 'AVOIR' : 'DOIT' }}
                             </b> 
-                            @if($assignment?->assignmentType?->code == 'insurer')
-                                @if($assignment?->additionalInsurer)
-                                    <b> : 
-                                        <span style="padding-left: 10px;">
-                                            {{ $assignment?->insurer?->name ?? '' }} / {{ $assignment?->client?->name ?? '' }}
-                                        </span>
-                                    </b><br>
-                                    <b style="text-decoration: underline;">Adresse</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->insurer?->address ?? '' }}</span></b><br>
-                                    <b style="text-decoration: underline;">Numéro de compte contribuable</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->insurer?->taxpayer_account_number ?? '' }}</span></b><br>
-                                @else
-                                    @if($assignment?->broker)
-                                    <b> : 
-                                        <span style="padding-left: 10px;">
-                                            {{ $assignment?->broker?->name ?? '' }} / {{ $assignment?->client?->name ?? '' }}
-                                        </span>
-                                    </b><br>
-                                    <b style="text-decoration: underline;">Adresse</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->broker?->address ?? '' }}</span></b><br>
-                                    <b style="text-decoration: underline;">Numéro de compte contribuable</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->broker?->taxpayer_account_number ?? '' }}</span></b><br>
-                                    @else
-                                    <b> : 
-                                        <span style="padding-left: 10px;">
-                                            {{ $assignment?->insurer?->name ?? '' }} / {{ $assignment?->client?->name ?? '' }}
-                                        </span>
-                                    </b><br>
-                                    <b style="text-decoration: underline;">Adresse</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->insurer?->address ?? '' }}</span></b><br>
-                                    <b style="text-decoration: underline;">Numéro de compte contribuable</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->insurer?->taxpayer_account_number ?? '' }}</span></b><br>
-                                    @endif
-                                @endif
-                            @else
                             <b> : 
                                 <span style="padding-left: 10px;">
-                                    {{ $assignment?->client?->name ?? '' }}
+                                    {{ $transaction?->entity?->name ?? '' }}
                                 </span>
                             </b><br>
-                            <b style="text-decoration: underline;">Adresse</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->client?->address ?? '' }}</span></b><br>
-                            <b style="text-decoration: underline;">Numéro de compte contribuable</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->client?->taxpayer_account_number ?? '' }}</span></b><br>
-                            @endif
+                            <b style="text-decoration: underline;">Adresse</b> <b> : <span style="padding-left: 10px;">{{ $transaction?->entity?->address ?? '' }}</span></b><br>
+                            <b style="text-decoration: underline;">Numéro de compte contribuable</b> <b> : <span style="padding-left: 10px;">{{ $transaction?->entity?->taxpayer_account_number ?? '' }}</span></b><br>
                         </td>
                     </tr>
                     <tr>
@@ -152,9 +122,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <b style="text-decoration: underline;">Dossier</b> <b> N° : <span style="padding-left: 10px;">{{ $assignment?->reference }}</span></b><br>
-                            <b style="text-decoration: underline;">Immatriculation</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->vehicle?->license_plate ?? '' }}</span></b><br>
-                            <b style="text-decoration: underline;">Numero de sinistre</b> <b> : <span style="padding-left: 10px;">{{ $assignment?->claim_number ?? '' }}</span></b>
+                            <b style="text-decoration: underline;">Référence de la transaction</b> <b> N° : <span style="padding-left: 10px;">{{ $transaction?->reference }}</span></b><br>
+                            <b style="text-decoration: underline;">Quantité</b> <b> : <span style="padding-left: 10px;">{{ $transaction?->quantity ?? '' }}</span></b><br>
+                            <b style="text-decoration: underline;">Description</b> <b> : <span style="padding-left: 10px;">{{ $transaction?->description ?? '' }}</span></b>
                         </td>
                     </tr>
                     <tr>
@@ -174,15 +144,14 @@
             <table class="table table-borderless text-center" style="margin: 0; padding: 0; border-collapse: collapse; width: 100%;">
                 <thead style="border: 1px white; font-size: 10px;">
                     <tr>
-                        <th colspan="2" style="border: 1px white; text-decoration: underline;">QUITANCES D'HONORAIRES</th>
+                        <th colspan="2" style="border: 1px white; text-decoration: underline;">QUITANCES DE RECHARGEMENT DE CREDIT</th>
                     </tr>
                 </thead>
             </table>
             
-            <table class="table table-bordered text-left" style="padding-left: 75px; padding-right: 75px;">
+            <table class="table table-bordered text-left" style="padding-top: 20px; padding-left: 75px; padding-right: 75px;">
                 <tbody>
                     @foreach($receipts as $receipt)
-                        @if($receipt?->receiptType?->code == 'work_fee')
                         <tr>
                             <td style="text-align: left; font-size: 12px;">
                                 {{ $receipt?->receiptType?->label ?? '' }}
@@ -191,25 +160,9 @@
                                 .....................................................
                             </td>
                             <td style="text-align: left; font-size: 12px;">
-                                {{ number_format($receipt?->amount_excluding_tax ?? 0, 0, ',', ' ') }}
+                                {{ $receipt?->transaction?->quantity ?? 0 }}
                             </td>
                         </tr>
-                        @endif
-                    @endforeach
-                    @foreach($receipts as $receipt)
-                        @if($receipt?->receiptType?->code != 'work_fee')
-                        <tr>
-                            <td style="text-align: left; font-size: 12px;">
-                                {{ $receipt?->receiptType?->label ?? '' }}
-                            </td>
-                            <td style="text-align: left; font-size: 12px;">
-                                .....................................................
-                            </td>
-                            <td style="text-align: left; font-size: 12px;">
-                                {{ number_format($receipt?->amount_excluding_tax ?? 0, 0, ',', ' ') }}
-                            </td>
-                        </tr>
-                        @endif
                     @endforeach
                     <tr>
                         <td colspan="3"><hr style="border: 1px solid #888888;"></td>
@@ -222,7 +175,7 @@
                             .....................................................
                         </td>
                         <td style="text-align: left; font-size: 12px;">
-                            {{ number_format($assignment?->receipt_amount_excluding_tax ?? 0, 0, ',', ' ') }}
+                            {{ number_format($transaction?->quantity * \App\Models\AppSetting::where('code', 'credit_cost')->first()->value ?? 0, 0, ',', ' ') }}
                         </td>
                     </tr>
                     <tr>
@@ -233,7 +186,7 @@
                             .....................................................
                         </td>
                         <td style="text-align: left; font-size: 12px;">
-                            {{ number_format($assignment?->receipt_amount_tax ?? 0, 0, ',', ' ') }}
+                            {{ number_format(($transaction?->quantity * \App\Models\AppSetting::where('code', 'credit_cost')->first()->value) * \App\Models\AppSetting::where('code', 'tax_rate')->first()->value / 100 ?? 0, 0, ',', ' ') }}
                         </td>
                     </tr>
                     <tr style="background-color: rgb(209, 209, 209);">
@@ -244,7 +197,7 @@
                             .....................................................
                         </th>
                         <th style="text-align: left; font-size: 12px;">
-                            {{ number_format($assignment?->receipt_amount ?? 0, 0, ',', ' ') }} FCFA
+                            {{ number_format(($transaction?->quantity * \App\Models\AppSetting::where('code', 'credit_cost')->first()->value) + (($transaction?->quantity * \App\Models\AppSetting::where('code', 'credit_cost')->first()->value) * \App\Models\AppSetting::where('code', 'tax_rate')->first()->value / 100) ?? 0, 0, ',', ' ') }} FCFA
                         </th>
                     </tr>
                     
@@ -256,7 +209,7 @@
                     <tr>
                         <td>
                             Arrêté la présente facture à la somme de :<br>
-                            <b style="text-transform: uppercase;">{{ $numberTransformer->toWords($assignment?->receipt_amount) }} FRANCS CFA.</b>
+                            <b style="text-transform: uppercase;">{{ $numberTransformer->toWords(($transaction?->quantity * \App\Models\AppSetting::where('code', 'credit_cost')->first()->value) + (($transaction?->quantity * \App\Models\AppSetting::where('code', 'credit_cost')->first()->value) * \App\Models\AppSetting::where('code', 'tax_rate')->first()->value / 100)) }} FRANCS CFA.</b>
                         </td>
                     </tr>
                 </tbody>
@@ -266,12 +219,12 @@
                 Fait à Abidjan, le {{ \Carbon\Carbon::parse(now())->format('d/m/Y') ?? '' }}
             </div>
 
-            <div class="text-right" style="padding-left: 500px; padding-top: 10px;">
+            <div class="text-right" style="padding-left: 400px; padding-top: 10px;">
                 <div style="font-size: 12px; text-align: center; vertical-align: middle;">
                     <b>
                         <div class="p-1 bd-highlight" style="text-decoration: underline;">L'expert</div>
                         <br><br><br>
-                        <div class="p-1 bd-highlight">{{ $ceo?->first_name ?? ''}} {{ mb_strtoupper($ceo?->last_name ?? '')}}</div>
+                        <div class="p-1 bd-highlight">COULIBALY Souleymane</div>
                     </b>
                 </div>
             </div>

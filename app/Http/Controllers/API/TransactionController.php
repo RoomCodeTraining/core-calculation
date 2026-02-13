@@ -5,9 +5,13 @@ namespace App\Http\Controllers\API;
 use Carbon\Carbon;
 use App\Models\Entity;
 use App\Models\Status;
+use App\Models\Receipt;
 use App\Enums\StatusEnum;
+use App\Models\AppSetting;
 use App\Models\Calculation;
+use App\Models\ReceiptType;
 use App\Models\Transaction;
+use App\Enums\ReceiptTypeEnum;
 use App\Models\TransactionType;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -88,6 +92,21 @@ class TransactionController extends Controller
             'quantity' => $request->quantity,
             'description' => $request->description,
             'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
+            'created_by' => auth()->user()->id,
+            'updated_by' => auth()->user()->id,
+        ]);
+
+        $amount_excluding_tax = AppSetting::where('code', 'credit_cost')->first()->value * ($transaction->quantity ?? 0);
+        $amount_tax = $amount_excluding_tax * AppSetting::where('code', 'tax_rate')->first()->value / 100;
+        $amount = $amount_excluding_tax + $amount_tax;
+
+        $receipt = Receipt::create([
+            'transaction_id' => $transaction->id,
+            'receipt_type_id' => ReceiptType::where('code', ReceiptTypeEnum::CREDIT)->first()->id,
+            'amount_excluding_tax' => $amount_excluding_tax,
+            'amount_tax' => $amount_tax,
+            'amount' => $amount,
+            'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
         ]);

@@ -51,7 +51,7 @@ class DealerController extends Controller
         $dealer = Dealer::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'telephone' => $request->telephone,
             'address' => $request->address,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'created_by' => auth()->user()->id,

@@ -30,9 +30,9 @@ class Receipt extends Model
         return $this->belongsTo(ReceiptType::class);
     }
 
-    public function assignment()
+    public function transaction()
     {
-        return $this->belongsTo(Assignment::class);
+        return $this->belongsTo(Transaction::class);
     }
 
     public function status()

@@ -11,6 +11,6 @@ class InvoiceFilters extends QueryFilters
     protected array $columnSearch = ['invoices.reference'];
 
     protected array $relationSearch = [
-        'assignment' => ['reference'],
+        'transaction' => ['reference'],
     ];
 }

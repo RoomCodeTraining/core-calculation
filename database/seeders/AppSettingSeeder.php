@@ -55,5 +55,21 @@ class AppSettingSeeder extends Seeder
             'description' => 'Nombre de mots de passe dans l\'historique des mots de passe',
             'status_id' => Status::where('code', StatusEnum::ACTIVE->value)->first()->id,
         ]);
+
+        AppSetting::create([
+            'code' => 'credit_cost',
+            'value' => '500',
+            'label' => 'Coût du crédit',
+            'description' => 'Coût du crédit',
+            'status_id' => Status::where('code', StatusEnum::ACTIVE->value)->first()->id,
+        ]);
+
+        AppSetting::create([
+            'code' => 'tax_rate',
+            'value' => '18',
+            'label' => 'Taux de taxe',
+            'description' => 'Taux de taxe',
+            'status_id' => Status::where('code', StatusEnum::ACTIVE->value)->first()->id,
+        ]);
     }
 }

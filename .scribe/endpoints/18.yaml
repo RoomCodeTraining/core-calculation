@@ -1,20 +1,16 @@
-name: 'Gestion des concessionnaires'
-description: |-
-
-  APIs pour la gestion des concessionnaires
+name: Endpoints
+description: ''
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/dealers
+    uri: api/v1/user-actions
     metadata:
-      groupName: 'Gestion des concessionnaires'
-      groupDescription: |-
-
-        APIs pour la gestion des concessionnaires
+      groupName: Endpoints
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Lister tous les concessionnaires'
+      title: ''
       description: ''
       authenticated: true
       deprecated: false
@@ -44,7 +40,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer bd61Pf5ZcvgVEkh6a3aD84e'
+      - 'Bearer EZ6acg4fv5VDa1Pehkd836b'
     controller: null
     method: null
     route: null
@@ -52,15 +48,13 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/dealers
+    uri: api/v1/user-actions
     metadata:
-      groupName: 'Gestion des concessionnaires'
-      groupDescription: |-
-
-        APIs pour la gestion des concessionnaires
+      groupName: Endpoints
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Créer un concessionnaire'
+      title: ''
       description: ''
       authenticated: true
       deprecated: false
@@ -73,59 +67,15 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: true
-        example: bbanembuzqldpxfxcexnodcj
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      email:
-        name: email
-        description: 'Le champ value doit être une adresse e-mail valide. Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: true
-        example: howe.bret@example.com
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      telephone:
-        name: telephone
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: true
-        example: oodvxayruliemrzyebxfrxl
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      address:
-        name: address
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: true
-        example: rbndcnivgfjrcnlhpdvena
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      name: bbanembuzqldpxfxcexnodcj
-      email: howe.bret@example.com
-      telephone: oodvxayruliemrzyebxfrxl
-      address: rbndcnivgfjrcnlhpdvena
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6b14ZvVaPg6fdDckhE38ea5'
+      - 'Bearer 6a8egDZcEbf3d56Vv14hkPa'
     controller: null
     method: null
     route: null
@@ -133,15 +83,13 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/dealers/{id}'
+    uri: 'api/v1/user-actions/{id}'
     metadata:
-      groupName: 'Gestion des concessionnaires'
-      groupDescription: |-
-
-        APIs pour la gestion des concessionnaires
+      groupName: Endpoints
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Afficher un concessionnaire'
+      title: ''
       description: ''
       authenticated: true
       deprecated: false
@@ -153,16 +101,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the dealer.'
+        description: 'The ID of the user action.'
         required: true
-        example: ipsum
+        example: impedit
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: ipsum
+      id: impedit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -182,7 +130,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Zaek8VvE5dD1gbafP6c634h'
+      - 'Bearer c1d3ghaP6ZD8Eabek56vfV4'
     controller: null
     method: null
     route: null
@@ -190,15 +138,13 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/v1/dealers/{id}'
+    uri: 'api/v1/user-actions/{id}'
     metadata:
-      groupName: 'Gestion des concessionnaires'
-      groupDescription: |-
-
-        APIs pour la gestion des concessionnaires
+      groupName: Endpoints
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: 'Mettre à jour un concessionnaire'
+      title: ''
       description: ''
       authenticated: true
       deprecated: false
@@ -210,108 +156,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the dealer.'
+        description: 'The ID of the user action.'
         required: true
-        example: sunt
+        example: omnis
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: sunt
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      name:
-        name: name
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: true
-        example: vlasj
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      email:
-        name: email
-        description: 'Le champ value doit être une adresse e-mail valide. Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: true
-        example: uhahn@example.org
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      telephone:
-        name: telephone
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: true
-        example: tbgihtsohkjtjeeqja
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      address:
-        name: address
-        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
-        required: true
-        example: nnhftrlbdwgxuxnafqapcgooe
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      name: vlasj
-      email: uhahn@example.org
-      telephone: tbgihtsohkjtjeeqja
-      address: nnhftrlbdwgxuxnafqapcgooe
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer eD4Zd8V5cab16fhav6g3PEk'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/dealers/{id}'
-    metadata:
-      groupName: 'Gestion des concessionnaires'
-      groupDescription: |-
-
-        APIs pour la gestion des concessionnaires
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Supprimer un concessionnaire'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the dealer.'
-        required: true
-        example: quisquam
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: quisquam
+      id: omnis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -322,7 +176,367 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 3ZEdhv5gfPa84ce6VDkba16'
+      - 'Bearer f6EdveDV1Z453h8cgabk6Pa'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/user-actions/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user action.'
+        required: true
+        example: suscipit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: suscipit
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer v6ZVDg6EbdPk5aaef831hc4'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/app-settings
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer akc1bE5edVZD4Phga3f8v66'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/app-settings
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        name: code
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: ytddkgruaiymltcqar
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      value:
+        name: value
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: hn
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: gxcx
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: 'Quo ab ut dolorum voluptates deleniti omnis repellendus.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      code: ytddkgruaiymltcqar
+      value: hn
+      label: gxcx
+      description: 'Quo ab ut dolorum voluptates deleniti omnis repellendus.'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer d3ZecPb8Dv65Ehg4afVa16k'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/app-settings/{appSetting}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      appSetting:
+        name: appSetting
+        description: ''
+        required: true
+        example: quia
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      appSetting: quia
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer kPve1Va8bhf6DcEZ354gd6a'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/app-settings/{appSetting}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      appSetting:
+        name: appSetting
+        description: ''
+        required: true
+        example: explicabo
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      appSetting: explicabo
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        name: code
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: wkqbqvoqxeixticsz
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      value:
+        name: value
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: isrkckgchgjxkvytnpwkvbw
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: ehkbeoyyxewv
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: 'Unde quia animi debitis fugit.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      code: wkqbqvoqxeixticsz
+      value: isrkckgchgjxkvytnpwkvbw
+      label: ehkbeoyyxewv
+      description: 'Unde quia animi debitis fugit.'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Z4P8gaDvV6beaf51hckd3E6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/app-settings/{appSetting}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      appSetting:
+        name: appSetting
+        description: ''
+        required: true
+        example: molestiae
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      appSetting: molestiae
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer VfgaD64eaZEd58b3vk6Pch1'
     controller: null
     method: null
     route: null

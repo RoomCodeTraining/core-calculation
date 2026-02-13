@@ -1,20 +1,20 @@
-name: 'Gestion des permissions'
+name: 'Gestion des méthodes de paiement'
 description: |-
 
-  API pour la gestion des permissions
+  APIs pour la gestion des méthodes de paiement
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/permissions
+    uri: api/v1/payment-methods
     metadata:
-      groupName: 'Gestion des permissions'
+      groupName: 'Gestion des méthodes de paiement'
       groupDescription: |-
 
-        API pour la gestion des permissions
+        APIs pour la gestion des méthodes de paiement
       subgroup: ''
       subgroupDescription: ''
-      title: 'Lister les permissions'
+      title: 'Lister toutes les méthodes de paiement'
       description: ''
       authenticated: true
       deprecated: false
@@ -44,53 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vgZEkPa58134bhcdD6aV6ef'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/permissions/list/all
-    metadata:
-      groupName: 'Gestion des permissions'
-      groupDescription: |-
-
-        API pour la gestion des permissions
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer fca6hdD815aegbE4VZ3Pkv6'
+      - 'Bearer 8eE4ga6ahDZ1fkbVv3P6cd5'
     controller: null
     method: null
     route: null
@@ -98,15 +52,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/permissions
+    uri: api/v1/payment-methods
     metadata:
-      groupName: 'Gestion des permissions'
+      groupName: 'Gestion des méthodes de paiement'
       groupDescription: |-
 
-        API pour la gestion des permissions
+        APIs pour la gestion des méthodes de paiement
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Créer une méthode de paiement'
       description: ''
       authenticated: true
       deprecated: false
@@ -119,31 +73,53 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: xbyiybcggbmeofaaldwr
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: 'Aperiam quos id quia ut eaque dignissimos est perspiciatis.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      label: xbyiybcggbmeofaaldwr
+      description: 'Aperiam quos id quia ut eaque dignissimos est perspiciatis.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer DV8e46vf1c6ZbPag5E3hadk'
+      - 'Bearer ch5D4eP1dEa6fV6vZ3bgak8'
     controller: null
     method: null
     route: null
     custom: []
   -
     httpMethods:
-      - PUT
-    uri: 'api/v1/permissions/{id}'
+      - GET
+    uri: 'api/v1/payment-methods/{paymentMethod}'
     metadata:
-      groupName: 'Gestion des permissions'
+      groupName: 'Gestion des méthodes de paiement'
       groupDescription: |-
 
-        API pour la gestion des permissions
+        APIs pour la gestion des méthodes de paiement
       subgroup: ''
       subgroupDescription: ''
-      title: ''
+      title: 'Afficher une méthode de paiement'
       description: ''
       authenticated: true
       deprecated: false
@@ -153,18 +129,145 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the permission.'
+      paymentMethod:
+        name: paymentMethod
+        description: ''
         required: true
-        example: 1
-        type: integer
+        example: recusandae
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: 1
+      paymentMethod: recusandae
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer kdeb65h3aVaDZfE4gPv68c1'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/payment-methods/{paymentMethod}'
+    metadata:
+      groupName: 'Gestion des méthodes de paiement'
+      groupDescription: |-
+
+        APIs pour la gestion des méthodes de paiement
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mettre à jour une méthode de paiement'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      paymentMethod:
+        name: paymentMethod
+        description: ''
+        required: true
+        example: voluptatem
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      paymentMethod: voluptatem
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: hkkxigfwkzzwlpdoajnct
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: 'Consequatur doloremque voluptatibus rerum ea voluptatem repellendus.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      label: hkkxigfwkzzwlpdoajnct
+      description: 'Consequatur doloremque voluptatibus rerum ea voluptatem repellendus.'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6DkfPeb1davV36g58ha4ZcE'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/payment-methods/{paymentMethod}'
+    metadata:
+      groupName: 'Gestion des méthodes de paiement'
+      groupDescription: |-
+
+        APIs pour la gestion des méthodes de paiement
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Supprimer une méthode de paiement'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      paymentMethod:
+        name: paymentMethod
+        description: ''
+        required: true
+        example: est
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      paymentMethod: est
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -175,7 +278,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 83avhD66fkZebEgP541dcVa'
+      - 'Bearer 46Vakcf5ag3PDhbv6EdZe81'
     controller: null
     method: null
     route: null

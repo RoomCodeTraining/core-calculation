@@ -43,7 +43,7 @@ class ReceiptController extends Controller
     public function index(): AnonymousResourceCollection
     {
         $receipts = Receipt::with('receiptType', 'status')
-                    ->join('assignments', 'receipts.assignment_id', '=', 'assignments.id')
+                    ->join('transactions', 'receipts.transaction_id', '=', 'transactions.id')
                     ->accessibleBy(auth()->user())
                     ->useFilters()
                     ->orderBy('id', 'asc')
@@ -67,31 +67,23 @@ class ReceiptController extends Controller
         $receipts_data = $request->get('receipts');
         foreach($receipts_data as $receipt){
             if(ReceiptType::keyFromHashId($receipt['receipt_type_id']) == ReceiptType::where('code', ReceiptTypeEnum::WORK_FEE)->first()->id){
-                $assignment = Assignment::with('technicalConclusion')->find($request->assignment_id);
-                $amount = $assignment->total_amount;
+                $transaction = Transaction::find($request->transaction_id);
+                $amount = $transaction->total_amount;
                 if($amount){
-                    if($assignment->technicalConclusion &&$assignment->technicalConclusion->code != 'TC001'){
-                        // $amount = $assignment->market_value - $assignment->salvage_value + $assignment->other_cost_amount;
-                        $amount = $assignment->market_value;
-                    }
-                    $workFee = WorkFee::where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->where('param_1', '<', $amount)->where('param_2', '>=', $amount)->first();
-                    if(!$workFee){
-                        $workFee = WorkFee::where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->orderBy('param_2', 'desc')->first();
-                    }
-                    $total = (($amount - $workFee->param_1) * $workFee->param_4 / 100) + $workFee->param_3;
+                    $total = $transaction->quantity * AppSetting::where('code', 'credit_cost')->first()->value;
                 } else {
-                    return $this->responseUnprocessable("Le dossier n'est pas encore redigé.");
+                    return $this->responseUnprocessable("La transaction n'est pas encore effectuée.");
                 }
             } else {
                 $total = $receipt['amount'];
             }
 
             $amount_excluding_tax = ceil($total);
-            $amount_tax = ceil(($total * config('services.settings.tax_rate')) / 100);
+            $amount_tax = ceil(($total * AppSetting::where('code', 'tax_rate')->first()->value) / 100);
             $amount = ceil($total + $amount_tax);
             
             $receipts[] = [
-                'assignment_id' => $request->assignment_id,
+                'transaction_id' => $request->transaction_id,
                 'receipt_type_id' => $receipt['receipt_type_id'],
                 'amount_excluding_tax' => $amount_excluding_tax,
                 'amount_tax' => $amount_tax,
@@ -169,32 +161,14 @@ class ReceiptController extends Controller
     {
         $receipts = $request->get('receipts');
         foreach($receipts as $receipt){
-            if(ReceiptType::keyFromHashId($receipt['receipt_type_id']) == ReceiptType::where('code', ReceiptTypeEnum::WORK_FEE)->first()->id){
-                $assignment = Assignment::with('technicalConclusion')->find($request->assignment_id);
-                $amount = $assignment->total_amount;
-                if($amount){
-                    if($assignment->technicalConclusion && $assignment->technicalConclusion->code != 'TC001'){
-                        // $amount = $assignment->market_value - $assignment->salvage_value + $assignment->other_cost_amount;
-                        $amount = $assignment->market_value;
-                    }
-                    $workFee = WorkFee::where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->where('param_1', '<', $amount)->where('param_2', '>=', $amount)->first();
-                    if(!$workFee){
-                        $workFee = WorkFee::where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->orderBy('param_2', 'desc')->first();
-                    }
-                    $total = (($amount - $workFee->param_1) * $workFee->param_4 / 100) + $workFee->param_3;
-                } else {
-                    return $this->responseUnprocessable("Le dossier n'est pas encore redigé.");
-                }
-            } else {
-                $total = $receipt['amount'];
-            }
+            $total = $receipt['amount'];
 
             $receipt_amount_excluding_tax = ceil($total);
-            $receipt_amount_tax = ceil(($total * config('services.settings.tax_rate')) / 100);
+            $receipt_amount_tax = ceil(($total * AppSetting::where('code', 'tax_rate')->first()->value) / 100);
             $receipt_amount = ceil($total + $receipt_amount_tax);
             
             $receipt = Receipt::create([
-                'assignment_id' => $request->assignment_id,
+                'transaction_id' => $request->transaction_id,
                 'receipt_type_id' => ReceiptType::keyFromHashId($receipt['receipt_type_id']),
                 'amount_excluding_tax' => $receipt_amount_excluding_tax,
                 'amount_tax' => $receipt_amount_tax,
@@ -204,19 +178,6 @@ class ReceiptController extends Controller
                 'updated_by' => auth()->user()->id,
             ]);
         }
-
-        $receipt_amount_excluding_tax = ceil(Receipt::where('assignment_id', $request->assignment_id)->sum('amount_excluding_tax'));
-        $receipt_amount_tax = ceil(Receipt::where('assignment_id', $request->assignment_id)->sum('amount_tax'));
-        $receipt_amount = ceil(Receipt::where('assignment_id', $request->assignment_id)->sum('amount'));
-
-        $assignment = Assignment::find($request->assignment_id);
-        $assignment->update([
-            'receipt_amount_excluding_tax' => $receipt_amount_excluding_tax,
-            'receipt_amount_tax' => $receipt_amount_tax,
-            'receipt_amount' => $receipt_amount,
-        ]);
-
-        $this->recalculate($assignment->id);
 
         return $this->responseCreated('Receipts created successfully', null);
     }
@@ -228,12 +189,12 @@ class ReceiptController extends Controller
      */
     public function show($id): JsonResponse
     {
-        $receipt = Receipt::join('assignments', 'receipts.assignment_id', '=', 'assignments.id')
+        $receipt = Receipt::join('transactions', 'receipts.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('receipts.id', Receipt::keyFromHashId($id))
             ->firstOrFail();
 
-        return $this->responseSuccess(null, new ReceiptResource($receipt->load('receiptType', 'status')));
+        return $this->responseSuccess(null, new ReceiptResource($receipt->load('receiptType', 'status', 'transaction')));
     }
 
     /**
@@ -243,31 +204,23 @@ class ReceiptController extends Controller
      */
     public function update(UpdateReceiptRequest $request, $id): JsonResponse
     {
-        $receipt = Receipt::join('assignments', 'receipts.assignment_id', '=', 'assignments.id')
+        $receipt = Receipt::join('transactions', 'receipts.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('receipts.id', Receipt::keyFromHashId($id))
             ->firstOrFail();
 
-        $assignment = Assignment::with('technicalConclusion')->find($receipt->assignment_id);
+        $transaction = Transaction::find($receipt->transaction_id);
 
-        if($assignment->status_id == Status::where('code', StatusEnum::PAID)->first()->id){
+        if($transaction->status_id == Status::where('code', StatusEnum::PAID)->first()->id){
             return $this->responseUnprocessable("Le dossier est déjà réglé.");
         }
 
         if($request->receipt_type_id == ReceiptType::where('code', ReceiptTypeEnum::WORK_FEE)->first()->id){
-            $amount = $assignment->total_amount;
+            $amount = $transaction->total_amount;
             if($amount){
-                if($assignment->technicalConclusion && $assignment->technicalConclusion->code != 'TC001'){
-                    // $amount = $assignment->market_value - $assignment->salvage_value + $assignment->other_cost_amount;
-                    $amount = $assignment->market_value;
-                }
-                $workFee = WorkFee::where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->where('param_1', '<', $amount)->where('param_2', '>=', $amount)->first();
-                if(!$workFee){
-                    $workFee = WorkFee::where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->orderBy('param_2', 'desc')->first();
-                }
-                $total = (($amount - $workFee->param_1) * $workFee->param_4 / 100) + $workFee->param_3;
+                $total = $transaction->quantity * AppSetting::where('code', 'credit_cost')->first()->value;
             } else {
-                return $this->responseUnprocessable("Le dossier n'est pas encore redigé.");
+                return $this->responseUnprocessable("La transaction n'est pas encore effectuée.");
             }
         } else {
             $total = $request->amount;
@@ -284,42 +237,7 @@ class ReceiptController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
-        $receipt_amount_excluding_tax = ceil(Receipt::where('assignment_id', $receipt->assignment_id)->sum('amount_excluding_tax'));
-        $receipt_amount_tax = ceil(Receipt::where('assignment_id', $receipt->assignment_id)->sum('amount_tax'));
-        $receipt_amount = ceil(Receipt::where('assignment_id', $receipt->assignment_id)->sum('amount'));
-
-        $assignment->update([
-            'receipt_amount_excluding_tax' => $receipt_amount_excluding_tax,
-            'receipt_amount_tax' => $receipt_amount_tax,
-            'receipt_amount' => $receipt_amount,
-        ]);
-
-        $this->recalculate($assignment->id);
-
         return $this->responseSuccess('Receipt updated Successfully', new ReceiptResource($receipt));
-    }
-
-    /**
-     * Recalculer les données d'une main-d'œuvre
-     *
-     * @authenticated
-     */
-    public function recalculate($assignment_id)
-    {
-        $assignment = Assignment::findOrFail($assignment_id);
-
-        $total_receipt_amount_excluding_tax = Receipt::where('assignment_id', $assignment->id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->sum('amount_excluding_tax');
-        $total_receipt_amount_tax = Receipt::where('assignment_id', $assignment->id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->sum('amount_tax');
-        $total_receipt_amount = Receipt::where('assignment_id', $assignment->id)->where('status_id', Status::where('code', StatusEnum::ACTIVE)->first()->id)->sum('amount');
-
-        $assignment->update([
-            'receipt_amount_excluding_tax' => $total_receipt_amount_excluding_tax,
-            'receipt_amount_tax' => $total_receipt_amount_tax,
-            'receipt_amount' => $total_receipt_amount,
-        ]);
-
-        // dispatch(new GenerateExpertiseReportPdfJob($assignment));
-
     }
 
     /**
@@ -329,7 +247,7 @@ class ReceiptController extends Controller
      */
     public function destroy($id): JsonResponse
     {
-        $receipt = Receipt::join('assignments', 'receipts.assignment_id', '=', 'assignments.id')
+        $receipt = Receipt::join('transactions', 'receipts.transaction_id', '=', 'transactions.id')
             ->accessibleBy(auth()->user())
             ->where('receipts.id', Receipt::keyFromHashId($id))
             ->firstOrFail();
@@ -341,8 +259,6 @@ class ReceiptController extends Controller
         ]);
 
         $receipt->delete();
-
-        $this->recalculate($receipt->assignment_id);
 
         return $this->responseDeleted();
     }

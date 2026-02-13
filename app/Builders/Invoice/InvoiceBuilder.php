@@ -19,34 +19,9 @@ class InvoiceBuilder extends Builder
         return $this->model->currentRole->name == RoleEnum::ADMIN->value;
     }
 
-    public function isAdminExpert(): bool
+    public function isAdminOrganization(): bool
     {
-        return $this->model->currentRole->name == RoleEnum::EXPERT_ADMIN->value;
-    }
-
-    public function isInsurerAdmin(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::INSURER_ADMIN->value;
-    }
-
-    public function isInsurerStandardUser(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::INSURER_STANDARD_USER->value;
-    }
-
-    public function isRepairerAdmin(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::REPAIRER_ADMIN->value;
-    }
-
-    public function isRepairerStandardUser(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::REPAIRER_STANDARD_USER->value;
-    }
-
-    public function isClient(): bool
-    {
-        return $this->model->currentRole->name == RoleEnum::CLIENT->value;
+        return $this->model->currentRole->name == RoleEnum::ADMIN_ORGANIZATION->value;
     }
 
     public function accessibleBy(?User $user)
@@ -63,30 +38,10 @@ class InvoiceBuilder extends Builder
             return $this;
         }
 
-        if ($user->isAdminExpert()) {
-            return $this->where('assignments.expert_firm_id', $user->entity_id);
+        if ($user->isAdminOrganization()) {
+            return $this->whereHas('transaction', fn ($q) => $q->where('entity_id', $user->entity_id));
         }
 
-        if ($user->isInsurerAdmin()) {
-            return $this->where('assignments.insurer_id', $user->entity_id);
-        }
-
-        if ($user->isInsurerStandardUser()) {
-            return $this->where('assignments.insurer_id', $user->entity_id);
-        }
-
-        if ($user->isRepairerAdmin()) {
-            return $this->where('assignments.repairer_id', $user->entity_id);
-        }
-
-        if ($user->isRepairerStandardUser()) {
-            return $this->where('assignments.repairer_id', $user->entity_id);
-        }
-
-        if ($user->isClient()) {
-            return $this->where('assignments.client_id', $user->entity_id);
-        }
-
-        return $this->where('assignments.expert_firm_id', $user->entity_id);
+        return $this;
     }
 }

@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6PE1cZDfV4khvaed6b38ga5'
+      - 'Bearer hfg6bk1dv36E8ePVa4cZa5D'
     controller: null
     method: null
     route: null
@@ -78,7 +78,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: semtrmsagfltfdhmhmzzj
+        example: iwy
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -88,22 +88,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Est et et quo.'
+        example: 'Minima vel ipsam culpa ut quia ut neque.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: semtrmsagfltfdhmhmzzj
-      description: 'Est et et quo.'
+      label: iwy
+      description: 'Minima vel ipsam culpa ut quia ut neque.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 46df36beZV1kcghPaav58DE'
+      - 'Bearer PV1c3EZaek68h4vfDbg6da5'
     controller: null
     method: null
     route: null
@@ -133,14 +133,14 @@ endpoints:
         name: id
         description: 'The ID of the color.'
         required: true
-        example: doloribus
+        example: esse
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: doloribus
+      id: esse
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -160,7 +160,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vdE6kfZge36hPaVD4c158ba'
+      - 'Bearer gVaE5v48cdDeh63Zafk1P6b'
     controller: null
     method: null
     route: null
@@ -190,14 +190,14 @@ endpoints:
         name: id
         description: 'The ID of the color.'
         required: true
-        example: natus
+        example: fugit
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: natus
+      id: fugit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -205,7 +205,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: x
+        example: ieszaafhngqlxv
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -215,22 +215,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Ratione neque pariatur ea.'
+        example: 'Qui qui quia voluptate delectus eos.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: x
-      description: 'Ratione neque pariatur ea.'
+      label: ieszaafhngqlxv
+      description: 'Qui qui quia voluptate delectus eos.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer hv1a6eEc43k6gZfa8bVPDd5'
+      - 'Bearer dkvgc8Pabh4ZE635VDf6e1a'
     controller: null
     method: null
     route: null
@@ -260,14 +260,14 @@ endpoints:
         name: id
         description: 'The ID of the color.'
         required: true
-        example: aut
+        example: debitis
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: aut
+      id: debitis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -278,7 +278,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fd5EhPDZ16Vkav6gea4cb38'
+      - 'Bearer Ea3ck8dDhveZVf4gb5a6P16'
     controller: null
     method: null
     route: null

@@ -25,11 +25,11 @@ class Invoice extends Model
     protected $guarded = [];
 
     /**
-     * Get the assignment of this invoice
+     * Get the transaction of this invoice
      */
-    public function assignment(): BelongsTo
+    public function transaction(): BelongsTo
     {
-        return $this->belongsTo(Assignment::class);
+        return $this->belongsTo(Transaction::class);
     }
 
     /**

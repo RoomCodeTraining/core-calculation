@@ -7,7 +7,7 @@ use App\Http\Resources\PaymentType\PaymentTypeResource;
 use App\Http\Resources\PaymentMethod\PaymentMethodResource;
 use App\Http\Resources\Status\StatusResource;
 use App\Http\Resources\User\UserResource;
-use App\Http\Resources\Assignment\AssignmentResource;
+use App\Http\Resources\Transaction\TransactionResource;
 use App\Http\Resources\Check\CheckResource;
 
 class PaymentResource extends JsonResource
@@ -19,7 +19,7 @@ class PaymentResource extends JsonResource
             'reference' => $this->reference,
             'date' => $this->date,
             'amount' => $this->amount,
-            'assignment' => new AssignmentResource($this->whenLoaded('assignment')),
+            'transaction' => new TransactionResource($this->whenLoaded('transaction')),
             'payment_type' => new PaymentTypeResource($this->whenLoaded('paymentType')),
             'payment_method' => new PaymentMethodResource($this->whenLoaded('paymentMethod')),
             'checks' => CheckResource::collection($this->whenLoaded('checks')),
