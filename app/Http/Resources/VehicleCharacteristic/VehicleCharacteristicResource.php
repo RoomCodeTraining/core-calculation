@@ -19,6 +19,7 @@ class VehicleCharacteristicResource extends JsonResource
         return [
             'id' => $this->hashId,
             'type' => $this->type,
+            'equipments' => $this->equipments,
             'options' => $this->options,
             'fiscal_power' => $this->fiscal_power,
             'nb_seats' => $this->nb_seats,

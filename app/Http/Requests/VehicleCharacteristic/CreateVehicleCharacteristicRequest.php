@@ -28,6 +28,7 @@ class CreateVehicleCharacteristicRequest extends FormRequest
             "vehicle_energy_id" => "required|exists:vehicle_energies,id",
             "dealer_id" => "required|exists:dealers,id",
             "type" => "nullable|string|max:255",
+            "equipments" => "nullable",
             "options" => "nullable",
             "fiscal_power" => "nullable|integer|min:0",
             "nb_seats" => "nullable|integer",
