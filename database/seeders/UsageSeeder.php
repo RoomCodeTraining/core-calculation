@@ -59,7 +59,7 @@ class UsageSeeder extends Seeder
             ['code' => 'US41', 'label' => 'Atelier mobile', 'description' => 'Atelier mobile', 'status_id' => 1],
             ['code' => 'US42', 'label' => 'Véhicule incendie', 'description' => 'Véhicule incendie', 'status_id' => 1],
             ['code' => 'US43', 'label' => 'Véhicule blindé', 'description' => 'Véhicule blindé', 'status_id' => 1],
-            ['code' => 'US44', 'label' => 'Citernes', 'description' => 'Citernes', 'status_id' => 1],
+            ['code' => 'US44', 'label' => 'Citerne', 'description' => 'Citerne', 'status_id' => 1],
         ];
 
         Usage::upsert(
