@@ -2,12 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Usage;
 use App\Models\Status;
 use App\Enums\StatusEnum;
 use App\Models\VehicleAge;
 use App\Models\VehicleGenre;
 use Illuminate\Database\Seeder;
 use App\Models\DepreciationTable;
+use App\Models\VehicleGenreUsage;
 
 class DepreciationTableSeeder extends Seeder
 {

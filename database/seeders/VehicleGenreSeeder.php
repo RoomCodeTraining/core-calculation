@@ -98,7 +98,7 @@ class VehicleGenreSeeder extends Seeder
         ]);
 
         VehicleGenre::create([
-            'code' => 'CIT',
+            'code' => 'CITE',
             'max_mileage_essence_per_year' => '40000.00',
             'max_mileage_diesel_per_year' => '40000.00',
             'label' => 'Citerne',
