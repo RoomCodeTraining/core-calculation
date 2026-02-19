@@ -42,7 +42,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer EZ6acg4fv5VDa1Pehkd836b'
+      - 'Bearer 8Pb1Dvg3faaZ5EV6he4ckd6'
     controller: null
     method: null
     route: null
@@ -77,7 +77,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6a8egDZcEbf3d56Vv14hkPa'
+      - 'Bearer 5d36fevV6ac41ZbkhDgPEa8'
     controller: null
     method: null
     route: null
@@ -105,14 +105,14 @@ endpoints:
         name: id
         description: 'The ID of the user action.'
         required: true
-        example: impedit
+        example: voluptas
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: impedit
+      id: voluptas
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -132,7 +132,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer c1d3ghaP6ZD8Eabek56vfV4'
+      - 'Bearer feagaPchk6E48635D1bdvVZ'
     controller: null
     method: null
     route: null
@@ -160,14 +160,14 @@ endpoints:
         name: id
         description: 'The ID of the user action.'
         required: true
-        example: omnis
+        example: ratione
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: omnis
+      id: ratione
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -178,7 +178,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer f6EdveDV1Z453h8cgabk6Pa'
+      - 'Bearer VvfhDeP81b36daEgZ5k6c4a'
     controller: null
     method: null
     route: null
@@ -206,14 +206,14 @@ endpoints:
         name: id
         description: 'The ID of the user action.'
         required: true
-        example: suscipit
+        example: voluptas
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: suscipit
+      id: voluptas
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -224,7 +224,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer v6ZVDg6EbdPk5aaef831hc4'
+      - 'Bearer 4Vhg65Ec3fkaeD6v1a8PdZb'
     controller: null
     method: null
     route: null
@@ -268,7 +268,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer akc1bE5edVZD4Phga3f8v66'
+      - 'Bearer 8agf1ebcV6Ek54Z6havd3DP'
     controller: null
     method: null
     route: null
@@ -300,7 +300,7 @@ endpoints:
         name: code
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: ytddkgruaiymltcqar
+        example: cwh
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -310,7 +310,7 @@ endpoints:
         name: value
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: hn
+        example: hrekfjpwc
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -320,7 +320,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: gxcx
+        example: qbtxblxlpigj
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -330,24 +330,24 @@ endpoints:
         name: description
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: 'Quo ab ut dolorum voluptates deleniti omnis repellendus.'
+        example: 'Provident praesentium est libero rerum soluta corporis dolorem.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      code: ytddkgruaiymltcqar
-      value: hn
-      label: gxcx
-      description: 'Quo ab ut dolorum voluptates deleniti omnis repellendus.'
+      code: cwh
+      value: hrekfjpwc
+      label: qbtxblxlpigj
+      description: 'Provident praesentium est libero rerum soluta corporis dolorem.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer d3ZecPb8Dv65Ehg4afVa16k'
+      - 'Bearer 41gD8hZEba3vc6k5PVed6fa'
     controller: null
     method: null
     route: null
@@ -375,14 +375,14 @@ endpoints:
         name: appSetting
         description: ''
         required: true
-        example: quia
+        example: earum
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      appSetting: quia
+      appSetting: earum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -402,7 +402,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer kPve1Va8bhf6DcEZ354gd6a'
+      - 'Bearer 54bvVf13aaeP6k6cghE8dZD'
     controller: null
     method: null
     route: null
@@ -430,14 +430,14 @@ endpoints:
         name: appSetting
         description: ''
         required: true
-        example: explicabo
+        example: quidem
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      appSetting: explicabo
+      appSetting: quidem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -445,7 +445,7 @@ endpoints:
         name: code
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: wkqbqvoqxeixticsz
+        example: b
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -455,7 +455,7 @@ endpoints:
         name: value
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: isrkckgchgjxkvytnpwkvbw
+        example: c
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -465,7 +465,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: ehkbeoyyxewv
+        example: wosildbaz
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -475,24 +475,24 @@ endpoints:
         name: description
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: 'Unde quia animi debitis fugit.'
+        example: 'Qui dolores provident ut facilis quia eum autem.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      code: wkqbqvoqxeixticsz
-      value: isrkckgchgjxkvytnpwkvbw
-      label: ehkbeoyyxewv
-      description: 'Unde quia animi debitis fugit.'
+      code: b
+      value: c
+      label: wosildbaz
+      description: 'Qui dolores provident ut facilis quia eum autem.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer Z4P8gaDvV6beaf51hckd3E6'
+      - 'Bearer 4vVZgd8E13feckP5aD6ab6h'
     controller: null
     method: null
     route: null
@@ -520,14 +520,14 @@ endpoints:
         name: appSetting
         description: ''
         required: true
-        example: molestiae
+        example: sit
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      appSetting: molestiae
+      appSetting: sit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -538,7 +538,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer VfgaD64eaZEd58b3vk6Pch1'
+      - 'Bearer 3681vad5aZbfckPe4DV6hgE'
     controller: null
     method: null
     route: null

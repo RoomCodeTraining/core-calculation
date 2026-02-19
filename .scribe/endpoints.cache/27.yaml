@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer dh54Ef3aZb8kPVeg61va6Dc'
+      - 'Bearer dE68k4Dh5Va1avbfP3e6cgZ'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: tvfulysuenssxflpyajchi
+        example: wevbslu
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -90,22 +90,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Soluta ad eveniet nihil pariatur suscipit qui sed ipsum.'
+        example: 'Ullam quod quos qui molestiae.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: tvfulysuenssxflpyajchi
-      description: 'Soluta ad eveniet nihil pariatur suscipit qui sed ipsum.'
+      label: wevbslu
+      description: 'Ullam quod quos qui molestiae.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer fhc1kPZEedbav568V43a6gD'
+      - 'Bearer Zke8hP3df6a1a5bVgcE6v4D'
     controller: null
     method: null
     route: null
@@ -135,14 +135,14 @@ endpoints:
         name: id
         description: 'The ID of the transaction type.'
         required: true
-        example: aut
+        example: sit
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: aut
+      id: sit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -162,7 +162,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 8bvZaf6aVDkc3d6e154EPgh'
+      - 'Bearer ZgE4akD16P5v3cV6b8fadhe'
     controller: null
     method: null
     route: null
@@ -192,14 +192,14 @@ endpoints:
         name: id
         description: 'The ID of the transaction type.'
         required: true
-        example: dolorem
+        example: omnis
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: dolorem
+      id: omnis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -207,7 +207,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: jkca
+        example: viegihqixqc
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -217,22 +217,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Ratione beatae totam minima ut minima suscipit incidunt.'
+        example: 'Nihil consequuntur autem iusto enim officiis.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: jkca
-      description: 'Ratione beatae totam minima ut minima suscipit incidunt.'
+      label: viegihqixqc
+      description: 'Nihil consequuntur autem iusto enim officiis.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer dPaVcE3fZba16Dve46gk5h8'
+      - 'Bearer 4vD3Vha6Zb1P6ka85dEegfc'
     controller: null
     method: null
     route: null
@@ -262,14 +262,14 @@ endpoints:
         name: id
         description: 'The ID of the transaction type.'
         required: true
-        example: quia
+        example: et
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: quia
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -280,7 +280,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer a4ZdV53ePk16aDcv8Ebhgf6'
+      - 'Bearer 35D66P8Z4cdVeavbhaEf1kg'
     controller: null
     method: null
     route: null
@@ -328,7 +328,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer av165fZc3hke8D6EbdaPVg4'
+      - 'Bearer v8adeEDhP6b4Z5gkf13ca6V'
     controller: null
     method: null
     route: null
@@ -358,14 +358,14 @@ endpoints:
         name: transaction_type
         description: ''
         required: true
-        example: sapiente
+        example: quia
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      transaction_type: sapiente
+      transaction_type: quia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -376,7 +376,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6fch1b6DvdPZ4ak5gV8Eae3'
+      - 'Bearer fb5DPE46Zak1dh3Vgev68ac'
     controller: null
     method: null
     route: null

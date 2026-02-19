@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer h4P1EZfD5vcVkaa63e68bgd'
+      - 'Bearer c5dhg1EebP6kV4Da36vf8Za'
     controller: null
     method: null
     route: null
@@ -74,14 +74,14 @@ endpoints:
         name: id
         description: 'The ID of the entity type.'
         required: true
-        example: dolor
+        example: temporibus
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: dolor
+      id: temporibus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -101,7 +101,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer ZDgP6fvkab63cd14V8haE5e'
+      - 'Bearer 4kZ8ahE63af6D1V5dcevPbg'
     controller: null
     method: null
     route: null
@@ -135,7 +135,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: poeommhvvwjszdzcuemnvvq
+        example: bnmbztxrflvnwdux
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -145,22 +145,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Et possimus consequatur occaecati aliquam quae quo voluptates.'
+        example: 'Doloremque quidem et veniam corrupti.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: poeommhvvwjszdzcuemnvvq
-      description: 'Et possimus consequatur occaecati aliquam quae quo voluptates.'
+      label: bnmbztxrflvnwdux
+      description: 'Doloremque quidem et veniam corrupti.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer fDeahg63kda8VZ4P1vc6E5b'
+      - 'Bearer 13f84dPEVDkZbgvac566aeh'
     controller: null
     method: null
     route: null
@@ -190,14 +190,14 @@ endpoints:
         name: id
         description: 'The ID of the entity type.'
         required: true
-        example: at
+        example: incidunt
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: at
+      id: incidunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -205,7 +205,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: tlskhljovprtkbmdvyqoedf
+        example: etlwstupqoiirjyhtzokdnj
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -215,22 +215,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Natus aut eius iste.'
+        example: 'Ad labore possimus ratione dignissimos enim non dolorum.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: tlskhljovprtkbmdvyqoedf
-      description: 'Natus aut eius iste.'
+      label: etlwstupqoiirjyhtzokdnj
+      description: 'Ad labore possimus ratione dignissimos enim non dolorum.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer Zka6be6ca48fPhVE1gvd5D3'
+      - 'Bearer hve4Df6bVEgZkc63ad851Pa'
     controller: null
     method: null
     route: null
@@ -278,7 +278,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6hb51af8kv64VcZedEga3PD'
+      - 'Bearer aaP64hd1v568ZcbDfkV3eEg'
     controller: null
     method: null
     route: null
@@ -326,7 +326,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer cEP63hD81gv4Vadbk6fZ5ae'
+      - 'Bearer hD5Z64eE8afgbckdav63P1V'
     controller: null
     method: null
     route: null

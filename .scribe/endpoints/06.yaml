@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer k53D6ag86dbPZecEV4hva1f'
+      - 'Bearer E4cV6a8hdk6ab5egfvZ31DP'
     controller: null
     method: null
     route: null
@@ -78,7 +78,7 @@ endpoints:
         name: code
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: urmgpyypywgzrtiqzi
+        example: efaejqqxm
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -88,7 +88,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: e
+        example: njztgyzsfxjdrhzuroozefmjq
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -98,7 +98,7 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Nihil quas pariatur et.'
+        example: 'Ut enim vitae nemo et labore praesentium.'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -108,7 +108,7 @@ endpoints:
         name: max_mileage_essence_per_year
         description: ''
         required: true
-        example: 17.97
+        example: 0.82433
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -118,7 +118,7 @@ endpoints:
         name: max_mileage_diesel_per_year
         description: ''
         required: true
-        example: 1221.0
+        example: 7385664.0258
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -135,11 +135,11 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      code: urmgpyypywgzrtiqzi
-      label: e
-      description: 'Nihil quas pariatur et.'
-      max_mileage_essence_per_year: 17.97
-      max_mileage_diesel_per_year: 1221.0
+      code: efaejqqxm
+      label: njztgyzsfxjdrhzuroozefmjq
+      description: 'Ut enim vitae nemo et labore praesentium.'
+      max_mileage_essence_per_year: 0.82433
+      max_mileage_diesel_per_year: 7385664.0258
       vehicle_model_id: et
     fileParameters: []
     responses: []
@@ -147,7 +147,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6V486abEcPDa5vfedgk31Zh'
+      - 'Bearer 4fV65dh83abcEgeP1Z6Dvka'
     controller: null
     method: null
     route: null
@@ -177,14 +177,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle genre.'
         required: true
-        example: porro
+        example: et
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: porro
+      id: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -204,7 +204,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gkhc85ZveVa64dD3Pf1Eba6'
+      - 'Bearer kgEVh3Deac6P8fva45Zbd16'
     controller: null
     method: null
     route: null
@@ -234,14 +234,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle genre.'
         required: true
-        example: iure
+        example: sed
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: iure
+      id: sed
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -249,7 +249,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: kzcgefcz
+        example: pardhmxthfm
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -259,7 +259,7 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Qui sit itaque quas magni qui voluptates nihil est.'
+        example: 'Omnis nihil nam et nisi animi ipsum corporis est.'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -269,7 +269,7 @@ endpoints:
         name: max_mileage_essence_per_year
         description: ''
         required: true
-        example: 45.736
+        example: 410988.46053791
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -279,7 +279,7 @@ endpoints:
         name: max_mileage_diesel_per_year
         description: ''
         required: true
-        example: 1421.82455
+        example: 464199.64166
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -289,25 +289,25 @@ endpoints:
         name: vehicle_model_id
         description: 'The <code>id</code> of an existing record in the vehicle_models table.'
         required: true
-        example: nesciunt
+        example: aspernatur
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      label: kzcgefcz
-      description: 'Qui sit itaque quas magni qui voluptates nihil est.'
-      max_mileage_essence_per_year: 45.736
-      max_mileage_diesel_per_year: 1421.82455
-      vehicle_model_id: nesciunt
+      label: pardhmxthfm
+      description: 'Omnis nihil nam et nisi animi ipsum corporis est.'
+      max_mileage_essence_per_year: 410988.46053791
+      max_mileage_diesel_per_year: 464199.64166
+      vehicle_model_id: aspernatur
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer V65fa6eP3ZEgck1vbhDd48a'
+      - 'Bearer 1d8a6ZDv45h3fEP6aVbckeg'
     controller: null
     method: null
     route: null
@@ -337,14 +337,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle genre.'
         required: true
-        example: provident
+        example: qui
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: provident
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -355,7 +355,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer P8acgd46Zbfk1V5h3ED6vea'
+      - 'Bearer 64bak8dhve3VPEfg6cD5a1Z'
     controller: null
     method: null
     route: null

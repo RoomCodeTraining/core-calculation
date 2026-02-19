@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 541edZ3v6ckVDaag6f8bhEP'
+      - 'Bearer 1aDvbEaZkPefh3Vd8g6546c'
     controller: null
     method: null
     route: null
@@ -83,7 +83,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer cvPdf5ZEg6Vk1ba68h3e4Da'
+      - 'Bearer D3EZd65aP4cvV8bfk6ghe1a'
     controller: null
     method: null
     route: null
@@ -113,14 +113,14 @@ endpoints:
         name: paymentHistoric
         description: ''
         required: true
-        example: deleniti
+        example: voluptatem
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentHistoric: deleniti
+      paymentHistoric: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -140,7 +140,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 8vk4EgfZd56abecDaP1V3h6'
+      - 'Bearer ZDc6d64Pb3gEf1hVeaka85v'
     controller: null
     method: null
     route: null
@@ -170,14 +170,14 @@ endpoints:
         name: paymentHistoric
         description: ''
         required: true
-        example: corrupti
+        example: libero
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentHistoric: corrupti
+      paymentHistoric: libero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -188,7 +188,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer aPvhZ1aVeDg6f5b3c8d46Ek'
+      - 'Bearer dakbVv6hP3aE6g1Z5ec48fD'
     controller: null
     method: null
     route: null
@@ -218,14 +218,14 @@ endpoints:
         name: paymentHistoric
         description: ''
         required: true
-        example: fugiat
+        example: non
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentHistoric: fugiat
+      paymentHistoric: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -236,7 +236,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer EPc6hagD6kbZfv8aed15V43'
+      - 'Bearer aa5bdgf6ck68vVeDEZP143h'
     controller: null
     method: null
     route: null

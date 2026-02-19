@@ -30,13 +30,13 @@ class DatabaseSeeder extends Seeder
             AppSettingSeeder::class,
             DealerSeeder::class,
             UsageSeeder::class,
-            // VehicleGenreUsageSeeder::class,
+            VehicleGenreUsageSeeder::class,
             // VehicleCharacteristicSeeder::class,
             TransactionTypeSeeder::class,
             ReceiptTypeSeeder::class,
             PaymentMethodSeeder::class,
             PaymentTypeSeeder::class,
-            // DepreciationTableSeeder::class,
+            DepreciationTableSeeder::class,
         ]);
     }
 }

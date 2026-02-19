@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 15eb6vdafV63Pg84ZDEahck'
+      - 'Bearer kb61efDaEhc8a3V46d5ZgvP'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: quantity
         description: 'La valeur de value doit être supérieure ou égale à 1.'
         required: true
-        example: 47
+        example: 1
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -90,7 +90,7 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Maiores cupiditate ut asperiores facilis dolor.'
+        example: 'Sit est vel eius dolorum.'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -100,7 +100,7 @@ endpoints:
         name: entity_id
         description: 'The <code>id</code> of an existing record in the entities table.'
         required: true
-        example: laborum
+        example: sunt
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -110,24 +110,24 @@ endpoints:
         name: transaction_type_id
         description: 'The <code>id</code> of an existing record in the transaction_types table.'
         required: true
-        example: animi
+        example: recusandae
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      quantity: 47
-      description: 'Maiores cupiditate ut asperiores facilis dolor.'
-      entity_id: laborum
-      transaction_type_id: animi
+      quantity: 1
+      description: 'Sit est vel eius dolorum.'
+      entity_id: sunt
+      transaction_type_id: recusandae
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer kfbZcV6E1vage58dh63a4DP'
+      - 'Bearer avfP5a6VEck4eZDd6b1h8g3'
     controller: null
     method: null
     route: null
@@ -157,14 +157,14 @@ endpoints:
         name: id
         description: 'The ID of the transaction.'
         required: true
-        example: ut
+        example: aliquam
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: ut
+      id: aliquam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -184,7 +184,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fdvEVbPckgeh6a3DZ41a658'
+      - 'Bearer cPg46vdfD1baZVe85h3k6aE'
     controller: null
     method: null
     route: null
@@ -214,14 +214,14 @@ endpoints:
         name: id
         description: 'The ID of the transaction.'
         required: true
-        example: et
+        example: rerum
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: et
+      id: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -232,7 +232,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 65eb3c4ahDkvg1V8EZ6adfP'
+      - 'Bearer De4v8Ekh653bacPfZgV16da'
     controller: null
     method: null
     route: null
@@ -262,14 +262,14 @@ endpoints:
         name: id
         description: 'The ID of the transaction.'
         required: true
-        example: eos
+        example: iure
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: eos
+      id: iure
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -280,7 +280,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 4hDgVedcvEkab6635aPf18Z'
+      - 'Bearer 3bhVv465gef8DadaEk1P6Zc'
     controller: null
     method: null
     route: null
@@ -310,14 +310,14 @@ endpoints:
         name: transaction
         description: 'The transaction.'
         required: true
-        example: ea
+        example: expedita
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      transaction: ea
+      transaction: expedita
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -328,7 +328,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer g8fhd3P6DV6aak1Z4bve5cE'
+      - 'Bearer d6vVDe3Z1a8b5fEPak4ghc6'
     controller: null
     method: null
     route: null
@@ -374,7 +374,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer V4e6ah8afZE3Dkgd1cvP65b'
+      - 'Bearer Pb4EZedk6gaV3a8cDh6fv51'
     controller: null
     method: null
     route: null
