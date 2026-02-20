@@ -109,10 +109,10 @@ class MarketValueService
                 'vehicle_new_value' => $vehicle_new_value,
                 'year_diff' => $year_diff,
                 'month_diff' => $month_diff,
-                'vehicle_age' => $month_diff,
+                'vehicle_age' => $vehicle_age,
                 'theorical_depreciation_rate' => $theorical_depreciation_rate,
                 'theorical_vehicle_market_value' => $theorical_vehicle_market_value,
-                'vehicle_genre' => $vehicle_genre,
+                'vehicle_genre_usage' => $vehicle_genre_usage,
                 'vehicle_energy' => $vehicle_energy,
             ];
         }
