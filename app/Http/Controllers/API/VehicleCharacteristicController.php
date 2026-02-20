@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Price;
 use App\Models\Usage;
 use App\Models\Dealer;
 use App\Models\Status;
