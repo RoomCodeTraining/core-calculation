@@ -89,10 +89,10 @@ class DepreciationTableController extends Controller
         $result = $marketValueService->calculateTheoreticalMarketValue($vehicleCharacteristic->vehicleGenreUsage->id, $vehicleCharacteristic->vehicle_energy_id, $vehicle_new_value, $request->vehicle_mileage, $request->first_entry_into_circulation_date, $request->expertise_date);
         $result = (object) $result;
 
-        if($result->theorical_depreciation_rate <= 0)
-        {
-            return $this->responseUnprocessable('Impossible de calculer la dépreciation de ce usage de véhicle');
-        }
+        // if($result->theorical_depreciation_rate <= 0)
+        // {
+        //     return $this->responseUnprocessable('Impossible de calculer la dépreciation de ce usage de véhicle');
+        // }
 
         $kilometric_incidence = 0;
         $is_up = null;
