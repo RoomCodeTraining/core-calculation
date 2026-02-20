@@ -234,7 +234,7 @@
                     </th>
                     <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b>
-                            <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->equipment ?? '')}}</b>
+                            <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->equipments ?? '')}}</b>
                         </b>
                     </th>
                 </tr>
