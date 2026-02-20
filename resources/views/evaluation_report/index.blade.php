@@ -289,7 +289,7 @@
                         Dépréciation théorique
                     </th>
                     <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
-                        <b> {{number_format($evaluation?->depreciation_rate ?? 0, 0, ',', ' ') ?? ''}} %</b>
+                        <b> {{number_format($evaluation?->depreciation_rate ?? 0, 2, ',', ' ') ?? ''}} %</b>
                     </th>
                 </tr>
                 <tr style="border: 1px solid; font-size: 11px;">
