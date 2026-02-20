@@ -230,6 +230,16 @@
                 </tr>
                 <tr style="border: 1px solid; font-size: 11px;">
                     <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
+                        Equipement du véhicule
+                    </th>
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
+                        <b>
+                            <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->equipment ?? '')}}</b>
+                        </b>
+                    </th>
+                </tr>
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Options du véhicule
                     </th>
                     <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">

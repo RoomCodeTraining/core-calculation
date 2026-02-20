@@ -111,11 +111,11 @@ class CalculationController extends Controller
     {
         $calculation = Calculation::accessibleBy(auth()->user())->findOrFail(Calculation::keyFromHashId($id));
         $calculation->update([
-            'status_id' => Status::where('code', StatusEnum::DELETED)->first()->id,
+            // 'status_id' => Status::where('code', StatusEnum::DELETED)->first()->id,
             'deleted_by' => auth()->user()->id,
             'deleted_at' => Carbon::now(),
         ]);
-        $calculation->delete();
+        // $calculation->delete();
 
         return $this->responseDeleted();
     }
