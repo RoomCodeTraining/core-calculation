@@ -131,9 +131,9 @@ class VehicleCharacteristicController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
-        if($vehicleCharacteristic && $request->price){
+        if($vehicleCharacteristic && $request->new_market_value){
             Price::create([
-                'value' => $request->price,
+                'value' => $request->new_market_value,
                 'date' => $request->date,
                 'vehicle_characteristic_id' => $vehicleCharacteristic->id,
                 'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
