@@ -8,5 +8,5 @@ class DealerFilters extends QueryFilters
 {
     protected array $allowedFilters = [];
 
-    protected array $columnSearch = ['name'];
+    protected array $columnSearch = ['name', 'email', 'phone'];
 }
