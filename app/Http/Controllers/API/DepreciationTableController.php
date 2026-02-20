@@ -19,6 +19,7 @@ use App\Models\VehicleEnergy;
 use App\Models\DepreciationTable;
 use App\Models\VehicleGenreUsage;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
 use App\Models\VehicleCharacteristic;
@@ -88,6 +89,8 @@ class DepreciationTableController extends Controller
         $marketValueService = app(MarketValueService::class);
         $result = $marketValueService->calculateTheoreticalMarketValue($vehicleCharacteristic->vehicleGenreUsage->id, $vehicleCharacteristic->vehicle_energy_id, $vehicle_new_value, $request->vehicle_mileage, $request->first_entry_into_circulation_date, $request->expertise_date);
         $result = (object) $result;
+
+        Log::info(json_encode($result));
 
         // if($result->theorical_depreciation_rate <= 0)
         // {
