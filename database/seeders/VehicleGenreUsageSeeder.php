@@ -19,7 +19,7 @@ class VehicleGenreUsageSeeder extends Seeder
         // VP
         VehicleGenreUsage::create([
             'vehicle_genre_id' => VehicleGenre::where('code', 'VP')->first()->id,
-            'usage_id' => Usage::where('code', 'PRIP')->first()->id,
+            'usage_id' => Usage::where('code', 'PRIV')->first()->id,
             'max_mileage_essence_per_year' => 25000,
             'max_mileage_diesel_per_year' => 35000,
             'status_id' => 1,
@@ -161,9 +161,9 @@ class VehicleGenreUsageSeeder extends Seeder
         // CAM
         VehicleGenreUsage::create([
             'vehicle_genre_id' => VehicleGenre::where('code', 'CAM')->first()->id,
-            'usage_id' => Usage::where('code', 'TMAG')->first()->id,
-            'max_mileage_essence_per_year' => 60000,
-            'max_mileage_diesel_per_year' => 60000,
+            'usage_id' => Usage::where('code', 'CAM1')->first()->id,
+            'max_mileage_essence_per_year' => 70000,
+            'max_mileage_diesel_per_year' => 70000,
             'status_id' => 1,
             'created_by' => 1,
             'updated_by' => 1,
@@ -171,47 +171,7 @@ class VehicleGenreUsageSeeder extends Seeder
 
         VehicleGenreUsage::create([
             'vehicle_genre_id' => VehicleGenre::where('code', 'CAM')->first()->id,
-            'usage_id' => Usage::where('code', 'TMAT')->first()->id,
-            'max_mileage_essence_per_year' => 60000,
-            'max_mileage_diesel_per_year' => 60000,
-            'status_id' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-        ]);
-
-        VehicleGenreUsage::create([
-            'vehicle_genre_id' => VehicleGenre::where('code', 'CAM')->first()->id,
-            'usage_id' => Usage::where('code', 'TFRG')->first()->id,
-            'max_mileage_essence_per_year' => 60000,
-            'max_mileage_diesel_per_year' => 60000,
-            'status_id' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-        ]);
-
-        VehicleGenreUsage::create([
-            'vehicle_genre_id' => VehicleGenre::where('code', 'CAM')->first()->id,
-            'usage_id' => Usage::where('code', 'THYC')->first()->id,
-            'max_mileage_essence_per_year' => 60000,
-            'max_mileage_diesel_per_year' => 60000,
-            'status_id' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-        ]);
-
-        VehicleGenreUsage::create([
-            'vehicle_genre_id' => VehicleGenre::where('code', 'CAM')->first()->id,
-            'usage_id' => Usage::where('code', 'BTP')->first()->id,
-            'max_mileage_essence_per_year' => 60000,
-            'max_mileage_diesel_per_year' => 60000,
-            'status_id' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-        ]);
-
-        VehicleGenreUsage::create([
-            'vehicle_genre_id' => VehicleGenre::where('code', 'CAM')->first()->id,
-            'usage_id' => Usage::where('code', 'LOIN')->first()->id,
+            'usage_id' => Usage::where('code', 'CAM2')->first()->id,
             'max_mileage_essence_per_year' => 60000,
             'max_mileage_diesel_per_year' => 60000,
             'status_id' => 1,
@@ -352,6 +312,26 @@ class VehicleGenreUsageSeeder extends Seeder
             'updated_by' => 1,
         ]);
 
+        VehicleGenreUsage::create([
+            'vehicle_genre_id' => VehicleGenre::where('code', 'CAM')->first()->id,
+            'usage_id' => Usage::where('code', 'THYC')->first()->id,
+            'max_mileage_essence_per_year' => 0,
+            'max_mileage_diesel_per_year' => 0,
+            'status_id' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
+
+        VehicleGenreUsage::create([
+            'vehicle_genre_id' => VehicleGenre::where('code', 'CAM')->first()->id,
+            'usage_id' => Usage::where('code', 'TCON')->first()->id,
+            'max_mileage_essence_per_year' => 80000,
+            'max_mileage_diesel_per_year' => 80000,
+            'status_id' => 1,
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
+
         // TRR
         VehicleGenreUsage::create([
             'vehicle_genre_id' => VehicleGenre::where('code', 'TRR')->first()->id,
@@ -366,16 +346,6 @@ class VehicleGenreUsageSeeder extends Seeder
         VehicleGenreUsage::create([
             'vehicle_genre_id' => VehicleGenre::where('code', 'TRR')->first()->id,
             'usage_id' => Usage::where('code', 'TINT')->first()->id,
-            'max_mileage_essence_per_year' => 80000,
-            'max_mileage_diesel_per_year' => 80000,
-            'status_id' => 1,
-            'created_by' => 1,
-            'updated_by' => 1,
-        ]);
-
-        VehicleGenreUsage::create([
-            'vehicle_genre_id' => VehicleGenre::where('code', 'TRR')->first()->id,
-            'usage_id' => Usage::where('code', 'TCON')->first()->id,
             'max_mileage_essence_per_year' => 80000,
             'max_mileage_diesel_per_year' => 80000,
             'status_id' => 1,

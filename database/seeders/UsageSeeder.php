@@ -16,7 +16,7 @@ class UsageSeeder extends Seeder
     public function run(): void
     {
         $usages = [
-            ['code' => 'PRIP', 'label' => 'Privé / Personnel', 'description' => 'Privé / Personnel', 'status_id' => 1],
+            ['code' => 'PRIV', 'label' => 'Privé / Personnel', 'description' => 'Privé / Personnel', 'status_id' => 1],
             ['code' => 'PROF', 'label' => 'Professionnel léger', 'description' => 'Professionnel léger', 'status_id' => 1],
             ['code' => 'VTC', 'label' => 'VTC', 'description' => 'VTC (Véhicule de Transport avec Chauffeur)', 'status_id' => 1],
             ['code' => 'TAXI', 'label' => 'Taxi compteur', 'description' => 'Taxi compteur', 'status_id' => 1],
@@ -24,16 +24,11 @@ class UsageSeeder extends Seeder
             ['code' => 'LOCD', 'label' => 'Location courte durée', 'description' => 'Location courte durée', 'status_id' => 1],
             ['code' => 'LOLD', 'label' => 'Location longue durée ', 'description' => 'Location longue durée ', 'status_id' => 1],
             ['code' => 'SADM', 'label' => 'Service administratif', 'description' => 'Service administratif', 'status_id' => 1],
-            ['code' => 'PRIV', 'label' => 'Privé', 'description' => 'Privé', 'status_id' => 1],
             ['code' => 'TRMA', 'label' => 'Transport marchandises', 'description' => 'Transport marchandises', 'status_id' => 1],
             ['code' => 'CHAN', 'label' => 'Chantier', 'description' => 'Chantier', 'status_id' => 1],
             ['code' => 'STEC', 'label' => 'Service technique', 'description' => 'Service technique', 'status_id' => 1],
             ['code' => 'LOUT', 'label' => 'Location utilitaire', 'description' => 'Location utilitaire', 'status_id' => 1],
-            ['code' => 'TMAG', 'label' => 'Transport marchandises générales', 'description' => 'Transport marchandises générales', 'status_id' => 1],
-            ['code' => 'TMAT', 'label' => 'Transport matériaux', 'description' => 'Transport matériaux', 'status_id' => 1],
-            ['code' => 'TFRG', 'label' => 'Transport frigorifique', 'description' => 'Transport frigorifique', 'status_id' => 1],
             ['code' => 'THYC', 'label' => 'Transport hydrocarbures', 'description' => 'Transport hydrocarbures', 'status_id' => 1],
-            ['code' => 'BTP', 'label' => 'BTP', 'description' => 'BTP', 'status_id' => 1],
             ['code' => 'LOIN', 'label' => 'Location industrielle', 'description' => 'Location industrielle', 'status_id' => 1],
             ['code' => 'TURB', 'label' => 'Transport urbain', 'description' => 'Transport urbain', 'status_id' => 1],
             ['code' => 'TINR', 'label' => 'Transport interurbain', 'description' => 'Transport interurbain', 'status_id' => 1],
@@ -60,6 +55,8 @@ class UsageSeeder extends Seeder
             ['code' => 'VINC', 'label' => 'Véhicule incendie', 'description' => 'Véhicule incendie', 'status_id' => 1],
             ['code' => 'VBLI', 'label' => 'Véhicule blindé', 'description' => 'Véhicule blindé', 'status_id' => 1],
             ['code' => 'CITE', 'label' => 'Citerne', 'description' => 'Citerne', 'status_id' => 1],
+            ['code' => 'CAM1', 'label' => 'CAMION 2,5 T A 5 T', 'description' => 'CAMION 2,5 T A 5 T', 'status_id' => 1],
+            ['code' => 'CAM2', 'label' => 'CAMION PLUS DE 5 T', 'description' => 'CAMION PLUS DE 5 T', 'status_id' => 1],
         ];
 
         Usage::upsert(
