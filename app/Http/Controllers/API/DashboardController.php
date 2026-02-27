@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use Carbon\Carbon;
-use App\Models\User;
-use App\Models\Entity;
-use App\Models\Status;
-use App\Models\Vehicle;
 use App\Enums\StatusEnum;
-use App\Models\Assignment;
-use App\Models\EntityType;
-use App\Enums\EntityTypeEnum;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Models\Calculation; 
+use App\Models\Status;
+use App\Models\User;
+use App\Models\VehicleCharacteristic;
 use Essa\APIToolKit\Api\ApiResponse;
+use Illuminate\Http\JsonResponse;
 
 /**
  * @group Statistiques du tableau de bord
