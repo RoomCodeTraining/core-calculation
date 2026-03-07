@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fbk5cPEDV683ghZvea164da'
+      - 'Bearer 6vV6Z35ceafk1aEdDgPh8b4'
     controller: null
     method: null
     route: null
@@ -78,7 +78,7 @@ endpoints:
         name: payment_id
         description: 'The <code>id</code> of an existing record in the payments table.'
         required: true
-        example: maxime
+        example: quibusdam
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -88,7 +88,7 @@ endpoints:
         name: bank_id
         description: 'The <code>id</code> of an existing record in the banks table.'
         required: true
-        example: tenetur
+        example: laudantium
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -98,7 +98,7 @@ endpoints:
         name: date
         description: 'Must be a valid date in the format <code>Y-m-d</code>.'
         required: true
-        example: '2026-02-18'
+        example: '2026-03-06'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -108,7 +108,7 @@ endpoints:
         name: amount
         description: ''
         required: true
-        example: 422.832260565
+        example: 202.815034
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -125,10 +125,10 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      payment_id: maxime
-      bank_id: tenetur
-      date: '2026-02-18'
-      amount: 422.832260565
+      payment_id: quibusdam
+      bank_id: laudantium
+      date: '2026-03-06'
+      amount: 202.815034
     fileParameters:
       photo: null
     responses: []
@@ -136,7 +136,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 5f63hV6vabced4P8Zk1EgaD'
+      - 'Bearer 46gd8VD1v36Pkhfb5eEcaaZ'
     controller: null
     method: null
     route: null
@@ -166,14 +166,14 @@ endpoints:
         name: id
         description: 'The ID of the check.'
         required: true
-        example: nihil
+        example: voluptatem
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: nihil
+      id: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -193,7 +193,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer ehvcVg5Z61Ea3b4k8da6DPf'
+      - 'Bearer b3ve1PaVafd6kh5Z4cE8D6g'
     controller: null
     method: null
     route: null
@@ -223,14 +223,14 @@ endpoints:
         name: id
         description: 'The ID of the check.'
         required: true
-        example: hic
+        example: necessitatibus
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: hic
+      id: necessitatibus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -238,7 +238,7 @@ endpoints:
         name: payment_id
         description: 'The <code>id</code> of an existing record in the payments table.'
         required: true
-        example: non
+        example: commodi
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -248,7 +248,7 @@ endpoints:
         name: bank_id
         description: 'The <code>id</code> of an existing record in the banks table.'
         required: true
-        example: suscipit
+        example: atque
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -258,7 +258,7 @@ endpoints:
         name: date
         description: 'Must be a valid date in the format <code>Y-m-d</code>.'
         required: true
-        example: '2026-02-18'
+        example: '2026-03-06'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -268,7 +268,7 @@ endpoints:
         name: amount
         description: ''
         required: true
-        example: 4337.678719
+        example: 32.116
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -285,10 +285,10 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      payment_id: non
-      bank_id: suscipit
-      date: '2026-02-18'
-      amount: 4337.678719
+      payment_id: commodi
+      bank_id: atque
+      date: '2026-03-06'
+      amount: 32.116
     fileParameters:
       photo: null
     responses: []
@@ -296,7 +296,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer kEeP6hadf3V5b1DgZ4av6c8'
+      - 'Bearer abcePf6ZV45vhD1E8kad36g'
     controller: null
     method: null
     route: null
@@ -326,14 +326,14 @@ endpoints:
         name: id
         description: 'The ID of the check.'
         required: true
-        example: qui
+        example: consequatur
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: qui
+      id: consequatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -344,7 +344,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gfDb1Zce6dV4vak6PaE835h'
+      - 'Bearer 6E3daVe4vbfcD8Z5P6gakh1'
     controller: null
     method: null
     route: null

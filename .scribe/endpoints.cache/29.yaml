@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 5kPEeVgaDvZ6fhc86b1ad34'
+      - 'Bearer Pg66eVv5EkfZ1a3ahDb4d8c'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: value
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: true
-        example: 19
+        example: 69
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -90,7 +90,7 @@ endpoints:
         name: date
         description: 'Must be a valid date in the format <code>Y-m-d</code>. Le champ value doit être une date antérieure au <code>tomorrow</code>.'
         required: true
-        example: '2008-01-22'
+        example: '2000-07-17'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -100,23 +100,23 @@ endpoints:
         name: vehicle_characteristic_id
         description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
         required: true
-        example: eum
+        example: nisi
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      value: 19
-      date: '2008-01-22'
-      vehicle_characteristic_id: eum
+      value: 69
+      date: '2000-07-17'
+      vehicle_characteristic_id: nisi
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer v1Z4aea85chdfD63EVb6gPk'
+      - 'Bearer Phdae43Ev5DfacV6186bZkg'
     controller: null
     method: null
     route: null
@@ -146,14 +146,14 @@ endpoints:
         name: id
         description: 'The ID of the price.'
         required: true
-        example: eius
+        example: nostrum
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: eius
+      id: nostrum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -173,7 +173,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer c6Vkgf3186av5PDdEhb4aZe'
+      - 'Bearer 14ad6b8aePc36vDEfhgkV5Z'
     controller: null
     method: null
     route: null
@@ -203,14 +203,14 @@ endpoints:
         name: id
         description: 'The ID of the price.'
         required: true
-        example: dignissimos
+        example: distinctio
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: dignissimos
+      id: distinctio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -218,7 +218,7 @@ endpoints:
         name: value
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: true
-        example: 24
+        example: 84
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -228,7 +228,7 @@ endpoints:
         name: date
         description: 'Must be a valid date in the format <code>Y-m-d</code>. Le champ value doit être une date antérieure au <code>tomorrow</code>.'
         required: true
-        example: '2000-02-29'
+        example: '2001-10-23'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -238,23 +238,23 @@ endpoints:
         name: vehicle_characteristic_id
         description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
         required: true
-        example: est
+        example: aperiam
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      value: 24
-      date: '2000-02-29'
-      vehicle_characteristic_id: est
+      value: 84
+      date: '2001-10-23'
+      vehicle_characteristic_id: aperiam
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6Eegdba5VcD3fZP4ka8v1h6'
+      - 'Bearer hPE4cV56be3gDva6fk8daZ1'
     controller: null
     method: null
     route: null
@@ -284,14 +284,14 @@ endpoints:
         name: id
         description: 'The ID of the price.'
         required: true
-        example: maiores
+        example: quo
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: maiores
+      id: quo
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -302,7 +302,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer D6cV4Ed16PeZvfag8hba5k3'
+      - 'Bearer vkca6dPDZe5V8463hEagb1f'
     controller: null
     method: null
     route: null

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('cancellation_reason')->nullable()->comment('Motif d\'annulation');
             $table->unsignedBigInteger('entity_id')->index()->nullable();
+            $table->unsignedBigInteger('order_id')->index()->nullable();
             $table->unsignedBigInteger('transaction_type_id')->index()->nullable();
             $table->unsignedBigInteger('status_id')->index()->nullable();
             $table->unsignedBigInteger('created_by')->index()->nullable();
@@ -34,6 +35,11 @@ return new class extends Migration
             $table->foreign('entity_id')
                 ->references('id')
                 ->on('entities')
+                ->onDelete('cascade');
+
+            $table->foreign('order_id')
+                ->references('id')
+                ->on('orders')
                 ->onDelete('cascade');
 
             $table->foreign('transaction_type_id')

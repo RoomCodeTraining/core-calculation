@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\API;
 
-use Carbon\Carbon;
-use App\Models\Entity;
-use App\Models\Status;
-use App\Models\Receipt;
-use App\Enums\StatusEnum;
-use App\Models\AppSetting;
-use App\Models\Calculation;
-use App\Models\ReceiptType;
-use App\Models\Transaction;
 use App\Enums\ReceiptTypeEnum;
-use App\Models\TransactionType;
-use Illuminate\Http\JsonResponse;
+use App\Enums\StatusEnum;
 use App\Http\Controllers\Controller;
-use Essa\APIToolKit\Api\ApiResponse;
-use App\Http\Resources\Entity\EntityResource;
-use App\Http\Resources\Transaction\TransactionResource;
+use App\Http\Requests\Transaction\CancelTransactionRequest;
 use App\Http\Requests\Transaction\CreateTransactionRequest;
 use App\Http\Requests\Transaction\UpdateTransactionRequest;
+use App\Http\Resources\Entity\EntityResource;
+use App\Http\Resources\Transaction\TransactionResource;
+use App\Models\AppSetting;
+use App\Models\Calculation;
+use App\Models\Entity;
+use App\Models\Receipt;
+use App\Models\ReceiptType;
+use App\Models\Status;
+use App\Models\Transaction;
+use App\Models\TransactionType;
+use Carbon\Carbon;
+use Essa\APIToolKit\Api\ApiResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
@@ -42,7 +43,7 @@ class TransactionController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $transactions = Transaction::with('entity', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy')->accessibleBy(auth()->user());
+        $transactions = Transaction::with('entity', 'order', 'receipts', 'receipts.receiptType', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy')->accessibleBy(auth()->user());
 
         if(request()->filled('entity_id')){
             $transactions = $transactions->where('entity_id', Entity::keyFromHashId(request()->entity_id));
@@ -123,7 +124,7 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::keyFromHashId($id)->builder()->accessibleBy(auth()->user())->firstOrFail();
         
-        $transaction->load('entity', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy');
+        $transaction->load('entity', 'order', 'receipts', 'receipts.receiptType', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy');
 
         return $this->responseSuccess(null, new TransactionResource($transaction));
     }

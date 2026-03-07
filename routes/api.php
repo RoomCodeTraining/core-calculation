@@ -94,5 +94,13 @@ Route::prefix('v1')->middleware(LogsOutDisabledUser::class)->group(function () {
     Route::prefix('transaction-types')->group(base_path('routes/api/v1.transaction.types.routes.php'));
     Route::prefix('transactions')->group(base_path('routes/api/v1.transactions.routes.php'));
     Route::prefix('prices')->group(base_path('routes/api/v1.prices.routes.php'));
+    Route::prefix('orders')->group(base_path('routes/api/v1.orders.routes.php'));
     Route::group([], base_path('routes/api/v1.common.routes.php'));
 });
+/*===========================
+=           orders           =
+=============================*/
+
+Route::apiResource('/orders', \App\Http\Controllers\API\OrderController::class);
+
+/*=====  End of orders   ======*/

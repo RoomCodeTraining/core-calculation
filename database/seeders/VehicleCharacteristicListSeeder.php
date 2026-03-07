@@ -49,8 +49,8 @@ class VehicleCharacteristicListSeeder extends Seeder
 
     /**
      * Run the database seeds.
-     * Seeds vehicle characteristics from data/conseilauto_data_20260225_230502.json
-     * using the same logic as VehicleCharacteristicController::store().
+     * Seeds vehicle characteristics from conseilauto_data_20260225_230502_filled.json
+     * using the same logique que VehicleCharacteristicController::store().
      * Maps: vehicle_model_id←NomCommercial+Marque, vehicle_energy_id←Energie, dealer_id←concessionnaire,
      * type←types, equipments←Equipement, fiscal_power←PuissanceFiscale, nb_seats←Nbreplace,
      * new_market_value←HT_HD, date←dateParution (today if invalid). vehicle_genre_usage_id from GenreVehicule per prompt.
@@ -59,7 +59,7 @@ class VehicleCharacteristicListSeeder extends Seeder
      */
     public function run(): void
     {
-        $path = base_path('data/conseilauto_data_20260225_230502.json');
+        $path = base_path('data/conseilauto_data_20260225_230502_filled.json');
 
         if (!file_exists($path)) {
             $this->command->warn("File not found: {$path}");
@@ -196,19 +196,70 @@ class VehicleCharacteristicListSeeder extends Seeder
     {
         $marque = isset($row['Marque']) ? trim((string) $row['Marque']) : '';
         $nomCommercial = isset($row['NomCommercial']) ? trim((string) $row['NomCommercial']) : '';
+        $modele = isset($row['Modele']) ? trim((string) $row['Modele']) : '';
+
         if ($marque === '' || $nomCommercial === '') {
             return null;
         }
 
-        $brand = $this->brandsByCode->get(Str::slug($marque))
-            ?? Brand::whereRaw('UPPER(TRIM(label)) = ?', [Str::upper($marque)])->first();
+        // 1) Résoudre ou créer la marque
+        $slug = Str::slug($marque);
+        $brand = $this->brandsByCode[$slug] ?? null;
+
         if (!$brand) {
-            return null;
+            $brand = Brand::whereRaw('UPPER(TRIM(label)) = ?', [Str::upper($marque)])->first();
+
+            if (!$brand) {
+                // Tentative de match \"sans espaces\" (ex: MERCEDES BENZ vs MERCEDES-BENZ)
+                $normalized = preg_replace('/\s+/', '', Str::upper($marque));
+                $brand = Brand::whereRaw('REPLACE(UPPER(label), \" \", \"\") = ?', [$normalized])->first();
+            }
+
+            if (!$brand) {
+                // Créer la marque manquante
+                $code = $slug !== '' ? $slug : 'brand-' . Str::random(6);
+                $brand = Brand::create([
+                    'code' => $code,
+                    'label' => $marque,
+                    'description' => $marque,
+                    'status_id' => $this->statusId,
+                    'created_by' => $this->userId,
+                    'updated_by' => $this->userId,
+                ]);
+            }
+
+            // Mettre à jour le cache
+            $this->brandsByCode[$brand->code] = $brand;
         }
 
+        // 2) Résoudre ou créer le modèle (par marque + NomCommercial)
         $key = $brand->id . '|' . $nomCommercial;
-        $model = $this->vehicleModelsByBrandAndLabel->get($key);
-        return $model?->id;
+        $model = $this->vehicleModelsByBrandAndLabel[$key] ?? null;
+
+        if (!$model) {
+            $codeBase = Str::slug($brand->code . '-' . $nomCommercial);
+            $code = $codeBase !== '' ? $codeBase : 'model-' . Str::random(6);
+
+            // Garantir l'unicité du code
+            $suffix = 1;
+            while (VehicleModel::where('code', $code)->exists()) {
+                $code = $codeBase . '-' . $suffix++;
+            }
+
+            $model = VehicleModel::create([
+                'code' => $code,
+                'label' => $nomCommercial,
+                'description' => $modele !== '' ? $modele : $nomCommercial,
+                'brand_id' => $brand->id,
+                'status_id' => $this->statusId,
+                'created_by' => $this->userId,
+                'updated_by' => $this->userId,
+            ]);
+
+            $this->vehicleModelsByBrandAndLabel[$key] = $model;
+        }
+
+        return $model->id;
     }
 
     private function resolveVehicleEnergyId(array $row): ?int
@@ -217,8 +268,30 @@ class VehicleCharacteristicListSeeder extends Seeder
         if ($energie === '') {
             return null;
         }
+
+        // Correspondance directe (y compris DIESEL mappé sur GASOIL dans loadLookups)
         $energy = $this->energiesByLabel->get($energie);
-        return $energy?->id;
+
+        if (!$energy) {
+            // Créer une nouvelle énergie si inconnue
+            $codeBase = 'VE-' . Str::slug($energie);
+            $code = $codeBase !== '' ? $codeBase : 'VE-' . Str::random(4);
+            $suffix = 1;
+            while (VehicleEnergy::where('code', $code)->exists()) {
+                $code = $codeBase . '-' . $suffix++;
+            }
+
+            $energy = VehicleEnergy::create([
+                'code' => $code,
+                'label' => $energie,
+                'description' => $energie,
+                'status_id' => $this->statusId,
+            ]);
+
+            $this->energiesByLabel[$energie] = $energy;
+        }
+
+        return $energy->id;
     }
 
     private function resolveDealerId(array $row): ?int
@@ -227,8 +300,26 @@ class VehicleCharacteristicListSeeder extends Seeder
         if ($name === '') {
             return null;
         }
-        $dealer = $this->dealersByName->get(Str::upper($name));
-        return $dealer?->id;
+
+        $upper = Str::upper($name);
+        $dealer = $this->dealersByName[$upper] ?? null;
+
+        if (!$dealer) {
+            // Créer le concessionnaire manquant
+            $dealer = Dealer::create([
+                'name' => $name,
+                'email' => null,
+                'address' => null,
+                'telephone' => null,
+                'status_id' => $this->statusId,
+                'created_by' => $this->userId,
+                'updated_by' => $this->userId,
+            ]);
+
+            $this->dealersByName[$upper] = $dealer;
+        }
+
+        return $dealer->id;
     }
 
     /**

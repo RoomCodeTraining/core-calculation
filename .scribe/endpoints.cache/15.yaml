@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer hc6a4a1vg6dkf5V8DPbZeE3'
+      - 'Bearer f14ahk65evD36cPabVgEd8Z'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: ytsidezzcsgzsn
+        example: emwaqugdzjqo
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -90,22 +90,22 @@ endpoints:
         name: description
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: 'Esse rem occaecati maxime voluptatum rem hic eius.'
+        example: 'Ducimus aut et dolorum quam et dolorum ipsum facilis.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: ytsidezzcsgzsn
-      description: 'Esse rem occaecati maxime voluptatum rem hic eius.'
+      label: emwaqugdzjqo
+      description: 'Ducimus aut et dolorum quam et dolorum ipsum facilis.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 5PkfV6advca634DhgE1eZb8'
+      - 'Bearer EcV65d16Pk3gZhfD4av8eba'
     controller: null
     method: null
     route: null
@@ -135,14 +135,14 @@ endpoints:
         name: paymentType
         description: ''
         required: true
-        example: consequatur
+        example: quia
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentType: consequatur
+      paymentType: quia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -162,7 +162,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fgP8v65dkhVeaE43Za6bD1c'
+      - 'Bearer 15k6chdea8VEvPgbaD3fZ46'
     controller: null
     method: null
     route: null
@@ -192,14 +192,14 @@ endpoints:
         name: paymentType
         description: ''
         required: true
-        example: dolore
+        example: esse
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentType: dolore
+      paymentType: esse
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -207,7 +207,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: myrvqrllevoogvgcwt
+        example: ycsfldyxsdrqftwofdkdtcosc
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -217,22 +217,22 @@ endpoints:
         name: description
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: 'Quas nesciunt est reprehenderit sapiente quos.'
+        example: 'Quo esse est est est nihil assumenda.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: myrvqrllevoogvgcwt
-      description: 'Quas nesciunt est reprehenderit sapiente quos.'
+      label: ycsfldyxsdrqftwofdkdtcosc
+      description: 'Quo esse est est est nihil assumenda.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer PV3ebaha8fk6Egc54D1dvZ6'
+      - 'Bearer 85dcD4a1kbh6fgEPa6evZV3'
     controller: null
     method: null
     route: null
@@ -262,14 +262,14 @@ endpoints:
         name: paymentType
         description: ''
         required: true
-        example: eius
+        example: velit
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentType: eius
+      paymentType: velit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -280,7 +280,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer db31Dcv465Ph86VZfgkEeaa'
+      - 'Bearer Vf4368v1a5ZaPbDcd6hgkeE'
     controller: null
     method: null
     route: null
@@ -310,14 +310,14 @@ endpoints:
         name: paymentType
         description: ''
         required: true
-        example: ducimus
+        example: tenetur
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentType: ducimus
+      paymentType: tenetur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -328,7 +328,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 5dcVefag6ZD6kbP8413vhaE'
+      - 'Bearer 6v8EDgkZabhe4fd1P3Va6c5'
     controller: null
     method: null
     route: null
@@ -358,14 +358,14 @@ endpoints:
         name: paymentType
         description: ''
         required: true
-        example: omnis
+        example: quasi
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentType: omnis
+      paymentType: quasi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -376,7 +376,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gZe6c58faP13Ek4D6dbaVvh'
+      - 'Bearer a8b31fcPvZe5h6a46DkEVgd'
     controller: null
     method: null
     route: null

@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer ae6f1chDaP8d6g3VkEZv5b4'
+      - 'Bearer 3ZbahP8aVedv64kE65fgcD1'
     controller: null
     method: null
     route: null
@@ -78,7 +78,7 @@ endpoints:
         name: value
         description: ''
         required: true
-        example: 20
+        example: 7
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -88,7 +88,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: gtndnmoytoqqjdrtfedtmkuim
+        example: gag
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -98,23 +98,23 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'In aut autem pariatur eligendi architecto dolorem quasi.'
+        example: 'Nam sunt et quos porro necessitatibus et vel ex.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      value: 20
-      label: gtndnmoytoqqjdrtfedtmkuim
-      description: 'In aut autem pariatur eligendi architecto dolorem quasi.'
+      value: 7
+      label: gag
+      description: 'Nam sunt et quos porro necessitatibus et vel ex.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer D6akcZE1eP65b8d3Vgvh4fa'
+      - 'Bearer 63eZEfha8D641VPbcgadv5k'
     controller: null
     method: null
     route: null
@@ -144,14 +144,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle age.'
         required: true
-        example: sunt
+        example: mollitia
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: sunt
+      id: mollitia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -171,7 +171,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer aea1bvD8fh5g46PZkEV36dc'
+      - 'Bearer d46a5hvaPEk86DVZe3cbf1g'
     controller: null
     method: null
     route: null
@@ -201,14 +201,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle age.'
         required: true
-        example: enim
+        example: voluptas
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: enim
+      id: voluptas
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -216,7 +216,7 @@ endpoints:
         name: value
         description: ''
         required: true
-        example: 15
+        example: 9
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -226,7 +226,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: orzihyecsaijl
+        example: hzlgijajmazfcvf
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -236,23 +236,23 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Ipsam omnis asperiores quo omnis.'
+        example: 'Unde dignissimos aliquid qui reiciendis quis voluptas.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      value: 15
-      label: orzihyecsaijl
-      description: 'Ipsam omnis asperiores quo omnis.'
+      value: 9
+      label: hzlgijajmazfcvf
+      description: 'Unde dignissimos aliquid qui reiciendis quis voluptas.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer f6ea1dD8vkg3bcPhEaV5Z64'
+      - 'Bearer vE6ZV15Page8kb4cfD6d3ha'
     controller: null
     method: null
     route: null
@@ -282,14 +282,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle age.'
         required: true
-        example: impedit
+        example: ratione
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: impedit
+      id: ratione
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -300,7 +300,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer eDg6achZPbV835E6fdvk1a4'
+      - 'Bearer bPe865adZ4hv1fDagVcE6k3'
     controller: null
     method: null
     route: null

@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gedfZEPVa5hc46v16Db38ka'
+      - 'Bearer af5bVhdcgZ6E3v164DP8aek'
     controller: null
     method: null
     route: null
@@ -90,7 +90,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer b64EPd81gv3fkV6a5hDZaec'
+      - 'Bearer kDdvbeP51aZgV46f6E3hac8'
     controller: null
     method: null
     route: null
@@ -127,7 +127,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer e5a6V6bD3Zfgha4d8PEcv1k'
+      - 'Bearer k6af8bZ514gDhEec3dVa6Pv'
     controller: null
     method: null
     route: null
@@ -175,7 +175,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 61E4fDgdkhPVcvb5aZ6ea38'
+      - 'Bearer 4hbce1fV3Padg5Eak6Zv68D'
     controller: null
     method: null
     route: null
@@ -205,14 +205,14 @@ endpoints:
         name: role
         description: 'The role.'
         required: true
-        example: officiis
+        example: ipsam
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      role: officiis
+      role: ipsam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -223,7 +223,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer EZ3aa8gdfhbk5e6PDc614vV'
+      - 'Bearer bavfZ68D1E54a3kegcVhP6d'
     controller: null
     method: null
     route: null
@@ -253,14 +253,14 @@ endpoints:
         name: role
         description: 'The role.'
         required: true
-        example: a
+        example: molestias
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      role: a
+      role: molestias
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -271,7 +271,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 4h153fdkcVD6Zag6a8PvEeb'
+      - 'Bearer acfvZ6keh4gDa3Vb86EPd51'
     controller: null
     method: null
     route: null

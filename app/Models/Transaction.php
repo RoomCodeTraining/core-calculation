@@ -29,6 +29,16 @@ class Transaction extends Model
         return $this->belongsTo(Entity::class);
     }
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function receipts()
+    {
+        return $this->hasMany(Receipt::class);
+    }
+
     public function transactionType()
     {
         return $this->belongsTo(TransactionType::class);

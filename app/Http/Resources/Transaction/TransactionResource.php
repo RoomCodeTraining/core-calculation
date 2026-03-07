@@ -4,9 +4,11 @@ namespace App\Http\Resources\Transaction;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Entity\EntityResource;
+use App\Http\Resources\Order\OrderResource;
 use App\Http\Resources\TransactionType\TransactionTypeResource;
 use App\Http\Resources\Status\StatusResource;
 use App\Http\Resources\User\UserResource;
+use App\Http\Resources\Receipt\ReceiptResource;
 
 class TransactionResource extends JsonResource
 {
@@ -19,6 +21,8 @@ class TransactionResource extends JsonResource
             'description' => $this->description,
             'cancellation_reason' => $this->cancellation_reason,
             'entity' => new EntityResource($this->whenLoaded('entity')),
+            'order' => new OrderResource($this->whenLoaded('order')),
+            'receipts' => ReceiptResource::collection($this->whenLoaded('receipts')),
             'transaction_type' => new TransactionTypeResource($this->whenLoaded('transactionType')),
             'status' => new StatusResource($this->whenLoaded('status')),
             'created_by' => new UserResource($this->whenLoaded('createdBy')),

@@ -5,11 +5,17 @@ namespace App\Http\Resources\Entity;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Status\StatusResource;
 use App\Http\Resources\EntityType\EntityTypeResource;
+use App\Models\Transaction;
+use App\Models\Status;
+use App\Enums\StatusEnum;
+use App\Models\Calculation;
 
 class EntityResource extends JsonResource
 {
     public function toArray($request): array
     {
+        $credit = Transaction::where('entity_id', $this->id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', $this->id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
+        
         return [
             'id' => $this->hashId,
             'code' => $this->code,
@@ -22,6 +28,7 @@ class EntityResource extends JsonResource
             'taxpayer_account_number' => $this->taxpayer_account_number,
             'service_description' => $this->service_description,
             'footer_description' => $this->footer_description,
+            'credit' => $credit,
             'logo' => $this->logo ? url('storage/logos/'.$this->logo.'?v='.time()) : null,
             'status' => new StatusResource($this->whenLoaded('status')),
             'entity_type' => new EntityTypeResource($this->whenLoaded('entityType')),
