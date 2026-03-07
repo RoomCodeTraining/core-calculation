@@ -232,5 +232,12 @@ enum PermissionEnum: string
     case DELETE_TRANSACTION = 'transaction.delete';
     case CANCEL_TRANSACTION = 'transaction.cancel';
 
+    case VIEW_ORDER = 'order.view';
+    case CREATE_ORDER = 'order.create';
+    case UPDATE_ORDER = 'order.update';
+    case VALIDATE_ORDER = 'order.validate';
+    case CANCEL_ORDER = 'order.cancel';
+    case REJECT_ORDER = 'order.reject';
+
     case DASHBOARD = 'dashboard.view';
 }

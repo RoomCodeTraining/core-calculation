@@ -234,6 +234,13 @@ class RolesAndPermissionsSeeder extends Seeder
         $deleteTransaction = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_TRANSACTION, 'guard_name' => 'sanctum']);
         $cancelTransaction = Permission::create(['name' => \App\Enums\PermissionEnum::CANCEL_TRANSACTION, 'guard_name' => 'sanctum']);
 
+        $createOrder = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_ORDER, 'guard_name' => 'sanctum']);
+        $viewOrder = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_ORDER, 'guard_name' => 'sanctum']);
+        $updateOrder = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_ORDER, 'guard_name' => 'sanctum']);
+        $validateOrder = Permission::create(['name' => \App\Enums\PermissionEnum::VALIDATE_ORDER, 'guard_name' => 'sanctum']);
+        $rejectOrder = Permission::create(['name' => \App\Enums\PermissionEnum::REJECT_ORDER, 'guard_name' => 'sanctum']);
+        $cancelOrder = Permission::create(['name' => \App\Enums\PermissionEnum::CANCEL_ORDER, 'guard_name' => 'sanctum']);
+
         $dashboard = Permission::create(['name' => \App\Enums\PermissionEnum::DASHBOARD, 'guard_name' => 'sanctum']);
 
         Role::create([
@@ -440,6 +447,10 @@ class RolesAndPermissionsSeeder extends Seeder
             $updateTransaction,
             $deleteTransaction,
             $cancelTransaction,
+
+            $viewOrder,
+            $validateOrder,
+            $rejectOrder,
 
             $dashboard,
         ]);
@@ -656,6 +667,10 @@ class RolesAndPermissionsSeeder extends Seeder
             $deleteTransaction,
             $cancelTransaction,
 
+            $viewOrder,
+            $validateOrder,
+            $rejectOrder,
+
             $dashboard,
         ]);
 
@@ -737,6 +752,11 @@ class RolesAndPermissionsSeeder extends Seeder
             $createCalculation,
             $viewCalculation,
             $updateCalculation,
+
+            $createOrder,
+            $viewOrder,
+            $updateOrder,
+            $cancelOrder,
 
             $dashboard,
         ]);
