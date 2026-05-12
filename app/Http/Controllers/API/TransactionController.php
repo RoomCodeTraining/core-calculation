@@ -86,20 +86,21 @@ class TransactionController extends Controller
      */
     public function store(CreateTransactionRequest $request): JsonResponse
     {
+        $amount_excluding_tax = AppSetting::where('code', 'credit_cost')->first()->value * ($request->quantity ?? 0);
+        $amount_tax = $amount_excluding_tax * AppSetting::where('code', 'tax_rate')->first()->value / 100;
+        $amount = $amount_excluding_tax + $amount_tax;
+
         $transaction = Transaction::create([
             'reference' => 'TR-'.date('YmdHis'),
             'entity_id' => $request->entity_id,
             'transaction_type_id' => $request->transaction_type_id,
             'quantity' => $request->quantity,
+            'amount' => $amount,
             'description' => $request->description,
-            'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
+            'status_id' => Status::where('code', StatusEnum::PENDING)->first()->id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
         ]);
-
-        $amount_excluding_tax = AppSetting::where('code', 'credit_cost')->first()->value * ($transaction->quantity ?? 0);
-        $amount_tax = $amount_excluding_tax * AppSetting::where('code', 'tax_rate')->first()->value / 100;
-        $amount = $amount_excluding_tax + $amount_tax;
 
         $receipt = Receipt::create([
             'transaction_id' => $transaction->id,

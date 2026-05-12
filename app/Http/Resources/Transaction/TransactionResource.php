@@ -2,27 +2,36 @@
 
 namespace App\Http\Resources\Transaction;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use App\Enums\StatusEnum;
 use App\Http\Resources\Entity\EntityResource;
 use App\Http\Resources\Order\OrderResource;
-use App\Http\Resources\TransactionType\TransactionTypeResource;
-use App\Http\Resources\Status\StatusResource;
-use App\Http\Resources\User\UserResource;
 use App\Http\Resources\Receipt\ReceiptResource;
+use App\Http\Resources\Status\StatusResource;
+use App\Http\Resources\TransactionType\TransactionTypeResource;
+use App\Http\Resources\User\UserResource;
+use App\Models\Status;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class TransactionResource extends JsonResource
 {
     public function toArray($request): array
     {
+        $status_performed_id = Status::where('code', StatusEnum::PERFORMED)->first()->id;
+
         return [
             'id' => $this->hashId,
             'reference' => $this->reference,
             'quantity' => $this->quantity,
+            'amount' => $this->amount ?? (
+                $this->quantity !== null
+                    ? (float) $this->quantity * (float) config('services.settings.transaction_cost', 100)
+                    : null
+            ),
             'description' => $this->description,
             'cancellation_reason' => $this->cancellation_reason,
             'entity' => new EntityResource($this->whenLoaded('entity')),
             'order' => new OrderResource($this->whenLoaded('order')),
-            'receipts' => ReceiptResource::collection($this->whenLoaded('receipts')),
+            'receipts' => $this->status_id = $status_performed_id ? new ReceiptResource::collection($this->whenLoaded('receipts')) : null,
             'transaction_type' => new TransactionTypeResource($this->whenLoaded('transactionType')),
             'status' => new StatusResource($this->whenLoaded('status')),
             'created_by' => new UserResource($this->whenLoaded('createdBy')),

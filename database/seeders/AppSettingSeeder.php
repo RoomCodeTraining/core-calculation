@@ -58,7 +58,7 @@ class AppSettingSeeder extends Seeder
 
         AppSetting::create([
             'code' => 'credit_cost',
-            'value' => '500',
+            'value' => '100',
             'label' => 'Coût du crédit',
             'description' => 'Coût du crédit',
             'status_id' => Status::where('code', StatusEnum::ACTIVE->value)->first()->id,

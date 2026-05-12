@@ -95,12 +95,14 @@ Route::prefix('v1')->middleware(LogsOutDisabledUser::class)->group(function () {
     Route::prefix('transactions')->group(base_path('routes/api/v1.transactions.routes.php'));
     Route::prefix('prices')->group(base_path('routes/api/v1.prices.routes.php'));
     Route::prefix('orders')->group(base_path('routes/api/v1.orders.routes.php'));
+    Route::prefix('recharges')->group(base_path('routes/api/v1.recharges.routes.php'));
     Route::group([], base_path('routes/api/v1.common.routes.php'));
 });
+
 /*===========================
-=           orders           =
+=           recharges           =
 =============================*/
 
-Route::apiResource('/orders', \App\Http\Controllers\API\OrderController::class);
+Route::apiResource('/recharges', \App\Http\Controllers\API\RechargeController::class);
 
-/*=====  End of orders   ======*/
+/*=====  End of recharges   ======*/

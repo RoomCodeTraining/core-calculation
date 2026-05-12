@@ -38,6 +38,7 @@ return [
     'settings' => [
         'tax_rate' => env('TAX_RATE', 18),
         'small_supply_rate' => env('SMALL_SUPPLY_RATE', 2),
+        'transaction_cost' => env('TRANSACTION_COST', 100),
     ],
 
     'fne' => [

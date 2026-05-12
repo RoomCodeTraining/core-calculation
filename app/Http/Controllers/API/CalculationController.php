@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Status;
 use App\Enums\StatusEnum;
-use App\Models\Calculation;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Essa\APIToolKit\Api\ApiResponse;
-use App\Http\Resources\Calculation\CalculationResource;
 use App\Http\Requests\Calculation\CreateCalculationRequest;
 use App\Http\Requests\Calculation\UpdateCalculationRequest;
+use App\Http\Resources\Calculation\CalculationResource;
+use App\Models\Calculation;
+use App\Models\Entity;
+use App\Models\Status;
+use App\Models\VehicleCharacteristic;
+use Essa\APIToolKit\Api\ApiResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**

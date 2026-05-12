@@ -154,21 +154,22 @@ class OrderController extends Controller
                 'updated_by' => auth()->user()->id,
             ]);
 
+            $amount_excluding_tax = AppSetting::where('code', 'credit_cost')->first()->value * ($order->quantity ?? 0);
+            $amount_tax = $amount_excluding_tax * AppSetting::where('code', 'tax_rate')->first()->value / 100;
+            $amount = $amount_excluding_tax + $amount_tax;
+
             $transaction = Transaction::create([
                 'reference' => 'TR-'.date('YmdHis'),
                 'entity_id' => $order->entity_id,
                 'order_id' => $order->id,
                 'transaction_type_id' => TransactionType::where('code', TransactionTypeEnum::DEPOSIT)->first()->id,
                 'quantity' => $order->quantity,
+                'amount' => $amount,
                 'description' => 'Commande de crédit validée',
                 'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
                 'created_by' => auth()->user()->id,
                 'updated_by' => auth()->user()->id,
             ]);
-    
-            $amount_excluding_tax = AppSetting::where('code', 'credit_cost')->first()->value * ($transaction->quantity ?? 0);
-            $amount_tax = $amount_excluding_tax * AppSetting::where('code', 'tax_rate')->first()->value / 100;
-            $amount = $amount_excluding_tax + $amount_tax;
     
             $receipt = Receipt::create([
                 'transaction_id' => $transaction->id,
