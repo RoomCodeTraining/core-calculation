@@ -98,11 +98,3 @@ Route::prefix('v1')->middleware(LogsOutDisabledUser::class)->group(function () {
     Route::prefix('recharges')->group(base_path('routes/api/v1.recharges.routes.php'));
     Route::group([], base_path('routes/api/v1.common.routes.php'));
 });
-
-/*===========================
-=           recharges           =
-=============================*/
-
-Route::apiResource('/recharges', \App\Http\Controllers\API\RechargeController::class);
-
-/*=====  End of recharges   ======*/

@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer d3ha5e6DE4c8fV6b1aPkgZv'
+      - 'Bearer eVZEka4h6dg3bfvPc1a85D6'
     controller: null
     method: null
     route: null
@@ -74,14 +74,14 @@ endpoints:
         name: id
         description: 'The ID of the entity.'
         required: true
-        example: rem
+        example: officia
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: rem
+      id: officia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -101,7 +101,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 56ZcgPEda8kfv1eh6Vab4D3'
+      - 'Bearer dE48vDa6kVg31Pe6cfh5baZ'
     controller: null
     method: null
     route: null
@@ -135,7 +135,7 @@ endpoints:
         name: code
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: jzbtyudicpimdotxqsidnvprc
+        example: zhqpwd
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -145,7 +145,7 @@ endpoints:
         name: name
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: qypwp
+        example: iwakutyzwmjzrvp
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -155,7 +155,7 @@ endpoints:
         name: address
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: pyruzqkawgtor
+        example: q
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -165,7 +165,7 @@ endpoints:
         name: email
         description: 'Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: ofeest@example.net
+        example: hschmeler@example.org
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -175,7 +175,7 @@ endpoints:
         name: telephone
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: jewmvmflolimsywu
+        example: od
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -185,7 +185,7 @@ endpoints:
         name: entity_type_code
         description: 'The <code>code</code> of an existing record in the entity_types table.'
         required: true
-        example: voluptatem
+        example: consectetur
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -195,7 +195,7 @@ endpoints:
         name: taxpayer_account_number
         description: ''
         required: false
-        example: ex
+        example: neque
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -205,7 +205,7 @@ endpoints:
         name: service_description
         description: ''
         required: false
-        example: cumque
+        example: aut
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -215,7 +215,7 @@ endpoints:
         name: footer_description
         description: ''
         required: false
-        example: esse
+        example: voluptatum
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -225,7 +225,7 @@ endpoints:
         name: prefix
         description: 'This field is required when <code>entity_type_code</code> is <code>entitytype_MqNmdDWyjQk4A</code>. Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: ziwldwszjdtjxhtw
+        example: larekiqneveirazffwfgmtkd
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -235,7 +235,7 @@ endpoints:
         name: suffix
         description: 'This field is required when <code>entity_type_code</code> is <code>entitytype_0vNyqjZQ7ZRK3</code>. Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: yyhatdjpoeqfjpzhs
+        example: rcttreyvmv
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -252,17 +252,17 @@ endpoints:
         nullable: true
         custom: []
     cleanBodyParameters:
-      code: jzbtyudicpimdotxqsidnvprc
-      name: qypwp
-      address: pyruzqkawgtor
-      email: ofeest@example.net
-      telephone: jewmvmflolimsywu
-      entity_type_code: voluptatem
-      taxpayer_account_number: ex
-      service_description: cumque
-      footer_description: esse
-      prefix: ziwldwszjdtjxhtw
-      suffix: yyhatdjpoeqfjpzhs
+      code: zhqpwd
+      name: iwakutyzwmjzrvp
+      address: q
+      email: hschmeler@example.org
+      telephone: od
+      entity_type_code: consectetur
+      taxpayer_account_number: neque
+      service_description: aut
+      footer_description: voluptatum
+      prefix: larekiqneveirazffwfgmtkd
+      suffix: rcttreyvmv
     fileParameters:
       logo: null
     responses: []
@@ -270,7 +270,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 4fEa8DvaePk6bVdZ15c6g3h'
+      - 'Bearer hec8a36f6b5ZVdvDEk4P1ga'
     controller: null
     method: null
     route: null
@@ -300,14 +300,14 @@ endpoints:
         name: id
         description: 'The ID of the entity.'
         required: true
-        example: suscipit
+        example: molestiae
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: suscipit
+      id: molestiae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -315,7 +315,7 @@ endpoints:
         name: name
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: dfgilrnxyrevfgfaksiianb
+        example: czabllkgp
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -325,7 +325,7 @@ endpoints:
         name: address
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: gtwtqebxqumnxwvdqtw
+        example: nm
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -335,7 +335,7 @@ endpoints:
         name: email
         description: 'Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: elaina08@example.org
+        example: herbert11@example.com
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -345,7 +345,7 @@ endpoints:
         name: telephone
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: chwrtizsdhiladkumb
+        example: nwmnjqvpnistntdyu
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -355,7 +355,7 @@ endpoints:
         name: taxpayer_account_number
         description: ''
         required: false
-        example: dolor
+        example: vero
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -365,7 +365,7 @@ endpoints:
         name: service_description
         description: ''
         required: false
-        example: sunt
+        example: adipisci
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -375,7 +375,7 @@ endpoints:
         name: footer_description
         description: ''
         required: false
-        example: itaque
+        example: magni
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -385,7 +385,7 @@ endpoints:
         name: prefix
         description: 'This field is required when <code>entity_type_code</code> is <code>entitytype_MqNmdDWyjQk4A</code>. Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: gy
+        example: byhxqxwvouwwkmyio
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -395,7 +395,7 @@ endpoints:
         name: suffix
         description: 'This field is required when <code>entity_type_code</code> is <code>entitytype_0vNyqjZQ7ZRK3</code>. Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: fokmqd
+        example: vzqmvmwxydltktv
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -412,15 +412,15 @@ endpoints:
         nullable: true
         custom: []
     cleanBodyParameters:
-      name: dfgilrnxyrevfgfaksiianb
-      address: gtwtqebxqumnxwvdqtw
-      email: elaina08@example.org
-      telephone: chwrtizsdhiladkumb
-      taxpayer_account_number: dolor
-      service_description: sunt
-      footer_description: itaque
-      prefix: gy
-      suffix: fokmqd
+      name: czabllkgp
+      address: nm
+      email: herbert11@example.com
+      telephone: nwmnjqvpnistntdyu
+      taxpayer_account_number: vero
+      service_description: adipisci
+      footer_description: magni
+      prefix: byhxqxwvouwwkmyio
+      suffix: vzqmvmwxydltktv
     fileParameters:
       logo: null
     responses: []
@@ -428,7 +428,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6Da4ecaEfVZhdv3516bP8gk'
+      - 'Bearer 6c3Pedhk18aaEv45Vb6fDgZ'
     controller: null
     method: null
     route: null
@@ -458,14 +458,14 @@ endpoints:
         name: id
         description: 'The ID of the entity.'
         required: true
-        example: molestias
+        example: rem
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: molestias
+      id: rem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -476,7 +476,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6gvaPe4cad6Zk51V83bEhDf'
+      - 'Bearer V3dk461g8Zfa6Pevab5hDEc'
     controller: null
     method: null
     route: null
@@ -506,14 +506,14 @@ endpoints:
         name: id
         description: 'The ID of the entity.'
         required: true
-        example: voluptas
+        example: aspernatur
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: voluptas
+      id: aspernatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -524,7 +524,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Z6b4EkgvDVac16Pe8dh35fa'
+      - 'Bearer Z1avEV6f56e8bk4dcaPg3hD'
     controller: null
     method: null
     route: null

@@ -19,9 +19,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
- * @group Gestion des chargements
+ * @group Gestion des rechargements
  *
- * APIs pour la gestion des chargements
+ * APIs pour la gestion des rechargements
  */
 class RechargeController extends Controller
 {
@@ -33,7 +33,7 @@ class RechargeController extends Controller
     }
 
     /**
-     * Lister tous les chargements
+     * Lister tous les rechargements
      *
      * @authenticated
      */

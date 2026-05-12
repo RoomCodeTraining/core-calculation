@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 3614fEDVkvacga5ebP86hZd'
+      - 'Bearer abPEkac5Dd6v481f3hV6Zeg'
     controller: null
     method: null
     route: null
@@ -78,7 +78,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: crsafahgbenmjgqcgdencn
+        example: sjnwzlqrlqsld
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -88,22 +88,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Delectus ad iste officia qui quis atque iure ut.'
+        example: 'Quod ut error et et libero.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: crsafahgbenmjgqcgdencn
-      description: 'Delectus ad iste officia qui quis atque iure ut.'
+      label: sjnwzlqrlqsld
+      description: 'Quod ut error et et libero.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 46ZEfaa65evb138DPVdkchg'
+      - 'Bearer kvP4bhcDVgdfaeEa36816Z5'
     controller: null
     method: null
     route: null
@@ -133,14 +133,14 @@ endpoints:
         name: id
         description: 'The ID of the color.'
         required: true
-        example: autem
+        example: dicta
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: autem
+      id: dicta
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -160,7 +160,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer afEhd8D3cZkbve46g5aV6P1'
+      - 'Bearer 3gehE6615dbaD8PZvkVa4cf'
     controller: null
     method: null
     route: null
@@ -190,14 +190,14 @@ endpoints:
         name: id
         description: 'The ID of the color.'
         required: true
-        example: doloremque
+        example: pariatur
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: doloremque
+      id: pariatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -205,7 +205,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: xgsxjdbswlgvlj
+        example: hseb
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -215,22 +215,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Quia vitae molestiae quaerat et alias.'
+        example: 'Mollitia odio voluptatem aspernatur ut rerum cum.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: xgsxjdbswlgvlj
-      description: 'Quia vitae molestiae quaerat et alias.'
+      label: hseb
+      description: 'Mollitia odio voluptatem aspernatur ut rerum cum.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer bg3fceaE1khd6648v5ZDPVa'
+      - 'Bearer 6Pv56hekE81bdac3aVZg4Df'
     controller: null
     method: null
     route: null
@@ -260,14 +260,14 @@ endpoints:
         name: id
         description: 'The ID of the color.'
         required: true
-        example: sed
+        example: qui
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: sed
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -278,7 +278,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer D4P5fZa6e13d6vbhkEg8cVa'
+      - 'Bearer ghaZE6Pd45vafVkD813bec6'
     controller: null
     method: null
     route: null
