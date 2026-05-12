@@ -107,6 +107,10 @@ class RechargeController extends Controller
                     'updated_by' => auth()->user()->id,
                 ]);
             } else {
+                $transaction->update([
+                    'status_id' => Status::where('code', StatusEnum::FAILED)->first()->id,
+                    'updated_by' => auth()->user()->id,
+                ]);
                 return $this->responseUnprocessable('Erreur lors de la recherche de la session de paiement', $waveCheckoutSession->json());
             }
         } else {
