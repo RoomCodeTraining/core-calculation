@@ -94,7 +94,7 @@ class RechargeController extends Controller
         ]);
 
         $waveCheckoutService = new WaveCheckoutService();
-        $response = $waveCheckoutService->createCheckoutSession($request->amount, $recharge->reference);
+        $response = $waveCheckoutService->createCheckoutSession($transaction->amount, $recharge->reference);
 
         if($response->successful()) {
             $waveCheckoutSession = $waveCheckoutService->searchCheckoutSessions($recharge->reference);

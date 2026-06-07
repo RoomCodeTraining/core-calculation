@@ -26,7 +26,7 @@ class WaveCheckoutService
     /**
      * Create a Wave checkout session.
      *
-     * @param  string  $amount  Amount to charge (e.g. "1000")
+     * @param  integer  $amount  Amount to charge (e.g. "1000")
      * @param  string|null  $clientReference  Client reference
      * @return Response
      */
