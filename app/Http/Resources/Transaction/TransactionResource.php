@@ -31,7 +31,7 @@ class TransactionResource extends JsonResource
             'cancellation_reason' => $this->cancellation_reason,
             'entity' => new EntityResource($this->whenLoaded('entity')),
             'order' => new OrderResource($this->whenLoaded('order')),
-            'receipts' => $this->status_id == $status_performed_id ? new ReceiptResource::collection($this->whenLoaded('receipts')) : null,
+            'receipts' => $this->status_id === $status_performed_id ? ReceiptResource::collection($this->whenLoaded('receipts')) : null,
             'transaction_type' => new TransactionTypeResource($this->whenLoaded('transactionType')),
             'status' => new StatusResource($this->whenLoaded('status')),
             'created_by' => new UserResource($this->whenLoaded('createdBy')),
