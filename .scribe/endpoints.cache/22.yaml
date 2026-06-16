@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Zg4cd6a16hvV3fkPeDbEa85'
+      - 'Bearer e1vZcdD63haEVa5bP4f6gk8'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: mtd
+        example: llzdhuszmitvsyby
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -90,7 +90,7 @@ endpoints:
         name: description
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: 'Repudiandae aut quibusdam qui quisquam earum at consequuntur.'
+        example: 'Libero ullam dolore ex nobis voluptas.'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -100,7 +100,7 @@ endpoints:
         name: max_mileage_essence_per_year
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: false
-        example: 34
+        example: 67
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -110,24 +110,24 @@ endpoints:
         name: max_mileage_diesel_per_year
         description: 'La valeur de value doit être supérieure ou égale à 0.'
         required: false
-        example: 21
+        example: 23
         type: number
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: mtd
-      description: 'Repudiandae aut quibusdam qui quisquam earum at consequuntur.'
-      max_mileage_essence_per_year: 34
-      max_mileage_diesel_per_year: 21
+      label: llzdhuszmitvsyby
+      description: 'Libero ullam dolore ex nobis voluptas.'
+      max_mileage_essence_per_year: 67
+      max_mileage_diesel_per_year: 23
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer kvDf6ePg5c4b1aEVhZd638a'
+      - 'Bearer f5da1aPV4e3Z8c6hvDgEk6b'
     controller: null
     method: null
     route: null
@@ -157,14 +157,14 @@ endpoints:
         name: id
         description: 'The ID of the usage.'
         required: true
-        example: dignissimos
+        example: corporis
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: dignissimos
+      id: corporis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -184,7 +184,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 4f31va6EdcZaDkb5e86ghVP'
+      - 'Bearer VPe6g1D3486hadkb5ZaEvcf'
     controller: null
     method: null
     route: null
@@ -214,14 +214,14 @@ endpoints:
         name: id
         description: 'The ID of the usage.'
         required: true
-        example: cupiditate
+        example: cum
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: cupiditate
+      id: cum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -229,7 +229,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: fowbrlwidnvkentdejzbq
+        example: twrryydholpxdqdmw
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -239,22 +239,22 @@ endpoints:
         name: description
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: false
-        example: 'Asperiores suscipit doloribus aut illo sint.'
+        example: 'Sunt facilis natus excepturi.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: fowbrlwidnvkentdejzbq
-      description: 'Asperiores suscipit doloribus aut illo sint.'
+      label: twrryydholpxdqdmw
+      description: 'Sunt facilis natus excepturi.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer DdkZge41cE5866aVhPfbav3'
+      - 'Bearer 8vV6DE5ha1bPfeZa3kg46cd'
     controller: null
     method: null
     route: null
@@ -284,14 +284,14 @@ endpoints:
         name: id
         description: 'The ID of the usage.'
         required: true
-        example: ut
+        example: perferendis
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: ut
+      id: perferendis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -302,7 +302,53 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 5cd6bge81av3DfE6PahVZ4k'
+      - 'Bearer EVe1gZkc6bf5Dd4h863Pava'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/external/usages
+    metadata:
+      groupName: 'Gestion des usages de véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des usages
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister tous les usages de véhicules'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":"usage_eLgoNjw3jE0MB","code":"PRIV","label":"Priv\u00e9 \/ Personnel","description":"Priv\u00e9 \/ Personnel","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_0vNyqjZQ7ZRK3","code":"PROF","label":"Professionnel l\u00e9ger","description":"Professionnel l\u00e9ger","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_MqNmdDWyjQk4A","code":"VTC","label":"VTC","description":"VTC (V\u00e9hicule de Transport avec Chauffeur)","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_qZwENz9BDLvVQ","code":"TAXI","label":"Taxi compteur","description":"Taxi compteur","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_lW94M7veDmpdN","code":"AUTO","label":"Auto-\u00e9cole","description":"Auto-\u00e9cole","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_gd5OP7M2jyeQX","code":"LOCD","label":"Location courte dur\u00e9e","description":"Location courte dur\u00e9e","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_v85dBjYoD4qnp","code":"LOLD","label":"Location longue dur\u00e9e ","description":"Location longue dur\u00e9e ","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_3EyvwDrQz8nxW","code":"SADM","label":"Service administratif","description":"Service administratif","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_wAYKX728zr39E","code":"TRMA","label":"Transport marchandises","description":"Transport marchandises","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_AWNyv7Qwzq25X","code":"CHAN","label":"Chantier","description":"Chantier","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_OVvRP7pODrnG0","code":"STEC","label":"Service technique","description":"Service technique","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_0xJBPjxYzAyYL","code":"LOUT","label":"Location utilitaire","description":"Location utilitaire","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_O3rLxjOn7YqWN","code":"THYC","label":"Transport hydrocarbures","description":"Transport hydrocarbures","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_3Z45A7EA7OXye","code":"LOIN","label":"Location industrielle","description":"Location industrielle","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_lYeMKzBl76PA5","code":"TURB","label":"Transport urbain","description":"Transport urbain","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_rgE8nDnw7v4Ml","code":"TINR","label":"Transport interurbain","description":"Transport interurbain","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_GAl2ZzLGj0qgY","code":"TSCO","label":"Transport scolaire","description":"Transport scolaire","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_vdNxGj6E7mXQ6","code":"TTOU","label":"Transport touristique","description":"Transport touristique","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_8KnGVzVKDBpPQ","code":"TENT","label":"Transport entreprise","description":"Transport entreprise","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"},{"id":"usage_9PwYN7KEzepJm","code":"LIVR","label":"Livraison","description":"Livraison","max_mileage_essence_per_year":null,"max_mileage_diesel_per_year":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"created_by":null,"updated_by":null,"deleted_by":null,"deleted_at":null,"created_at":"2026-06-12 11:49:01","updated_at":"2026-06-12 11:49:01"}],"links":{"first":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/usages?page=1","last":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/usages?page=3","prev":null,"next":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/usages?page=2"},"meta":{"current_page":1,"from":1,"last_page":3,"links":[{"url":null,"label":"&laquo; Pr\u00e9c\u00e9dent","page":null,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/usages?page=1","label":"1","page":1,"active":true},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/usages?page=2","label":"2","page":2,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/usages?page=3","label":"3","page":3,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/usages?page=2","label":"Suivant &raquo;","page":2,"active":false}],"path":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/usages","per_page":20,"to":20,"total":41}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer d6EaPV458D1e6kfhcZa3vgb'
     controller: null
     method: null
     route: null

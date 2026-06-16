@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer caZgkdDf3h4V1e8v6bEa65P'
+      - 'Bearer 1b8fdkaVe5Z64c6ghPE3aDv'
     controller: null
     method: null
     route: null
@@ -80,7 +80,7 @@ endpoints:
         name: code
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: alqjutcyyhjknyirkfiuw
+        example: lszngzhfixh
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -90,7 +90,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: hgxe
+        example: nltbiuiholxgn
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -100,7 +100,7 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Molestias eveniet sed non suscipit.'
+        example: 'Labore minus amet itaque aut est natus aliquam.'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -110,7 +110,7 @@ endpoints:
         name: max_mileage_essence_per_year
         description: ''
         required: true
-        example: 259.12928
+        example: 55.2773716
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -120,7 +120,7 @@ endpoints:
         name: max_mileage_diesel_per_year
         description: ''
         required: true
-        example: 487605.17
+        example: 6.95
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -130,26 +130,26 @@ endpoints:
         name: vehicle_model_id
         description: 'The <code>id</code> of an existing record in the vehicle_models table.'
         required: true
-        example: voluptatem
+        example: at
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      code: alqjutcyyhjknyirkfiuw
-      label: hgxe
-      description: 'Molestias eveniet sed non suscipit.'
-      max_mileage_essence_per_year: 259.12928
-      max_mileage_diesel_per_year: 487605.17
-      vehicle_model_id: voluptatem
+      code: lszngzhfixh
+      label: nltbiuiholxgn
+      description: 'Labore minus amet itaque aut est natus aliquam.'
+      max_mileage_essence_per_year: 55.2773716
+      max_mileage_diesel_per_year: 6.95
+      vehicle_model_id: at
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer aP8c65DkZ3ad6bgE1fev4hV'
+      - 'Bearer afkacZbD34g8VE65P1hevd6'
     controller: null
     method: null
     route: null
@@ -179,14 +179,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle genre.'
         required: true
-        example: ut
+        example: voluptates
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: ut
+      id: voluptates
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -206,7 +206,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer V3bed8Zhaf616gPkavD54Ec'
+      - 'Bearer Vf46e385g6chba1EZDdPakv'
     controller: null
     method: null
     route: null
@@ -236,14 +236,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle genre.'
         required: true
-        example: quas
+        example: nostrum
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: quas
+      id: nostrum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -251,7 +251,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: vwummgnneziqlt
+        example: qkuemglrkeluazwamk
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -261,7 +261,7 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Eveniet aut eum et et consequuntur.'
+        example: 'Inventore totam vel sit harum consequatur assumenda.'
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -271,7 +271,7 @@ endpoints:
         name: max_mileage_essence_per_year
         description: ''
         required: true
-        example: 20179854.383
+        example: 13136407.89019
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -281,7 +281,7 @@ endpoints:
         name: max_mileage_diesel_per_year
         description: ''
         required: true
-        example: 1725.18618852
+        example: 1.945175
         type: number
         enumValues: []
         exampleWasSpecified: false
@@ -291,25 +291,25 @@ endpoints:
         name: vehicle_model_id
         description: 'The <code>id</code> of an existing record in the vehicle_models table.'
         required: true
-        example: sunt
+        example: et
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      label: vwummgnneziqlt
-      description: 'Eveniet aut eum et et consequuntur.'
-      max_mileage_essence_per_year: 20179854.383
-      max_mileage_diesel_per_year: 1725.18618852
-      vehicle_model_id: sunt
+      label: qkuemglrkeluazwamk
+      description: 'Inventore totam vel sit harum consequatur assumenda.'
+      max_mileage_essence_per_year: 13136407.89019
+      max_mileage_diesel_per_year: 1.945175
+      vehicle_model_id: et
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer e6D3V6EaPkhv45dfa8bgc1Z'
+      - 'Bearer Zabcf6Vv1DgEe4kdah3P568'
     controller: null
     method: null
     route: null
@@ -339,14 +339,14 @@ endpoints:
         name: id
         description: 'The ID of the vehicle genre.'
         required: true
-        example: esse
+        example: quasi
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: esse
+      id: quasi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -357,7 +357,53 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 35gfZ66EDekaad4bv8cP1hV'
+      - 'Bearer 8PD65gbhcdEZ4aVe3kf6v1a'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/external/vehicle-genres
+    metadata:
+      groupName: 'Gestion des genres de véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des genres de véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister tous les genres de véhicules'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":"vehiclegenre_eLgoNjw3jE0MB","code":"VP","label":"Voiture Particuli\u00e8re","description":"Voiture Particuli\u00e8re","max_mileage_essence_per_year":"25000.00","max_mileage_diesel_per_year":"35000.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},{"id":"vehiclegenre_0vNyqjZQ7ZRK3","code":"CTTE","label":"Camionnette","description":"Camionnette","max_mileage_essence_per_year":"40000.00","max_mileage_diesel_per_year":"40000.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},{"id":"vehiclegenre_MqNmdDWyjQk4A","code":"CAM","label":"Camion","description":"Camion","max_mileage_essence_per_year":"60000.00","max_mileage_diesel_per_year":"60000.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},{"id":"vehiclegenre_qZwENz9BDLvVQ","code":"TCP","label":"Transport en Commun de Personnes","description":"Transport en Commun de Personnes","max_mileage_essence_per_year":"100000.00","max_mileage_diesel_per_year":"100000.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},{"id":"vehiclegenre_lW94M7veDmpdN","code":"MT","label":"Motocyclette","description":"Motocyclette","max_mileage_essence_per_year":"5000.00","max_mileage_diesel_per_year":"5000.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},{"id":"vehiclegenre_gd5OP7M2jyeQX","code":"REM","label":"Remorque","description":"Remorque","max_mileage_essence_per_year":"0.00","max_mileage_diesel_per_year":"0.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},{"id":"vehiclegenre_v85dBjYoD4qnp","code":"TRR","label":"Tracteur Routier","description":"Tracteur Routier","max_mileage_essence_per_year":"80000.00","max_mileage_diesel_per_year":"80000.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},{"id":"vehiclegenre_3EyvwDrQz8nxW","code":"ENG","label":"Engin Sp\u00e9cial","description":"Engin Sp\u00e9cial","max_mileage_essence_per_year":"0.00","max_mileage_diesel_per_year":"0.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},{"id":"vehiclegenre_wAYKX728zr39E","code":"VASP","label":"V\u00e9hicule Automoteur Sp\u00e9cialis\u00e9","description":"V\u00e9hicule Automoteur Sp\u00e9cialis\u00e9","max_mileage_essence_per_year":"40000.00","max_mileage_diesel_per_year":"40000.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},{"id":"vehiclegenre_AWNyv7Qwzq25X","code":"CITE","label":"Citerne","description":"Citerne","max_mileage_essence_per_year":"40000.00","max_mileage_diesel_per_year":"40000.00","vehicle_model":null,"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"}],"links":{"first":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-genres?page=1","last":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-genres?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Pr\u00e9c\u00e9dent","page":null,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-genres?page=1","label":"1","page":1,"active":true},{"url":null,"label":"Suivant &raquo;","page":null,"active":false}],"path":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-genres","per_page":20,"to":10,"total":10}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6ad8Pkf31vDZec5g6bEV4ah'
     controller: null
     method: null
     route: null

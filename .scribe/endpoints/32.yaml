@@ -1,0 +1,237 @@
+name: 'Gestion des rechargements'
+description: |-
+
+  APIs pour la gestion des rechargements
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/recharges
+    metadata:
+      groupName: 'Gestion des rechargements'
+      groupDescription: |-
+
+        APIs pour la gestion des rechargements
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister tous les rechargements'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer EZcV8dfePa61gahk3vb5D64'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/recharges
+    metadata:
+      groupName: 'Gestion des rechargements'
+      groupDescription: |-
+
+        APIs pour la gestion des rechargements
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Créer un rechargement'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      transaction_id:
+        name: transaction_id
+        description: 'The <code>id</code> of an existing record in the transactions table.'
+        required: true
+        example: voluptas
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      user_first_name:
+        name: user_first_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: vyorsixxmjcjlzisgth
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      user_last_name:
+        name: user_last_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: wbdofkvsrnx
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      user_phone_number:
+        name: user_phone_number
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: xhbazutlp
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      payment_method_id:
+        name: payment_method_id
+        description: 'The <code>id</code> of an existing record in the payment_methods table.'
+        required: true
+        example: iusto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      transaction_id: voluptas
+      user_first_name: vyorsixxmjcjlzisgth
+      user_last_name: wbdofkvsrnx
+      user_phone_number: xhbazutlp
+      payment_method_id: iusto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer VhEg5Z8ec4b6a1vdDPfa6k3'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/recharges/{id}'
+    metadata:
+      groupName: 'Gestion des rechargements'
+      groupDescription: |-
+
+        APIs pour la gestion des rechargements
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Afficher un rechargement'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the recharge.'
+        required: true
+        example: dolorem
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: dolorem
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer d68Pb3kc14eh56avagZfDVE'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/recharges/change-status
+    metadata:
+      groupName: 'Gestion des rechargements'
+      groupDescription: |-
+
+        APIs pour la gestion des rechargements
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mettre à jour le statut des rechargements'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer gfe8EhaPk6Z43V1Dcb5d6va'
+    controller: null
+    method: null
+    route: null
+    custom: []

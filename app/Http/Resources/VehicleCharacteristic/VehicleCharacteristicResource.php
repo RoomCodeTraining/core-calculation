@@ -25,7 +25,7 @@ class VehicleCharacteristicResource extends JsonResource
             'nb_seats' => $this->nb_seats,
             'prices' => PriceResource::collection($this->whenLoaded('prices')),
             'vehicle_model' => new VehicleModelResource($this->whenLoaded('vehicleModel')),
-            'vehicle_genre_usage' => new VehicleGenreUsageResource($this->whenLoaded('vehicleGenreUsage')),
+            'vehicle_genre_usages' => VehicleGenreUsageResource::collection($this->whenLoaded('vehicleGenreUsages')),
             'usage' => new UsageResource($this->whenLoaded('usage')),
             'vehicle_energy' => new VehicleEnergyResource($this->whenLoaded('vehicleEnergy')),
             'dealer' => new DealerResource($this->whenLoaded('dealer')),

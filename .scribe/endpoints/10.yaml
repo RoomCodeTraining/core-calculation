@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Ph5ZVv38d1eakfab64gEDc6'
+      - 'Bearer VZaa68dP53fDEgke1cvb6h4'
     controller: null
     method: null
     route: null
@@ -78,7 +78,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: pvprqyubsfhcoyyaway
+        example: ogautnpjelb
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -88,22 +88,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Provident totam blanditiis at est.'
+        example: 'Quae voluptatem id sunt rerum ipsam aspernatur perferendis.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: pvprqyubsfhcoyyaway
-      description: 'Provident totam blanditiis at est.'
+      label: ogautnpjelb
+      description: 'Quae voluptatem id sunt rerum ipsam aspernatur perferendis.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer hgPZDv6VbEc6a5d1k3a8fe4'
+      - 'Bearer vb56kEegaa4DhcVdf6Z31P8'
     controller: null
     method: null
     route: null
@@ -133,14 +133,14 @@ endpoints:
         name: id
         description: 'The ID of the brand.'
         required: true
-        example: ratione
+        example: perspiciatis
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: ratione
+      id: perspiciatis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -160,7 +160,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer P3ca4a8b56hEdev61gZkDVf'
+      - 'Bearer D3edPch6gvbka16f5V4aE8Z'
     controller: null
     method: null
     route: null
@@ -190,14 +190,14 @@ endpoints:
         name: id
         description: 'The ID of the brand.'
         required: true
-        example: quae
+        example: veniam
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: quae
+      id: veniam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -205,7 +205,7 @@ endpoints:
         name: label
         description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: hzzjhztcrvzpbirn
+        example: dgfqnuuguowiccsrkai
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -215,22 +215,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Molestiae sit et illum dolores nisi et voluptatem commodi.'
+        example: 'Sapiente est occaecati similique molestiae rerum.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
     cleanBodyParameters:
-      label: hzzjhztcrvzpbirn
-      description: 'Molestiae sit et illum dolores nisi et voluptatem commodi.'
+      label: dgfqnuuguowiccsrkai
+      description: 'Sapiente est occaecati similique molestiae rerum.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer gvE583ZV1ahkaeD6c6fdbP4'
+      - 'Bearer D6gEdP5b6hkav3aVZ81ef4c'
     controller: null
     method: null
     route: null
@@ -260,14 +260,14 @@ endpoints:
         name: id
         description: 'The ID of the brand.'
         required: true
-        example: tempora
+        example: asperiores
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: tempora
+      id: asperiores
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -278,7 +278,53 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer bPcev8fD5kVaZEad16g364h'
+      - 'Bearer vgb435PZdc61EeVa6kh8fDa'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/external/brands
+    metadata:
+      groupName: 'Gestion des marques de véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des marques de véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister toutes les marques'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":"brand_BZM4N7mlYDY6y","code":"lancia","label":"LANCIA","description":"LANCIA","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:14","updated_at":"2026-06-12 11:49:14"},{"id":"brand_KXpqxDXkLzQgm","code":"c-d-w","label":"C D W","description":"C D W","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"brand_q5Pd2Dg6NzveJ","code":"shacman","label":"SHACMAN","description":"SHACMAN","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"brand_vNAeX73L0jRgZ","code":"beiben","label":"BEIBEN","description":"BEIBEN","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"brand_36EQPz8wMjeOl","code":"mahindra","label":"MAHINDRA","description":"MAHINDRA","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"brand_5dQXJjkx4zBre","code":"tim-chery","label":"TIM CHERY","description":"TIM CHERY","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:09","updated_at":"2026-06-12 11:49:09"},{"id":"brand_yGxWO7PkEDQYg","code":"landwind","label":"LANDWIND","description":"LANDWIND","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:08","updated_at":"2026-06-12 11:49:08"},{"id":"brand_LevZ6zyXKjRoW","code":"zna","label":"ZNA","description":"ZNA","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:08","updated_at":"2026-06-12 11:49:08"},{"id":"brand_A9kWvDeMnDLYr","code":"claas","label":"CLAAS","description":"CLAAS","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:07","updated_at":"2026-06-12 11:49:07"},{"id":"brand_XYgydD0o9zwo2","code":"zhongtong","label":"ZHONGTONG","description":"ZHONGTONG","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:07","updated_at":"2026-06-12 11:49:07"},{"id":"brand_ZV4Y2zGee7vLe","code":"new-nissan","label":"NEW  NISSAN","description":"NEW  NISSAN","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:06","updated_at":"2026-06-12 11:49:06"},{"id":"brand_nv8O3j5LP7XKd","code":"ram","label":"RAM","description":"RAM","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:06","updated_at":"2026-06-12 11:49:06"},{"id":"brand_2vP3pj4r3DGWg","code":"kinglong","label":"KINGLONG","description":"KINGLONG","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:06","updated_at":"2026-06-12 11:49:06"},{"id":"brand_9PwYN7KdZjepJ","code":"alpha-romeo","label":"ALPHA ROMEO","description":"ALPHA ROMEO","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:05","updated_at":"2026-06-12 11:49:05"},{"id":"brand_3G9dLjoGWjKZY","code":"heli","label":"HELI","description":"HELI","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:05","updated_at":"2026-06-12 11:49:05"},{"id":"brand_NELV97ABQj34A","code":"rimco","label":"RIMCO","description":"RIMCO","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:05","updated_at":"2026-06-12 11:49:05"},{"id":"brand_9V0yljqEejPX8","code":"camions","label":"CAMIONS","description":"CAMIONS","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:05","updated_at":"2026-06-12 11:49:05"},{"id":"brand_n5xdPjlL2jQkp","code":"genesis","label":"GENESIS","description":"GENESIS","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:05","updated_at":"2026-06-12 11:49:05"},{"id":"brand_yMlRZ7NYQDY32","code":"tracteur-routier","label":"TRACTEUR ROUTIER","description":"TRACTEUR ROUTIER","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:05","updated_at":"2026-06-12 11:49:05"},{"id":"brand_GAl2ZzLd9z0qg","code":"gac","label":"GAC","description":"GAC","status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":null,"deleted_at":null,"created_at":null,"updated_at":null},"deleted_at":null,"created_at":"2026-06-12 11:49:04","updated_at":"2026-06-12 11:49:04"}],"links":{"first":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=1","last":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=7","prev":null,"next":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=2"},"meta":{"current_page":1,"from":1,"last_page":7,"links":[{"url":null,"label":"&laquo; Pr\u00e9c\u00e9dent","page":null,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=1","label":"1","page":1,"active":true},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=2","label":"2","page":2,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=3","label":"3","page":3,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=4","label":"4","page":4,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=5","label":"5","page":5,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=6","label":"6","page":6,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=7","label":"7","page":7,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands?page=2","label":"Suivant &raquo;","page":2,"active":false}],"path":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/brands","per_page":20,"to":20,"total":138}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer cvE4Pfh5a683eDg6dVk1aZb'
     controller: null
     method: null
     route: null

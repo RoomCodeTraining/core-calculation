@@ -22,7 +22,6 @@ return new class extends Migration
             $table->integer('nb_seats')->nullable()->comment('Nombre de places');
             $table->decimal('new_market_value', 18, 2)->nullable()->comment('Valeur neuve du véhicule');
             $table->unsignedBigInteger('vehicle_model_id')->index()->nullable()->comment('ID du modèle de véhicule');
-            $table->unsignedBigInteger('vehicle_genre_usage_id')->index()->nullable()->comment('ID de l\'usage du genre de véhicule');
             $table->unsignedBigInteger('vehicle_energy_id')->index()->nullable()->comment('ID de l\'énergie');
             $table->unsignedBigInteger('dealer_id')->index()->nullable()->comment('ID du concessionnaire');
             $table->unsignedBigInteger('status_id')->index()->nullable()->comment('ID du statut');
@@ -36,11 +35,6 @@ return new class extends Migration
             $table->foreign('vehicle_model_id')
                 ->references('id')
                 ->on('vehicle_models')
-                ->onDelete('cascade');
-
-            $table->foreign('vehicle_genre_usage_id')
-                ->references('id')
-                ->on('vehicle_genre_usages')
                 ->onDelete('cascade');
 
             $table->foreign('vehicle_energy_id')

@@ -65,28 +65,33 @@ class DepreciationTableController extends Controller
     }
 
     /**
-     * Calculer la valeur vénale théorique d'un véhicule
+     * Calculer la valeur vénale théorique d'un véhicule par le public
      *
-     * @authenticated
+     * @unauthenticated
      */
-    public function calculate_theoretical_market_value(CreateTheoricalMarketValueRequest $request): JsonResponse
+    public function calculate_theoretical_market_value_public(CreateTheoricalMarketValueRequest $request): JsonResponse
     {
-        $credit = Transaction::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
+        // $credit = Transaction::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
 
-        $entity_type = EntityType::where('id',Entity::where('id', auth()->user()->entity_id)->first()->entity_type_id)->first();
+        // $entity_type = EntityType::where('id',Entity::where('id', auth()->user()->entity_id)->first()->entity_type_id)->first();
 
-        if($credit < 0 && $entity_type->code == EntityTypeEnum::ORGANIZATION->value){
-            return $this->responseUnprocessable('Vous n\'avez pas assez de crédit pour effectuer cette action');
+        // if($credit < 0 && $entity_type->code == EntityTypeEnum::ORGANIZATION->value){
+        //     return $this->responseUnprocessable('Vous n\'avez pas assez de crédit pour effectuer cette action');
+        // }
+
+        $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsages', 'vehicleGenreUsages.vehicleGenre', 'vehicleGenreUsages.usage')->findOrFail($request->vehicle_characteristic_id);
+        $vehicleGenreUsage = $vehicleCharacteristic->vehicleGenreUsages->first();
+
+        if (! $vehicleGenreUsage) {
+            return $this->responseUnprocessable('Aucun genre/usage de véhicule associé à cette caractéristique');
         }
-
-        $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage')->findOrFail($request->vehicle_characteristic_id);
         $price = Price::find($request->price_id);
         if(!$price){
             return $this->responseUnprocessable('Le prix de la caractéristique du véhicule est requis');
         }
         $vehicle_new_value = $price?->value ?? 0;
         $marketValueService = app(MarketValueService::class);
-        $result = $marketValueService->calculateTheoreticalMarketValue($vehicleCharacteristic->vehicleGenreUsage->id, $vehicleCharacteristic->vehicle_energy_id, $vehicle_new_value, $request->vehicle_mileage, $request->first_entry_into_circulation_date, $request->expertise_date);
+        $result = $marketValueService->calculateTheoreticalMarketValue($vehicleGenreUsage->id, $vehicleCharacteristic->vehicle_energy_id, $vehicle_new_value, $request->vehicle_mileage, $request->first_entry_into_circulation_date, $request->expertise_date);
         $result = (object) $result;
 
         if($result->theorical_depreciation_rate <= 0)
@@ -140,7 +145,7 @@ class DepreciationTableController extends Controller
             'vehicle_market_value' =>  ceil($result->vehicle_new_value - ($result->vehicle_new_value * $depreciation_rate / 100))
         ];
 
-        $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsage', 'vehicleCharacteristic.vehicleGenreUsage.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsage.usage')->create([
+        $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsages', 'vehicleCharacteristic.vehicleGenreUsages.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsages.usage')->create([
             'reference' => 'EV-'.date('YmdHis'),
             'license_plate' => $request->license_plate,
             'mileage' => $request->vehicle_mileage,
@@ -156,7 +161,115 @@ class DepreciationTableController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
-        $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsage', 'vehicleCharacteristic.vehicleGenreUsage.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsage.usage')->where('id', $calculation->id)->first();
+        $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsages', 'vehicleCharacteristic.vehicleGenreUsages.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsages.usage')->where('id', $calculation->id)->first();
+
+        dispatch(new GenerateEvaluationReportPdfJob($calculation));
+
+        return $this->responseSuccess('DepreciationTable created successfully', [
+            'calculation' => new CalculationResource($calculation),
+            // 'credit' => $entity_type->code == EntityTypeEnum::ORGANIZATION->value ? $credit - 1 : 0,
+            'pdf' => url('storage/evaluation_report/'.$calculation->reference.'.pdf?v='.time()),
+        ]);
+    }
+
+    /**
+     * Calculer la valeur vénale théorique d'un véhicule
+     *
+     * @authenticated
+     */
+    public function calculate_theoretical_market_value(CreateTheoricalMarketValueRequest $request): JsonResponse
+    {
+        $credit = Transaction::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::PERFORMED)->first()->id)->sum('quantity') - Calculation::where('entity_id', auth()->user()->entity_id)->where('status_id', Status::where('code', StatusEnum::SUCCESS)->first()->id)->count();
+
+        $entity_type = EntityType::where('id',Entity::where('id', auth()->user()->entity_id)->first()->entity_type_id)->first();
+
+        if($credit < 0 && $entity_type->code == EntityTypeEnum::ORGANIZATION->value){
+            return $this->responseUnprocessable('Vous n\'avez pas assez de crédit pour effectuer cette action');
+        }
+
+        $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsages', 'vehicleGenreUsages.vehicleGenre', 'vehicleGenreUsages.usage')->findOrFail($request->vehicle_characteristic_id);
+        $vehicleGenreUsage = $vehicleCharacteristic->vehicleGenreUsages->first();
+
+        if (! $vehicleGenreUsage) {
+            return $this->responseUnprocessable('Aucun genre/usage de véhicule associé à cette caractéristique');
+        }
+        $price = Price::find($request->price_id);
+        if(!$price){
+            return $this->responseUnprocessable('Le prix de la caractéristique du véhicule est requis');
+        }
+        $vehicle_new_value = $price?->value ?? 0;
+        $marketValueService = app(MarketValueService::class);
+        $result = $marketValueService->calculateTheoreticalMarketValue($vehicleGenreUsage->id, $vehicleCharacteristic->vehicle_energy_id, $vehicle_new_value, $request->vehicle_mileage, $request->first_entry_into_circulation_date, $request->expertise_date);
+        $result = (object) $result;
+
+        if($result->theorical_depreciation_rate <= 0)
+        {
+            return $this->responseUnprocessable('Impossible de calculer la dépreciation de ce usage de véhicle');
+        }
+
+        $kilometric_incidence = 0;
+        $is_up = null;
+        if ($result->vehicle_energy->code == 'VE01') {
+            $max_mileage_essence_per_month = $result->vehicle_genre_usage->max_mileage_essence_per_year ? $result->vehicle_genre_usage->max_mileage_essence_per_year / 12 : $result->vehicle_genre_usage->vehicleGenre->max_mileage_essence_per_year / 12;
+            $kilometric_incidence = (($max_mileage_essence_per_month * $result->month_diff) - $request->vehicle_mileage) * 25;
+        } else {
+            $max_mileage_diesel_per_month = $result->vehicle_genre_usage->max_mileage_diesel_per_year ? $result->vehicle_genre_usage->max_mileage_diesel_per_year / 12 : $result->vehicle_genre_usage->vehicleGenre->max_mileage_diesel_per_year / 12;
+            $kilometric_incidence = (($max_mileage_diesel_per_month * $result->month_diff) - $request->vehicle_mileage) * 40;
+        }
+
+        if ($kilometric_incidence > 0) {
+            $is_up = true;
+        } else {
+            $is_up = false;
+            $kilometric_incidence = -1 * $kilometric_incidence;
+        }
+
+        $market_incidence_rate = $request->market_incidence_rate ?? 0;
+
+        $market_incidence = ceil($result->vehicle_new_value * $market_incidence_rate / 100);
+
+        if($kilometric_incidence > ($result->theorical_vehicle_market_value / 2)){
+            $kilometric_incidence = $result->theorical_vehicle_market_value / 2;
+        }
+        
+        $vehicle_market_value = $is_up ? $result->theorical_vehicle_market_value + $market_incidence + $kilometric_incidence : $result->theorical_vehicle_market_value + $market_incidence - $kilometric_incidence;
+        $depreciation_rate = $result->vehicle_new_value > 0 ? number_format(100 - ($vehicle_market_value * 100 / $result->vehicle_new_value), 2, ',', '') : 0;
+        $depreciation_rate = floatval(str_replace(',', '.', $depreciation_rate));
+
+        $result = [
+            'expertise_date' => $result->expertise_date,
+            'first_entry_into_circulation_date' => $result->first_entry_into_circulation_date,
+            'vehicle_new_value' => $result->vehicle_new_value,
+            'year_diff' => $result->year_diff,
+            'month_diff' => $result->month_diff,
+            'vehicle_age' => $result->vehicle_age,
+            'theorical_depreciation_rate' => $result->theorical_depreciation_rate,
+            'theorical_vehicle_market_value' => $result->theorical_vehicle_market_value,
+            'is_up' => $is_up,
+            'market_incidence_rate' => $market_incidence_rate,
+            'market_incidence' => $market_incidence,
+            'kilometric_incidence' => $kilometric_incidence,
+            'depreciation_rate' => $depreciation_rate,
+            'vehicle_market_value' =>  ceil($result->vehicle_new_value - ($result->vehicle_new_value * $depreciation_rate / 100))
+        ];
+
+        $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsages', 'vehicleCharacteristic.vehicleGenreUsages.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsages.usage')->create([
+            'reference' => 'EV-'.date('YmdHis'),
+            'license_plate' => $request->license_plate,
+            'mileage' => $request->vehicle_mileage,
+            'serial_number' => $request->serial_number,
+            'first_entry_into_circulation_date' => $request->first_entry_into_circulation_date,
+            'calculation_date' => $request->expertise_date,
+            'insured' => $request->insured,
+            'evaluation' => json_encode($result),
+            'vehicle_characteristic_id' => $vehicleCharacteristic->id,
+            'entity_id' => auth()->user()->entity_id,
+            'status_id' => Status::where('code', StatusEnum::SUCCESS)->first()->id,
+            'created_by' => auth()->user()->id,
+            'updated_by' => auth()->user()->id,
+        ]);
+
+        $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsages', 'vehicleCharacteristic.vehicleGenreUsages.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsages.usage')->where('id', $calculation->id)->first();
 
         dispatch(new GenerateEvaluationReportPdfJob($calculation));
 

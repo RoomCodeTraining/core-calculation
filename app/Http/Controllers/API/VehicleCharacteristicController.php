@@ -10,11 +10,11 @@ use App\Enums\StatusEnum;
 use App\Models\VehicleGenre;
 use App\Models\VehicleModel;
 use App\Models\VehicleEnergy;
-use App\Models\VehicleGenreUsage;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Essa\APIToolKit\Api\ApiResponse;
 use App\Models\VehicleCharacteristic;
+use App\Models\VehicleCharacteristicGenreUsage;
 use App\Http\Resources\Usage\UsageResource;
 use App\Http\Resources\VehicleGenre\VehicleGenreResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -45,9 +45,9 @@ class VehicleCharacteristicController extends Controller
     {
         $vehicleCharacteristics = VehicleCharacteristic::with(
             'vehicleModel',
-            'vehicleGenreUsage',
-            'vehicleGenreUsage.vehicleGenre',
-            'vehicleGenreUsage.usage',
+            'vehicleGenreUsages',
+            'vehicleGenreUsages.vehicleGenre',
+            'vehicleGenreUsages.usage',
             'vehicleEnergy',
             'dealer',
             'status:id,code,label',
@@ -56,51 +56,7 @@ class VehicleCharacteristicController extends Controller
             'deletedBy:id,name'
         );
 
-        if (request()->filled('dealer_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->where(
-                'dealer_id',
-                Dealer::keyFromHashId(request()->dealer_id)
-            );
-        }
-
-        if (request()->filled('vehicle_energy_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->where(
-                'vehicle_energy_id',
-                VehicleEnergy::keyFromHashId(request()->vehicle_energy_id)
-            );
-        }
-
-        if (request()->filled('status_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->where(
-                'status_id',
-                Status::keyFromHashId(request()->status_id)
-            );
-        }
-
-        if (request()->filled('vehicle_model_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->where(
-                'vehicle_model_id',
-                VehicleModel::keyFromHashId(request()->vehicle_model_id)
-            );
-        }
-
-        if (request()->filled('vehicle_genre_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->whereHas('vehicleGenreUsage', function ($query) {
-                $query->where(
-                    'vehicle_genre_id',
-                    VehicleGenre::keyFromHashId(request()->vehicle_genre_id)
-                );
-            });
-        }
-
-        if (request()->filled('usage_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->whereHas('vehicleGenreUsage', function ($query) {
-                $query->where(
-                    'usage_id',
-                    Usage::keyFromHashId(request()->usage_id)
-                );
-            });
-        }
+        $vehicleCharacteristics = $this->applyAllFilters($vehicleCharacteristics);
 
         $vehicleCharacteristics = $vehicleCharacteristics
             ->useFilters()
@@ -119,7 +75,6 @@ class VehicleCharacteristicController extends Controller
     {
         $vehicleCharacteristic = VehicleCharacteristic::create([
             'vehicle_model_id' => $request->vehicle_model_id,
-            'vehicle_genre_usage_id' => $request->vehicle_genre_usage_id,
             'vehicle_energy_id' => $request->vehicle_energy_id,
             'dealer_id' => $request->dealer_id,
             'type' => $request->type,
@@ -132,6 +87,10 @@ class VehicleCharacteristicController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
+        $vehicleCharacteristic->vehicleGenreUsages()->sync(
+            VehicleCharacteristicGenreUsage::mapSyncData($request->vehicle_genre_usage_ids)
+        );
+
         if($vehicleCharacteristic && $request->new_market_value){
             Price::create([
                 'value' => $request->new_market_value,
@@ -142,6 +101,17 @@ class VehicleCharacteristicController extends Controller
                 'updated_by' => auth()->user()->id,
             ]);
         }
+
+        $vehicleCharacteristic->load(
+            'vehicleModel',
+            'vehicleGenreUsages.vehicleGenre',
+            'vehicleGenreUsages.usage',
+            'vehicleEnergy',
+            'dealer',
+            'status',
+            'createdBy',
+            'updatedBy'
+        );
 
         return $this->responseCreated('VehicleCharacteristic created successfully', new VehicleCharacteristicResource($vehicleCharacteristic));
     }
@@ -154,7 +124,18 @@ class VehicleCharacteristicController extends Controller
     public function show($id): JsonResponse
     {
         $vehicleCharacteristic = VehicleCharacteristic::findOrFail(VehicleCharacteristic::keyFromHashId($id));
-        $vehicleCharacteristic->load('vehicleModel:id,label', 'vehicleGenreUsage', 'vehicleGenreUsage.vehicleGenre', 'vehicleGenreUsage.usage', 'vehicleEnergy:id,label', 'dealer:id,name', 'status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
+        $vehicleCharacteristic->load(
+            'vehicleModel:id,label',
+            'vehicleGenreUsages',
+            'vehicleGenreUsages.vehicleGenre',
+            'vehicleGenreUsages.usage',
+            'vehicleEnergy:id,label',
+            'dealer:id,name',
+            'status:id,code,label',
+            'createdBy:id,name',
+            'updatedBy:id,name',
+            'deletedBy:id,name'
+        );
 
         return $this->responseSuccess(null, new VehicleCharacteristicResource($vehicleCharacteristic));
     }
@@ -169,7 +150,6 @@ class VehicleCharacteristicController extends Controller
         $vehicleCharacteristic = VehicleCharacteristic::findOrFail(VehicleCharacteristic::keyFromHashId($id));
         $vehicleCharacteristic->update([
             'vehicle_model_id' => $request->vehicle_model_id,
-            'vehicle_genre_usage_id' => $request->vehicle_genre_usage_id,
             'vehicle_energy_id' => $request->vehicle_energy_id,
             'dealer_id' => $request->dealer_id,
             'type' => $request->type,
@@ -181,6 +161,20 @@ class VehicleCharacteristicController extends Controller
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'updated_by' => auth()->user()->id,
         ]);
+
+        $vehicleCharacteristic->vehicleGenreUsages()->sync(
+            VehicleCharacteristicGenreUsage::mapSyncData($request->vehicle_genre_usage_ids)
+        );
+        $vehicleCharacteristic->load(
+            'vehicleModel',
+            'vehicleGenreUsages.vehicleGenre',
+            'vehicleGenreUsages.usage',
+            'vehicleEnergy',
+            'dealer',
+            'status',
+            'createdBy',
+            'updatedBy'
+        );
 
         return $this->responseSuccess('VehicleCharacteristic updated Successfully', new VehicleCharacteristicResource($vehicleCharacteristic));
     }
@@ -203,13 +197,13 @@ class VehicleCharacteristicController extends Controller
      *
      * @authenticated
      */
-    public function filterAll(): JsonResponse
+    public function filterAll(): AnonymousResourceCollection
     {
         $vehicleCharacteristics = VehicleCharacteristic::with(
             'vehicleModel',
-            'vehicleGenreUsage',
-            'vehicleGenreUsage.vehicleGenre',
-            'vehicleGenreUsage.usage',
+            'vehicleGenreUsages',
+            'vehicleGenreUsages.vehicleGenre',
+            'vehicleGenreUsages.usage',
             'vehicleEnergy',
             'dealer',
             'status:id,code,label',
@@ -218,51 +212,7 @@ class VehicleCharacteristicController extends Controller
             'deletedBy:id,name'
         );
 
-        if (request()->filled('dealer_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->where(
-                'dealer_id',
-                Dealer::keyFromHashId(request()->dealer_id)
-            );
-        }
-
-        if (request()->filled('vehicle_energy_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->where(
-                'vehicle_energy_id',
-                VehicleEnergy::keyFromHashId(request()->vehicle_energy_id)
-            );
-        }
-
-        if (request()->filled('status_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->where(
-                'status_id',
-                Status::keyFromHashId(request()->status_id)
-            );
-        }
-
-        if (request()->filled('vehicle_model_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->where(
-                'vehicle_model_id',
-                VehicleModel::keyFromHashId(request()->vehicle_model_id)
-            );
-        }
-
-        if (request()->filled('vehicle_genre_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->whereHas('vehicleGenreUsage', function ($query) {
-                $query->where(
-                    'vehicle_genre_id',
-                    VehicleGenre::keyFromHashId(request()->vehicle_genre_id)
-                );
-            });
-        }
-
-        if (request()->filled('usage_id')) {
-            $vehicleCharacteristics = $vehicleCharacteristics->whereHas('vehicleGenreUsage', function ($query) {
-                $query->where(
-                    'usage_id',
-                    Usage::keyFromHashId(request()->usage_id)
-                );
-            });
-        }
+        $vehicleCharacteristics = $this->applyAllFilters($vehicleCharacteristics);
 
         $vehicleCharacteristics = $vehicleCharacteristics
             ->useFilters()
@@ -270,25 +220,79 @@ class VehicleCharacteristicController extends Controller
             ->dynamicPaginate();
 
         // Récupérer les usages des genres de véhicules
-        $vehicleGenreUsages = $vehicleCharacteristics->map(function ($vehicleCharacteristic) {
-            return $vehicleCharacteristic->vehicleGenreUsage;
-        });
+        $vehicleGenreUsages = $vehicleCharacteristics
+            ->flatMap(fn ($vehicleCharacteristic) => $vehicleCharacteristic->vehicleGenreUsages)
+            ->unique('id')
+            ->values();
 
-        // Récupérer les genres de véhicules
-        $vehicleGenres = $vehicleCharacteristics->map(function ($vehicleCharacteristic) {
-            return $vehicleCharacteristic->vehicleGenreUsage->vehicleGenre;
-        });
+        $vehicleGenres = $vehicleGenreUsages
+            ->map(fn ($vehicleGenreUsage) => $vehicleGenreUsage->vehicleGenre)
+            ->filter()
+            ->unique('id')
+            ->values();
 
-        // Récupérer les usages des genres de véhicules
-        $usages = $vehicleCharacteristics->map(function ($vehicleCharacteristic) {
-            return $vehicleCharacteristic->vehicleGenreUsage->usage;
-        });
+        $usages = $vehicleGenreUsages
+            ->map(fn ($vehicleGenreUsage) => $vehicleGenreUsage->usage)
+            ->filter()
+            ->unique('id')
+            ->values();
 
-        return $this->responseSuccess(null, [
-            'vehicle_characteristics' => VehicleCharacteristicResource::collection($vehicleCharacteristics),
+        return VehicleCharacteristicResource::collection($vehicleCharacteristics)->additional([
             'vehicle_genre_usages' => VehicleGenreUsageResource::collection($vehicleGenreUsages),
             'vehicle_genres' => VehicleGenreResource::collection($vehicleGenres),
             'usages' => UsageResource::collection($usages),
         ]);
+    }
+
+    private function applyAllFilters($query)
+    {
+        if (request()->filled('dealer_id')) {
+            $query = $query->where(
+                'dealer_id',
+                Dealer::keyFromHashId(request()->dealer_id)
+            );
+        }
+
+        if (request()->filled('vehicle_energy_id')) {
+            $query = $query->where(
+                'vehicle_energy_id',
+                VehicleEnergy::keyFromHashId(request()->vehicle_energy_id)
+            );
+        }
+
+        if (request()->filled('status_id')) {
+            $query = $query->where(
+                'status_id',
+                Status::keyFromHashId(request()->status_id)
+            );
+        }
+
+        if (request()->filled('vehicle_model_id')) {
+            $query = $query->where(
+                'vehicle_model_id',
+                VehicleModel::keyFromHashId(request()->vehicle_model_id)
+            );
+        }
+
+        $vehicleGenreId = request()->filled('vehicle_genre_id')
+            ? VehicleGenre::keyFromHashId(request()->vehicle_genre_id)
+            : null;
+        $usageId = request()->filled('usage_id')
+            ? Usage::keyFromHashId(request()->usage_id)
+            : null;
+
+        if ($vehicleGenreId !== null || $usageId !== null) {
+            $query = $query->whereHas('vehicleCharacteristicGenreUsages.vehicleGenreUsage', function ($subQuery) use ($vehicleGenreId, $usageId) {
+                if ($vehicleGenreId !== null) {
+                    $subQuery->where('vehicle_genre_usages.vehicle_genre_id', $vehicleGenreId);
+                }
+
+                if ($usageId !== null) {
+                    $subQuery->where('vehicle_genre_usages.usage_id', $usageId);
+                }
+            });
+        }
+
+        return $query;
     }
 }

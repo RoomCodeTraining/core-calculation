@@ -1,20 +1,20 @@
-name: 'Gestion des prix des caractéristiques des véhicules'
+name: 'Gestion des transactions'
 description: |-
 
-  APIs pour la gestion des prix des caractéristiques des véhicules
+  APIs pour la gestion des transactions
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/prices
+    uri: api/v1/transactions
     metadata:
-      groupName: 'Gestion des prix des caractéristiques des véhicules'
+      groupName: 'Gestion des transactions'
       groupDescription: |-
 
-        APIs pour la gestion des prix des caractéristiques des véhicules
+        APIs pour la gestion des transactions
       subgroup: ''
       subgroupDescription: ''
-      title: 'Lister tous les prix des caractéristiques des véhicules'
+      title: 'Lister toutes les transactions'
       description: ''
       authenticated: true
       deprecated: false
@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 38aa16ZdEb5VfkchDPg6e4v'
+      - 'Bearer D613faaEhPec48gdV5Z6bkv'
     controller: null
     method: null
     route: null
@@ -52,15 +52,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/prices
+    uri: api/v1/transactions
     metadata:
-      groupName: 'Gestion des prix des caractéristiques des véhicules'
+      groupName: 'Gestion des transactions'
       groupDescription: |-
 
-        APIs pour la gestion des prix des caractéristiques des véhicules
+        APIs pour la gestion des transactions
       subgroup: ''
       subgroupDescription: ''
-      title: "Ajouter un prix d'une caractéristique d'un véhicule"
+      title: 'Créer une transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -74,47 +74,58 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      value:
-        name: value
-        description: 'La valeur de value doit être supérieure ou égale à 0.'
+      quantity:
+        name: quantity
+        description: 'La valeur de value doit être supérieure ou égale à 1.'
         required: true
-        example: 84
+        example: 9
         type: number
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      date:
-        name: date
-        description: 'Must be a valid date in the format <code>Y-m-d</code>. Le champ value doit être une date antérieure au <code>tomorrow</code>.'
+      description:
+        name: description
+        description: ''
+        required: false
+        example: 'Quos culpa illum quisquam aut quia.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      entity_id:
+        name: entity_id
+        description: 'The <code>id</code> of an existing record in the entities table.'
         required: true
-        example: '2019-04-22'
+        example: sint
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      vehicle_characteristic_id:
-        name: vehicle_characteristic_id
-        description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
+      transaction_type_id:
+        name: transaction_type_id
+        description: 'The <code>id</code> of an existing record in the transaction_types table.'
         required: true
-        example: ut
+        example: enim
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanBodyParameters:
-      value: 84
-      date: '2019-04-22'
-      vehicle_characteristic_id: ut
+      quantity: 9
+      description: 'Quos culpa illum quisquam aut quia.'
+      entity_id: sint
+      transaction_type_id: enim
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer kvfaD5Za6g6de3h8c14VEbP'
+      - 'Bearer kafV63Pa56vdZh1gb8ec4DE'
     controller: null
     method: null
     route: null
@@ -122,15 +133,15 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/prices/{id}'
+    uri: 'api/v1/transactions/{id}'
     metadata:
-      groupName: 'Gestion des prix des caractéristiques des véhicules'
+      groupName: 'Gestion des transactions'
       groupDescription: |-
 
-        APIs pour la gestion des prix des caractéristiques des véhicules
+        APIs pour la gestion des transactions
       subgroup: ''
       subgroupDescription: ''
-      title: "Afficher un prix d'une caractéristique d'un véhicule"
+      title: 'Afficher une transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -142,16 +153,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the price.'
+        description: 'The ID of the transaction.'
         required: true
-        example: est
+        example: praesentium
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: est
+      id: praesentium
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -171,7 +182,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vVD3dgaPea5b6c61k8hEf4Z'
+      - 'Bearer 563bavPZcE6g418dkfeDhVa'
     controller: null
     method: null
     route: null
@@ -179,15 +190,15 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/v1/prices/{id}'
+    uri: 'api/v1/transactions/{id}'
     metadata:
-      groupName: 'Gestion des prix des caractéristiques des véhicules'
+      groupName: 'Gestion des transactions'
       groupDescription: |-
 
-        APIs pour la gestion des prix des caractéristiques des véhicules
+        APIs pour la gestion des transactions
       subgroup: ''
       subgroupDescription: ''
-      title: "Mettre à jour un prix d'une caractéristique d'un véhicule"
+      title: 'Mettre à jour une transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -199,42 +210,7 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the price.'
-        required: true
-        example: aut
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      id: aut
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      value:
-        name: value
-        description: 'La valeur de value doit être supérieure ou égale à 0.'
-        required: true
-        example: 11
-        type: number
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      date:
-        name: date
-        description: 'Must be a valid date in the format <code>Y-m-d</code>. Le champ value doit être une date antérieure au <code>tomorrow</code>.'
-        required: true
-        example: '2002-10-15'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      vehicle_characteristic_id:
-        name: vehicle_characteristic_id
-        description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
+        description: 'The ID of the transaction.'
         required: true
         example: totam
         type: string
@@ -242,54 +218,8 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
-    cleanBodyParameters:
-      value: 11
-      date: '2002-10-15'
-      vehicle_characteristic_id: totam
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 1P6a6ehVvkd8gaZb3Ec54Df'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/v1/prices/{id}'
-    metadata:
-      groupName: 'Gestion des prix des caractéristiques des véhicules'
-      groupDescription: |-
-
-        APIs pour la gestion des prix des caractéristiques des véhicules
-      subgroup: ''
-      subgroupDescription: ''
-      title: "Supprimer un prix d'une caractéristique d'un véhicule"
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the price.'
-        required: true
-        example: aliquid
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
     cleanUrlParameters:
-      id: aliquid
+      id: totam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -300,7 +230,160 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 1fvgaPa5k6Ee3VD4Zd8c6hb'
+      - 'Bearer 6d41PcVag68hkaf3DvZ5Ebe'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/transactions/{id}'
+    metadata:
+      groupName: 'Gestion des transactions'
+      groupDescription: |-
+
+        APIs pour la gestion des transactions
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Supprimer une transaction'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the transaction.'
+        required: true
+        example: omnis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: omnis
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer aDd5v6agZEP168cf4ekVhb3'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/transactions/{transaction}/cancel'
+    metadata:
+      groupName: 'Gestion des transactions'
+      groupDescription: |-
+
+        APIs pour la gestion des transactions
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Annuler une transaction'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      transaction:
+        name: transaction
+        description: 'The transaction.'
+        required: true
+        example: veniam
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      transaction: veniam
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      cancellation_reason:
+        name: cancellation_reason
+        description: ''
+        required: true
+        example: perferendis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      cancellation_reason: perferendis
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer gcPVv1aD4e63kZdh8ab5f6E'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/transactions/credits/all
+    metadata:
+      groupName: 'Gestion des transactions'
+      groupDescription: |-
+
+        APIs pour la gestion des transactions
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister les credits des entités'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer acb6he34DZ1gv8fdPE5Vka6'
     controller: null
     method: null
     route: null

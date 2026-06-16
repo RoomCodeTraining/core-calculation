@@ -7,6 +7,7 @@ use Essa\APIToolKit\Filters\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Deligoez\LaravelModelHashId\Traits\HasHashId;
 use Deligoez\LaravelModelHashId\Traits\HasHashIdRouting;
@@ -72,6 +73,25 @@ class VehicleGenreUsage extends Model
     public function deletedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'deleted_by');
+    }
+
+    /**
+     * Get the pivot associations of this vehicle genre usage
+     */
+    public function vehicleCharacteristicGenreUsages(): HasMany
+    {
+        return $this->hasMany(VehicleCharacteristicGenreUsage::class);
+    }
+
+    /**
+     * Get the vehicle characteristics for this vehicle genre usage
+     */
+    public function vehicleCharacteristics(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            VehicleCharacteristic::class,
+            'vehicle_characteristic_genre_usages'
+        )->withPivot(['status_id', 'created_by', 'updated_by', 'deleted_by']);
     }
 
     /**

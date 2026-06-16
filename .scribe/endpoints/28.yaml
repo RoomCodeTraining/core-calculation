@@ -1,20 +1,20 @@
-name: 'Gestion des transactions'
+name: 'Gestion des types de transaction'
 description: |-
 
-  APIs pour la gestion des transactions
+  APIs pour la gestion des types de transaction
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/v1/transactions
+    uri: api/v1/transaction-types
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Lister toutes les transactions'
+      title: 'Lister tous les types de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -44,7 +44,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 1ck6Dv3eE465gZhVbad8fPa'
+      - 'Bearer b5eaafVdPZ146khDE8gvc36'
     controller: null
     method: null
     route: null
@@ -52,15 +52,15 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/v1/transactions
+    uri: api/v1/transaction-types
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Créer une transaction'
+      title: 'Créer un type de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -74,12 +74,12 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      quantity:
-        name: quantity
-        description: 'La valeur de value doit être supérieure ou égale à 1.'
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: 37
-        type: number
+        example: khjrlkmngqhnqmbcbmlpw
+        type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
@@ -88,44 +88,22 @@ endpoints:
         name: description
         description: ''
         required: false
-        example: 'Qui dolor odio qui molestias necessitatibus eos esse praesentium.'
+        example: 'Placeat maiores voluptatem tempore numquam rerum cumque.'
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: true
         custom: []
-      entity_id:
-        name: entity_id
-        description: 'The <code>id</code> of an existing record in the entities table.'
-        required: true
-        example: porro
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      transaction_type_id:
-        name: transaction_type_id
-        description: 'The <code>id</code> of an existing record in the transaction_types table.'
-        required: true
-        example: debitis
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
     cleanBodyParameters:
-      quantity: 37
-      description: 'Qui dolor odio qui molestias necessitatibus eos esse praesentium.'
-      entity_id: porro
-      transaction_type_id: debitis
+      label: khjrlkmngqhnqmbcbmlpw
+      description: 'Placeat maiores voluptatem tempore numquam rerum cumque.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer dPD3c4kaeb66gv51Z8aVEfh'
+      - 'Bearer g1ZD68k5PVc3db6aaEveh4f'
     controller: null
     method: null
     route: null
@@ -133,15 +111,15 @@ endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/v1/transactions/{id}'
+    uri: 'api/v1/transaction-types/{id}'
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Afficher une transaction'
+      title: 'Afficher un type de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -153,16 +131,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the transaction.'
+        description: 'The ID of the transaction type.'
         required: true
-        example: ipsa
+        example: dicta
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: ipsa
+      id: dicta
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -182,7 +160,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 8ZV6d3415PDgek6Efcabvha'
+      - 'Bearer ca5fd4h63kebg8PVZ61EavD'
     controller: null
     method: null
     route: null
@@ -190,15 +168,15 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/v1/transactions/{id}'
+    uri: 'api/v1/transaction-types/{id}'
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Mettre à jour une transaction'
+      title: 'Mettre à jour un type de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -210,27 +188,49 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the transaction.'
+        description: 'The ID of the transaction type.'
         required: true
-        example: tenetur
+        example: velit
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: tenetur
+      id: velit
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: 'y'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: false
+        example: 'Assumenda asperiores odit odio ipsa ipsam nihil.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      label: 'y'
+      description: 'Assumenda asperiores odit odio ipsa ipsam nihil.'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer fevgZahacE634PD6k5bd18V'
+      - 'Bearer ZbagcV5eP31Ekavf8d64D6h'
     controller: null
     method: null
     route: null
@@ -238,15 +238,15 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/v1/transactions/{id}'
+    uri: 'api/v1/transaction-types/{id}'
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Supprimer une transaction'
+      title: 'Supprimer un type de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -258,16 +258,16 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the transaction.'
+        description: 'The ID of the transaction type.'
         required: true
-        example: consequatur
+        example: adipisci
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: consequatur
+      id: adipisci
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -278,7 +278,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer habV65vEP6dD4Zga13kc8ef'
+      - 'Bearer 1VbaDv5k6E4Zh8aedcf3P6g'
     controller: null
     method: null
     route: null
@@ -286,15 +286,15 @@ endpoints:
   -
     httpMethods:
       - PUT
-    uri: 'api/v1/transactions/{transaction}/cancel'
+    uri: 'api/v1/transaction-types/{transaction_type}/enable'
     metadata:
-      groupName: 'Gestion des transactions'
+      groupName: 'Gestion des types de transaction'
       groupDescription: |-
 
-        APIs pour la gestion des transactions
+        APIs pour la gestion des types de transaction
       subgroup: ''
       subgroupDescription: ''
-      title: 'Annuler une transaction'
+      title: 'Activer un type de transaction'
       description: ''
       authenticated: true
       deprecated: false
@@ -304,9 +304,57 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      transaction:
-        name: transaction
-        description: 'The transaction.'
+      transaction_type:
+        name: transaction_type
+        description: ''
+        required: true
+        example: ea
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      transaction_type: ea
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer cvd4a6a3Pbh8D51kEg6VZef'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/transaction-types/{transaction_type}/disable'
+    metadata:
+      groupName: 'Gestion des types de transaction'
+      groupDescription: |-
+
+        APIs pour la gestion des types de transaction
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Désactiver un type de transaction'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      transaction_type:
+        name: transaction_type
+        description: ''
         required: true
         example: et
         type: string
@@ -315,75 +363,18 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      transaction: et
+      transaction_type: et
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      cancellation_reason:
-        name: cancellation_reason
-        description: ''
-        required: true
-        example: nesciunt
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      cancellation_reason: nesciunt
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 8fv6k1caed3ZPVabEh5D64g'
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: api/v1/transactions/credits/all
-    metadata:
-      groupName: 'Gestion des transactions'
-      groupDescription: |-
-
-        APIs pour la gestion des transactions
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Lister les credits des entités'
-      description: ''
-      authenticated: true
-      deprecated: false
-      custom: []
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 8a5bh6eg1ckVPd4vf3ZE6Da'
+      - 'Bearer hD165Ed6PZc8vba4Vgk3fea'
     controller: null
     method: null
     route: null

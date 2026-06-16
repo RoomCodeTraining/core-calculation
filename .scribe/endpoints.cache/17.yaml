@@ -46,7 +46,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 68hfgeVk1Z53c4bPEd6aaDv'
+      - 'Bearer dZcag1feV4PhbvD6kE385a6'
     controller: null
     method: null
     route: null
@@ -83,7 +83,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 4V856ebacfEgkDa3dZ1vPh6'
+      - 'Bearer g651Z64EDfVhv8c3dabakeP'
     controller: null
     method: null
     route: null
@@ -113,14 +113,14 @@ endpoints:
         name: paymentHistoric
         description: ''
         required: true
-        example: rerum
+        example: dicta
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentHistoric: rerum
+      paymentHistoric: dicta
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -140,7 +140,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 61v8ghcaaEZ3P5kb6fVdD4e'
+      - 'Bearer d64g1f8V5bvE6aZPDae3khc'
     controller: null
     method: null
     route: null
@@ -170,14 +170,14 @@ endpoints:
         name: paymentHistoric
         description: ''
         required: true
-        example: quo
+        example: officiis
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentHistoric: quo
+      paymentHistoric: officiis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -188,7 +188,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 13dg8feE5VDaa6Zkvch4Pb6'
+      - 'Bearer 6V8cakhv3d4beDgfPEa65Z1'
     controller: null
     method: null
     route: null
@@ -218,14 +218,14 @@ endpoints:
         name: paymentHistoric
         description: ''
         required: true
-        example: rerum
+        example: amet
         type: string
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      paymentHistoric: rerum
+      paymentHistoric: amet
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -236,7 +236,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer b5fk3V81acgPEeZ4adD66hv'
+      - 'Bearer ah15D6fPgZe6kEa8vVd4b3c'
     controller: null
     method: null
     route: null

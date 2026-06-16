@@ -12,9 +12,15 @@ class CreateVehicleCharacteristicRequest extends FormRequest
 {
     public function prepareForValidation()
     {
+        $vehicleGenreUsageIds = collect($this->vehicle_genre_usage_ids ?? [])
+            ->filter()
+            ->map(fn ($id) => VehicleGenreUsage::keyFromHashId($id))
+            ->values()
+            ->all();
+
         $this->merge([
             "vehicle_model_id" => $this->vehicle_model_id ? VehicleModel::keyFromHashId($this->vehicle_model_id) : null,
-            "vehicle_genre_usage_id" => $this->vehicle_genre_usage_id ? VehicleGenreUsage::keyFromHashId($this->vehicle_genre_usage_id) : null,
+            "vehicle_genre_usage_ids" => $vehicleGenreUsageIds,
             "vehicle_energy_id" => $this->vehicle_energy_id ? VehicleEnergy::keyFromHashId($this->vehicle_energy_id) : null,
             "dealer_id" => $this->dealer_id ? Dealer::keyFromHashId($this->dealer_id) : null,
         ]);
@@ -24,7 +30,8 @@ class CreateVehicleCharacteristicRequest extends FormRequest
     {
         return [
             "vehicle_model_id" => "required|exists:vehicle_models,id",
-            "vehicle_genre_usage_id" => "required|exists:vehicle_genre_usages,id",
+            "vehicle_genre_usage_ids" => "required|array|min:1",
+            "vehicle_genre_usage_ids.*" => "required|exists:vehicle_genre_usages,id",
             "vehicle_energy_id" => "required|exists:vehicle_energies,id",
             "dealer_id" => "required|exists:dealers,id",
             "type" => "nullable|string|max:255",
@@ -42,8 +49,11 @@ class CreateVehicleCharacteristicRequest extends FormRequest
         return [
             "vehicle_model_id.required" => "Le modèle de véhicule est requis.",
             "vehicle_model_id.exists" => "Le modèle de véhicule n'existe pas.",
-            "vehicle_genre_usage_id.required" => "Le genre de véhicule est requis.",
-            "vehicle_genre_usage_id.exists" => "Le genre de véhicule n'existe pas.",
+            "vehicle_genre_usage_ids.required" => "Les genres de véhicule sont requis.",
+            "vehicle_genre_usage_ids.array" => "Les genres de véhicule doivent être un tableau.",
+            "vehicle_genre_usage_ids.min" => "Au moins un genre de véhicule est requis.",
+            "vehicle_genre_usage_ids.*.required" => "Le genre de véhicule est requis.",
+            "vehicle_genre_usage_ids.*.exists" => "Le genre de véhicule n'existe pas.",
             "vehicle_energy_id.required" => "L'énergie est requise.",
             "vehicle_energy_id.exists" => "L'énergie n'existe pas.",
             "dealer_id.required" => "Le concessionnaire est requis.",

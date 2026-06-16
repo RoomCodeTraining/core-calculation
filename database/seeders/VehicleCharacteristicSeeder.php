@@ -17,9 +17,8 @@ class VehicleCharacteristicSeeder extends Seeder
      */
     public function run(): void
     {
-        VehicleCharacteristic::create([
+        $vehicleCharacteristic1 = VehicleCharacteristic::create([
             'vehicle_model_id' => 1,
-            'vehicle_genre_usage_id' => 1,
             'vehicle_energy_id' => VehicleEnergy::where('code', 'VE01')->first()->id,
             'dealer_id' => 1,
             'type' => 'Berline',
@@ -31,10 +30,17 @@ class VehicleCharacteristicSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
         ]);
+        $vehicleCharacteristic1->vehicleCharacteristicGenreUsages()->updateOrCreate(
+            ['vehicle_genre_usage_id' => 1],
+            [
+                'status_id' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]
+        );
 
-        VehicleCharacteristic::create([
+        $vehicleCharacteristic2 = VehicleCharacteristic::create([
             'vehicle_model_id' => 1,
-            'vehicle_genre_usage_id' => 2,
             'vehicle_energy_id' => VehicleEnergy::where('code', 'VE02')->first()->id,
             'dealer_id' => 2,
             'type' => 'SUV',
@@ -46,5 +52,13 @@ class VehicleCharacteristicSeeder extends Seeder
             'created_by' => 1,
             'updated_by' => 1,
         ]);
+        $vehicleCharacteristic2->vehicleCharacteristicGenreUsages()->updateOrCreate(
+            ['vehicle_genre_usage_id' => 2],
+            [
+                'status_id' => 1,
+                'created_by' => 1,
+                'updated_by' => 1,
+            ]
+        );
     }
 }

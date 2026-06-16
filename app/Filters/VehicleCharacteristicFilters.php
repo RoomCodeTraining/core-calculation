@@ -13,8 +13,8 @@ class VehicleCharacteristicFilters extends QueryFilters
     protected array $relationSearch = [
         'vehicleModel' => ['code', 'label'],
         'vehicleModel.brand' => ['code', 'label'],
-        'vehicleGenreUsage.vehicleGenre' => ['code', 'label'],
-        'vehicleGenreUsage.usage' => ['code', 'label'],
+        'vehicleGenreUsages.vehicleGenre' => ['code', 'label'],
+        'vehicleGenreUsages.usage' => ['code', 'label'],
         'dealer' => ['name'],
     ];
 }
