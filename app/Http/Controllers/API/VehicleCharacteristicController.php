@@ -237,14 +237,6 @@ class VehicleCharacteristicController extends Controller
             ->unique('id')
             ->values();
 
-        if (request()->filled('usage_id')) {
-            return VehicleCharacteristicResource::collection($vehicleCharacteristics)->additional([
-                'vehicle_genre_usages' => null,
-                'vehicle_genres' => null,
-                'usages' => null,
-            ]);
-        }
-
         return VehicleCharacteristicResource::collection($vehicleCharacteristics)->additional([
             'vehicle_genre_usages' => VehicleGenreUsageResource::collection($vehicleGenreUsages),
             'vehicle_genres' => VehicleGenreResource::collection($vehicleGenres),
