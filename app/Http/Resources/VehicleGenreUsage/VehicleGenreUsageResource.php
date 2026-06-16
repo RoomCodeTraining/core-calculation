@@ -19,7 +19,7 @@ class VehicleGenreUsageResource extends JsonResource
             'max_mileage_diesel_per_year' => $this->max_mileage_diesel_per_year,
             'vehicle_genre' => new VehicleGenreResource($this->whenLoaded('vehicleGenre')),
             'usage' => new UsageResource($this->whenLoaded('usage')),
-            'vehicle_characteristics' => VehicleCharacteristicResource::collection($this->whenLoaded('vehicleCharacteristics')),
+            // 'vehicle_characteristics' => VehicleCharacteristicResource::collection($this->whenLoaded('vehicleCharacteristics')),
             'status' => new StatusResource($this->whenLoaded('status')),
             'created_by' => new UserResource($this->whenLoaded('createdBy')),
             'updated_by' => new UserResource($this->whenLoaded('updatedBy')),
