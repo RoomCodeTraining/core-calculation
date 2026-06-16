@@ -237,6 +237,14 @@ class VehicleCharacteristicController extends Controller
             ->unique('id')
             ->values();
 
+        if (request()->filled('usage_id')) {
+            return VehicleCharacteristicResource::collection($vehicleCharacteristics)->additional([
+                'vehicle_genre_usages' => null,
+                'vehicle_genres' => null,
+                'usages' => null,
+            ]);
+        }
+
         return VehicleCharacteristicResource::collection($vehicleCharacteristics)->additional([
             'vehicle_genre_usages' => VehicleGenreUsageResource::collection($vehicleGenreUsages),
             'vehicle_genres' => VehicleGenreResource::collection($vehicleGenres),
@@ -291,6 +299,20 @@ class VehicleCharacteristicController extends Controller
                     $subQuery->where('vehicle_genre_usages.usage_id', $usageId);
                 }
             });
+
+            // Garder uniquement les associations genre/usage qui matchent le filtre
+            // (sinon la ressource renvoie toutes les associations de la caractéristique).
+            $query = $query->with([
+                'vehicleGenreUsages' => function ($vehicleGenreUsageQuery) use ($vehicleGenreId, $usageId) {
+                    if ($vehicleGenreId !== null) {
+                        $vehicleGenreUsageQuery->where('vehicle_genre_id', $vehicleGenreId);
+                    }
+
+                    if ($usageId !== null) {
+                        $vehicleGenreUsageQuery->where('usage_id', $usageId);
+                    }
+                },
+            ]);
         }
 
         return $query;
