@@ -62,7 +62,7 @@ class GenerateEvaluationReportPdfJob implements ShouldQueue
         $data_qr_code = file_get_contents($path_qr_code);
         $qr_code = 'data:image/'.$type_qr_code.';base64,'.base64_encode($data_qr_code);
 
-        $logoEntity = Entity::select('logo')->find($calculation->entity->id);
+        $logoEntity = Entity::select('logo')->find($calculation?->entity?->id ?? null);
 
         $logo = $logoEntity && $logoEntity->logo
         ? image_to_base64(public_path("storage/logos/{$logoEntity->logo}"))
