@@ -7,16 +7,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Recharge\CreateRechargeRequest;
 use App\Http\Requests\Recharge\UpdateRechargeRequest;
 use App\Http\Resources\Recharge\RechargeResource;
+use App\Mail\SendEvaluationReportMail;
 use App\Models\Order;
 use App\Models\PaymentMethod;
 use App\Models\Recharge;
 use App\Models\Transaction;
 use App\Models\Status;
+use App\Services\EmailValidationService;
 use App\Services\Wave\WaveCheckoutService;
 use Carbon\Carbon;
 use Essa\APIToolKit\Api\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * @group Gestion des rechargements
@@ -95,29 +99,47 @@ class RechargeController extends Controller
             'updated_by' => auth()?->user()?->id ?? null,
         ]);
 
-        // $waveCheckoutService = new WaveCheckoutService();
-        // $response = $waveCheckoutService->createCheckoutSession($transaction->amount, $recharge->reference);
+        $waveCheckoutService = new WaveCheckoutService();
+        $response = $waveCheckoutService->createCheckoutSession($transaction->amount, $recharge->reference);
 
-        // if($response->successful()) {
-        //     $waveCheckoutSession = $waveCheckoutService->searchCheckoutSessions($recharge->reference);
-        //     if($waveCheckoutSession->successful()) {
-        //         $recharge->update([
-        //             'payment_link' => $waveCheckoutSession['result'][0]['wave_launch_url'],
-        //         ]);
-        //         $transaction->update([
-        //             'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
-        //             'updated_by' => auth()?->user()?->id ?? null,
-        //         ]);
-        //     } else {
-        //         $transaction->update([
-        //             'status_id' => Status::where('code', StatusEnum::FAILED)->first()->id,
-        //             'updated_by' => auth()?->user()?->id ?? null,
-        //         ]);
-        //         return $this->responseUnprocessable('Erreur lors de la recherche de la session de paiement.');
-        //     }
-        // } else {
-        //     return $this->responseUnprocessable('Erreur lors de la création de la session de paiement.');
-        // }
+        if($response->successful()) {
+            $waveCheckoutSession = $waveCheckoutService->searchCheckoutSessions($recharge->reference);
+            if($waveCheckoutSession->successful()) {
+                $recharge->update([
+                    'payment_link' => $waveCheckoutSession['result'][0]['wave_launch_url'],
+                ]);
+                $transaction->update([
+                    'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
+                    'updated_by' => auth()?->user()?->id ?? null,
+                ]);
+
+                $transaction->load('calculation');
+
+                if ($recharge->email && $transaction->calculation) {
+                    $file = public_path('storage/evaluation_report/'.$transaction->calculation->reference.'.pdf');
+
+                    if (file_exists($file)) {
+                        try {
+                            $emails = (new EmailValidationService())->validateEmails([$recharge->email]);
+
+                            if (count($emails) > 0) {
+                                Mail::to($emails)->send(new SendEvaluationReportMail($file, $transaction->calculation));
+                            }
+                        } catch (\Exception $e) {
+                            Log::error($e);
+                        }
+                    }
+                }
+            } else {
+                $transaction->update([
+                    'status_id' => Status::where('code', StatusEnum::FAILED)->first()->id,
+                    'updated_by' => auth()?->user()?->id ?? null,
+                ]);
+                return $this->responseUnprocessable('Erreur lors de la recherche de la session de paiement.');
+            }
+        } else {
+            return $this->responseUnprocessable('Erreur lors de la création de la session de paiement.');
+        }
 
         $recharge->load([
             'transaction',

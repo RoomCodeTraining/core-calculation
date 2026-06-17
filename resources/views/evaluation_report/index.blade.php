@@ -302,18 +302,18 @@
                 </tr>
                 <tr style="border: 1px solid; font-size: 11px;">
                     <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
-                        Valeur vénale avec incidences kilometrique
-                    </th>
-                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
-                        <b> {{number_format($evaluation?->vehicle_market_value ?? 0, 0, ',', ' ') ?? ''}} FCFA</b>
-                    </th>
-                </tr>
-                <tr style="border: 1px solid; font-size: 11px;">
-                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
                         Valeur vénale hors incidences kilometrique
                     </th>
                     <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
                         <b> {{number_format($evaluation?->theorical_vehicle_market_value ?? 0, 0, ',', ' ') ?? ''}} FCFA</b>
+                    </th>
+                </tr>
+                <tr style="border: 1px solid; font-size: 11px;">
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 30%;">
+                        Valeur vénale avec incidences kilometrique
+                    </th>
+                    <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
+                        <b> {{number_format($evaluation?->vehicle_market_value ?? 0, 0, ',', ' ') ?? ''}} FCFA</b>
                     </th>
                 </tr>
             </thead>
