@@ -16,6 +16,6 @@ Route::name('external.')->group(function () {
     Route::get('/usages', [UsageController::class, 'index'])->name('usages.index');
     Route::get('/vehicle-characteristics', [VehicleCharacteristicController::class, 'index'])->name('external.vehicle-characteristics.index');
     Route::get('/prices', [PriceController::class, 'index'])->name('prices.index');
-    Route::post('/calculate-theoretical-market-value', [DepreciationTableController::class, 'calculate_theoretical_market_value_public'])->name('calculate-theoretical-market-value-public');
+    Route::post('/depreciation-tables/calculate-theoretical-market-value', [DepreciationTableController::class, 'calculate_theoretical_market_value_public'])->name('calculate-theoretical-market-value-public');
     Route::get('/vehicle-characteristics/filter/all', [VehicleCharacteristicController::class, 'filterAll'])->name('external.filter-all');
 }); 
