@@ -155,10 +155,10 @@ class DepreciationTableController extends Controller
             'insured' => $request->insured,
             'evaluation' => json_encode($result),
             'vehicle_characteristic_id' => $vehicleCharacteristic->id,
-            'entity_id' => auth()->user()->entity_id,
+            'entity_id' => auth()->user()?->entity_id ?? null,
             'status_id' => Status::where('code', StatusEnum::SUCCESS)->first()->id,
-            'created_by' => auth()->user()->id,
-            'updated_by' => auth()->user()->id,
+            'created_by' => auth()->user()?->id ?? null,
+            'updated_by' => auth()->user()?->id ?? null,
         ]);
 
         $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsages', 'vehicleCharacteristic.vehicleGenreUsages.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsages.usage')->where('id', $calculation->id)->first();
