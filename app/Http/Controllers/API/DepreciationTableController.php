@@ -2,35 +2,38 @@
 
 namespace App\Http\Controllers\API;
 
-use Carbon\Carbon;
-use App\Models\Price;
-use App\Models\Usage;
-use App\Models\Entity;
-use App\Models\Status;
-use App\Enums\StatusEnum;
-use App\Models\EntityType;
-use App\Models\VehicleAge;
-use App\Models\Calculation;
-use App\Models\Transaction;
-use App\Models\VehicleGenre;
-use Illuminate\Http\Request;
 use App\Enums\EntityTypeEnum;
-use App\Models\VehicleEnergy;
-use App\Models\DepreciationTable;
-use App\Models\VehicleGenreUsage;
-use Illuminate\Http\JsonResponse;
+use App\Enums\StatusEnum;
+use App\Enums\TransactionTypeEnum;
 use App\Http\Controllers\Controller;
-use Essa\APIToolKit\Api\ApiResponse;
-use App\Models\VehicleCharacteristic;
-use App\Jobs\GenerateEvaluationReportPdfJob;
-use App\Services\MarketValue\MarketValueService;
-use App\Http\Resources\Calculation\CalculationResource;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use App\Http\Requests\DepreciationTable\CreateMarketValueRequest;
-use App\Http\Resources\DepreciationTable\DepreciationTableResource;
 use App\Http\Requests\DepreciationTable\CreateDepreciationTableRequest;
-use App\Http\Requests\DepreciationTable\UpdateDepreciationTableRequest;
+use App\Http\Requests\DepreciationTable\CreateMarketValueRequest;
 use App\Http\Requests\DepreciationTable\CreateTheoricalMarketValueRequest;
+use App\Http\Requests\DepreciationTable\UpdateDepreciationTableRequest;
+use App\Http\Resources\Calculation\CalculationResource;
+use App\Http\Resources\DepreciationTable\DepreciationTableResource;
+use App\Http\Resources\Transaction\TransactionResource;
+use App\Jobs\GenerateEvaluationReportPdfJob;
+use App\Models\Calculation;
+use App\Models\DepreciationTable;
+use App\Models\Entity;
+use App\Models\EntityType;
+use App\Models\Price;
+use App\Models\Status;
+use App\Models\Transaction;
+use App\Models\TransactionType;
+use App\Models\Usage;
+use App\Models\VehicleAge;
+use App\Models\VehicleCharacteristic;
+use App\Models\VehicleEnergy;
+use App\Models\VehicleGenre;
+use App\Models\VehicleGenreUsage;
+use App\Services\MarketValue\MarketValueService;
+use Carbon\Carbon;
+use Essa\APIToolKit\Api\ApiResponse;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * @group Gestion des tableaux de dépréciation
@@ -165,11 +168,17 @@ class DepreciationTableController extends Controller
 
         dispatch(new GenerateEvaluationReportPdfJob($calculation, $vehicleGenreUsage));
 
-        return $this->responseSuccess('DepreciationTable created successfully', [
-            'calculation' => new CalculationResource($calculation),
-            // 'credit' => $entity_type->code == EntityTypeEnum::ORGANIZATION->value ? $credit - 1 : 0,
-            'pdf' => url('storage/evaluation_report/'.$calculation->reference.'.pdf?v='.time()),
+        $transaction = Transaction::create([
+            'reference' => 'TR-'.date('YmdHis'),
+            'transaction_type_id' => TransactionType::where('code', TransactionTypeEnum::DEPOSIT)->first()->id,
+            'quantity' => 1,
+            'amount' => config('services.settings.transaction_cost', 100),
+            'description' => 'Calcul de la valeur vénale théorique',
+            'calculation_id' => $calculation->id,
+            'status_id' => Status::where('code', StatusEnum::PENDING)->first()->id,
         ]);
+
+        return $this->responseSuccess('DepreciationTable created successfully', new TransactionResource($transaction));
     }
 
     /**

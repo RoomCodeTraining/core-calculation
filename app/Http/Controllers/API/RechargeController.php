@@ -87,38 +87,41 @@ class RechargeController extends Controller
             'user_first_name' => $request->user_first_name,
             'user_last_name' => $request->user_last_name,
             'user_phone_number' => $request->user_phone_number,
+            'whatsapp_phone_number' => $request->whatsapp_phone_number,
+            'email' => $request->email,
             'payment_method_id' => $request->payment_method_id,
             'status_id' => Status::where('code', StatusEnum::PENDING)->first()->id,
-            'created_by' => auth()->user()->id,
-            'updated_by' => auth()->user()->id,
+            'created_by' => auth()?->user()?->id ?? null,
+            'updated_by' => auth()?->user()?->id ?? null,
         ]);
 
-        $waveCheckoutService = new WaveCheckoutService();
-        $response = $waveCheckoutService->createCheckoutSession($transaction->amount, $recharge->reference);
+        // $waveCheckoutService = new WaveCheckoutService();
+        // $response = $waveCheckoutService->createCheckoutSession($transaction->amount, $recharge->reference);
 
-        if($response->successful()) {
-            $waveCheckoutSession = $waveCheckoutService->searchCheckoutSessions($recharge->reference);
-            if($waveCheckoutSession->successful()) {
-                $recharge->update([
-                    'payment_link' => $waveCheckoutSession['result'][0]['wave_launch_url'],
-                ]);
-                $transaction->update([
-                    'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
-                    'updated_by' => auth()->user()->id,
-                ]);
-            } else {
-                $transaction->update([
-                    'status_id' => Status::where('code', StatusEnum::FAILED)->first()->id,
-                    'updated_by' => auth()->user()->id,
-                ]);
-                return $this->responseUnprocessable('Erreur lors de la recherche de la session de paiement.');
-            }
-        } else {
-            return $this->responseUnprocessable('Erreur lors de la création de la session de paiement.');
-        }
+        // if($response->successful()) {
+        //     $waveCheckoutSession = $waveCheckoutService->searchCheckoutSessions($recharge->reference);
+        //     if($waveCheckoutSession->successful()) {
+        //         $recharge->update([
+        //             'payment_link' => $waveCheckoutSession['result'][0]['wave_launch_url'],
+        //         ]);
+        //         $transaction->update([
+        //             'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
+        //             'updated_by' => auth()?->user()?->id ?? null,
+        //         ]);
+        //     } else {
+        //         $transaction->update([
+        //             'status_id' => Status::where('code', StatusEnum::FAILED)->first()->id,
+        //             'updated_by' => auth()?->user()?->id ?? null,
+        //         ]);
+        //         return $this->responseUnprocessable('Erreur lors de la recherche de la session de paiement.');
+        //     }
+        // } else {
+        //     return $this->responseUnprocessable('Erreur lors de la création de la session de paiement.');
+        // }
 
         $recharge->load([
             'transaction',
+            'transaction.calculation',
             'transaction.entity',
             'transaction.order.entity',
             'paymentMethod',
@@ -170,11 +173,11 @@ class RechargeController extends Controller
             if($waveCheckoutSession->successful()) {
                 if($waveCheckoutSession['result'][0]['checkout_status'] == 'completed' && $waveCheckoutSession['result'][0]['payment_status'] == 'succeeded') {
                     $recharge->status_id = Status::where('code', StatusEnum::SUCCESS)->first()->id;
-                    $recharge->updated_by = auth()->user()->id;
+                    $recharge->updated_by = auth()?->user()?->id ?? null;
                     $recharge->save();
                 } else {
                     $recharge->status_id = Status::where('code', StatusEnum::FAILED)->first()->id;
-                    $recharge->updated_by = auth()->user()->id;
+                    $recharge->updated_by = auth()?->user()?->id ?? null;
                     $recharge->save();
                 }
             }

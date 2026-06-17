@@ -43,7 +43,7 @@ class TransactionController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $transactions = Transaction::with('entity', 'order', 'receipts', 'receipts.receiptType', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy')->accessibleBy(auth()->user());
+        $transactions = Transaction::with('entity', 'order', 'calculation', 'receipts', 'receipts.receiptType', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy')->accessibleBy(auth()->user());
 
         if(request()->filled('entity_id')){
             $transactions = $transactions->where('entity_id', Entity::keyFromHashId(request()->entity_id));
@@ -51,6 +51,10 @@ class TransactionController extends Controller
 
         if(request()->filled('transaction_type_id')){
             $transactions = $transactions->where('transaction_type_id', TransactionType::keyFromHashId(request()->transaction_type_id));
+        }
+
+        if(request()->filled('calculation_id')){
+            $transactions = $transactions->where('calculation_id', Calculation::keyFromHashId(request()->calculation_id));
         }
         
         $transactions = $transactions->useFilters()->useFilters()
@@ -97,6 +101,7 @@ class TransactionController extends Controller
             'quantity' => $request->quantity,
             'amount' => $amount,
             'description' => $request->description,
+            'calculation_id' => $request->calculation_id,
             'status_id' => Status::where('code', StatusEnum::PENDING)->first()->id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
@@ -125,7 +130,7 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::keyFromHashId($id)->builder()->accessibleBy(auth()->user())->firstOrFail();
         
-        $transaction->load('entity', 'order', 'receipts', 'receipts.receiptType', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy');
+        $transaction->load('entity', 'order', 'calculation', 'receipts', 'receipts.receiptType', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy');
 
         return $this->responseSuccess(null, new TransactionResource($transaction));
     }
@@ -166,7 +171,7 @@ class TransactionController extends Controller
             'updated_by' => auth()->user()->id,
         ]);
 
-        return $this->responseSuccess('Transaction cancelled successfully', new TransactionResource($transaction->load('entity', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy')));
+        return $this->responseSuccess('Transaction cancelled successfully', new TransactionResource($transaction->load('entity', 'calculation', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy')));
     }
 
     /**

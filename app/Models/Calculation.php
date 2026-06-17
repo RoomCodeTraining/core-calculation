@@ -43,6 +43,11 @@ class Calculation extends Model
         return $this->belongsTo(VehicleCharacteristic::class);
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
 
     /**
      * Get the status of this calculation

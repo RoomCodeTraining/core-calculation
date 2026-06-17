@@ -24,6 +24,8 @@ class CreateRechargeRequest extends FormRequest
             'user_first_name' => 'required|string|max:255',
             'user_last_name' => 'required|string|max:255',
             'user_phone_number' => 'required|string|max:255',
+            'whatsapp_phone_number' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
             'payment_method_id' => 'required|exists:payment_methods,id',
         ];
     }
@@ -45,6 +47,10 @@ class CreateRechargeRequest extends FormRequest
             'user_phone_number.required' => 'Le numéro de téléphone est requis.',
             'user_phone_number.string' => 'Le numéro de téléphone doit être une chaîne de caractères.',
             'user_phone_number.max' => 'Le numéro de téléphone doit contenir au maximum 255 caractères.',
+            'whatsapp_phone_number.string' => 'Le numéro WhatsApp doit être une chaîne de caractères.',
+            'whatsapp_phone_number.max' => 'Le numéro WhatsApp doit contenir au maximum 255 caractères.',
+            'email.email' => 'L\'adresse email doit être valide.',
+            'email.max' => 'L\'adresse email doit contenir au maximum 255 caractères.',
             'payment_method_id.required' => 'Le moyen de paiement est requis.',
             'payment_method_id.exists' => 'Le moyen de paiement n\'existe pas.',
         ];
