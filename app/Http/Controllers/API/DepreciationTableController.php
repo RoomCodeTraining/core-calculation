@@ -80,7 +80,7 @@ class DepreciationTableController extends Controller
         // }
 
         $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsages', 'vehicleGenreUsages.vehicleGenre', 'vehicleGenreUsages.usage')->findOrFail($request->vehicle_characteristic_id);
-        $vehicleGenreUsage = $vehicleCharacteristic->vehicleGenreUsages->first();
+        $vehicleGenreUsage = VehicleGenreUsage::with('vehicleGenre', 'usage')->where('vehicle_characteristic_id', $request->vehicle_characteristic_id)->where('vehicle_genre_id', $request->vehicle_genre_id)->where('usage_id', $request->usage_id)->first();
 
         if (! $vehicleGenreUsage) {
             return $this->responseUnprocessable('Aucun genre/usage de véhicule associé à cette caractéristique');
@@ -163,7 +163,7 @@ class DepreciationTableController extends Controller
 
         $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsages', 'vehicleCharacteristic.vehicleGenreUsages.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsages.usage')->where('id', $calculation->id)->first();
 
-        dispatch(new GenerateEvaluationReportPdfJob($calculation));
+        dispatch(new GenerateEvaluationReportPdfJob($calculation, $vehicleGenreUsage));
 
         return $this->responseSuccess('DepreciationTable created successfully', [
             'calculation' => new CalculationResource($calculation),
@@ -188,7 +188,7 @@ class DepreciationTableController extends Controller
         }
 
         $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsages', 'vehicleGenreUsages.vehicleGenre', 'vehicleGenreUsages.usage')->findOrFail($request->vehicle_characteristic_id);
-        $vehicleGenreUsage = $vehicleCharacteristic->vehicleGenreUsages->first();
+        $vehicleGenreUsage = VehicleGenreUsage::with('vehicleGenre', 'usage')->where('vehicle_characteristic_id', $request->vehicle_characteristic_id)->where('vehicle_genre_id', $request->vehicle_genre_id)->where('usage_id', $request->usage_id)->first();
 
         if (! $vehicleGenreUsage) {
             return $this->responseUnprocessable('Aucun genre/usage de véhicule associé à cette caractéristique');
@@ -271,7 +271,7 @@ class DepreciationTableController extends Controller
 
         $calculation = Calculation::with('entity', 'vehicleCharacteristic', 'vehicleCharacteristic.vehicleEnergy', 'vehicleCharacteristic.vehicleGenreUsages', 'vehicleCharacteristic.vehicleGenreUsages.vehicleGenre', 'vehicleCharacteristic.vehicleGenreUsages.usage')->where('id', $calculation->id)->first();
 
-        dispatch(new GenerateEvaluationReportPdfJob($calculation));
+        dispatch(new GenerateEvaluationReportPdfJob($calculation, $vehicleGenreUsage));
 
         return $this->responseSuccess('DepreciationTable created successfully', [
             'calculation' => new CalculationResource($calculation),

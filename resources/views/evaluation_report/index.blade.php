@@ -185,7 +185,7 @@
                         Genre du véhicule
                     </th>
                     <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
-                        <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->vehicleGenreUsages?->first()?->vehicleGenre?->label ?? '')}}</b>
+                        <b>{{mb_strtoupper($vehicleGenreUsage?->vehicleGenre?->label ?? '')}}</b>
                     </th>
                 </tr>
                 <tr style="border: 1px solid; font-size: 11px;">
@@ -193,7 +193,7 @@
                         Usage du véhicule 
                     </th>
                     <th style="border: 1px solid; font-size: 11px; vertical-align: middle; width: 70%;">
-                        <b>{{mb_strtoupper($calculation?->vehicleCharacteristic?->vehicleGenreUsages?->first()?->usage?->label ?? '')}}</b>
+                        <b>{{mb_strtoupper($vehicleGenreUsage?->usage?->label ?? '')}}</b>
                     </th>
                 </tr>
                 <tr style="border: 1px solid; font-size: 11px;">

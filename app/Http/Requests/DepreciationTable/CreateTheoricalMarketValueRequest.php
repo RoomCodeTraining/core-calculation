@@ -4,6 +4,8 @@ namespace App\Http\Requests\DepreciationTable;
 
 use App\Models\VehicleCharacteristic;
 use App\Models\Price;
+use App\Models\VehicleGenre;
+use App\Models\Usage;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateTheoricalMarketValueRequest extends FormRequest
@@ -12,6 +14,8 @@ class CreateTheoricalMarketValueRequest extends FormRequest
     {
         $this->merge([
             'vehicle_characteristic_id' => $this->vehicle_characteristic_id ? VehicleCharacteristic::keyFromHashId($this->vehicle_characteristic_id) : null,
+            'vehicle_genre_id' => $this->vehicle_genre_id ? VehicleGenre::keyFromHashId($this->vehicle_genre_id) : null,
+            'usage_id' => $this->usage_id ? Usage::keyFromHashId($this->usage_id) : null,
             'price_id' => $this->price_id ? Price::keyFromHashId($this->price_id) : null,
         ]);
     }
@@ -20,6 +24,12 @@ class CreateTheoricalMarketValueRequest extends FormRequest
     {
         return [
             'vehicle_characteristic_id' => 'required|exists:vehicle_characteristics,id',
+            'vehicle_genre_id' => 'required|exists:vehicle_genres,id',
+            'usage_id' => 'required|exists:usages,id',
+            'vehicle_genre_id.required' => 'Le genre de véhicule est requis.',
+            'vehicle_genre_id.exists' => 'Le genre de véhicule est invalide.',
+            'usage_id.required' => 'L\'usage est requis.',
+            'usage_id.exists' => 'L\'usage est invalide.',
             'vehicle_mileage' => 'required|integer|min:0',
             'first_entry_into_circulation_date' => 'required|date_format:Y-m-d|before:tomorrow',
             'expertise_date' => 'required|date_format:Y-m-d|after:first_entry_into_circulation_date|before:tomorrow',

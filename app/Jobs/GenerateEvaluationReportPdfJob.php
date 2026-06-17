@@ -13,6 +13,7 @@ use App\Models\Payment;
 use App\Enums\StatusEnum;
 use App\Enums\ProfileEnum;
 use App\Models\Assignment;
+use App\Models\VehicleGenreUsage;
 use App\Models\WorkforceType;
 use App\Models\Calculation;
 use Illuminate\Bus\Queueable;
@@ -41,7 +42,7 @@ class GenerateEvaluationReportPdfJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public Calculation $_calculation)
+    public function __construct(public Calculation $_calculation, public VehicleGenreUsage $_vehicleGenreUsage)
     {
         //
     }
@@ -54,6 +55,8 @@ class GenerateEvaluationReportPdfJob implements ShouldQueue
         $calculation = Calculation::with('entity', 'vehicleCharacteristic')
                         ->where('calculations.id', $this->_calculation->id)
                         ->first();
+
+        $vehicleGenreUsage = $this->_vehicleGenreUsage;
 
         $evaluation = json_decode($calculation->evaluation);
 
@@ -76,7 +79,7 @@ class GenerateEvaluationReportPdfJob implements ShouldQueue
         $numberToWords = new NumberToWords();
         $numberTransformer = $numberToWords->getNumberTransformer('fr');
 
-        $pdf = PDF::loadView('evaluation_report/index',compact('calculation','evaluation','logo','check_icon','qr_code','numberTransformer'));
+        $pdf = PDF::loadView('evaluation_report/index',compact('calculation','vehicleGenreUsage','evaluation','logo','check_icon','qr_code','numberTransformer'));
         $pdf->set_option('isHtml5ParserEnabled', false);
         $pdf->set_option('isRemoteEnabled', true);
         $pdf->setOptions(['defaultFont' => 'sans-serif']);
