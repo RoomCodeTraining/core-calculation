@@ -8,6 +8,7 @@ use App\Http\Controllers\API\VehicleCharacteristicController;
 use App\Http\Controllers\API\PriceController;
 use App\Http\Controllers\API\DepreciationTableController;
 use App\Http\Controllers\API\RechargeController;
+use App\Http\Controllers\API\PaymentMethodController;
 use Illuminate\Support\Facades\Route;
 
 Route::name('external.')->group(function () {
@@ -19,5 +20,6 @@ Route::name('external.')->group(function () {
     Route::get('/prices', [PriceController::class, 'index'])->name('prices.index');
     Route::post('/depreciation-tables/calculate-theoretical-market-value', [DepreciationTableController::class, 'calculate_theoretical_market_value_public'])->name('calculate-theoretical-market-value-public');
     Route::get('/vehicle-characteristics/filter/all', [VehicleCharacteristicController::class, 'filterAll'])->name('external.filter-all');
+    Route::get('/payment-methods', [PaymentMethodController::class, 'index'])->name('payment-methods.index');
     Route::post('/recharges', [RechargeController::class, 'store'])->name('recharges.store');
 }); 
