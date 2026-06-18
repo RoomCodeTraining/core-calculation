@@ -83,7 +83,7 @@ class DepreciationTableController extends Controller
         // }
 
         $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsages', 'vehicleGenreUsages.vehicleGenre', 'vehicleGenreUsages.usage')->findOrFail($request->vehicle_characteristic_id);
-        $vehicleGenreUsage = VehicleGenreUsage::with('vehicleGenre', 'usage')->where('vehicle_characteristic_id', $request->vehicle_characteristic_id)->where('vehicle_genre_id', $request->vehicle_genre_id)->where('usage_id', $request->usage_id)->first();
+        $vehicleGenreUsage = VehicleGenreUsage::with('vehicleGenre', 'usage')->where('vehicle_genre_id', $request->vehicle_genre_id)->where('usage_id', $request->usage_id)->first();
 
         if (! $vehicleGenreUsage) {
             return $this->responseUnprocessable('Aucun genre/usage de véhicule associé à cette caractéristique');
@@ -197,7 +197,7 @@ class DepreciationTableController extends Controller
         }
 
         $vehicleCharacteristic = VehicleCharacteristic::with('vehicleEnergy', 'vehicleGenreUsages', 'vehicleGenreUsages.vehicleGenre', 'vehicleGenreUsages.usage')->findOrFail($request->vehicle_characteristic_id);
-        $vehicleGenreUsage = VehicleGenreUsage::with('vehicleGenre', 'usage')->where('vehicle_characteristic_id', $request->vehicle_characteristic_id)->where('vehicle_genre_id', $request->vehicle_genre_id)->where('usage_id', $request->usage_id)->first();
+        $vehicleGenreUsage = VehicleGenreUsage::with('vehicleGenre', 'usage')->where('vehicle_genre_id', $request->vehicle_genre_id)->where('usage_id', $request->usage_id)->first();
 
         if (! $vehicleGenreUsage) {
             return $this->responseUnprocessable('Aucun genre/usage de véhicule associé à cette caractéristique');
