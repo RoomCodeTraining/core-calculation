@@ -39,6 +39,7 @@ class UpdateVehicleCharacteristicRequest extends FormRequest
             "fiscal_power" => "nullable|integer|min:0",
             "nb_seats" => "nullable|integer",
             "new_market_value" => "nullable|numeric|min:0",
+            "date" => "required|date_format:Y-m-d|before:tomorrow",
         ];
     }
 
@@ -65,6 +66,9 @@ class UpdateVehicleCharacteristicRequest extends FormRequest
             "nb_seats.integer" => "Le nombre de places doit être un nombre entier.",
             "new_market_value.numeric" => "La valeur neuve doit être un nombre.",
             "new_market_value.min" => "La valeur neuve doit être supérieure à 0.",
+            "date.required" => "La date est requise.",
+            "date.date_format" => "La date doit être au format Y-m-d.",
+            "date.before" => "La date doit être antérieure à demain.",
         ];
     }
 }

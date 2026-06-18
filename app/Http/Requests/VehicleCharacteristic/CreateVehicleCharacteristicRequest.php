@@ -66,7 +66,7 @@ class CreateVehicleCharacteristicRequest extends FormRequest
             "new_market_value.numeric" => "La valeur neuve doit être un nombre.",
             "new_market_value.min" => "La valeur neuve doit être supérieure à 0.",
             "date.required" => "La date est requise.",
-            "date.date" => "La date doit être une date valide.",
+            "date.date_format" => "La date doit être au format Y-m-d.",
             "date.before" => "La date doit être antérieure à demain.",
         ];
     }

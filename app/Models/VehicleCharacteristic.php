@@ -28,6 +28,10 @@ class VehicleCharacteristic extends Model
      */
     protected $guarded = [];
 
+    protected $casts = [
+        'date' => 'date:Y-m-d',
+    ];
+
     /**
      * Get the vehicle model of this vehicle characteristic
      */

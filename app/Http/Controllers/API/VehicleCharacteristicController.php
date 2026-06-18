@@ -82,6 +82,7 @@ class VehicleCharacteristicController extends Controller
             'options' => $request->options,
             'fiscal_power' => $request->fiscal_power,
             'nb_seats' => $request->nb_seats,
+            'date' => $request->date,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
@@ -157,6 +158,7 @@ class VehicleCharacteristicController extends Controller
             'options' => $request->options,
             'fiscal_power' => $request->fiscal_power,
             'nb_seats' => $request->nb_seats,
+            'date' => $request->date,
             'new_market_value' => $request->new_market_value,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'updated_by' => auth()->user()->id,
@@ -272,6 +274,10 @@ class VehicleCharacteristicController extends Controller
                 'vehicle_model_id',
                 VehicleModel::keyFromHashId(request()->vehicle_model_id)
             );
+        }
+
+        if (request()->filled('date')) {
+            $query = $query->whereDate('date', request()->date);
         }
 
         $vehicleGenreId = request()->filled('vehicle_genre_id')

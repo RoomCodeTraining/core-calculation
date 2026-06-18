@@ -120,6 +120,7 @@ class VehicleCharacteristicListSeeder extends Seeder
                 'options' => null,
                 'fiscal_power' => $fiscalPower,
                 'nb_seats' => $nbSeats,
+                'date' => $date,
                 'new_market_value' => $newMarketValue,
                 'status_id' => $this->statusId,
                 'created_by' => $this->userId,
