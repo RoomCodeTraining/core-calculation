@@ -15,6 +15,7 @@ class PaymentMethodResource extends JsonResource
             'code' => $this->code,
             'label' => $this->label,
             'description' => $this->description,
+            'logo' => $this->logo ? url('storage/payment_method_logos/'.$this->logo.'?v='.time()) : null,
             'status' => new StatusResource($this->status),
             'created_by' => new UserResource($this->createdBy),
             'updated_by' => new UserResource($this->updatedBy),

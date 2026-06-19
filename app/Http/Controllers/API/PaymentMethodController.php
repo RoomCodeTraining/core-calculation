@@ -50,11 +50,13 @@ class PaymentMethodController extends Controller
     public function store(CreatePaymentMethodRequest $request): JsonResponse
     {
         $code = strtolower(str_replace(' ', '', $request->label));
+        $logo = $this->uploadLogo($request);
 
         $paymentMethod = PaymentMethod::create([
             'code' => $code,
             'label' => $request->label,
             'description' => $request->description,
+            'logo' => $logo,
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
@@ -87,6 +89,7 @@ class PaymentMethodController extends Controller
             'code' => $request->code,
             'label' => $request->label,
             'description' => $request->description,
+            'logo' => $this->uploadLogo($request, $paymentMethod->logo),
             'status_id' => Status::where('code', StatusEnum::ACTIVE)->first()->id,
             'updated_by' => auth()->user()->id,
         ]);
@@ -108,5 +111,23 @@ class PaymentMethodController extends Controller
         return $this->responseDeleted();
     }
 
-   
+    private function uploadLogo($request, ?string $existingLogo = null): ?string
+    {
+        if (! $request->hasFile('logo')) {
+            return $existingLogo;
+        }
+
+        $directory = public_path('storage/payment_method_logos');
+
+        if (! is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
+
+        $today = date('Y').'_'.date('mdH').'_'.date('is');
+        $file = $request->file('logo');
+        $name = $existingLogo ?? ('PM_LOG_'.$today.'.'.$file->getClientOriginalExtension());
+        $file->move($directory, $name);
+
+        return $name;
+    }
 }

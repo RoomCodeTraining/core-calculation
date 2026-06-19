@@ -178,7 +178,9 @@ class DepreciationTableController extends Controller
             'status_id' => Status::where('code', StatusEnum::PENDING)->first()->id,
         ]);
 
-        return $this->responseSuccess('DepreciationTable created successfully', new TransactionResource($transaction));
+        return $this->responseSuccess('DepreciationTable created successfully', new CalculationResource($calculation));
+
+        // return $this->responseSuccess('DepreciationTable created successfully', new TransactionResource($transaction));
     }
 
     /**
