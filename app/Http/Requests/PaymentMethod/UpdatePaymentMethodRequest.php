@@ -14,6 +14,7 @@ class UpdatePaymentMethodRequest extends FormRequest
         $paymentMethodId = $routeId ? PaymentMethod::keyFromHashId($routeId) : null;
 
         return [
+            'code' => ['nullable', 'string', 'max:255', Rule::unique('payment_methods', 'code')->ignore($paymentMethodId)],
             'label' => ['required', 'string', 'max:255', Rule::unique('payment_methods', 'label')->ignore($paymentMethodId)],
             'description' => ['nullable', 'string', 'max:255'],
             'logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'],

@@ -85,8 +85,10 @@ class PaymentMethodController extends Controller
     public function update(UpdatePaymentMethodRequest $request, $id): JsonResponse
     {
         $paymentMethod = PaymentMethod::findOrFail(PaymentMethod::keyFromHashId($id));
+        $code = $request->code ?? $paymentMethod->code ?? strtolower(str_replace(' ', '', $request->label));
+
         $paymentMethod->update([
-            'code' => $request->code,
+            'code' => $code,
             'label' => $request->label,
             'description' => $request->description,
             'logo' => $this->uploadLogo($request, $paymentMethod->logo),
