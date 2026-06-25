@@ -27,4 +27,5 @@ class CreatePaymentMethodRequest extends FormRequest
             'logo.image' => 'Le logo doit être une image.',
             'logo.mimes' => 'Le logo doit être une image de type jpeg, png, jpg, gif ou svg.',
         ];
+    }
 }
