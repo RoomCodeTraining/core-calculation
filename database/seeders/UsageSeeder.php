@@ -27,6 +27,7 @@ class UsageSeeder extends Seeder
             ['code' => 'TRMA', 'label' => 'Transport marchandises', 'description' => 'Transport marchandises', 'status_id' => 1],
             ['code' => 'CHAN', 'label' => 'Chantier', 'description' => 'Chantier', 'status_id' => 1],
             ['code' => 'STEC', 'label' => 'Service technique', 'description' => 'Service technique', 'status_id' => 1],
+            ['code' => 'UTIL', 'label' => 'Utilitaire', 'description' => 'Utilitaire', 'status_id' => 1],
             ['code' => 'LOUT', 'label' => 'Location utilitaire', 'description' => 'Location utilitaire', 'status_id' => 1],
             ['code' => 'THYC', 'label' => 'Transport hydrocarbures', 'description' => 'Transport hydrocarbures', 'status_id' => 1],
             ['code' => 'LOIN', 'label' => 'Location industrielle', 'description' => 'Location industrielle', 'status_id' => 1],

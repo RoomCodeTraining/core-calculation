@@ -2,15 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Enums\StatusEnum;
 use App\Models\Brand;
 use App\Models\Dealer;
 use App\Models\Price;
 use App\Models\Status;
+use App\Models\Usage;
+use App\Models\VehicleCharacteristic;
 use App\Models\VehicleEnergy;
+use App\Models\VehicleGenre;
 use App\Models\VehicleGenreUsage;
 use App\Models\VehicleModel;
-use App\Models\VehicleCharacteristic;
-use App\Enums\StatusEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
@@ -40,27 +42,52 @@ class VehicleCharacteristicListSeeder extends Seeder
         'tracteur routier' => ['TRR', 'TLGD'],
     ];
 
+    /**
+     * Normalized Usage token (label fragment / alias) => usage code.
+     * Covers JSON values that do not exactly equal Usage.label or Usage.code.
+     */
+    private const USAGE_ALIASES = [
+        'prive' => 'PRIV',
+        'prive personnel' => 'PRIV',
+        'personnel' => 'PRIV',
+        'location' => 'LOUT',
+    ];
+
     private $statusId;
     private $userId = 1;
     /** @var array<string, int> genre_code|usage_code => vehicle_genre_usage id */
     private $genreUsageIdsByKey = [];
     /** @var list<string> */
     private $genreCodes = [];
+    /** @var array<string, VehicleGenre> */
+    private $vehicleGenresByCode = [];
+    /** @var array<string, Usage> UPPER(code) => Usage */
+    private $usagesByCode = [];
+    /** @var array<string, Usage> normalized label => Usage */
+    private $usagesByNormalizedLabel = [];
+    /** @var list<string> */
+    private $knownUsageLabelsNormalized = [];
+    /** @var list<string> tokens created as Usage during seeding */
+    private $createdUsageCodes = [];
+    /** @var list<string> genre|usage keys created during seeding */
+    private $createdGenreUsageKeys = [];
+    /** @var array<string, int> unmatched raw tokens => count */
+    private $unmatchedUsageTokens = [];
     private $brandsByCode;
     private $vehicleModelsByBrandAndLabel;
     private $dealersByName;
     private $energiesByLabel;
 
     /**
-     * Seeds vehicle characteristics from data/donnees_vehicule_20260609_223615_filled.json.
+     * Seeds vehicle characteristics from data/donnees_vehicule_20260721_filled.json.
      * Maps: vehicle_model_id←NomCommercial+Marque, vehicle_energy_id←Energie, dealer_id←concessionnaire,
      * type←types, equipments←Equipement, fiscal_power←PuissanceFiscale, nb_seats←Nbreplace,
      * new_market_value←TTC, date←dateParution.
-     * Associations genre/usage via GenreVehicule (ou GenreVehicule_Predit) + Usage (codes séparés par /).
+     * Associations genre/usage via GenreVehicule (sinon GenreVehicule_Predit) + Usage (code ou label, séparés par /).
      */
     public function run(): void
     {
-        $path = base_path('data/donnees_vehicule_20260609_223615_filled.json');
+        $path = base_path('data/donnees_vehicule_20260721_filled.json');
 
         if (!file_exists($path)) {
             $this->command->warn("File not found: {$path}");
@@ -78,14 +105,15 @@ class VehicleCharacteristicListSeeder extends Seeder
         $this->statusId = Status::firstWhere('code', StatusEnum::ACTIVE)?->id;
         $this->loadLookups();
 
-        if (empty($this->genreUsageIdsByKey)) {
-            $this->command->warn('No VehicleGenreUsage found. Run VehicleGenreSeeder, UsageSeeder, VehicleGenreUsageSeeder.');
+        if (empty($this->vehicleGenresByCode)) {
+            $this->command->warn('No VehicleGenre found. Run VehicleGenreSeeder.');
             return;
         }
 
         $created = 0;
         $skipped = 0;
         $skippedGenreUsage = 0;
+        $genreUsageLinks = 0;
 
         foreach ($data as $row) {
             $vehicleGenreUsageIds = $this->resolveVehicleGenreUsageIds($row);
@@ -136,6 +164,7 @@ class VehicleCharacteristicListSeeder extends Seeder
                         'updated_by' => $this->userId,
                     ]
                 );
+                $genreUsageLinks++;
             }
 
             if ($vehicleCharacteristic && $newMarketValue !== null) {
@@ -153,12 +182,45 @@ class VehicleCharacteristicListSeeder extends Seeder
         }
 
         $this->command->info("Vehicle characteristics: {$created} created, {$skipped} skipped (missing refs), {$skippedGenreUsage} skipped (genre/usage).");
+        $this->command->info("VehicleCharacteristicGenreUsage links: {$genreUsageLinks}.");
+
+        if (!empty($this->createdUsageCodes)) {
+            $this->command->info('Usages created: ' . implode(', ', array_unique($this->createdUsageCodes)));
+        }
+
+        if (!empty($this->createdGenreUsageKeys)) {
+            $this->command->info('VehicleGenreUsage created: ' . implode(', ', array_unique($this->createdGenreUsageKeys)));
+        }
+
+        if (!empty($this->unmatchedUsageTokens)) {
+            $this->command->warn('Usage tokens still unmatched (should be rare):');
+            foreach ($this->unmatchedUsageTokens as $token => $count) {
+                $this->command->warn("  - {$token} ({$count})");
+            }
+        }
     }
 
     private function loadLookups(): void
     {
         $this->genreUsageIdsByKey = [];
         $this->genreCodes = [];
+        $this->vehicleGenresByCode = [];
+        $this->usagesByCode = [];
+        $this->usagesByNormalizedLabel = [];
+        $this->knownUsageLabelsNormalized = [];
+
+        foreach (VehicleGenre::all() as $genre) {
+            $code = Str::upper(trim((string) $genre->code));
+            if ($code === '') {
+                continue;
+            }
+            $this->vehicleGenresByCode[$code] = $genre;
+            $this->genreCodes[] = $code;
+        }
+
+        foreach (Usage::all() as $usage) {
+            $this->indexUsage($usage);
+        }
 
         $vehicleGenreUsages = VehicleGenreUsage::with('vehicleGenre:id,code', 'usage:id,code')->get();
 
@@ -170,12 +232,8 @@ class VehicleCharacteristicListSeeder extends Seeder
                 continue;
             }
 
-            $key = $genreCode . '|' . $usageCode;
+            $key = Str::upper($genreCode) . '|' . Str::upper($usageCode);
             $this->genreUsageIdsByKey[$key] = $vehicleGenreUsage->id;
-
-            if (!in_array($genreCode, $this->genreCodes, true)) {
-                $this->genreCodes[] = $genreCode;
-            }
         }
 
         $preferredOrder = self::VEHICLE_GENRE_CODES;
@@ -185,6 +243,8 @@ class VehicleCharacteristicListSeeder extends Seeder
 
             return ($posA === false ? 999 : $posA) <=> ($posB === false ? 999 : $posB);
         });
+
+        usort($this->knownUsageLabelsNormalized, fn (string $a, string $b) => strlen($b) <=> strlen($a));
 
         $this->brandsByCode = Brand::all()->keyBy('code');
         $this->dealersByName = Dealer::all()->keyBy(fn (Dealer $d) => Str::upper(trim((string) $d->name)));
@@ -202,6 +262,24 @@ class VehicleCharacteristicListSeeder extends Seeder
             ->mapWithKeys(fn (VehicleModel $m) => [($m->brand?->id ?? 0) . '|' . trim((string) $m->label) => $m]);
     }
 
+    private function indexUsage(Usage $usage): void
+    {
+        $code = Str::upper(trim((string) $usage->code));
+        if ($code !== '') {
+            $this->usagesByCode[$code] = $usage;
+        }
+
+        $normalizedLabel = $this->normalizeLookupKey($usage->label);
+        if ($normalizedLabel !== '') {
+            $this->usagesByNormalizedLabel[$normalizedLabel] = $usage;
+            $collapsed = preg_replace('/\s*\/\s*/', '/', $normalizedLabel) ?? $normalizedLabel;
+            $this->usagesByNormalizedLabel[$collapsed] = $usage;
+            if (!in_array($normalizedLabel, $this->knownUsageLabelsNormalized, true)) {
+                $this->knownUsageLabelsNormalized[] = $normalizedLabel;
+            }
+        }
+    }
+
     /**
      * @return list<int>
      */
@@ -210,74 +288,63 @@ class VehicleCharacteristicListSeeder extends Seeder
         $genreCode = $this->resolveGenreCode($row);
         $usageCodes = $this->resolveUsageCodes($row, $genreCode);
 
-        if (empty($usageCodes)) {
+        if ($genreCode === null || empty($usageCodes)) {
             return [];
         }
 
-        if ($genreCode !== null) {
-            $ids = $this->lookupGenreUsageIds($genreCode, $usageCodes);
-            if (!empty($ids)) {
-                return $ids;
-            }
-        }
-
-        foreach ($this->genreCodes as $candidateGenreCode) {
-            $ids = $this->lookupGenreUsageIds($candidateGenreCode, $usageCodes);
-            if (count($ids) === count($usageCodes)) {
-                return $ids;
-            }
-        }
-
-        return $this->lookupPartialGenreUsageIds($usageCodes);
-    }
-
-    /**
-     * @param list<string> $usageCodes
-     * @return list<int>
-     */
-    private function lookupGenreUsageIds(string $genreCode, array $usageCodes): array
-    {
         $ids = [];
 
         foreach ($usageCodes as $usageCode) {
-            $key = $genreCode . '|' . $usageCode;
-            if (!isset($this->genreUsageIdsByKey[$key])) {
-                return [];
+            $id = $this->ensureGenreUsageId($genreCode, $usageCode);
+            if ($id !== null) {
+                $ids[] = $id;
             }
-            $ids[] = $this->genreUsageIdsByKey[$key];
         }
 
         return array_values(array_unique($ids));
     }
 
-    /**
-     * @param list<string> $usageCodes
-     * @return list<int>
-     */
-    private function lookupPartialGenreUsageIds(array $usageCodes): array
+    private function ensureGenreUsageId(string $genreCode, string $usageCode): ?int
     {
-        $ids = [];
+        $genreCode = Str::upper($genreCode);
+        $usageCode = Str::upper($usageCode);
+        $key = $genreCode . '|' . $usageCode;
 
-        foreach ($usageCodes as $usageCode) {
-            foreach ($this->genreCodes as $genreCode) {
-                $key = $genreCode . '|' . $usageCode;
-                if (isset($this->genreUsageIdsByKey[$key])) {
-                    $ids[] = $this->genreUsageIdsByKey[$key];
-                    break;
-                }
-            }
+        if (isset($this->genreUsageIdsByKey[$key])) {
+            return $this->genreUsageIdsByKey[$key];
         }
 
-        return array_values(array_unique($ids));
+        $genre = $this->vehicleGenresByCode[$genreCode] ?? null;
+        $usage = $this->usagesByCode[$usageCode] ?? null;
+
+        if (!$genre || !$usage) {
+            return null;
+        }
+
+        $vehicleGenreUsage = VehicleGenreUsage::create([
+            'vehicle_genre_id' => $genre->id,
+            'usage_id' => $usage->id,
+            'max_mileage_essence_per_year' => $genre->max_mileage_essence_per_year,
+            'max_mileage_diesel_per_year' => $genre->max_mileage_diesel_per_year,
+            'status_id' => $this->statusId,
+            'created_by' => $this->userId,
+            'updated_by' => $this->userId,
+        ]);
+
+        $this->genreUsageIdsByKey[$key] = $vehicleGenreUsage->id;
+        $this->createdGenreUsageKeys[] = $key;
+
+        return $vehicleGenreUsage->id;
     }
 
     private function resolveGenreCode(array $row): ?string
     {
-        $normalized = $this->normalizeGenreLabel($row['GenreVehicule'] ?? null);
-
-        if ($normalized === '') {
-            $normalized = $this->normalizeGenreLabel($row['GenreVehicule_Predit'] ?? null);
+        $genreRaw = $row['GenreVehicule'] ?? null;
+        if ($genreRaw === null || trim((string) $genreRaw) === '') {
+            $genreRaw = $row['GenreVehicule_Predit'] ?? null;
         }
+
+        $normalized = $this->normalizeGenreLabel(is_string($genreRaw) || is_numeric($genreRaw) ? (string) $genreRaw : null);
 
         if ($normalized === '') {
             return $this->extractGenreCodeFromUsage($row['Usage'] ?? null);
@@ -289,33 +356,170 @@ class VehicleCharacteristicListSeeder extends Seeder
     }
 
     /**
-     * @return list<string>
+     * Split Usage by "/", match each part to Usage.code or Usage.label (and aliases).
+     * Creates missing Usage rows when a token cannot be resolved.
+     *
+     * @return list<string> usage codes
      */
     private function resolveUsageCodes(array $row, ?string $genreCode): array
     {
         $usageRaw = isset($row['Usage']) ? trim((string) $row['Usage']) : '';
 
         if ($usageRaw === '') {
-            $normalized = $this->normalizeGenreLabel($row['GenreVehicule'] ?? $row['GenreVehicule_Predit'] ?? null);
+            $genreRaw = $row['GenreVehicule'] ?? null;
+            if ($genreRaw === null || trim((string) $genreRaw) === '') {
+                $genreRaw = $row['GenreVehicule_Predit'] ?? null;
+            }
+            $normalized = $this->normalizeGenreLabel(is_string($genreRaw) || is_numeric($genreRaw) ? (string) $genreRaw : null);
             $pair = self::GENRE_USAGE_MAP[$normalized] ?? null;
 
             return $pair ? [$pair[1]] : [];
         }
 
-        $parts = array_values(array_filter(array_map('trim', explode('/', $usageRaw))));
+        $tokens = $this->tokenizeUsageField($usageRaw);
         $usageCodes = [];
 
-        foreach ($parts as $part) {
-            $upper = Str::upper($part);
+        foreach ($tokens as $token) {
+            $usage = $this->resolveUsageModel($token);
 
-            if (in_array($upper, self::VEHICLE_GENRE_CODES, true)) {
+            if (!$usage) {
+                $upper = Str::upper(trim($token));
+                if (in_array($upper, self::VEHICLE_GENRE_CODES, true) && !isset($this->usagesByCode[$upper])) {
+                    continue;
+                }
+
+                $usage = $this->createUsageFromToken($token);
+            }
+
+            if (!$usage) {
+                $this->unmatchedUsageTokens[$token] = ($this->unmatchedUsageTokens[$token] ?? 0) + 1;
                 continue;
             }
 
-            $usageCodes[] = $upper;
+            $usageCodes[] = Str::upper((string) $usage->code);
         }
 
         return array_values(array_unique($usageCodes));
+    }
+
+    /**
+     * Tokenize Usage string on "/" while keeping labels that contain "/" (e.g. "Privé / Personnel").
+     * "Location" and "Utilitaire" stay separate (UTIL / Location), they are not merged into LOUT.
+     *
+     * @return list<string>
+     */
+    private function tokenizeUsageField(string $usageRaw): array
+    {
+        $parts = array_values(array_filter(array_map('trim', explode('/', $usageRaw)), fn ($p) => $p !== ''));
+        $tokens = [];
+        $i = 0;
+        $count = count($parts);
+
+        while ($i < $count) {
+            if ($i + 1 < $count) {
+                $left = $this->normalizeLookupKey($parts[$i]);
+                $right = $this->normalizeLookupKey($parts[$i + 1]);
+                $isLocationUtilitairePair = ($left === 'location' && $right === 'utilitaire')
+                    || ($left === 'utilitaire' && $right === 'location');
+
+                // Ne pas fusionner Location + Utilitaire : ce sont 2 usages distincts (cf. UsageSeeder UTIL).
+                if (!$isLocationUtilitairePair) {
+                    $pairWithSlash = trim($parts[$i] . ' / ' . $parts[$i + 1]);
+                    $pairCollapsed = trim($parts[$i] . '/' . $parts[$i + 1]);
+
+                    if (
+                        $this->resolveUsageModel($pairWithSlash)
+                        || $this->resolveUsageModel($pairCollapsed)
+                    ) {
+                        $tokens[] = $pairWithSlash;
+                        $i += 2;
+                        continue;
+                    }
+                }
+            }
+
+            $tokens[] = $parts[$i];
+            $i++;
+        }
+
+        return $tokens;
+    }
+
+    private function resolveUsageModel(string $token): ?Usage
+    {
+        $trimmed = trim($token);
+        if ($trimmed === '') {
+            return null;
+        }
+
+        $upper = Str::upper($trimmed);
+        if (isset($this->usagesByCode[$upper])) {
+            return $this->usagesByCode[$upper];
+        }
+
+        $normalized = $this->normalizeLookupKey($trimmed);
+        if ($normalized === '') {
+            return null;
+        }
+
+        if (isset($this->usagesByNormalizedLabel[$normalized])) {
+            return $this->usagesByNormalizedLabel[$normalized];
+        }
+
+        $collapsed = preg_replace('/\s*\/\s*/', '/', $normalized) ?? $normalized;
+        if (isset($this->usagesByNormalizedLabel[$collapsed])) {
+            return $this->usagesByNormalizedLabel[$collapsed];
+        }
+
+        $spacedSlash = preg_replace('/\s*\/\s*/', ' / ', $normalized) ?? $normalized;
+        if (isset($this->usagesByNormalizedLabel[$spacedSlash])) {
+            return $this->usagesByNormalizedLabel[$spacedSlash];
+        }
+
+        $aliasCode = self::USAGE_ALIASES[$normalized]
+            ?? self::USAGE_ALIASES[$collapsed]
+            ?? self::USAGE_ALIASES[str_replace(' / ', ' ', $normalized)]
+            ?? null;
+
+        if ($aliasCode !== null && isset($this->usagesByCode[Str::upper($aliasCode)])) {
+            return $this->usagesByCode[Str::upper($aliasCode)];
+        }
+
+        return null;
+    }
+
+    private function createUsageFromToken(string $token): ?Usage
+    {
+        $label = trim($token);
+        if ($label === '') {
+            return null;
+        }
+
+        $codeBase = Str::upper(substr(preg_replace('/[^A-Za-z0-9]/', '', Str::ascii($label)) ?: 'USG', 0, 4));
+        if ($codeBase === '') {
+            $codeBase = 'USG';
+        }
+
+        $code = $codeBase;
+        $suffix = 1;
+        while (isset($this->usagesByCode[$code]) || Usage::withTrashed()->where('code', $code)->exists()) {
+            $suffixPart = (string) $suffix++;
+            $code = Str::upper(substr($codeBase, 0, max(1, 4 - strlen($suffixPart))) . $suffixPart);
+        }
+
+        $usage = Usage::create([
+            'code' => $code,
+            'label' => $label,
+            'description' => $label,
+            'status_id' => $this->statusId,
+            'created_by' => $this->userId,
+            'updated_by' => $this->userId,
+        ]);
+
+        $this->indexUsage($usage);
+        $this->createdUsageCodes[] = $code . ' (' . $label . ')';
+
+        return $usage;
     }
 
     private function extractGenreCodeFromUsage(?string $usageRaw): ?string
@@ -326,7 +530,7 @@ class VehicleCharacteristicListSeeder extends Seeder
 
         foreach (array_map('trim', explode('/', $usageRaw)) as $part) {
             $upper = Str::upper($part);
-            if (in_array($upper, self::VEHICLE_GENRE_CODES, true)) {
+            if (in_array($upper, self::VEHICLE_GENRE_CODES, true) && isset($this->vehicleGenresByCode[$upper])) {
                 return $upper;
             }
         }
@@ -340,9 +544,22 @@ class VehicleCharacteristicListSeeder extends Seeder
             return '';
         }
 
-        $normalized = Str::lower(trim(str_replace(["\r", "\n"], '', $value)));
+        $normalized = $this->normalizeLookupKey($value);
         $normalized = str_replace('camion plus de 5t', 'camion plus de 5 t', $normalized);
         $normalized = str_replace('camion 2.5t a 5t', 'camion 2,5 t a 5 t', $normalized);
+
+        return $normalized;
+    }
+
+    private function normalizeLookupKey(?string $value): string
+    {
+        if ($value === null) {
+            return '';
+        }
+
+        $normalized = Str::lower(trim(str_replace(["\r", "\n"], '', (string) $value)));
+        $normalized = Str::ascii($normalized);
+        $normalized = preg_replace('/\s+/', ' ', $normalized) ?? $normalized;
 
         return $normalized;
     }
