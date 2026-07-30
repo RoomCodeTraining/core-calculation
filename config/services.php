@@ -45,6 +45,10 @@ return [
         'url' => env('FNE_URL'),
     ],
 
+    'frontend' => [
+        'url' => env('FRONTEND_URL'),
+    ],
+
     'wave' => [
         'base_url' => env('WAVE_BASE_URL', 'https://api.wave.com/v1'),
         'api_key' => env('WAVE_API_KEY', ''),

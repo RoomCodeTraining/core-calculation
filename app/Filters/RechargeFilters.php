@@ -6,7 +6,7 @@ use Essa\APIToolKit\Filters\QueryFilters;
 
 class RechargeFilters extends QueryFilters
 {
-    protected array $allowedFilters = [];
+    protected array $allowedFilters = ['reference'];
 
-    protected array $columnSearch = [];
+    protected array $columnSearch = ['reference'];
 }

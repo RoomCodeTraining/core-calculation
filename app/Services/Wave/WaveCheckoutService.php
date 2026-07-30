@@ -33,13 +33,15 @@ class WaveCheckoutService
     public function createCheckoutSession(
         string $amount,
         string $clientReference = null,
+        string $successUrl = null,
+        string $errorUrl = null,
     ): Response {
         $payload = array_merge([
             'amount' => $amount,
             'currency' => config('services.wave.currency', 'XOF'),
             'client_reference' => $clientReference,
-            'success_url' => $this->successUrl,
-            'error_url' => $this->errorUrl,
+            'success_url' => $successUrl,
+            'error_url' => $errorUrl,
         ]);
 
         $timestamp = time();

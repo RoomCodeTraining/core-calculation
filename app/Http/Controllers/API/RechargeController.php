@@ -99,9 +99,12 @@ class RechargeController extends Controller
             'updated_by' => auth()?->user()?->id ?? null,
         ]);
 
+        $successUrl = config('services.frontend.url') . '/recharge/success/' . $recharge->reference;
+        $errorUrl = config('services.frontend.url') . '/recharge/error/' . $recharge->reference;
+
         $waveCheckoutService = new WaveCheckoutService();
-        $response = $waveCheckoutService->createCheckoutSession($transaction->amount, $recharge->reference);
-        
+        $response = $waveCheckoutService->createCheckoutSession($transaction->amount, $recharge->reference, $successUrl, $errorUrl);
+
         if($response->successful()) {
             $recharge->update([
                 'payment_link' => $response['wave_launch_url'],
