@@ -42,8 +42,13 @@ class WaveCheckoutService
             'error_url' => $this->errorUrl,
         ]);
 
+        $timestamp = time();
+        $signature = hash_hmac("sha256", $timestamp . json_encode($payload), config('services.wave.signing_secret'));
+        $wave_signature = "t={$timestamp},v1={$signature}";
+
         return Http::withHeaders([
             'Authorization' => 'Bearer ' . $this->apiKey,
+            'Wave-Signature' => $wave_signature,
             'Content-Type' => 'application/json',
         ])->post($this->baseUrl . '/checkout/sessions', $payload);
     }
@@ -56,8 +61,13 @@ class WaveCheckoutService
      */
     public function searchCheckoutSessions(string $clientReference): Response
     {
+        $timestamp = time();
+        $signature = hash_hmac("sha256", $timestamp . json_encode($payload), config('services.wave.signing_secret'));
+        $wave_signature = "t={$timestamp},v1={$signature}";
+
         return Http::withHeaders([
             'Authorization' => 'Bearer ' . $this->apiKey,
+            'Wave-Signature' => $wave_signature,
         ])->get($this->baseUrl . '/checkout/sessions/search', [
             'client_reference' => $clientReference,
         ]);

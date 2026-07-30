@@ -48,6 +48,7 @@ return [
     'wave' => [
         'base_url' => env('WAVE_BASE_URL', 'https://api.wave.com/v1'),
         'api_key' => env('WAVE_API_KEY', ''),
+        'signing_secret' => env('WAVE_SIGNING_SECRET', ''),
         'success_url' => env('WAVE_SUCCESS_URL', ''),
         'error_url' => env('WAVE_ERROR_URL', ''),
     ],
