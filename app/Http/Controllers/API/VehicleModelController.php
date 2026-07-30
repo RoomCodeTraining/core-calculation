@@ -43,7 +43,7 @@ class VehicleModelController extends Controller
         }
 
         $vehicleModels = $vehicleModels->useFilters()
-                    ->latest('created_at')
+                    ->orderBy('label')
                     ->dynamicPaginate();
 
         return VehicleModelResource::collection($vehicleModels);

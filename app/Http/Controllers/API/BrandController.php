@@ -36,7 +36,7 @@ class BrandController extends Controller
     {
         $brands = Brand::with('status:id,code,label')
                     ->useFilters()
-                    ->latest('created_at')
+                    ->orderBy('label')
                     ->dynamicPaginate();
 
         return BrandResource::collection($brands);

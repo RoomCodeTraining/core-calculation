@@ -36,6 +36,7 @@ class BankController extends Controller
     {
         $banks = Bank::with('status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name')
             ->useFilters()
+            ->orderBy('name')
             ->dynamicPaginate();
 
         return BankResource::collection($banks);

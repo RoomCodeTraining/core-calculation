@@ -34,7 +34,7 @@ class VehicleEnergyController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        $vehicleEnergies = VehicleEnergy::with('status')->latest('created_at')->useFilters()->dynamicPaginate();
+        $vehicleEnergies = VehicleEnergy::with('status')->orderBy('label')->useFilters()->dynamicPaginate();
 
         return VehicleEnergyResource::collection($vehicleEnergies);
     }

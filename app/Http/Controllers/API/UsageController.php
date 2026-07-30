@@ -37,7 +37,7 @@ class UsageController extends Controller
         $usages = Usage::with('status:id,code,label', 'createdBy:id,name', 'updatedBy:id,name', 'deletedBy:id,name');
 
         $usages = $usages->useFilters()
-                    ->latest('created_at')
+                    ->orderBy('label')
                     ->dynamicPaginate();   
 
         return UsageResource::collection($usages);

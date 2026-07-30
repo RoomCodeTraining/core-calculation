@@ -41,7 +41,7 @@ class VehicleGenreController extends Controller
         }
 
         $vehicleGenres = $vehicleGenres->useFilters()
-                    ->latest('created_at')
+                    ->orderBy('label')
                     ->dynamicPaginate();   
 
         return VehicleGenreResource::collection($vehicleGenres);
