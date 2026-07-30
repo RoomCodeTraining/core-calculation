@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             DealerListSeeder::class,
             UsageSeeder::class,
             VehicleGenreUsageSeeder::class,
-            VehicleCharacteristicListSeeder::class,
+            // VehicleCharacteristicListSeeder::class,
             TransactionTypeSeeder::class,
             ReceiptTypeSeeder::class,
             PaymentMethodSeeder::class,
