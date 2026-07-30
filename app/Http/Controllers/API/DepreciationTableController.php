@@ -27,6 +27,7 @@ use App\Models\VehicleAge;
 use App\Models\VehicleCharacteristic;
 use App\Models\VehicleEnergy;
 use App\Models\VehicleGenre;
+use App\Models\AppSetting;
 use App\Models\VehicleGenreUsage;
 use App\Services\MarketValue\MarketValueService;
 use Carbon\Carbon;
@@ -172,7 +173,7 @@ class DepreciationTableController extends Controller
             'reference' => 'TR-'.date('YmdHis'),
             'transaction_type_id' => TransactionType::where('code', TransactionTypeEnum::DEPOSIT)->first()->id,
             'quantity' => 1,
-            'amount' => config('services.settings.transaction_cost', 100),
+            'amount' => AppSetting::where('code', 'credit_cost')->first()->value ?? config('services.settings.transaction_cost', 100),
             'description' => 'Calcul de la valeur vénale théorique',
             'calculation_id' => $calculation->id,
             'status_id' => Status::where('code', StatusEnum::PENDING)->first()->id,

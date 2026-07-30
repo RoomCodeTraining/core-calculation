@@ -38,7 +38,7 @@ return [
     'settings' => [
         'tax_rate' => env('TAX_RATE', 18),
         'small_supply_rate' => env('SMALL_SUPPLY_RATE', 2),
-        'transaction_cost' => env('TRANSACTION_COST', 100),
+        'transaction_cost' => env('TRANSACTION_COST', 10),
     ],
 
     'fne' => [
@@ -52,6 +52,7 @@ return [
     'wave' => [
         'base_url' => env('WAVE_BASE_URL', 'https://api.wave.com/v1'),
         'api_key' => env('WAVE_API_KEY', ''),
+        'search_api_key' => env('WAVE_SEARCH_API_KEY', ''),
         'signing_secret' => env('WAVE_SIGNING_SECRET', ''),
         'success_url' => env('WAVE_SUCCESS_URL', ''),
         'error_url' => env('WAVE_ERROR_URL', ''),

@@ -63,13 +63,8 @@ class WaveCheckoutService
      */
     public function searchCheckoutSessions(string $clientReference): Response
     {
-        $timestamp = time();
-        $signature = hash_hmac("sha256", $timestamp . json_encode($payload), config('services.wave.signing_secret'));
-        $wave_signature = "t={$timestamp},v1={$signature}";
-
         return Http::withHeaders([
-            'Authorization' => 'Bearer ' . $this->apiKey,
-            'Wave-Signature' => $wave_signature,
+            'Authorization' => 'Bearer ' . config('services.wave.search_api_key', ''),
         ])->get($this->baseUrl . '/checkout/sessions/search', [
             'client_reference' => $clientReference,
         ]);
