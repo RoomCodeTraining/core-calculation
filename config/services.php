@@ -45,4 +45,11 @@ return [
         'url' => env('FNE_URL'),
     ],
 
+    'wave' => [
+        'base_url' => env('WAVE_BASE_URL', 'https://api.wave.com/v1'),
+        'api_key' => env('WAVE_API_KEY', ''),
+        'success_url' => env('WAVE_SUCCESS_URL', ''),
+        'error_url' => env('WAVE_ERROR_URL', ''),
+    ],
+
 ];
