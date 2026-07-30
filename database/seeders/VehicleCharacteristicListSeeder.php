@@ -51,6 +51,7 @@ class VehicleCharacteristicListSeeder extends Seeder
         'prive personnel' => 'PRIV',
         'personnel' => 'PRIV',
         'location' => 'LOUT',
+        'vp' => 'PRIV',
     ];
 
     private $statusId;
