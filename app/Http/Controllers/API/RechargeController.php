@@ -232,6 +232,11 @@ class RechargeController extends Controller
         
         if($waveCheckoutSession->successful() && $waveCheckoutSession['result'][0]['checkout_status'] == 'complete' && $waveCheckoutSession['result'][0]['payment_status'] == 'succeeded') {
 
+            $recharge->update([
+                'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
+                'updated_by' => auth()?->user()?->id ?? null,
+            ]);
+
             $recharge->transaction->update([
                 'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
                 'updated_by' => auth()?->user()?->id ?? null,
@@ -255,6 +260,11 @@ class RechargeController extends Controller
 
             return $this->responseCreated('Rechargement créé avec succès', new RechargeResource($recharge));
         } else {
+            $recharge->update([
+                'status_id' => Status::where('code', StatusEnum::FAILED)->first()->id,
+                'updated_by' => auth()?->user()?->id ?? null,
+            ]);
+            
             $recharge->transaction->update([
                 'status_id' => Status::where('code', StatusEnum::FAILED)->first()->id,
                 'updated_by' => auth()?->user()?->id ?? null,
