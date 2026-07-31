@@ -186,7 +186,18 @@ class RechargeController extends Controller
             'updatedBy',
         ]);
 
-        return $this->responseCreated('Rechargement créé avec succès', new RechargeResource($recharge));
+        $waveCheckoutService = new WaveCheckoutService();
+        $waveCheckoutSession = $waveCheckoutService->searchCheckoutSessions($recharge->reference);
+        if($waveCheckoutSession->successful()) {
+            return $this->responseCreated('Rechargement créé avec succès', new RechargeResource($recharge));
+        } else {
+            $transaction->update([
+                'status_id' => Status::where('code', StatusEnum::FAILED)->first()->id,
+                'updated_by' => auth()?->user()?->id ?? null,
+            ]);
+            return $this->responseUnprocessable('Erreur lors de la recherche de la session de paiement.');
+        }
+
     }
 
     /**
@@ -207,6 +218,24 @@ class RechargeController extends Controller
         )
             ->accessibleBy(auth()->user())
             ->where('recharges.id', Recharge::keyFromHashId($id))
+            ->firstOrFail();
+
+        return $this->responseSuccess(null, new RechargeResource($recharge));
+    }
+
+    public function getByReference($reference): JsonResponse
+    {
+        $recharge = Recharge::with(
+            'transaction.entity',
+            'transaction.order.entity',
+            'paymentMethod',
+            'status',
+            'createdBy',
+            'updatedBy',
+            'deletedBy'
+        )
+            ->accessibleBy(auth()->user())
+            ->where('recharges.reference', $reference)
             ->firstOrFail();
 
         return $this->responseSuccess(null, new RechargeResource($recharge));
@@ -242,5 +271,4 @@ class RechargeController extends Controller
         return $this->responseSuccess('Statut des rechargements mis à jour avec succès', new RechargeResource($recharges));
     }
 
-   
 }
