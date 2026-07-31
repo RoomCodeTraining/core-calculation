@@ -189,9 +189,31 @@ class RechargeController extends Controller
         $waveCheckoutService = new WaveCheckoutService();
         $waveCheckoutSession = $waveCheckoutService->searchCheckoutSessions($recharge->reference);
         if($waveCheckoutSession->successful()) {
+
+            $recharge->transaction->update([
+                'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
+                'updated_by' => auth()?->user()?->id ?? null,
+            ]);
+
+            if ($recharge->email && $recharge->transaction->calculation) {
+                $file = public_path('storage/evaluation_report/'.$recharge->transaction->calculation->reference.'.pdf');
+
+                if (file_exists($file)) {
+                    try {
+                        $emails = (new EmailValidationService())->validateEmails([$recharge->email]);
+
+                        if (count($emails) > 0) {
+                            Mail::to($emails)->send(new SendEvaluationReportMail($file, $recharge->transaction->calculation));
+                        }
+                    } catch (\Exception $e) {
+                        Log::error($e);
+                    }
+                }
+            }
+
             return $this->responseCreated('Rechargement créé avec succès', new RechargeResource($recharge));
         } else {
-            $transaction->update([
+            $recharge->transaction->update([
                 'status_id' => Status::where('code', StatusEnum::FAILED)->first()->id,
                 'updated_by' => auth()?->user()?->id ?? null,
             ]);
