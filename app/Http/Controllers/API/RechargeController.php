@@ -186,9 +186,51 @@ class RechargeController extends Controller
             'updatedBy',
         ]);
 
+        return $this->responseCreated('Rechargement créé avec succès', new RechargeResource($recharge));
+    }
+
+    /**
+     * Afficher un rechargement
+     *
+     * @authenticated
+     */
+    public function show($id): JsonResponse
+    {
+        $recharge = Recharge::with(
+            'transaction.entity',
+            'transaction.order.entity',
+            'paymentMethod',
+            'status',
+            'createdBy',
+            'updatedBy',
+            'deletedBy'
+        )
+            ->accessibleBy(auth()->user())
+            ->where('recharges.id', Recharge::keyFromHashId($id))
+            ->firstOrFail();
+
+        return $this->responseSuccess(null, new RechargeResource($recharge));
+    }
+
+    public function getByReference($reference): JsonResponse
+    {
+        $recharge = Recharge::with(
+            'transaction.entity',
+            'transaction.order.entity',
+            'paymentMethod',
+            'status',
+            'createdBy',
+            'updatedBy',
+            'deletedBy'
+        )
+            ->accessibleBy(auth()->user())
+            ->where('recharges.reference', $reference)
+            ->firstOrFail();
+
         $waveCheckoutService = new WaveCheckoutService();
         $waveCheckoutSession = $waveCheckoutService->searchCheckoutSessions($recharge->reference);
-        if($waveCheckoutSession->successful()) {
+        
+        if($waveCheckoutSession->successful() && $waveCheckoutSession['result'][0]['checkout_status'] == 'complete' && $waveCheckoutSession['result'][0]['payment_status'] == 'succeeded') {
 
             $recharge->transaction->update([
                 'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
@@ -219,50 +261,6 @@ class RechargeController extends Controller
             ]);
             return $this->responseUnprocessable('Erreur lors de la recherche de la session de paiement.');
         }
-
-    }
-
-    /**
-     * Afficher un rechargement
-     *
-     * @authenticated
-     */
-    public function show($id): JsonResponse
-    {
-        $recharge = Recharge::with(
-            'transaction',
-            'transaction.calculation',
-            'transaction.entity',
-            'transaction.order.entity',
-            'paymentMethod',
-            'status',
-            'createdBy',
-            'updatedBy',
-        )
-            ->accessibleBy(auth()->user())
-            ->where('recharges.id', Recharge::keyFromHashId($id))
-            ->firstOrFail();
-
-        return $this->responseSuccess(null, new RechargeResource($recharge));
-    }
-
-    public function getByReference($reference): JsonResponse
-    {
-        $recharge = Recharge::with(
-            'transaction',
-            'transaction.calculation',
-            'transaction.entity',
-            'transaction.order.entity',
-            'paymentMethod',
-            'status',
-            'createdBy',
-            'updatedBy',
-        )
-            ->accessibleBy(auth()->user())
-            ->where('recharges.reference', $reference)
-            ->firstOrFail();
-
-        return $this->responseSuccess(null, new RechargeResource($recharge));
     }
 
 
