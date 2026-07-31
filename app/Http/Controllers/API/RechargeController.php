@@ -208,13 +208,14 @@ class RechargeController extends Controller
     public function show($id): JsonResponse
     {
         $recharge = Recharge::with(
+            'transaction',
+            'transaction.calculation',
             'transaction.entity',
             'transaction.order.entity',
             'paymentMethod',
             'status',
             'createdBy',
             'updatedBy',
-            'deletedBy'
         )
             ->accessibleBy(auth()->user())
             ->where('recharges.id', Recharge::keyFromHashId($id))
