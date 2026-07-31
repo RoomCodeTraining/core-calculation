@@ -22,4 +22,5 @@ Route::name('external.')->group(function () {
     Route::get('/vehicle-characteristics/filter/all', [VehicleCharacteristicController::class, 'filterAll'])->name('external.filter-all');
     Route::get('/payment-methods', [PaymentMethodController::class, 'index'])->name('payment-methods.index');
     Route::post('/recharges', [RechargeController::class, 'store'])->name('recharges.store');
+    Route::get('/recharges/{recharge}', [RechargeController::class, 'show'])->name('recharges.show');
 }); 
