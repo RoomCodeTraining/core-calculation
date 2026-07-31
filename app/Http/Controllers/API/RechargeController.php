@@ -227,13 +227,14 @@ class RechargeController extends Controller
     public function getByReference($reference): JsonResponse
     {
         $recharge = Recharge::with(
+            'transaction',
+            'transaction.calculation',
             'transaction.entity',
             'transaction.order.entity',
             'paymentMethod',
             'status',
             'createdBy',
             'updatedBy',
-            'deletedBy'
         )
             ->accessibleBy(auth()->user())
             ->where('recharges.reference', $reference)
