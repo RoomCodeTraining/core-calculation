@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Requests\PaymentMethod;
+
+use App\Models\PaymentMethod;
+use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdatePaymentMethodRequest extends FormRequest
+{
+    public function rules(): array
+    {
+        $routeId = $this->route('paymentMethod');
+        $paymentMethodId = $routeId ? PaymentMethod::keyFromHashId($routeId) : null;
+
+        return [
+            'code' => ['nullable', 'string', 'max:255', Rule::unique('payment_methods', 'code')->ignore($paymentMethodId)],
+            'label' => ['required', 'string', 'max:255', Rule::unique('payment_methods', 'label')->ignore($paymentMethodId)],
+            'description' => ['nullable', 'string', 'max:255'],
+            'logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'label.required' => 'Le libellé est requis.',
+            'label.string' => 'Le libellé doit être une chaîne de caractères.',
+            'label.max' => 'Le libellé doit contenir au maximum 255 caractères.',
+            'label.unique' => 'Ce libellé existe déjà.',
+            'description.string' => 'La description doit être une chaîne de caractères.',
+            'description.max' => 'La description doit contenir au maximum 255 caractères.',
+            'logo.image' => 'Le logo doit être une image.',
+            'logo.mimes' => 'Le logo doit être une image de type jpeg, png, jpg, gif ou svg.',
+        ];
+    }
+}

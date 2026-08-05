@@ -1,0 +1,46 @@
+fais un seeder sur la liste des caracreristiques des  vehicules dans @data/conseilauto_data_20260225_230502.json en faisant passer par la function store de @app/Http/Controllers/API/VehicleCharacteristicController.php  tout en considerant les regles suivantes :
+
+@CreateVehicleCharacteristicRequest.php (26-36) 
+
+fais correspondre vehicle_model_id à l'id de NomCommercial
+
+fais correspondre vehicle_energy_id à l'id de Energie
+
+fais correspondre dealer_id à l'id de concessionnaire
+
+fais correspondre type à types
+
+fais correspondre equipments à Equipement
+
+fais correspondre fiscal_power à PuissanceFiscale
+
+fais correspondre nb_seats à Nbreplace
+
+fais correspondre new_market_value à TTC
+
+fais correspondre date à dateParution
+prends la date du jour si la date est mal formatée
+
+Pour vehicle_genre_usage_id, prends :
+GenreVehicule == "4x4" || "SUV" || "VOITURE PARTICULIERE", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'VP')->first()->id)->where('usage_id', Usage::where('code', 'PRIV')->first()->id)->first()->id;
+
+GenreVehicule == "BUS" || "MINIBUS" || "TRANSPORT PRIVE VOYAGEUR", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'TCP')->first()->id)->where('usage_id', Usage::where('code', 'TURB')->first()->id)->first()->id;
+
+GenreVehicule == "CAMION 2,5 T A 5 T", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'CAM')->first()->id)->where('usage_id', Usage::where('code', 'CAM1')->first()->id)->first()->id;
+
+GenreVehicule == "CAMION PLUS DE 5 T", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'CAM')->first()->id)->where('usage_id', Usage::where('code', 'CAM2')->first()->id)->first()->id;
+
+GenreVehicule == "PETIT UTILITAIRE" || "UTILITAIRE", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'CTTE')->first()->id)->where('usage_id', Usage::where('code', 'PRIV')->first()->id)->first()->id;
+
+GenreVehicule == "CAMIONNETTE", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'CTTE')->first()->id)->where('usage_id', Usage::where('code', 'TRMA')->first()->id)->first()->id;
+
+GenreVehicule == "CYCLO MOTO", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'MT')->first()->id)->where('usage_id', Usage::where('code', 'PRIV')->first()->id)->first()->id;
+
+GenreVehicule == "SEMI REMORQUE\r\n", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'REM')->first()->id)->where('usage_id', Usage::where('code', 'TMEL')->first()->id)->first()->id;
+
+GenreVehicule == "TAXI COMPTEUR\r\n", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'VP')->first()->id)->where('usage_id', Usage::where('code', 'TAXI')->first()->id)->first()->id;
+
+GenreVehicule == "TRACTEUR ROUTIER", prends vehicle_genre_usage_id == VehicleGenreUsage::where('vehicle_genre_id', VehicleGenre::where('code', 'TRR')->first()->id)->where('usage_id', Usage::where('code', 'TLGD')->first()->id)->first()->id;
+
+
+

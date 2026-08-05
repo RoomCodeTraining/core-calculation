@@ -1,0 +1,329 @@
+name: 'Gestion des concessionnaires'
+description: |-
+
+  APIs pour la gestion des concessionnaires
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/dealers
+    metadata:
+      groupName: 'Gestion des concessionnaires'
+      groupDescription: |-
+
+        APIs pour la gestion des concessionnaires
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister tous les concessionnaires'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1Eafak5bhZ48e63v6VgdPDc'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/dealers
+    metadata:
+      groupName: 'Gestion des concessionnaires'
+      groupDescription: |-
+
+        APIs pour la gestion des concessionnaires
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Créer un concessionnaire'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: o
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Le champ value doit être une adresse e-mail valide. Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: reinger.cristina@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      telephone:
+        name: telephone
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: nk
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      address:
+        name: address
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: otwohabiljdrywkbidglevpu
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: o
+      email: reinger.cristina@example.org
+      telephone: nk
+      address: otwohabiljdrywkbidglevpu
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer ak31e6hVPgbcDvE4dZ5af68'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/dealers/{id}'
+    metadata:
+      groupName: 'Gestion des concessionnaires'
+      groupDescription: |-
+
+        APIs pour la gestion des concessionnaires
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Afficher un concessionnaire'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the dealer.'
+        required: true
+        example: sapiente
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: sapiente
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 4538aD1cPfg6vehkEZbda6V'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/dealers/{id}'
+    metadata:
+      groupName: 'Gestion des concessionnaires'
+      groupDescription: |-
+
+        APIs pour la gestion des concessionnaires
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mettre à jour un concessionnaire'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the dealer.'
+        required: true
+        example: vero
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: vero
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: grtqsdxrkienpdezasolhu
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Le champ value doit être une adresse e-mail valide. Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: tzboncak@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      telephone:
+        name: telephone
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: dzswt
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      address:
+        name: address
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: cicyffpvqmghcbburhqkb
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: grtqsdxrkienpdezasolhu
+      email: tzboncak@example.net
+      telephone: dzswt
+      address: cicyffpvqmghcbburhqkb
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 368hfag4kce5vdZa1b6EPVD'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/dealers/{id}'
+    metadata:
+      groupName: 'Gestion des concessionnaires'
+      groupDescription: |-
+
+        APIs pour la gestion des concessionnaires
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Supprimer un concessionnaire'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the dealer.'
+        required: true
+        example: consectetur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: consectetur
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer eDa3v1PkfVZ6dag468bch5E'
+    controller: null
+    method: null
+    route: null
+    custom: []

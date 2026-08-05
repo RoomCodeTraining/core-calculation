@@ -1,27 +1,26 @@
-name: Quota
+name: 'Gestion des utilisateurs'
 description: |-
 
-  Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+  APIs pour la gestion des utilisateurs
 endpoints:
   -
-    custom: []
     httpMethods:
       - GET
-    uri: api/quota
+    uri: api/v1/users
     metadata:
-      custom: []
-      groupName: Quota
+      groupName: 'Gestion des utilisateurs'
       groupDescription: |-
 
-        Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+        APIs pour la gestion des utilisateurs
       subgroup: ''
       subgroupDescription: ''
-      title: 'Quota disponible'
-      description: "Récupère le quota API restant de l'organisation de l'utilisateur authentifié."
+      title: 'Lister les utilisateurs'
+      description: ''
       authenticated: true
       deprecated: false
+      custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -33,62 +32,98 @@ endpoints:
     fileParameters: []
     responses:
       -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
         custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Quota récupéré avec succès",
-            "data": {
-              "quota_remaining": 850,
-              "organization": {
-                "id": "org123",
-                "name": "Mon Organisation",
-                "slug": "mon-organisation"
-              }
-            }
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 404
-        content: |-
-          {
-            "status": 404,
-            "message": "Organisation non trouvée"
-          }
-        headers: []
-        description: ''
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 46PEDvacfbZ6Vdgheak5138'
     controller: null
     method: null
     route: null
-  -
     custom: []
+  -
     httpMethods:
-      - POST
-    uri: api/quota/recharge
+      - GET
+    uri: 'api/v1/users/{id}'
     metadata:
-      custom: []
-      groupName: Quota
+      groupName: 'Gestion des utilisateurs'
       groupDescription: |-
 
-        Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+        APIs pour la gestion des utilisateurs
       subgroup: ''
       subgroupDescription: ''
-      title: 'Recharger le quota'
-      description: |-
-        Recharge le quota API de l'organisation. **Réservé aux administrateurs uniquement.**
-        L'historique de la recharge est automatiquement enregistré.
+      title: 'Afficher un utilisateur'
+      description: ''
       authenticated: true
       deprecated: false
+      custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: provident
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: provident
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer ak3a85vbcdP1EhVef6DZg64'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users
+    metadata:
+      groupName: 'Gestion des utilisateurs'
+      groupDescription: |-
+
+        APIs pour la gestion des utilisateurs
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Créer un nouvel utilisateur'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -96,254 +131,867 @@ endpoints:
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
-      amount:
-        custom: []
-        name: amount
-        description: 'Le montant de quota à ajouter (minimum: 1).'
+      code:
+        name: code
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
         required: true
-        example: 500
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-      notes:
-        custom: []
-        name: notes
-        description: 'Notes optionnelles pour cette recharge.'
-        required: false
-        example: 'Recharge mensuelle'
+        example: anwwpporyhpucr
         type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: aiyana92@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      first_name:
+        name: first_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: wpmpwqou
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: qofkmhvfsxbzzxtanpbbkybr
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      telephone:
+        name: telephone
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: arwuwffbypchwsevzbblmhxo
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
         nullable: true
-        deprecated: false
+        custom: []
+      entity_id:
+        name: entity_id
+        description: 'The <code>id</code> of an existing record in the entities table.'
+        required: true
+        example: expedita
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      role:
+        name: role
+        description: 'The <code>name</code> of an existing record in the roles table.'
+        required: true
+        example: ducimus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: 'zf:"Xwfu1X+tsx.T'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
     cleanBodyParameters:
-      amount: 500
-      notes: 'Recharge mensuelle'
+      code: anwwpporyhpucr
+      email: aiyana92@example.com
+      first_name: wpmpwqou
+      last_name: qofkmhvfsxbzzxtanpbbkybr
+      telephone: arwuwffbypchwsevzbblmhxo
+      entity_id: expedita
+      role: ducimus
+      password: 'zf:"Xwfu1X+tsx.T'
     fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Quota rechargé avec succès",
-            "data": {
-              "recharge": {
-                "amount": 500,
-                "quota_before": 350,
-                "quota_after": 850,
-                "notes": "Recharge mensuelle"
-              },
-              "organization": {
-                "id": "org123",
-                "name": "Mon Organisation",
-                "api_quota": 850
-              }
-            }
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 403
-        content: |-
-          {
-            "errors": [
-              {
-                "status": 403,
-                "title": "Accès non autorisé",
-                "detail": "Seuls les administrateurs peuvent recharger le quota."
-              }
-            ]
-          }
-        headers: []
-        description: ''
+    responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer DckVZaPE4hb65f3gv168aed'
     controller: null
     method: null
     route: null
-  -
     custom: []
+  -
     httpMethods:
-      - GET
-    uri: api/quota/recharges
+      - POST
+    uri: 'api/v1/users/{id}'
     metadata:
-      custom: []
-      groupName: Quota
+      groupName: 'Gestion des utilisateurs'
       groupDescription: |-
 
-        Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+        APIs pour la gestion des utilisateurs
       subgroup: ''
       subgroupDescription: ''
-      title: 'Historique des rechargements'
-      description: "Récupère l'historique de tous les rechargements de quota de l'organisation. **Réservé aux administrateurs uniquement.**"
+      title: "Mettre à jour un utilisateur les informations de l'utilisateur"
+      description: ''
       authenticated: true
       deprecated: false
+      custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: ea
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: ea
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        name: code
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: rp
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      first_name:
+        name: first_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: kcjlrkzqaw
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: nzoqxsf
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: georgette63@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      telephone:
+        name: telephone
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: pzrnprbilesoknpehnnaben
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      role:
+        name: role
+        description: 'The <code>name</code> of an existing record in the roles table.'
+        required: true
+        example: harum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      signature:
+        name: signature
+        description: 'Le champ value doit être une image. La taille du fichier de value ne peut pas dépasser 2048 kilo-octets.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      current_password:
+        name: current_password
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: umrsxhejte
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      password:
+        name: password
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: 'JS!"V-,/nWxaF^&5pv/c'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: sdpkqyhmv
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      code: rp
+      first_name: kcjlrkzqaw
+      last_name: nzoqxsf
+      email: georgette63@example.com
+      telephone: pzrnprbilesoknpehnnaben
+      role: harum
+      current_password: umrsxhejte
+      password: 'JS!"V-,/nWxaF^&5pv/c'
+      password_confirmation: sdpkqyhmv
+    fileParameters:
+      signature: null
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer b1D5gae6386ZfhV4dcaPvEk'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/users/{id}/enable'
+    metadata:
+      groupName: 'Gestion des utilisateurs'
+      groupDescription: |-
+
+        APIs pour la gestion des utilisateurs
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Activer un utilisateur'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: odio
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: odio
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer fE4Pk861Zc5ehDba3gVv6ad'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/users/{id}/disable'
+    metadata:
+      groupName: 'Gestion des utilisateurs'
+      groupDescription: |-
+
+        APIs pour la gestion des utilisateurs
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Désactiver un utilisateur'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: eius
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: eius
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6Dg5dVZa8vf3c4ahbEk1e6P'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/users/{id}/reset'
+    metadata:
+      groupName: 'Gestion des utilisateurs'
+      groupDescription: |-
+
+        APIs pour la gestion des utilisateurs
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Réinitialiser le mot de passe d'un utilisateur par un administrateur"
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: nesciunt
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: nesciunt
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 8bcvfa1EaD5ZPhg4ke6d36V'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/users/update/profile
+    metadata:
+      groupName: 'Gestion des utilisateurs'
+      groupDescription: |-
+
+        APIs pour la gestion des utilisateurs
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Mettre à jour les informations de l'utilisateur de profil de l'utilisateur connecté"
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      code:
+        name: code
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: qvqiobpgzlpj
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      first_name:
+        name: first_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: drpbrgty
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: ycsd
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: zachery.beier@example.org
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      telephone:
+        name: telephone
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: pvbubuar
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      role:
+        name: role
+        description: 'The <code>name</code> of an existing record in the roles table.'
+        required: true
+        example: quidem
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      signature:
+        name: signature
+        description: 'Le champ value doit être une image. La taille du fichier de value ne peut pas dépasser 2048 kilo-octets.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      current_password:
+        name: current_password
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: xrqrnrwordkpzrxvn
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      password:
+        name: password
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: 'h4,dte)'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: eqzexgiebsexdt
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      code: qvqiobpgzlpj
+      first_name: drpbrgty
+      last_name: ycsd
+      email: zachery.beier@example.org
+      telephone: pvbubuar
+      role: quidem
+      current_password: xrqrnrwordkpzrxvn
+      password: 'h4,dte)'
+      password_confirmation: eqzexgiebsexdt
+    fileParameters:
+      signature: null
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer dZ6Df4ab5eEc1kV38Pvha6g'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/users/{id}/reset-user-password'
+    metadata:
+      groupName: 'Gestion des utilisateurs'
+      groupDescription: |-
+
+        APIs pour la gestion des utilisateurs
+      subgroup: ''
+      subgroupDescription: ''
+      title: "Modifier les informations d'un utilisateur connecté par lui-même"
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: multipart/form-data
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: amet
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: amet
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Le champ value doit être une adresse e-mail valide. Must match the regex /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/. Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: velda37@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      first_name:
+        name: first_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: lxqluyjyfkpvydxeoihlg
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: ncatyrcywgwnmnwd
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      telephone:
+        name: telephone
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: cepcwcxrojfzafwwssw
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      signature:
+        name: signature
+        description: 'Le champ value doit être une image. La taille du fichier de value ne peut pas dépasser 2048 kilo-octets.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      current_password:
+        name: current_password
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: cfcdlfvsegrxqyyzepwgkxkg
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      password:
+        name: password
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: '$Wy9i:'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'Le texte de value ne peut pas contenir plus de 100 caractères.'
+        required: false
+        example: gabxtfdfxeiupqxxj
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      email: velda37@example.com
+      first_name: lxqluyjyfkpvydxeoihlg
+      last_name: ncatyrcywgwnmnwd
+      telephone: cepcwcxrojfzafwwssw
+      current_password: cfcdlfvsegrxqyyzepwgkxkg
+      password: '$Wy9i:'
+      password_confirmation: gabxtfdfxeiupqxxj
+    fileParameters:
+      signature: null
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer aadgcvb1f6D43eZkPEV68h5'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/users/{id}/give-permission-to-user'
+    metadata:
+      groupName: 'Gestion des utilisateurs'
+      groupDescription: |-
+
+        APIs pour la gestion des utilisateurs
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: velit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: velit
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer v3b8dae66acPZ5ED4ghkfV1'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/users/{id}/revoke-permission-to-user'
+    metadata:
+      groupName: 'Gestion des utilisateurs'
+      groupDescription: |-
+
+        APIs pour la gestion des utilisateurs
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: voluptatibus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: voluptatibus
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer a46gVZ1baPdEc638fvD5ehk'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/users/list/all
+    metadata:
+      groupName: 'Gestion des utilisateurs'
+      groupDescription: |-
+
+        APIs pour la gestion des utilisateurs
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister les utilisateurs'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters:
-      per_page:
-        custom: []
-        name: per_page
-        description: "Nombre d'éléments par page (défaut: 15)."
-        required: false
-        example: 20
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanQueryParameters:
-      per_page: 20
+    queryParameters: []
+    cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
     responses:
       -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
         custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Historique de rechargement récupéré avec succès",
-            "data": {
-              "recharges": [
-                {
-                  "id": 1,
-                  "amount": 500,
-                  "quota_before": 350,
-                  "quota_after": 850,
-                  "notes": "Recharge mensuelle",
-                  "recharged_by": {
-                    "name": "Admin User",
-                    "email": "admin@example.com"
-                  },
-                  "created_at": "2024-01-01T00:00:00.000000Z"
-                }
-              ],
-              "pagination": {
-                "current_page": 1,
-                "last_page": 1,
-                "per_page": 15,
-                "total": 1
-              }
-            }
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 403
-        content: |-
-          {
-            "errors": [
-              {
-                "status": 403,
-                "title": "Accès non autorisé",
-                "detail": "Seuls les administrateurs peuvent voir l'historique des rechargements."
-              }
-            ]
-          }
-        headers: []
-        description: ''
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 8PV5Deg3c1kva6EdbZa46hf'
     controller: null
     method: null
     route: null
-  -
     custom: []
+  -
     httpMethods:
-      - GET
-    uri: api/quota/usages
+      - POST
+    uri: api/v1/users/users/reset-password
     metadata:
-      custom: []
-      groupName: Quota
+      groupName: 'Gestion des utilisateurs'
       groupDescription: |-
 
-        Gestion du quota API des organisations. Le quota détermine le nombre d'appels API disponibles.
+        APIs pour la gestion des utilisateurs
       subgroup: ''
       subgroupDescription: ''
-      title: "Historique d'utilisation"
-      description: "Récupère l'historique de l'utilisation du quota API de l'organisation, incluant tous les appels API effectués."
+      title: "Réinitialiser le mot de passe d'un utilisateur par lui-même"
+      description: ''
       authenticated: true
       deprecated: false
+      custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters:
-      per_page:
-        custom: []
-        name: per_page
-        description: "Nombre d'éléments par page (défaut: 15)."
-        required: false
-        example: 20
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        deprecated: false
-    cleanQueryParameters:
-      per_page: 20
+    queryParameters: []
+    cleanQueryParameters: []
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Historique d'utilisation récupéré avec succès",
-            "data": {
-              "usages": [
-                {
-                  "id": 1,
-                  "endpoint": "/api/depreciation-tables",
-                  "method": "POST",
-                  "quota_used": 1,
-                  "quota_remaining_after": 849,
-                  "user": {
-                    "name": "John Doe",
-                    "email": "user@example.com"
-                  },
-                  "ip_address": "192.168.1.1",
-                  "created_at": "2024-01-01T00:00:00.000000Z"
-                }
-              ],
-              "pagination": {
-                "current_page": 1,
-                "last_page": 1,
-                "per_page": 15,
-                "total": 1
-              }
-            }
-          }
-        headers: []
-        description: ''
+    responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer dckEP1Vevh5Z3ag8Db66af4'
     controller: null
     method: null
     route: null
+    custom: []

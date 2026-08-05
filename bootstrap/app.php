@@ -1,10 +1,8 @@
 <?php
 
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -13,37 +11,30 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        // Le middleware EnsureFrontendRequestsAreStateful est retiré des routes API
-        // car il est conçu pour les SPA avec cookies, pas pour les API avec tokens Bearer
-        // $middleware->api(prepend: [
-        //     \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-        // ]);
-
-        $middleware->alias([
-            'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
-            'check.api.quota' => \App\Http\Middleware\CheckApiQuota::class,
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->web(append: [
+            // \App\Http\Middleware\HandleInertiaRequests::class,
+            \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        //
+        $middleware->web(append: [
+            \App\Http\Middleware\Authenticate::class,
+            \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+            \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\Http\Middleware\SetCacheHeaders::class,
+            \Illuminate\Auth\Middleware\Authorize::class,
+            \App\Http\Middleware\RedirectIfAuthenticated::class,
+            \Illuminate\Auth\Middleware\RequirePassword::class,
+            \Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests::class,
+            \App\Http\Middleware\ValidateSignature::class,
+            \Illuminate\Routing\Middleware\ThrottleRequestsWithRedis::class,
+            \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+            \App\Http\Middleware\EnsureEmailIsVerifiedApi::class,
+            \App\Http\Middleware\RestrictByOrganization::class,
+            \App\Http\Middleware\ForbidDisabledUser::class,
+            \App\Http\Middleware\LogsOutDisabledUser::class,
+        ]);
     })
-    ->withExceptions(function (Exceptions $exceptions): void {
-        // Pour les routes API, retourner une réponse JSON 401 au lieu de rediriger vers login
-        $exceptions->shouldRenderJsonWhen(function (Request $request, Throwable $e) {
-            if ($request->is('api/*')) {
-                return true;
-            }
-
-            return $request->expectsJson();
-        });
-
-        // Gérer spécifiquement les exceptions d'authentification pour les routes API
-        $exceptions->render(function (AuthenticationException $e, Request $request) {
-            if ($request->is('api/*') || $request->expectsJson()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Non authentifié. Token d\'accès requis.',
-                ], 401);
-            }
-        });
+    ->withExceptions(function (Exceptions $exceptions) {
+        //
     })->create();

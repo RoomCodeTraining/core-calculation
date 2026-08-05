@@ -2,87 +2,68 @@
 
 namespace Database\Seeders;
 
-use App\Models\Genre;
 use App\Models\Usage;
+use App\Models\VehicleGenre;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
 class UsageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
     public function run(): void
     {
         $usages = [
-            "Promenade ou Affaire",
-            "Transport pour propre compte",
-            "Transport privé de voyageurs",
-            "Transport public de marchandises",
-            "Transport public de voyageurs",
-            "Véhicules Auto-école",
-            "Véhicules de Location",
-            "Véhicules Spéciaux",
-            "Engin de Chantier",
-            "Vehicule motorisé 2 roues à 3 roues",
+            ['code' => 'PRIV', 'label' => 'Privé / Personnel', 'description' => 'Privé / Personnel', 'status_id' => 1],
+            ['code' => 'PROF', 'label' => 'Professionnel léger', 'description' => 'Professionnel léger', 'status_id' => 1],
+            ['code' => 'VTC', 'label' => 'VTC', 'description' => 'VTC (Véhicule de Transport avec Chauffeur)', 'status_id' => 1],
+            ['code' => 'TAXI', 'label' => 'Taxi compteur', 'description' => 'Taxi compteur', 'status_id' => 1],
+            ['code' => 'AUTO', 'label' => 'Auto-école', 'description' => 'Auto-école', 'status_id' => 1],
+            ['code' => 'LOCD', 'label' => 'Location courte durée', 'description' => 'Location courte durée', 'status_id' => 1],
+            ['code' => 'LOLD', 'label' => 'Location longue durée ', 'description' => 'Location longue durée ', 'status_id' => 1],
+            ['code' => 'SADM', 'label' => 'Service administratif', 'description' => 'Service administratif', 'status_id' => 1],
+            ['code' => 'TRMA', 'label' => 'Transport marchandises', 'description' => 'Transport marchandises', 'status_id' => 1],
+            ['code' => 'CHAN', 'label' => 'Chantier', 'description' => 'Chantier', 'status_id' => 1],
+            ['code' => 'STEC', 'label' => 'Service technique', 'description' => 'Service technique', 'status_id' => 1],
+            ['code' => 'UTIL', 'label' => 'Utilitaire', 'description' => 'Utilitaire', 'status_id' => 1],
+            ['code' => 'LOUT', 'label' => 'Location utilitaire', 'description' => 'Location utilitaire', 'status_id' => 1],
+            ['code' => 'THYC', 'label' => 'Transport hydrocarbures', 'description' => 'Transport hydrocarbures', 'status_id' => 1],
+            ['code' => 'LOIN', 'label' => 'Location industrielle', 'description' => 'Location industrielle', 'status_id' => 1],
+            ['code' => 'TURB', 'label' => 'Transport urbain', 'description' => 'Transport urbain', 'status_id' => 1],
+            ['code' => 'TINR', 'label' => 'Transport interurbain', 'description' => 'Transport interurbain', 'status_id' => 1],
+            ['code' => 'TSCO', 'label' => 'Transport scolaire', 'description' => 'Transport scolaire', 'status_id' => 1],
+            ['code' => 'TTOU', 'label' => 'Transport touristique', 'description' => 'Transport touristique', 'status_id' => 1],
+            ['code' => 'TENT', 'label' => 'Transport entreprise', 'description' => 'Transport entreprise', 'status_id' => 1],
+            ['code' => 'LIVR', 'label' => 'Livraison', 'description' => 'Livraison', 'status_id' => 1],
+            ['code' => 'TAMO', 'label' => 'Taxi moto', 'description' => 'Taxi moto', 'status_id' => 1],
+            ['code' => 'TMEL', 'label' => 'Transport matériel', 'description' => 'Transport matériel', 'status_id' => 1],
+            ['code' => 'TAGR', 'label' => 'Transport agricole', 'description' => 'Transport agricole', 'status_id' => 1],
+            ['code' => 'TCHA', 'label' => 'Transport chantier', 'description' => 'Transport chantier', 'status_id' => 1],
+            ['code' => 'TLGD', 'label' => 'Transport longue distance', 'description' => 'Transport longue distance', 'status_id' => 1],
+            ['code' => 'TINT', 'label' => 'Transport international', 'description' => 'Transport international', 'status_id' => 1],
+            ['code' => 'TCON', 'label' => 'Transport conteneurs', 'description' => 'Transport conteneurs', 'status_id' => 1],
+            ['code' => 'CBTP', 'label' => 'Chantier BTP', 'description' => 'Chantier BTP', 'status_id' => 1],
+            ['code' => 'MANU', 'label' => 'Manutention', 'description' => 'Manutention', 'status_id' => 1],
+            ['code' => 'EXMI', 'label' => 'Exploitation minière', 'description' => 'Exploitation minière', 'status_id' => 1],
+            ['code' => 'TRPU', 'label' => 'Travaux publics', 'description' => 'Travaux publics', 'status_id' => 1],
+            ['code' => 'AGRI', 'label' => 'Agriculture', 'description' => 'Agriculture', 'status_id' => 1],
+            ['code' => 'AMBU', 'label' => 'Ambulance', 'description' => 'Ambulance', 'status_id' => 1],
+            ['code' => 'DEPN', 'label' => 'Dépanneuse', 'description' => 'Dépanneuse', 'status_id' => 1],
+            ['code' => 'CORB', 'label' => 'Corbillard', 'description' => 'Corbillard', 'status_id' => 1],
+            ['code' => 'ATMO', 'label' => 'Atelier mobile', 'description' => 'Atelier mobile', 'status_id' => 1],
+            ['code' => 'VINC', 'label' => 'Véhicule incendie', 'description' => 'Véhicule incendie', 'status_id' => 1],
+            ['code' => 'VBLI', 'label' => 'Véhicule blindé', 'description' => 'Véhicule blindé', 'status_id' => 1],
+            ['code' => 'CITE', 'label' => 'Citerne', 'description' => 'Citerne', 'status_id' => 1],
+            ['code' => 'CAM1', 'label' => 'CAMION 2,5 T A 5 T', 'description' => 'CAMION 2,5 T A 5 T', 'status_id' => 1],
+            ['code' => 'CAM2', 'label' => 'CAMION PLUS DE 5 T', 'description' => 'CAMION PLUS DE 5 T', 'status_id' => 1],
         ];
 
-        // Récupérer tous les genres existants
-        $genres = Genre::all();
-
-        foreach ($usages as $usageName) {
-            foreach ($genres as $genre) {
-                // Générer un code unique basé sur le nom de l'usage et le genre
-                // Supprimer les accents et prendre les premières lettres en majuscules
-                $usageClean = $this->cleanForCode($usageName);
-                $genreClean = $this->cleanForCode($genre->name ?? $genre->code ?? 'G');
-
-                $codePrefix = strtoupper(substr($usageClean, 0, 2));
-                $genrePrefix = strtoupper(substr($genreClean, 0, 1));
-                $baseCode = $codePrefix . $genrePrefix;
-
-                // Vérifier si le code existe déjà et générer un nouveau si nécessaire
-                $code = $baseCode;
-                $counter = 1;
-                while (Usage::where('code', $code)->exists()) {
-                    $code = $baseCode . $counter;
-                    $counter++;
-                }
-
-                // Utiliser firstOrCreate pour éviter les doublons
-                Usage::firstOrCreate(
-                    [
-                        'genre_id' => $genre->id,
-                        'slug' => Str::slug($usageName),
-                    ],
-                    [
-                        'name' => $usageName,
-                        'code' => $code,
-                        'max_mileage_essence_per_year' => rand(10000, 20000),
-                        'max_mileage_diesel_per_year' => rand(10000, 20000),
-                        'label' => $usageName,
-                        'description' => $usageName,
-                    ]
-                );
-            }
-        }
-    }
-
-    /**
-     * Nettoie une chaîne pour générer un code ASCII-safe
-     */
-    private function cleanForCode(string $text): string
-    {
-        // Supprimer les accents en utilisant Str::ascii()
-        $cleaned = Str::ascii($text);
-
-        // Garder seulement les lettres et chiffres
-        $cleaned = preg_replace('/[^a-zA-Z0-9]/', '', $cleaned);
-
-        return $cleaned;
+        Usage::upsert(
+            $usages,
+            ['code'],
+            ['label', 'description', 'status_id']
+        );
     }
 }
-
-
-
-

@@ -1,0 +1,285 @@
+name: 'Gestion des associations caractéristiques / genres-usages'
+description: |-
+
+  APIs pour la gestion des associations entre caractéristiques de véhicules et genres-usages
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/vehicle-characteristic-genre-usages
+    metadata:
+      groupName: 'Gestion des associations caractéristiques / genres-usages'
+      groupDescription: |-
+
+        APIs pour la gestion des associations entre caractéristiques de véhicules et genres-usages
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister toutes les associations'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer VPeEa6Zf5v8h4D6ck1b3adg'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/vehicle-characteristic-genre-usages
+    metadata:
+      groupName: 'Gestion des associations caractéristiques / genres-usages'
+      groupDescription: |-
+
+        APIs pour la gestion des associations entre caractéristiques de véhicules et genres-usages
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Créer une association'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      vehicle_characteristic_id:
+        name: vehicle_characteristic_id
+        description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      vehicle_genre_usage_id:
+        name: vehicle_genre_usage_id
+        description: 'The <code>id</code> of an existing record in the vehicle_genre_usages table.'
+        required: true
+        example: dolorum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      vehicle_characteristic_id: consequatur
+      vehicle_genre_usage_id: dolorum
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer VadP64bE68ckfag1vD53Zhe'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/vehicle-characteristic-genre-usages/{characteristic_genre_usage}'
+    metadata:
+      groupName: 'Gestion des associations caractéristiques / genres-usages'
+      groupDescription: |-
+
+        APIs pour la gestion des associations entre caractéristiques de véhicules et genres-usages
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Afficher une association'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      characteristic_genre_usage:
+        name: characteristic_genre_usage
+        description: ''
+        required: true
+        example: accusamus
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      characteristic_genre_usage: accusamus
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6fagvPcE1b34aVZeh58Ddk6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/vehicle-characteristic-genre-usages/{characteristic_genre_usage}'
+    metadata:
+      groupName: 'Gestion des associations caractéristiques / genres-usages'
+      groupDescription: |-
+
+        APIs pour la gestion des associations entre caractéristiques de véhicules et genres-usages
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mettre à jour une association'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      characteristic_genre_usage:
+        name: characteristic_genre_usage
+        description: ''
+        required: true
+        example: sit
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      characteristic_genre_usage: sit
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      vehicle_characteristic_id:
+        name: vehicle_characteristic_id
+        description: 'The <code>id</code> of an existing record in the vehicle_characteristics table.'
+        required: true
+        example: officia
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      vehicle_genre_usage_id:
+        name: vehicle_genre_usage_id
+        description: 'The <code>id</code> of an existing record in the vehicle_genre_usages table.'
+        required: true
+        example: aliquid
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      vehicle_characteristic_id: officia
+      vehicle_genre_usage_id: aliquid
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DaZ6c53V6PehbfEa4g18dkv'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/vehicle-characteristic-genre-usages/{characteristic_genre_usage}'
+    metadata:
+      groupName: 'Gestion des associations caractéristiques / genres-usages'
+      groupDescription: |-
+
+        APIs pour la gestion des associations entre caractéristiques de véhicules et genres-usages
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Supprimer une association'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      characteristic_genre_usage:
+        name: characteristic_genre_usage
+        description: ''
+        required: true
+        example: explicabo
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      characteristic_genre_usage: explicabo
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer cdVa6vE8ae3kg4Z6bD5hP1f'
+    controller: null
+    method: null
+    route: null
+    custom: []

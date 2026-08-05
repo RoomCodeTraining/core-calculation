@@ -15,11 +15,7 @@ return [
     */
 
     'postmark' => [
-        'key' => env('POSTMARK_API_KEY'),
-    ],
-
-    'resend' => [
-        'key' => env('RESEND_API_KEY'),
+        'token' => env('POSTMARK_TOKEN'),
     ],
 
     'ses' => [
@@ -28,11 +24,38 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'resend' => [
+        'key' => env('RESEND_KEY'),
+    ],
+
     'slack' => [
         'notifications' => [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
+    ],
+
+    'settings' => [
+        'tax_rate' => env('TAX_RATE', 18),
+        'small_supply_rate' => env('SMALL_SUPPLY_RATE', 2),
+        'transaction_cost' => env('TRANSACTION_COST', 10),
+    ],
+
+    'fne' => [
+        'url' => env('FNE_URL'),
+    ],
+
+    'frontend' => [
+        'url' => env('FRONTEND_URL'),
+    ],
+
+    'wave' => [
+        'base_url' => env('WAVE_BASE_URL', 'https://api.wave.com/v1'),
+        'api_key' => env('WAVE_API_KEY', ''),
+        'search_api_key' => env('WAVE_SEARCH_API_KEY', ''),
+        'signing_secret' => env('WAVE_SIGNING_SECRET', ''),
+        'success_url' => env('WAVE_SUCCESS_URL', ''),
+        'error_url' => env('WAVE_ERROR_URL', ''),
     ],
 
 ];

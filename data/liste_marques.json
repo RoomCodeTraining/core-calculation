@@ -1,0 +1,502 @@
+[
+  {
+    "IdMarque": 142,
+    "LibMarque": ""
+  },
+  {
+    "IdMarque": 124,
+    "LibMarque": "AGORA "
+  },
+  {
+    "IdMarque": 70,
+    "LibMarque": "ASTON MARTIN"
+  },
+  {
+    "IdMarque": 104,
+    "LibMarque": "ATLAS COPCO"
+  },
+  {
+    "IdMarque": 45,
+    "LibMarque": "AUDI"
+  },
+  {
+    "IdMarque": 92,
+    "LibMarque": "AUDI-8N"
+  },
+  {
+    "IdMarque": 150,
+    "LibMarque": "BAIC"
+  },
+  {
+    "IdMarque": 55,
+    "LibMarque": "BERCO"
+  },
+  {
+    "IdMarque": 90,
+    "LibMarque": "BERLIET"
+  },
+  {
+    "IdMarque": 35,
+    "LibMarque": "BMW"
+  },
+  {
+    "IdMarque": 145,
+    "LibMarque": "BORGWARD"
+  },
+  {
+    "IdMarque": 93,
+    "LibMarque": "BYD"
+  },
+  {
+    "IdMarque": 96,
+    "LibMarque": "CACOMIAF"
+  },
+  {
+    "IdMarque": 102,
+    "LibMarque": "CATERPILLAR"
+  },
+  {
+    "IdMarque": 38,
+    "LibMarque": "CHANA"
+  },
+  {
+    "IdMarque": 49,
+    "LibMarque": "CHANA"
+  },
+  {
+    "IdMarque": 146,
+    "LibMarque": "CHANGAN"
+  },
+  {
+    "IdMarque": 75,
+    "LibMarque": "CHERY"
+  },
+  {
+    "IdMarque": 22,
+    "LibMarque": "CHEVROLET"
+  },
+  {
+    "IdMarque": 79,
+    "LibMarque": "CHRYSLER"
+  },
+  {
+    "IdMarque": 110,
+    "LibMarque": "CHRYSLER USA"
+  },
+  {
+    "IdMarque": 48,
+    "LibMarque": "CITROËN"
+  },
+  {
+    "IdMarque": 44,
+    "LibMarque": "DACIA"
+  },
+  {
+    "IdMarque": 65,
+    "LibMarque": "DAEWOO"
+  },
+  {
+    "IdMarque": 76,
+    "LibMarque": "DAF"
+  },
+  {
+    "IdMarque": 154,
+    "LibMarque": "DFM"
+  },
+  {
+    "IdMarque": 88,
+    "LibMarque": "DODGE"
+  },
+  {
+    "IdMarque": 116,
+    "LibMarque": "DONG-FENG"
+  },
+  {
+    "IdMarque": 71,
+    "LibMarque": "DONGFENG"
+  },
+  {
+    "IdMarque": 108,
+    "LibMarque": "DYNAPAC"
+  },
+  {
+    "IdMarque": 120,
+    "LibMarque": "EICHER"
+  },
+  {
+    "IdMarque": 31,
+    "LibMarque": "FERRARI"
+  },
+  {
+    "IdMarque": 62,
+    "LibMarque": "FIAT"
+  },
+  {
+    "IdMarque": 30,
+    "LibMarque": "FORD"
+  },
+  {
+    "IdMarque": 160,
+    "LibMarque": "FORLAND"
+  },
+  {
+    "IdMarque": 151,
+    "LibMarque": "FOTON"
+  },
+  {
+    "IdMarque": 118,
+    "LibMarque": "FRUEHAUF"
+  },
+  {
+    "IdMarque": 69,
+    "LibMarque": "FUDI"
+  },
+  {
+    "IdMarque": 147,
+    "LibMarque": "GEELY"
+  },
+  {
+    "IdMarque": 23,
+    "LibMarque": "GMC"
+  },
+  {
+    "IdMarque": 84,
+    "LibMarque": "GRANDTIGER"
+  },
+  {
+    "IdMarque": 43,
+    "LibMarque": "GREAT WALL"
+  },
+  {
+    "IdMarque": 136,
+    "LibMarque": "HACKED BY MAURITA"
+  },
+  {
+    "IdMarque": 137,
+    "LibMarque": "HACKED BY MAURITA"
+  },
+  {
+    "IdMarque": 138,
+    "LibMarque": "HACKED BY MAURITA"
+  },
+  {
+    "IdMarque": 139,
+    "LibMarque": "HACKED BY MAURITA"
+  },
+  {
+    "IdMarque": 140,
+    "LibMarque": "HACKED BY MAURITA"
+  },
+  {
+    "IdMarque": 144,
+    "LibMarque": "HAVAL"
+  },
+  {
+    "IdMarque": 28,
+    "LibMarque": "HONDA"
+  },
+  {
+    "IdMarque": 27,
+    "LibMarque": "HYUNDAI"
+  },
+  {
+    "IdMarque": 52,
+    "LibMarque": "INCONNU"
+  },
+  {
+    "IdMarque": 95,
+    "LibMarque": "INFINITI"
+  },
+  {
+    "IdMarque": 42,
+    "LibMarque": "ISUZU"
+  },
+  {
+    "IdMarque": 125,
+    "LibMarque": "ISUZU"
+  },
+  {
+    "IdMarque": 78,
+    "LibMarque": "IVECO"
+  },
+  {
+    "IdMarque": 153,
+    "LibMarque": "JAC"
+  },
+  {
+    "IdMarque": 72,
+    "LibMarque": "JAGUAR"
+  },
+  {
+    "IdMarque": 61,
+    "LibMarque": "JEEP"
+  },
+  {
+    "IdMarque": 149,
+    "LibMarque": "JETOUR"
+  },
+  {
+    "IdMarque": 121,
+    "LibMarque": "JIALING"
+  },
+  {
+    "IdMarque": 155,
+    "LibMarque": "JMC"
+  },
+  {
+    "IdMarque": 159,
+    "LibMarque": "KAIYI"
+  },
+  {
+    "IdMarque": 101,
+    "LibMarque": "KAIZER"
+  },
+  {
+    "IdMarque": 123,
+    "LibMarque": "KALMAR"
+  },
+  {
+    "IdMarque": 157,
+    "LibMarque": "KAMA"
+  },
+  {
+    "IdMarque": 122,
+    "LibMarque": "KAMAZ"
+  },
+  {
+    "IdMarque": 152,
+    "LibMarque": "KARRY"
+  },
+  {
+    "IdMarque": 26,
+    "LibMarque": "KIA"
+  },
+  {
+    "IdMarque": 50,
+    "LibMarque": "KIA MOTORS"
+  },
+  {
+    "IdMarque": 86,
+    "LibMarque": "KINROAD"
+  },
+  {
+    "IdMarque": 97,
+    "LibMarque": "KROLL"
+  },
+  {
+    "IdMarque": 99,
+    "LibMarque": "KTM"
+  },
+  {
+    "IdMarque": 32,
+    "LibMarque": "LAMBORGINI"
+  },
+  {
+    "IdMarque": 83,
+    "LibMarque": "LAND MARK"
+  },
+  {
+    "IdMarque": 80,
+    "LibMarque": "LAND ROVER"
+  },
+  {
+    "IdMarque": 56,
+    "LibMarque": "LEXUS"
+  },
+  {
+    "IdMarque": 107,
+    "LibMarque": "LIEBHERR"
+  },
+  {
+    "IdMarque": 64,
+    "LibMarque": "LIFAN"
+  },
+  {
+    "IdMarque": 111,
+    "LibMarque": "MAN"
+  },
+  {
+    "IdMarque": 106,
+    "LibMarque": "MANITOU"
+  },
+  {
+    "IdMarque": 40,
+    "LibMarque": "MAZDA"
+  },
+  {
+    "IdMarque": 21,
+    "LibMarque": "MERCEDES"
+  },
+  {
+    "IdMarque": 114,
+    "LibMarque": "MERCEDES BENZ"
+  },
+  {
+    "IdMarque": 34,
+    "LibMarque": "MERCEDES-BENZ"
+  },
+  {
+    "IdMarque": 148,
+    "LibMarque": "MG"
+  },
+  {
+    "IdMarque": 119,
+    "LibMarque": "MINI"
+  },
+  {
+    "IdMarque": 24,
+    "LibMarque": "MITSUBISHI"
+  },
+  {
+    "IdMarque": 25,
+    "LibMarque": "NISSAN"
+  },
+  {
+    "IdMarque": 53,
+    "LibMarque": "NISSAN"
+  },
+  {
+    "IdMarque": 41,
+    "LibMarque": "OPEL"
+  },
+  {
+    "IdMarque": 74,
+    "LibMarque": "PART"
+  },
+  {
+    "IdMarque": 37,
+    "LibMarque": "PEUGEOT"
+  },
+  {
+    "IdMarque": 103,
+    "LibMarque": "PINGUELY"
+  },
+  {
+    "IdMarque": 58,
+    "LibMarque": "PORSCHE"
+  },
+  {
+    "IdMarque": 109,
+    "LibMarque": "PROTON"
+  },
+  {
+    "IdMarque": 126,
+    "LibMarque": "QUAD"
+  },
+  {
+    "IdMarque": 112,
+    "LibMarque": "RANGE ROVER"
+  },
+  {
+    "IdMarque": 29,
+    "LibMarque": "RENAULT"
+  },
+  {
+    "IdMarque": 47,
+    "LibMarque": "RENAULT MEGANE"
+  },
+  {
+    "IdMarque": 113,
+    "LibMarque": "RENAULT-AMBULANCE"
+  },
+  {
+    "IdMarque": 85,
+    "LibMarque": "ROVER"
+  },
+  {
+    "IdMarque": 91,
+    "LibMarque": "RYMCO"
+  },
+  {
+    "IdMarque": 115,
+    "LibMarque": "SAMRO"
+  },
+  {
+    "IdMarque": 68,
+    "LibMarque": "SANILI"
+  },
+  {
+    "IdMarque": 105,
+    "LibMarque": "SCRAPER"
+  },
+  {
+    "IdMarque": 87,
+    "LibMarque": "SEAT"
+  },
+  {
+    "IdMarque": 82,
+    "LibMarque": "SHUANGHUAN"
+  },
+  {
+    "IdMarque": 156,
+    "LibMarque": "SINOTRUK"
+  },
+  {
+    "IdMarque": 46,
+    "LibMarque": "SKODA"
+  },
+  {
+    "IdMarque": 73,
+    "LibMarque": "SMART"
+  },
+  {
+    "IdMarque": 158,
+    "LibMarque": "SONALIKA"
+  },
+  {
+    "IdMarque": 81,
+    "LibMarque": "SSANGYONG"
+  },
+  {
+    "IdMarque": 66,
+    "LibMarque": "SUZUKI"
+  },
+  {
+    "IdMarque": 98,
+    "LibMarque": "TATA"
+  },
+  {
+    "IdMarque": 20,
+    "LibMarque": "TOYOTA"
+  },
+  {
+    "IdMarque": 54,
+    "LibMarque": "TOYOTA"
+  },
+  {
+    "IdMarque": 100,
+    "LibMarque": "TRAILOR"
+  },
+  {
+    "IdMarque": 60,
+    "LibMarque": "VERNIERI"
+  },
+  {
+    "IdMarque": 39,
+    "LibMarque": "VOLKSWAGEN"
+  },
+  {
+    "IdMarque": 59,
+    "LibMarque": "VOLVO"
+  },
+  {
+    "IdMarque": 77,
+    "LibMarque": "WINGLE"
+  },
+  {
+    "IdMarque": 63,
+    "LibMarque": "YAMAHA"
+  },
+  {
+    "IdMarque": 89,
+    "LibMarque": "YUEJIN"
+  },
+  {
+    "IdMarque": 117,
+    "LibMarque": "YUTONG"
+  },
+  {
+    "IdMarque": 94,
+    "LibMarque": "ZX AUTO"
+  }
+]

@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Resources\PaymentMethod;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Status\StatusResource;
+use App\Http\Resources\User\UserResource;
+
+class PaymentMethodResource extends JsonResource
+{
+    public function toArray($request): array
+    {
+        return [
+            'id' => $this->hashId,
+            'code' => $this->code,
+            'label' => $this->label,
+            'description' => $this->description,
+            'logo' => $this->logo ? url('storage/payment_method_logos/'.$this->logo.'?v='.time()) : null,
+            'status' => new StatusResource($this->status),
+            'created_by' => new UserResource($this->createdBy),
+            'updated_by' => new UserResource($this->updatedBy),
+            'deleted_by' => new UserResource($this->deletedBy),
+            'created_at' => dateTimeFormat($this->created_at),
+            'updated_at' => dateTimeFormat($this->updated_at),
+        ];
+    }
+}

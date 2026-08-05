@@ -1,0 +1,353 @@
+name: 'Gestion des modèles de véhicules'
+description: |-
+
+  APIs pour la gestion des modèles de véhicules
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/vehicle-models
+    metadata:
+      groupName: 'Gestion des modèles de véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des modèles de véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister tous les modèles de véhicules'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer hc6e5bgkP1DEaZadv3V64f8'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/vehicle-models
+    metadata:
+      groupName: 'Gestion des modèles de véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des modèles de véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Créer un modèle de véhicule'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: zlalfazobuikiejnew
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: false
+        example: 'Voluptate recusandae voluptatem accusantium aut delectus animi voluptatem.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      brand_id:
+        name: brand_id
+        description: 'The <code>id</code> of an existing record in the brands table.'
+        required: true
+        example: perferendis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      label: zlalfazobuikiejnew
+      description: 'Voluptate recusandae voluptatem accusantium aut delectus animi voluptatem.'
+      brand_id: perferendis
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer beEcvDa58663aZ1VhPgfdk4'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/vehicle-models/{id}'
+    metadata:
+      groupName: 'Gestion des modèles de véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des modèles de véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Afficher un modèle de véhicule'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the vehicle model.'
+        required: true
+        example: quia
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: quia
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer kvaEacV46g8b1ZPe635hfdD'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/v1/vehicle-models/{id}'
+    metadata:
+      groupName: 'Gestion des modèles de véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des modèles de véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mettre à jour un modèle de véhicule'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the vehicle model.'
+        required: true
+        example: optio
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: optio
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      label:
+        name: label
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: true
+        example: uvwrsy
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: ''
+        required: false
+        example: 'Omnis dolores non accusantium velit dolorum et.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      brand_id:
+        name: brand_id
+        description: 'The <code>id</code> of an existing record in the brands table.'
+        required: true
+        example: minima
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      label: uvwrsy
+      description: 'Omnis dolores non accusantium velit dolorum et.'
+      brand_id: minima
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer vdabe1c8g4Ea6h6ZPk5Df3V'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/vehicle-models/{id}'
+    metadata:
+      groupName: 'Gestion des modèles de véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des modèles de véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Supprimer un modèle de véhicule'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the vehicle model.'
+        required: true
+        example: iste
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: iste
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer daPeZ1gcf4hV6Ek6v8Db3a5'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/external/vehicle-models
+    metadata:
+      groupName: 'Gestion des modèles de véhicules'
+      groupDescription: |-
+
+        APIs pour la gestion des modèles de véhicules
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Lister tous les modèles de véhicules'
+      description: ''
+      authenticated: true
+      deprecated: false
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":"vehiclemodel_O3rLxDOwPDYqW","code":"mahindra-alfa-cargo","label":"ALFA CARGO","description":"CARRIER","brand":{"id":"brand_36EQPz8wMjeOl","code":"mahindra","label":"MAHINDRA","description":"MAHINDRA","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:14","updated_at":"2026-06-12 11:49:14"},{"id":"vehiclemodel_3Z45AzEAqzOXy","code":"lancia-delta","label":"DELTA","description":"GOLD 1.4L","brand":{"id":"brand_BZM4N7mlYDY6y","code":"lancia","label":"LANCIA","description":"LANCIA","deleted_at":null,"created_at":"2026-06-12 11:49:14","updated_at":"2026-06-12 11:49:14"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:14","updated_at":"2026-06-12 11:49:14"},{"id":"vehiclemodel_lYeMK7B8Ez6PA","code":"lancia-ypsilon","label":"YPSILON","description":"ORO 1.2L","brand":{"id":"brand_BZM4N7mlYDY6y","code":"lancia","label":"LANCIA","description":"LANCIA","deleted_at":null,"created_at":"2026-06-12 11:49:14","updated_at":"2026-06-12 11:49:14"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:14","updated_at":"2026-06-12 11:49:14"},{"id":"vehiclemodel_rgE8njnXvDv4M","code":"alpha-romeo-mito","label":"MITO","description":"MULTIAIR BVA CUIR","brand":{"id":"brand_9PwYN7KdZjepJ","code":"alpha-romeo","label":"ALPHA ROMEO","description":"ALPHA ROMEO","deleted_at":null,"created_at":"2026-06-12 11:49:05","updated_at":"2026-06-12 11:49:05"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:14","updated_at":"2026-06-12 11:49:14"},{"id":"vehiclemodel_GAl2Z7Lk6D0qg","code":"alpha-romeo-guilietta","label":"GUILIETTA","description":"DISTINCTIVE BVA","brand":{"id":"brand_9PwYN7KdZjepJ","code":"alpha-romeo","label":"ALPHA ROMEO","description":"ALPHA ROMEO","deleted_at":null,"created_at":"2026-06-12 11:49:05","updated_at":"2026-06-12 11:49:05"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:14","updated_at":"2026-06-12 11:49:14"},{"id":"vehiclemodel_0vNyqDZxAjZRK","code":"c-d-w-737","label":"737","description":"PORTEUR 4X2","brand":{"id":"brand_KXpqxDXkLzQgm","code":"c-d-w","label":"C D W","description":"C D W","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_MqNmdjW2k7Qk4","code":"c-d-w-757","label":"757","description":"PORTEUR (4X1.96X0.4)","brand":{"id":"brand_KXpqxDXkLzQgm","code":"c-d-w","label":"C D W","description":"C D W","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_qZwEN79Ye7LvV","code":"shacman-shacman","label":"SHACMAN","description":"PORTEUR 6X4","brand":{"id":"brand_q5Pd2Dg6NzveJ","code":"shacman","label":"SHACMAN","description":"SHACMAN","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_lW94MzvXk7mpd","code":"beiben-1834","label":"1834","description":"PORTEUR + BRAS AMPLIROLL \/ 18 T \/ 4X2","brand":{"id":"brand_vNAeX73L0jRgZ","code":"beiben","label":"BEIBEN","description":"BEIBEN","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_gd5OPzM88jyeQ","code":"beiben-3134-k","label":"3134 K","description":"PORTEUR 8X4","brand":{"id":"brand_vNAeX73L0jRgZ","code":"beiben","label":"BEIBEN","description":"BEIBEN","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_v85dBDYpPz4qn","code":"beiben-2534-k","label":"2534 K","description":"PORTEUR 6X4","brand":{"id":"brand_vNAeX73L0jRgZ","code":"beiben","label":"BEIBEN","description":"BEIBEN","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_3EyvwjrXvD8nx","code":"beiben-1834-s","label":"1834 S","description":"TRACTEUR ROUTIER 4X2","brand":{"id":"brand_vNAeX73L0jRgZ","code":"beiben","label":"BEIBEN","description":"BEIBEN","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_wAYKXz2RWzr39","code":"beiben-2638-s","label":"2638 S","description":"TRACTEUR ROUTIER 6X4","brand":{"id":"brand_vNAeX73L0jRgZ","code":"beiben","label":"BEIBEN","description":"BEIBEN","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_AWNyvzQWv7q25","code":"mahindra-xuv500","label":"XUV500","description":"4X4 2.2L DID TURBO","brand":{"id":"brand_36EQPz8wMjeOl","code":"mahindra","label":"MAHINDRA","description":"MAHINDRA","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_OVvRPzpXxzrnG","code":"mahindra-scorpio","label":"SCORPIO","description":"D\/C 4X4 2.5L TURBO TOP END","brand":{"id":"brand_36EQPz8wMjeOl","code":"mahindra","label":"MAHINDRA","description":"MAHINDRA","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_0xJBPDxJVjAyY","code":"mahindra-genio","label":"GENIO","description":"D\/C 4X2 2.2L DID TURBO","brand":{"id":"brand_36EQPz8wMjeOl","code":"mahindra","label":"MAHINDRA","description":"MAHINDRA","deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:13","updated_at":"2026-06-12 11:49:13"},{"id":"vehiclemodel_eLgoNDwXK7E0M","code":"genesis-genesis","label":"GENESIS","description":"3.8L BVA\/CUIR NEW","brand":{"id":"brand_n5xdPjlL2jQkp","code":"genesis","label":"GENESIS","description":"GENESIS","deleted_at":null,"created_at":"2026-06-12 11:49:05","updated_at":"2026-06-12 11:49:05"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:12","updated_at":"2026-06-12 11:49:12"},{"id":"vehiclemodel_36EQPD8Mx7eOl","code":"tim-chery-tiggo","label":"TIGGO","description":"2.0L","brand":{"id":"brand_5dQXJjkx4zBre","code":"tim-chery","label":"TIM CHERY","description":"TIM CHERY","deleted_at":null,"created_at":"2026-06-12 11:49:09","updated_at":"2026-06-12 11:49:09"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:09","updated_at":"2026-06-12 11:49:09"},{"id":"vehiclemodel_BZM4NjmXn7Y6y","code":"chery-a5","label":"A5","description":"A5 1.6L","brand":{"id":"brand_rgE8nDnw7v4Ml","code":"chery","label":"CHERY","description":"CHERY","deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:09","updated_at":"2026-06-12 11:49:09"},{"id":"vehiclemodel_EwPokjd3n7OZY","code":"chery-cowin","label":"COWIN","description":"C 1.5L","brand":{"id":"brand_rgE8nDnw7v4Ml","code":"chery","label":"CHERY","description":"CHERY","deleted_at":null,"created_at":"2026-06-12 11:49:00","updated_at":"2026-06-12 11:49:00"},"status":{"id":"status_eLgoNjw3jE0MB","code":"active","label":"Actif(ve)","description":"Actif(ve)","deleted_at":null,"created_at":"2026-06-12 11:48:58","updated_at":"2026-06-12 11:48:58"},"deleted_at":null,"created_at":"2026-06-12 11:49:09","updated_at":"2026-06-12 11:49:09"}],"links":{"first":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=1","last":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=30","prev":null,"next":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=2"},"meta":{"current_page":1,"from":1,"last_page":30,"links":[{"url":null,"label":"&laquo; Pr\u00e9c\u00e9dent","page":null,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=1","label":"1","page":1,"active":true},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=2","label":"2","page":2,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=3","label":"3","page":3,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=4","label":"4","page":4,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=5","label":"5","page":5,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=6","label":"6","page":6,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=7","label":"7","page":7,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=8","label":"8","page":8,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=9","label":"9","page":9,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=10","label":"10","page":10,"active":false},{"url":null,"label":"...","active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=29","label":"29","page":29,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=30","label":"30","page":30,"active":false},{"url":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models?page=2","label":"Suivant &raquo;","page":2,"active":false}],"path":"https:\/\/cea-calculation.ddev.site:8444\/api\/v1\/external\/vehicle-models","per_page":20,"to":20,"total":599}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DPadhva83E1ceg6kZ46Vf5b'
+    controller: null
+    method: null
+    route: null
+    custom: []

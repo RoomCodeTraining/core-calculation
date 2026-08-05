@@ -1,26 +1,22 @@
 name: Authentification
-description: |-
-
-  Gestion de l'authentification des utilisateurs via API.
+description: ''
 endpoints:
   -
-    custom: []
     httpMethods:
       - POST
-    uri: api/auth/login
+    uri: api/v1/auth/tokens
     metadata:
-      custom: []
       groupName: Authentification
-      groupDescription: |-
-
-        Gestion de l'authentification des utilisateurs via API.
+      groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: Authentification
-      description: 'Authentifie un utilisateur avec son email et mot de passe, et retourne un token Bearer pour les requêtes suivantes.'
-      authenticated: false
+      title: "Générer un token d'accès pour un utilisateur"
+      description: 'Le client_name est optionnel, mais il doit être présent si le client souhaite nommer la clé générée.'
+      authenticated: true
       deprecated: false
+      custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -29,183 +25,58 @@ endpoints:
     cleanQueryParameters: []
     bodyParameters:
       email:
-        custom: []
         name: email
-        description: "L'adresse email de l'utilisateur."
+        description: 'Le champ value doit être une adresse e-mail valide.'
         required: true
-        example: user@example.com
+        example: thaddeus.braun@example.com
         type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
-        deprecated: false
+        custom: []
       password:
-        custom: []
         name: password
-        description: "Le mot de passe de l'utilisateur."
+        description: ''
         required: true
-        example: password123
+        example: 'bNM*030pYjA>Szc6Y3R'
         type: string
         enumValues: []
-        exampleWasSpecified: true
+        exampleWasSpecified: false
         nullable: false
-        deprecated: false
+        custom: []
+      client_name:
+        name: client_name
+        description: 'Le texte de value ne peut pas contenir plus de 255 caractères.'
+        required: false
+        example: hrcsjxcjgvdconjpzv
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      expires_at:
+        name: expires_at
+        description: ''
+        required: false
+        example: 14
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
     cleanBodyParameters:
-      email: user@example.com
-      password: password123
+      email: thaddeus.braun@example.com
+      password: 'bNM*030pYjA>Szc6Y3R'
+      client_name: hrcsjxcjgvdconjpzv
+      expires_at: 14
     fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Authentification réussie",
-            "data": {
-              "user": {
-                "id": "abc123",
-                "name": "John Doe",
-                "email": "user@example.com",
-                "role": "user",
-                "organization": {
-                  "id": "org123",
-                  "name": "Mon Organisation",
-                  "slug": "mon-organisation",
-                  "api_quota": 1000
-                }
-              },
-              "token": "1|abcdefghijklmnopqrstuvwxyz1234567890",
-              "token_type": "Bearer"
-            }
-          }
-        headers: []
-        description: ''
-      -
-        custom: []
-        status: 401
-        content: |-
-          {
-            "errors": [
-              {
-                "status": 401,
-                "title": "Authentification échouée",
-                "detail": "Les identifiants fournis sont incorrects."
-              }
-            ]
-          }
-        headers: []
-        description: ''
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-  -
-    custom: []
-    httpMethods:
-      - POST
-    uri: api/auth/logout
-    metadata:
-      custom: []
-      groupName: Authentification
-      groupDescription: |-
-
-        Gestion de l'authentification des utilisateurs via API.
-      subgroup: ''
-      subgroupDescription: ''
-      title: Déconnexion
-      description: "Déconnecte l'utilisateur authentifié et révoque le token d'accès actuel."
-      authenticated: true
-      deprecated: false
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Déconnexion réussie"
-          }
-        headers: []
-        description: ''
+    responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
+      - 'Bearer 6fg6cZP5ebDvd3ah1a8V4kE'
     controller: null
     method: null
     route: null
-  -
     custom: []
-    httpMethods:
-      - GET
-    uri: api/auth/me
-    metadata:
-      custom: []
-      groupName: Authentification
-      groupDescription: |-
-
-        Gestion de l'authentification des utilisateurs via API.
-      subgroup: ''
-      subgroupDescription: ''
-      title: 'Informations utilisateur'
-      description: "Retourne les informations de l'utilisateur actuellement authentifié, incluant son organisation et son quota."
-      authenticated: true
-      deprecated: false
-    headers:
-      Authorization: 'Bearer {YOUR_AUTH_TOKEN}'
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
-      -
-        custom: []
-        status: 200
-        content: |-
-          {
-            "status": 200,
-            "message": "Informations utilisateur récupérées avec succès",
-            "data": {
-              "user": {
-                "id": "abc123",
-                "name": "John Doe",
-                "email": "user@example.com",
-                "role": "user",
-                "organization": {
-                  "id": "org123",
-                  "name": "Mon Organisation",
-                  "slug": "mon-organisation",
-                  "api_quota": 1000
-                }
-              }
-            }
-          }
-        headers: []
-        description: ''
-    responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 6g43cv8PD1aE5beadkZfhV6'
-    controller: null
-    method: null
-    route: null

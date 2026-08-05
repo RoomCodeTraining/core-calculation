@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Http\Requests\Invoice;
+
+use App\Models\Transaction;
+use Illuminate\Foundation\Http\FormRequest;
+
+class CreateInvoiceRequest extends FormRequest
+{
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'transaction_id' => $this->transaction_id ? Transaction::keyFromHashId($this->transaction_id) : null,
+        ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            'transaction_id' => 'required|exists:transactions,id',
+            'date' => 'required|date_format:Y-m-d',
+            'object' => 'required|string',
+            'type' => 'required|in:sale,credit_bill',
+            'payment_method' => 'required|in:cash,card,check,mobile-money,transfer,deferred',
+            'template' => 'required|in:B2C,B2B,B2F,B2G',
+            'is_fne' => 'nullable|boolean',
+            'foreign_currency' => 'nullable|string',
+            'foreign_currency_rate' => 'nullable|numeric|min:0|max:100',
+            'discount' => 'nullable|numeric|min:0|max:100',
+            'invoice_reference' => 'nullable|required_if:type,credit_bill|exists:invoices,reference|string',
+            'address' => 'nullable|string',
+            'taxpayer_account_number' => 'nullable|string|required_if:template,B2B',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'date.date' => 'La date est invalide.',
+            'date.date_format' => 'Le format de la date est invalide.',
+            'address.string' => 'L\'adresse est invalide.',
+            'taxpayer_account_number.string' => 'Le numéro de compte contribuable est invalide.',
+            'is_fne.boolean' => 'Le statut FNE est invalide.',
+            'foreign_currency.string' => 'La devise étrangère est invalide.',
+            'foreign_currency_rate.numeric' => 'Le taux de change est invalide.',
+            'foreign_currency_rate.min' => 'Le taux de change doit être supérieur à 0.',
+            'foreign_currency_rate.max' => 'Le taux de change doit être inférieur à 100.',
+            'discount.numeric' => 'Le montant de la remise est invalide.',
+            'discount.min' => 'Le montant de la remise doit être supérieur à 0.',
+            'discount.max' => 'Le montant de la remise doit être inférieur à 100.',
+        ];
+    }
+}

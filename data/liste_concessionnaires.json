@@ -1,0 +1,138 @@
+[
+  {
+    "idconcessionnaire": 11,
+    "nomconcessionnaire": "AFRICAUTO",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 28,
+    "nomconcessionnaire": "ATC COMAFRIQUE",
+    "creerLe": "2023-11-03T00:00:00.000000Z",
+    "creerPar": 34,
+    "modifierPar": 0,
+    "modifierLe": "2023-11-03"
+  },
+  {
+    "idconcessionnaire": 26,
+    "nomconcessionnaire": "CFAO MOTORS",
+    "creerLe": "2023-05-25T00:00:00.000000Z",
+    "creerPar": 34,
+    "modifierPar": 0,
+    "modifierLe": "2023-05-25"
+  },
+  {
+    "idconcessionnaire": 4,
+    "nomconcessionnaire": "EMAUCI",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 5,
+    "nomconcessionnaire": "FARHAT FRERES",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 25,
+    "nomconcessionnaire": "HR MOTORS",
+    "creerLe": "2023-02-01T00:00:00.000000Z",
+    "creerPar": 34,
+    "modifierPar": 0,
+    "modifierLe": "2023-02-01"
+  },
+  {
+    "idconcessionnaire": 18,
+    "nomconcessionnaire": "IVOIREMOTOR",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 30,
+    "nomconcessionnaire": "MATEFORCE",
+    "creerLe": "2025-01-21T00:00:00.000000Z",
+    "creerPar": 34,
+    "modifierPar": 0,
+    "modifierLe": "2025-01-21"
+  },
+  {
+    "idconcessionnaire": 10,
+    "nomconcessionnaire": "RIMCO MOTORS",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 29,
+    "nomconcessionnaire": "SADA MOTORS",
+    "creerLe": "2024-01-13T00:00:00.000000Z",
+    "creerPar": 34,
+    "modifierPar": 0,
+    "modifierLe": "2024-01-13"
+  },
+  {
+    "idconcessionnaire": 13,
+    "nomconcessionnaire": "SDA",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 31,
+    "nomconcessionnaire": "SEMAG MATFORCE",
+    "creerLe": "2025-01-21T00:00:00.000000Z",
+    "creerPar": 34,
+    "modifierPar": 0,
+    "modifierLe": "2025-01-21"
+  },
+  {
+    "idconcessionnaire": 12,
+    "nomconcessionnaire": "SETACI",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 21,
+    "nomconcessionnaire": "SOCIDA",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 15,
+    "nomconcessionnaire": "STAR AUTO ",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 23,
+    "nomconcessionnaire": "TRACTAFRIC MOTORS CI",
+    "creerLe": null,
+    "creerPar": 34,
+    "modifierPar": null,
+    "modifierLe": null
+  },
+  {
+    "idconcessionnaire": 27,
+    "nomconcessionnaire": "UNITED MOTORS",
+    "creerLe": "2023-11-03T00:00:00.000000Z",
+    "creerPar": 34,
+    "modifierPar": 0,
+    "modifierLe": "2023-11-03"
+  }
+]
