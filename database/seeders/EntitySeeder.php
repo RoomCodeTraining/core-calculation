@@ -66,7 +66,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@nsia.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -78,7 +78,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@axa.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -90,7 +90,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@sanlamallianz.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -102,7 +102,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@gna.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -114,7 +114,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@atlantique.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -126,7 +126,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@comar.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -138,7 +138,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@afg.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -150,7 +150,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@atlanta.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -162,7 +162,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@activa.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -174,7 +174,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@sidam.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -186,7 +186,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@ascoma.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -198,7 +198,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@olea.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
@@ -210,7 +210,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@wtw.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::INSURER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
