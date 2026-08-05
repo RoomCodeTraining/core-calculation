@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             'email' => 'brahimafane06@gmail.com',
             'telephone' => '01050635899',
             'password' =>'12345678',
-            'entity_id' => Entity::firstWhere('code', 'CIEAMI')->id,
+            'entity_id' => Entity::firstWhere('code', 'LCA')->id,
             'current_role_id' => Role::firstWhere('name', \App\Enums\RoleEnum::SYSTEM_ADMIN)->id,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
@@ -46,59 +46,59 @@ class UserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'telephone' => '01050635899',
             'password' =>'12345678',
-            'entity_id' => Entity::firstWhere('code', 'CIEAMI')->id,
+            'entity_id' => Entity::firstWhere('code', 'LCA')->id,
             'current_role_id' => Role::firstWhere('name', \App\Enums\RoleEnum::ADMIN)->id,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
-        User::create([
-            'username' => 'U003',
-            'code' => 'U003',
-            'last_name' => 'ADMIN',
-            'first_name' => 'LCA',
-            'email' => 'adminlca@gmail.com',
-            'telephone' => '01050635899',
-            'password' => '12345678',
-            'entity_id' => Entity::firstWhere('code', 'LCA')->id,
-            'current_role_id' => Role::firstWhere('name', \App\Enums\RoleEnum::ADMIN_ORGANIZATION)->id,
-            'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
-        ]);
+        // User::create([
+        //     'username' => 'U003',
+        //     'code' => 'U003',
+        //     'last_name' => 'ADMIN',
+        //     'first_name' => 'LCA',
+        //     'email' => 'adminlca@gmail.com',
+        //     'telephone' => '01050635899',
+        //     'password' => '12345678',
+        //     'entity_id' => Entity::firstWhere('code', 'LCA')->id,
+        //     'current_role_id' => Role::firstWhere('name', \App\Enums\RoleEnum::ADMIN_ORGANIZATION)->id,
+        //     'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
+        // ]);
+
+        // User::create([
+        //     'username' => 'U012',
+        //     'code' => 'U012',
+        //     'last_name' => 'ADMIN',
+        //     'first_name' => 'BCA-CI',
+        //     'email' => 'adminbca@gmail.com',
+        //     'telephone' => '01050635899',
+        //     'password' => '12345678',
+        //     'entity_id' => Entity::firstWhere('code', 'BCA_CI')->id,
+        //     'current_role_id' => Role::firstWhere('name', \App\Enums\RoleEnum::ADMIN_ORGANIZATION)->id,
+        //     'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
+        // ]);
+
+        // User::create([
+        //     'username' => 'U014',
+        //     'code' => 'U014',
+        //     'last_name' => 'ADMIN',
+        //     'first_name' => 'SGA',
+        //     'email' => 'adminsga@gmail.com',
+        //     'telephone' => '01050635899',
+        //     'password' => '12345678',
+        //     'entity_id' => Entity::firstWhere('code', 'SGA')->id,
+        //     'current_role_id' => Role::firstWhere('name', \App\Enums\RoleEnum::ADMIN_ORGANIZATION)->id,
+        //     'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
+        // ]);
 
         User::create([
-            'username' => 'U012',
-            'code' => 'U012',
+            'username' => 'U015',
+            'code' => 'U015',
             'last_name' => 'ADMIN',
-            'first_name' => 'BCA-CI',
-            'email' => 'adminbca@gmail.com',
+            'first_name' => 'NSIA-CI',
+            'email' => 'adminnsia@gmail.com',
             'telephone' => '01050635899',
             'password' => '12345678',
-            'entity_id' => Entity::firstWhere('code', 'BCA_CI')->id,
-            'current_role_id' => Role::firstWhere('name', \App\Enums\RoleEnum::ADMIN_ORGANIZATION)->id,
-            'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
-        ]);
-
-        User::create([
-            'username' => 'U013',
-            'code' => 'U013',
-            'last_name' => 'CEO',
-            'first_name' => 'BCA-CI',
-            'email' => 'ceobca@gmail.com',
-            'telephone' => '01050635899',
-            'password' => '12345678',
-            'entity_id' => Entity::firstWhere('code', 'BCA_CI')->id,
-            'current_role_id' => Role::firstWhere('name', \App\Enums\RoleEnum::ADMIN_ORGANIZATION)->id,
-            'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
-        ]);
-
-        User::create([
-            'username' => 'U014',
-            'code' => 'U014',
-            'last_name' => 'ADMIN',
-            'first_name' => 'SGA',
-            'email' => 'adminsga@gmail.com',
-            'telephone' => '01050635899',
-            'password' => '12345678',
-            'entity_id' => Entity::firstWhere('code', 'SGA')->id,
+            'entity_id' => Entity::firstWhere('code', 'NSIA')->id,
             'current_role_id' => Role::firstWhere('name', \App\Enums\RoleEnum::ADMIN_ORGANIZATION)->id,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);

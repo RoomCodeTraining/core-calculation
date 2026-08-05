@@ -94,6 +94,11 @@ class TransactionController extends Controller
         $amount_tax = $amount_excluding_tax * AppSetting::where('code', 'tax_rate')->first()->value / 100;
         $amount = $amount_excluding_tax + $amount_tax;
 
+        $status_id = Status::where('code', StatusEnum::PENDING)->first()->id;
+        if(auth()->user()->isSuperAdmin() || auth()->user()->isAdmin()){
+            $status_id = Status::where('code', StatusEnum::PERFORMED)->first()->id;
+        }
+
         $transaction = Transaction::create([
             'reference' => 'TR-'.date('YmdHis'),
             'entity_id' => $request->entity_id,
@@ -102,7 +107,7 @@ class TransactionController extends Controller
             'amount' => $amount,
             'description' => $request->description,
             'calculation_id' => $request->calculation_id,
-            'status_id' => Status::where('code', StatusEnum::PENDING)->first()->id,
+            'status_id' => $status_id,
             'created_by' => auth()->user()->id,
             'updated_by' => auth()->user()->id,
         ]);
@@ -154,6 +159,44 @@ class TransactionController extends Controller
 
         return $this->responseSuccess('Transaction updated Successfully', new TransactionResource($transaction));
     }
+
+    /**
+     * Valider une transaction
+     *
+     * @authenticated
+     */
+    public function validate($id): JsonResponse
+    {
+        $transaction = Transaction::keyFromHashId($id)->builder()->accessibleBy(auth()->user())->firstOrFail();
+        $transaction->update([
+            // 'validated_by' => auth()->user()->id,
+            // 'validated_at' => Carbon::now(),
+            'status_id' => Status::where('code', StatusEnum::PERFORMED)->first()->id,
+            'updated_by' => auth()->user()->id,
+        ]);
+
+        return $this->responseSuccess('Transaction validated successfully', new TransactionResource($transaction->load('entity', 'calculation', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy')));
+    }
+
+    /**
+     * Rejeter une transaction
+     *
+     * @authenticated
+     */
+    public function reject(RejectTransactionRequest $request, $id): JsonResponse
+    {
+        $transaction = Transaction::keyFromHashId($id)->builder()->accessibleBy(auth()->user())->firstOrFail();
+        $transaction->update([
+            // 'rejection_reason' => $request->rejection_reason,
+            // 'rejected_by' => auth()->user()->id,
+            // 'rejected_at' => Carbon::now(),
+            'status_id' => Status::where('code', StatusEnum::REJECTED)->first()->id,
+            'updated_by' => auth()->user()->id,
+        ]);
+
+        return $this->responseSuccess('Transaction validated successfully', new TransactionResource($transaction->load('entity', 'calculation', 'transactionType', 'status', 'createdBy', 'updatedBy', 'deletedBy', 'cancelledBy')));
+    }
+
 
     /**
      * Annuler une transaction

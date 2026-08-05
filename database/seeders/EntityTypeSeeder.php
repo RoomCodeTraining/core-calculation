@@ -18,45 +18,23 @@ class EntityTypeSeeder extends Seeder
     {
         EntityType::create([
             'code' => \App\Enums\EntityTypeEnum::MAIN_ORGANIZATION,
-            'label' => "Chambre des experts automobiles de Côte d'Ivoire",
-            'description' => "Chambre des experts automobiles de Côte d'Ivoire",
+            'label' => "Organisation principale",
+            'description' => "Organisation principale",
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
         EntityType::create([
             'code' => \App\Enums\EntityTypeEnum::ORGANIZATION,
-            'label' => "Cabinet d'expertise",
-            'description' => "Cabinet d'expertise",
+            'label' => "Organisation",
+            'description' => "Organisation",
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
 
         EntityType::create([
-            'code' => \App\Enums\EntityTypeEnum::INSURER,
-            'label' => "Compagnie d'assurance",
-            'description' => "Compagnie d'assurance",
+            'code' => \App\Enums\EntityTypeEnum::OFFICE,
+            'label' => "Bureau",
+            'description' => "Bureau",
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
-
-        EntityType::create([
-            'code' => \App\Enums\EntityTypeEnum::BROKER,
-            'label' => "Courtier en assurances",
-            'description' => "Courtier en assurances",
-            'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
-        ]);
-
-        EntityType::create([
-            'code' => \App\Enums\EntityTypeEnum::AGENT,
-            'label' => "Agent général",
-            'description' => "Agent général",
-            'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
-        ]);
-
-        EntityType::create([
-            'code' => \App\Enums\EntityTypeEnum::REPAIRER,
-            'label' => "Réparateur",
-            'description' => "Réparateur",
-            'status_id' => Status::firstWhere('code', StatusEnum::ACTIVE)->id,
-        ]);
-
     }
 }
