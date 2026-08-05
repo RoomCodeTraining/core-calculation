@@ -447,6 +447,8 @@ class RolesAndPermissionsSeeder extends Seeder
             $updateTransaction,
             $deleteTransaction,
             $cancelTransaction,
+            $validateTransaction,
+            $rejectTransaction,
 
             $viewOrder,
             $validateOrder,
@@ -666,6 +668,8 @@ class RolesAndPermissionsSeeder extends Seeder
             $updateTransaction,
             $deleteTransaction,
             $cancelTransaction,
+            $validateTransaction,
+            $rejectTransaction,
 
             $viewOrder,
             $validateOrder,
@@ -757,6 +761,19 @@ class RolesAndPermissionsSeeder extends Seeder
             $viewOrder,
             $updateOrder,
             $cancelOrder,
+
+            $createTransaction,
+            $viewTransaction,
+            $updateTransaction,
+            $deleteTransaction,
+            $cancelTransaction,
+
+            $createTransactionType,
+            $viewTransactionType,
+            $updateTransactionType,
+            $deleteTransactionType,
+            $enableTransactionType,
+            $disableTransactionType,
 
             $dashboard,
         ]);

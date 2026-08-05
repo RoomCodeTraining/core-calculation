@@ -231,6 +231,8 @@ enum PermissionEnum: string
     case UPDATE_TRANSACTION = 'transaction.update';
     case DELETE_TRANSACTION = 'transaction.delete';
     case CANCEL_TRANSACTION = 'transaction.cancel';
+    case VALIDATE_TRANSACTION = 'transaction.validate';
+    case REJECT_TRANSACTION = 'transaction.reject';
 
     case VIEW_ORDER = 'order.view';
     case CREATE_ORDER = 'order.create';
