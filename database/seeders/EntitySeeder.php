@@ -222,7 +222,7 @@ class EntitySeeder extends Seeder
             'email' => 'support@cfao.com',
             'address' => null,
             'telephone' => null,
-            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::REPAIRER)->code,
+            'entity_type_code' => EntityType::firstWhere('code', \App\Enums\EntityTypeEnum::ORGANIZATION)->code,
             'status_id' => Status::firstWhere('code', \App\Enums\StatusEnum::ACTIVE)->id,
         ]);
     }
