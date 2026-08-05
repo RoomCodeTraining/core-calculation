@@ -233,6 +233,8 @@ class RolesAndPermissionsSeeder extends Seeder
         $updateTransaction = Permission::create(['name' => \App\Enums\PermissionEnum::UPDATE_TRANSACTION, 'guard_name' => 'sanctum']);
         $deleteTransaction = Permission::create(['name' => \App\Enums\PermissionEnum::DELETE_TRANSACTION, 'guard_name' => 'sanctum']);
         $cancelTransaction = Permission::create(['name' => \App\Enums\PermissionEnum::CANCEL_TRANSACTION, 'guard_name' => 'sanctum']);
+        $validateTransaction = Permission::create(['name' => \App\Enums\PermissionEnum::VALIDATE_TRANSACTION, 'guard_name' => 'sanctum']);
+        $rejectTransaction = Permission::create(['name' => \App\Enums\PermissionEnum::REJECT_TRANSACTION, 'guard_name' => 'sanctum']);
 
         $createOrder = Permission::create(['name' => \App\Enums\PermissionEnum::CREATE_ORDER, 'guard_name' => 'sanctum']);
         $viewOrder = Permission::create(['name' => \App\Enums\PermissionEnum::VIEW_ORDER, 'guard_name' => 'sanctum']);
