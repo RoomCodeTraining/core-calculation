@@ -26,14 +26,10 @@ class CreateTheoricalMarketValueRequest extends FormRequest
             'vehicle_characteristic_id' => 'required|exists:vehicle_characteristics,id',
             'vehicle_genre_id' => 'required|exists:vehicle_genres,id',
             'usage_id' => 'required|exists:usages,id',
-            'vehicle_genre_id.required' => 'Le genre de véhicule est requis.',
-            'vehicle_genre_id.exists' => 'Le genre de véhicule est invalide.',
-            'usage_id.required' => 'L\'usage est requis.',
-            'usage_id.exists' => 'L\'usage est invalide.',
             'vehicle_mileage' => 'required|integer|min:0',
             'first_entry_into_circulation_date' => 'required|date_format:Y-m-d|before:tomorrow',
             'expertise_date' => 'required|date_format:Y-m-d|after:first_entry_into_circulation_date|before:tomorrow',
-            // 'price_id' => 'required|exists:prices,id',
+            'price_id' => 'required|exists:prices,id',
             "license_plate" => "required|string|max:255",
             "serial_number" => "required|string|max:255",
             "insured" => "required|string|max:255",
@@ -43,6 +39,12 @@ class CreateTheoricalMarketValueRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'vehicle_characteristic_id.required' => 'Les caractéristiques du véhicule sont requises.',
+            'vehicle_characteristic_id.exists' => 'Les caractéristiques du véhicule sont invalides.',
+            'vehicle_genre_id.required' => 'Le genre de véhicule est requis.',
+            'vehicle_genre_id.exists' => 'Le genre de véhicule est invalide.',
+            'usage_id.required' => 'L\'usage est requis.',
+            'usage_id.exists' => 'L\'usage est invalide.',
             'first_entry_into_circulation_date.date' => 'La date est invalide.',
             'first_entry_into_circulation_date.date_format' => 'Le format de la date est invalide.',
             'expertise_date.date' => 'La date est invalide.',
